@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".HomeActivity">
+
+    //toolBar
+    <androidx.appcompat.widget.Toolbar
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/toolbar"
+        android:background="#A0EAA3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="40dp"
+            android:text="채분채분"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    //buildTop()
+    //buildBottom()
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/vegetables" />
+            <TextView
+                android:layout_width="310dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="각종 야채 소분 급구"
+                android:textSize="20dp" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#DFDFDF"/>
+        <LinearLayout
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/carrot" />
+            <TextView
+                android:layout_width="310dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="내일마감 당근오이"
+                android:textSize="20dp" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#DFDFDF"/>
+        <LinearLayout
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/carrot" />
+            <TextView
+                android:layout_width="310dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="내일마감 당근오이"
+                android:textSize="20dp" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#DFDFDF"/>
+        <LinearLayout
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/onion" />
+            <TextView
+                android:layout_width="310dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="양파 소분팟 구합니다"
+                android:textSize="20dp" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#DFDFDF"/>
+        <LinearLayout
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/radish" />
+            <TextView
+                android:layout_width="310dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="국물내기용 무 소분 구합니다"
+                android:textSize="20dp" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#DFDFDF"/>
+
+    </LinearLayout>
+</LinearLayout>

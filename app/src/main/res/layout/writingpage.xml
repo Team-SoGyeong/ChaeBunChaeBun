@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".HomeActivity">
+
+//toolBar
+    <androidx.appcompat.widget.Toolbar
+        app:layout_constraintTop_toTo  pOf="parent"
+        android:id="@+id/toolbar"
+        android:background="#A0EAA3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="40dp"
+            android:text="채분채분"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+//buildTop()
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:hint="제목을 입력하세요."/>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/vegetables" />
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:hint="거래지역을 입력하세요."/>
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:hint="채소 품목을 입력하세요."/>
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:hint="구하는 인원을 입력하세요."/>
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:hint="거래 날짜를 입력하세요."/>
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:hint="기타 사항"/>
+//buildBottom()
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    //buildBottom()
+</LinearLayout>

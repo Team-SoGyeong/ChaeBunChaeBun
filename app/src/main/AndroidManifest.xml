@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ChaeBunChaeBun">
-        <activity android:name=".SignInActivity">
+        <activity android:name=".WritingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
