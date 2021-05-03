@@ -10,7 +10,7 @@
 
 //toolBar
     <androidx.appcompat.widget.Toolbar
-        app:layout_constraintTop_toTo  pOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/toolbar"
         android:background="#A0EAA3"
         android:layout_width="match_parent"
