@@ -10,6 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChaeBunChaeBun">
         <activity android:name=".SignInActivity" >
+        </activity>
+        <activity android:name=".WritingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
