@@ -6,23 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context=".HomeActivity">
+    tools:context=".AllActivity">
 
-    //toolBar
-    <androidx.appcompat.widget.Toolbar
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/toolbar"
-        android:background="#A0EAA3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/white"
-            android:textSize="40dp"
-            android:text="채분채분"/>
-    </androidx.appcompat.widget.Toolbar>
     //buildTop()
     //buildBottom()
     <LinearLayout
@@ -74,7 +59,7 @@
             android:layout_height="3dp"
             android:background="#DFDFDF"/>
         <LinearLayout
-            android:visibility="invisible"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1">
@@ -96,7 +81,7 @@
             android:layout_height="3dp"
             android:background="#DFDFDF"/>
         <LinearLayout
-            android:visibility="invisible"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1">
@@ -118,7 +103,7 @@
             android:layout_height="3dp"
             android:background="#DFDFDF"/>
         <LinearLayout
-            android:visibility="invisible"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1">
@@ -126,13 +111,13 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center_vertical"
-                app:srcCompat="@drawable/carrot" />
+                app:srcCompat="@drawable/radish" />
             <TextView
                 android:layout_width="310dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center_vertical"
                 android:gravity="center"
-                android:text="내일마감 당근오이"
+                android:text="당일마감 무사세요"
                 android:textSize="20dp" />
         </LinearLayout>
         <View

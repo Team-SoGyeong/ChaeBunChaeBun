@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <item
+        android:id="@+id/menu_writing"
+        android:title="소분 시작하기"
+        android:icon="@android:drawable/ic_menu_send"/>
+    <item
+        android:id="@+id/menu_all"
+        android:title="전체 소분팟"
+        android:icon="@android:drawable/ic_menu_send"/>
+    <item
+        android:id="@+id/menu_partici"
+        android:title="참여하고 있는 소분팟"
+        android:icon="@android:drawable/ic_menu_send"/>
+    <item
+        android:id="@+id/menu_lead"
+        android:title="내가 진행하는 소분팟"
+        android:icon="@android:drawable/ic_menu_send"/>
+
+    <item android:title="Your Accout">
+        <menu>
+            <item android:id="@+id/menu_membership"
+                android:title="회원정보"/>
+        </menu>
+    </item>
+
+</menu>
