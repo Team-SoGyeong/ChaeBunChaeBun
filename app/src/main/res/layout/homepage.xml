@@ -118,7 +118,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!--    2. 왼쪽에 숨어잇는 Drawer 메뉴 역역-->
+    <!--    2. 왼쪽에 숨어잇는 Drawer 메뉴 역-->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav"
         android:layout_width="match_parent"

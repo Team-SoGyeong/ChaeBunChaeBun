@@ -16,14 +16,13 @@ import com.google.android.material.navigation.NavigationView;
 public class HomeActivity extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawerLayout;
-    ActionBar actionBar;
     ActionBarDrawerToggle barDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
-
+//네비게이션 시작
         navigationView=findViewById(R.id.nav);
         drawerLayout=findViewById(R.id.layout_drawer);
         //item icon색조를 적용하지 않도록.. 설정 안하면 회색 색조
@@ -81,5 +80,7 @@ public class HomeActivity extends AppCompatActivity {
         barDrawerToggle.onOptionsItemSelected(item);
         return super.onOptionsItemSelected(item);
     }
+//네비게이션 끝
+
 }
 
