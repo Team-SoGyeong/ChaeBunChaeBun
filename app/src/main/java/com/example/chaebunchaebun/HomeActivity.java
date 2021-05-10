@@ -52,7 +52,7 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(lead);
                         break;
                     case R.id.menu_membership:
-                        Intent membership = new Intent(getApplicationContext(), EditUserActivity.class);
+                        Intent membership = new Intent(getApplicationContext(), MembershipActivity.class);
                         startActivity(membership);
                         break;
                 }

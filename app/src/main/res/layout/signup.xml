@@ -154,6 +154,7 @@
         android:orientation="horizontal"
         android:gravity="center">
         <Button
+            android:id="@+id/btn_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="회원가입"
