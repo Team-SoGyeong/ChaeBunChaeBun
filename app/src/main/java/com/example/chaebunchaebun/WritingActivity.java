@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -33,19 +34,24 @@ public class WritingActivity extends AppCompatActivity{
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case R.id.menu_writing:
-                        Toast.makeText(WritingActivity.this, "소분 시작하기", Toast.LENGTH_SHORT).show();
+                        Intent writing = new Intent(getApplicationContext(), WritingActivity.class);
+                        startActivity(writing);
                         break;
                     case R.id.menu_all:
-                        Toast.makeText(WritingActivity.this, "전체 소분팟", Toast.LENGTH_SHORT).show();
+                        Intent all = new Intent(getApplicationContext(), AllActivity.class);
+                        startActivity(all);
                         break;
                     case R.id.menu_partici:
-                        Toast.makeText(WritingActivity.this, "참가하고있는 소분팟", Toast.LENGTH_SHORT).show();
+                        Intent partici = new Intent(getApplicationContext(), PartiActivity.class);
+                        startActivity(partici);
                         break;
                     case R.id.menu_lead:
-                        Toast.makeText(WritingActivity.this, "주최하고있는 소분팟", Toast.LENGTH_SHORT).show();
+                        Intent lead = new Intent(getApplicationContext(), LeadActivity.class);
+                        startActivity(lead);
                         break;
                     case R.id.menu_membership:
-                        Toast.makeText(WritingActivity.this, "회원정보 수정/탈퇴", Toast.LENGTH_SHORT).show();
+                        Intent membership = new Intent(getApplicationContext(), EditUserActivity.class);
+                        startActivity(membership);
                         break;
                 }
 
