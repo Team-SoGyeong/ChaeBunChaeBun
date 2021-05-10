@@ -155,6 +155,7 @@
         android:orientation="horizontal"
         android:gravity="center">
         <Button
+            android:id="@+id/btn_editInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="회원정보 수정"

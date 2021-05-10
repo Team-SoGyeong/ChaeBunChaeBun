@@ -42,7 +42,7 @@
             android:background="@drawable/edittext_rounded_corner_rectangle"
             android:hint="비밀번호를 입력해 주세요."/>
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_withdraw"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:background="#BF0000"
