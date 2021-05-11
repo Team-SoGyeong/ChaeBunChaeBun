@@ -25,6 +25,7 @@
         <activity android:name=".SignUpActivity"/>
         <activity android:name=".MembershipActivity"/>
         <activity android:name=".WithdrawActivity"/>
+        <activity android:name=".SearchActivity" android:windowSoftInputMode="adjustResize"/>
 
     </application>
 

@@ -6,13 +6,11 @@
     android:layout_height="match_parent"
     android:id="@+id/layout_drawer"
     tools:context=".HomeActivity">
-
     <!--    1. 화면을 구성하는 Content 영역-->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
@@ -31,6 +29,7 @@
             android:layout_weight="5">
 
             <LinearLayout
+                android:id="@+id/example"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">

@@ -22,6 +22,7 @@ public class EditUserActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast tMsg = Toast.makeText(EditUserActivity.this, "수정되었습니다.", Toast.LENGTH_SHORT);
                 tMsg.show();
+                finish();
             }
         });
     }
