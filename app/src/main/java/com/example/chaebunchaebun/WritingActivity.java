@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -33,6 +36,10 @@ public class WritingActivity extends AppCompatActivity{
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
+                    case R.id.menu_home:
+                        Intent home = new Intent(getApplicationContext(), HomeActivity.class);
+                        startActivity(home);
+                        break;
                     case R.id.menu_writing:
                         Intent writing = new Intent(getApplicationContext(), WritingActivity.class);
                         startActivity(writing);
@@ -84,6 +91,34 @@ public class WritingActivity extends AppCompatActivity{
         barDrawerToggle.onOptionsItemSelected(item);
         return super.onOptionsItemSelected(item);
     }
-//네비게이션 끝
+    //네비게이션 끝
+/*
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        Drawable drawable = menu.getItem(1).getIcon();
+        if(drawable != null) {
+            drawable.mutate();
+            drawable.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        }
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        barDrawerToggle.onOptionsItemSelected(item);
+
+        int id = item.getItemId();
+
+        if(id == R.id.action_save){
+            Toast tMsg = Toast.makeText(WritingActivity.this, "저장되었습니다.", Toast.LENGTH_SHORT);
+            tMsg.show();
+            Intent save = new Intent(getApplicationContext(), HomeActivity.class);
+            startActivity(save);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+ */
 }
