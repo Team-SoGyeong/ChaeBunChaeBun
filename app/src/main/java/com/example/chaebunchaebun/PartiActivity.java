@@ -35,6 +35,10 @@ public class PartiActivity extends AppCompatActivity{
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
+                    case R.id.menu_home:
+                        Intent home = new Intent(getApplicationContext(), HomeActivity.class);
+                        startActivity(home);
+                        break;
                     case R.id.menu_writing:
                         Intent writing = new Intent(getApplicationContext(), WritingActivity.class);
                         startActivity(writing);
