@@ -34,7 +34,6 @@
         <activity android:name=".WithdrawActivity"
             android:label="회원정보 탈퇴"/>
         <activity android:name=".SearchActivity" android:windowSoftInputMode="adjustResize"/>
-
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
