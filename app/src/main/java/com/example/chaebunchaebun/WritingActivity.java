@@ -9,21 +9,53 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class WritingActivity extends AppCompatActivity{
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle barDrawerToggle;
+    private FirebaseFirestore mDataBase;
+    private static final String TAG = "user";
+    String nickname = "";
+    EditText edt_title, edt_location, edt_vegetable, edt_people, edt_date, edt_other;
+    Button btn_save;
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView((R.layout.writingpage));
+
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("ID");
+
+        edt_title = findViewById(R.id.edt_title);
+        edt_location = findViewById(R.id.edt_location);
+        edt_vegetable = findViewById(R.id.edt_vegetable);
+        edt_people = findViewById(R.id.edt_people);
+        edt_date = findViewById(R.id.edt_date);
+        edt_other = findViewById(R.id.edt_other);
+        btn_save = findViewById(R.id.btn_save);
+
 //네비게이션 시작
         navigationView=findViewById(R.id.nav);
         drawerLayout=findViewById(R.id.layout_drawer);
@@ -81,6 +113,8 @@ public class WritingActivity extends AppCompatActivity{
         //삼선 아이콘과 화살표아이콘이 자동으로 변환하도록
         drawerLayout.addDrawerListener(barDrawerToggle);
 
+
+
     }//onCreate method..
 
     //액션바의 메뉴를 클릭하는 이벤트를 듣는
@@ -92,33 +126,60 @@ public class WritingActivity extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
     //네비게이션 끝
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        Drawable drawable = menu.getItem(1).getIcon();
-        if(drawable != null) {
-            drawable.mutate();
-            drawable.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-        }
-        return true;
+
+    private void setContent(String id, String title, String location, String vegetable, int people, Date date, String other) {
+        getNickname(id);
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("title", title);
+        result.put("location", location);
+        result.put("vegetable", vegetable);
+        result.put("people", people);
+        result.put("date", date);
+        result.put("other", other);
+        result.put("nickname", nickname);
+
+        mDataBase.collection("market")
+                .document(title)
+                .set(result)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(WritingActivity.this, "저장되었습니다", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(WritingActivity.this, "저장에 실패했습니다", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        barDrawerToggle.onOptionsItemSelected(item);
-
-        int id = item.getItemId();
-
-        if(id == R.id.action_save){
-            Toast tMsg = Toast.makeText(WritingActivity.this, "저장되었습니다.", Toast.LENGTH_SHORT);
-            tMsg.show();
-            Intent save = new Intent(getApplicationContext(), HomeActivity.class);
-            startActivity(save);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    private void getNickname(String getUserId) {
+        mDataBase.collection("users")
+                .whereEqualTo("userId", getUserId)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            for(QueryDocumentSnapshot document : task.getResult()){
+                                Log.d(TAG, document.getId() + " => " + document.getData().get("userPw"));
+                                String userNickname = document.getData().get("userNickname").toString();
+                                Log.d(TAG, userNickname);
+                                setNickname(userNickname);
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
     }
- */
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 }

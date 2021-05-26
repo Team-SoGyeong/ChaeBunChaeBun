@@ -82,19 +82,28 @@ public class SignInActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()) {
                             Log.d(TAG, "test1");
-                            for(QueryDocumentSnapshot document : task.getResult()){
-                                Log.d(TAG, document.getId() + " => " + document.getData().get("userPw"));
-                                String userPw = document.getData().get("userPw").toString();
-                                Log.d(TAG, userPw);
+                            if(task.getResult().isEmpty()){
+                                Toast.makeText(SignInActivity.this, "가입되지 않은 아이디 입니다.", Toast.LENGTH_SHORT).show();
+                                et_Id.setText("");
+                                et_Pw.setText("");
+                                et_Id.requestFocus();
+                            } else {
+                                for(QueryDocumentSnapshot document : task.getResult()){
+                                    Log.d(TAG, document.getId() + " => " + document.getData().get("userPw"));
+                                    String userPw = document.getData().get("userPw").toString();
+                                    Log.d(TAG, userPw);
 
-                                if(userPw.equals(getUserPw)){
-                                    Toast.makeText(SignInActivity.this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                                    startActivity(intent);
-                                } else {
-                                    Toast.makeText(SignInActivity.this, "아이디 혹은 비밀번호가 틀렸습니다", Toast.LENGTH_SHORT).show();
-                                    et_Id.setText("");
-                                    et_Pw.setText("");
+                                    if(userPw.equals(getUserPw)){
+                                        Toast.makeText(SignInActivity.this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                        intent.putExtra("ID", getUserId);
+                                        startActivity(intent);
+                                    } else {
+                                        Toast.makeText(SignInActivity.this, "아이디 혹은 비밀번호가 틀렸습니다", Toast.LENGTH_SHORT).show();
+                                        et_Id.setText("");
+                                        et_Pw.setText("");
+                                        et_Id.requestFocus();
+                                    }
                                 }
                             }
                         } else {
