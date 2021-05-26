@@ -30,6 +30,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
 
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("ID");
+
         //네비게이션 시작
         navigationView=findViewById(R.id.nav);
         drawerLayout=findViewById(R.id.layout_drawer);
@@ -52,26 +55,32 @@ public class HomeActivity extends AppCompatActivity {
                 switch(item.getItemId()){
                     case R.id.menu_home:
                         Intent home = new Intent(getApplicationContext(), HomeActivity.class);
+                        home.putExtra("ID", id);
                         startActivity(home);
                         break;
                     case R.id.menu_writing:
                         Intent writing = new Intent(getApplicationContext(), WritingActivity.class);
+                        writing.putExtra("ID", id);
                         startActivity(writing);
                         break;
                     case R.id.menu_all:
                         Intent all = new Intent(getApplicationContext(), AllActivity.class);
+                        all.putExtra("ID", id);
                         startActivity(all);
                         break;
                     case R.id.menu_partici:
                         Intent partici = new Intent(getApplicationContext(), PartiActivity.class);
+                        partici.putExtra("ID", id);
                         startActivity(partici);
                         break;
                     case R.id.menu_lead:
                         Intent lead = new Intent(getApplicationContext(), LeadActivity.class);
+                        lead.putExtra("ID", id);
                         startActivity(lead);
                         break;
                     case R.id.menu_membership:
                         Intent membership = new Intent(getApplicationContext(), MembershipActivity.class);
+                        membership.putExtra("ID", id);
                         startActivity(membership);
                         break;
                 }

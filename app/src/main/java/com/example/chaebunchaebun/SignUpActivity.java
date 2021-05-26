@@ -70,7 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
                 } else if(!getUserPw.equals(getUserPwChk)) {
                     Toast.makeText(SignUpActivity.this, "비밀번호가 일치되지 않았습니다", Toast.LENGTH_SHORT).show();
                 }else {
-                    setData(getUserName, getUserNickname, getUserId, getUserPw, getUserAddress);
+                    CheckNickname(getUserName, getUserNickname, getUserId, getUserPw, getUserAddress);
                 }
             }
         });
@@ -100,6 +100,26 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(SignUpActivity.this, "저장에 실패했습니다", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void CheckNickname(String getUserName, String getUserNickname, String getUserId, String getUserPw, String getUserAddress) {
+        mDataBase.collection("users")
+                .whereEqualTo("userNickname", getUserNickname)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            if(task.getResult().isEmpty()) {
+                                setData(getUserName, getUserNickname, getUserId, getUserPw, getUserAddress);
+                            } else {
+                                Toast.makeText(SignUpActivity.this, "이미 있는 닉네임입니다.", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
                     }
                 });
     }

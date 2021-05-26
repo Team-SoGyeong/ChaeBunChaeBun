@@ -16,6 +16,7 @@
         android:orientation="vertical">
 //buildTop()
         <EditText
+            android:id="@+id/edt_title"
             android:layout_width="350dp"
             android:layout_height="2dp"
             android:layout_gravity="center_horizontal"
@@ -29,6 +30,7 @@
             android:layout_gravity="center_horizontal"
             app:srcCompat="@drawable/vegetables" />
         <EditText
+            android:id="@+id/edt_location"
             android:layout_width="300dp"
             android:layout_height="2dp"
             android:layout_gravity="center_horizontal"
@@ -36,6 +38,7 @@
             android:layout_weight="1"
             android:hint="거래지역을 입력하세요."/>
         <EditText
+            android:id="@+id/edt_vegetable"
             android:layout_width="300dp"
             android:layout_height="2dp"
             android:layout_gravity="center_horizontal"
@@ -43,6 +46,7 @@
             android:layout_weight="1"
             android:hint="채소 품목을 입력하세요."/>
         <EditText
+            android:id="@+id/edt_people"
             android:layout_width="300dp"
             android:layout_height="2dp"
             android:layout_gravity="center_horizontal"
@@ -50,19 +54,28 @@
             android:layout_weight="1"
             android:hint="구하는 인원을 입력하세요."/>
         <EditText
+            android:id="@+id/edt_date"
             android:layout_width="300dp"
             android:layout_height="2dp"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:layout_weight="1"
-            android:hint="거래 날짜를 입력하세요."/>
+            android:hint="거래 마감 날짜를 입력하세요."/>
         <EditText
+            android:id="@+id/edt_other"
             android:layout_width="300dp"
             android:layout_height="2dp"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:layout_weight="1"
             android:hint="기타 사항"/>
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="저장"/>
 //buildBottom()
         <View
             android:layout_width="match_parent"
