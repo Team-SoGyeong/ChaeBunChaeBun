@@ -60,6 +60,10 @@ public class LeadActivity extends AppCompatActivity{
                         Intent membership = new Intent(getApplicationContext(), MembershipActivity.class);
                         startActivity(membership);
                         break;
+                    case R.id.menu_logout:
+                        Intent logout = new Intent(getApplicationContext(), LogoutActivity.class);
+                        startActivity(logout);
+                        break;
                 }
 
                 //Drawer를 닫기...

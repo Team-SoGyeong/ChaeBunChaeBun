@@ -84,6 +84,11 @@ public class HomeActivity extends AppCompatActivity {
                         membership.putExtra("ID", id);
                         startActivity(membership);
                         break;
+                    case R.id.menu_logout:
+                        Toast.makeText(getApplicationContext(), "로그아웃 되었습니다.", Toast.LENGTH_LONG).show();
+                        Intent logout = new Intent(getApplicationContext(), LogoutActivity.class);
+                        startActivity(logout);
+                        break;
                 }
 
                 //Drawer를 닫기...

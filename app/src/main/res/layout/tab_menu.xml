@@ -28,6 +28,8 @@
         <menu>
             <item android:id="@+id/menu_membership"
                 android:title="회원정보"/>
+            <item android:id="@+id/menu_logout"
+                android:title="로그아웃"/>
         </menu>
     </item>
 

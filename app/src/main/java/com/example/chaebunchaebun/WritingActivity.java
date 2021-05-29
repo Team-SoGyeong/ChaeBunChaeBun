@@ -47,7 +47,7 @@ public class WritingActivity extends AppCompatActivity{
     TextView txt_date;
     Button btn_save;
     ImageView img_calender;
-    int count = 0;
+    public int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +58,7 @@ public class WritingActivity extends AppCompatActivity{
         String id = intent.getStringExtra("ID");
 
         mDataBase = FirebaseFirestore.getInstance();
+        count = 0;
 
         edt_title = (EditText) findViewById(R.id.edt_title);
         edt_location = (EditText) findViewById(R.id.edt_location);
@@ -70,7 +71,7 @@ public class WritingActivity extends AppCompatActivity{
 
         img_calender = (ImageView) findViewById(R.id.img_calender);
 
-//네비게이션 시작
+        //네비게이션 시작
         navigationView=findViewById(R.id.nav);
         drawerLayout=findViewById(R.id.layout_drawer);
         //item icon색조를 적용하지 않도록.. 설정 안하면 회색 색조
@@ -112,6 +113,11 @@ public class WritingActivity extends AppCompatActivity{
                         membership.putExtra("ID", id);
                         startActivity(membership);
                         break;
+                    case R.id.menu_logout:
+                        Toast.makeText(getApplicationContext(), "로그아웃 되었습니다.", Toast.LENGTH_LONG).show();
+                        Intent logout = new Intent(getApplicationContext(), LogoutActivity.class);
+                        startActivity(logout);
+                        break;
                 }
 
                 //Drawer를 닫기...
@@ -141,7 +147,7 @@ public class WritingActivity extends AppCompatActivity{
                 DatePickerDialog datePickerDialog = new DatePickerDialog(WritingActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayofMonth) {
-                        txt_date.setText(year + "년" + (month + 1) + "월" + dayofMonth + "일");
+                        txt_date.setText(year + "-" + (month + 1) + "-" + dayofMonth + "-");
                     }
                 }, 2020, 1, 1);
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
@@ -217,6 +223,10 @@ public class WritingActivity extends AppCompatActivity{
     }
 
     private void setContent(String id, String title, String location, String vegetable, int people, String date, String other) {
+
+        count++;
+        System.out.println("btncount"+count);
+
         Map<String, Object> result = new HashMap<>();
         result.put("count", count);
         result.put("title", title);
@@ -226,6 +236,7 @@ public class WritingActivity extends AppCompatActivity{
         result.put("date", date);
         result.put("other", other);
         result.put("nickname", this.nickname);
+        System.out.println("dbcount: "+count);
 
         mDataBase.collection("market")
                 .document(title)
@@ -233,7 +244,6 @@ public class WritingActivity extends AppCompatActivity{
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        count++;
                         Toast.makeText(WritingActivity.this, "저장되었습니다", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                         intent.putExtra("ID", id);
