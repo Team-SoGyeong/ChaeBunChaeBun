@@ -2,9 +2,12 @@ package com.example.chaebunchaebun;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -12,8 +15,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,8 +43,10 @@ public class WritingActivity extends AppCompatActivity{
     private FirebaseFirestore mDataBase;
     private static final String TAG = "user";
     String nickname = "";
-    EditText edt_title, edt_location, edt_vegetable, edt_people, edt_date, edt_other;
+    EditText edt_title, edt_location, edt_vegetable, edt_people, edt_other;
+    TextView txt_date;
     Button btn_save;
+    ImageView img_calender;
     int count = 0;
 
     @Override
@@ -48,13 +57,18 @@ public class WritingActivity extends AppCompatActivity{
         Intent intent = getIntent();
         String id = intent.getStringExtra("ID");
 
-        edt_title = findViewById(R.id.edt_title);
-        edt_location = findViewById(R.id.edt_location);
-        edt_vegetable = findViewById(R.id.edt_vegetable);
-        edt_people = findViewById(R.id.edt_people);
-        edt_date = findViewById(R.id.edt_date);
-        edt_other = findViewById(R.id.edt_other);
+        mDataBase = FirebaseFirestore.getInstance();
+
+        edt_title = (EditText) findViewById(R.id.edt_title);
+        edt_location = (EditText) findViewById(R.id.edt_location);
+        edt_vegetable = (EditText) findViewById(R.id.edt_vegetable);
+        edt_people = (EditText) findViewById(R.id.edt_people);
+        txt_date = (TextView) findViewById(R.id.txt_date);
+        edt_other = (EditText) findViewById(R.id.edt_other);
+
         btn_save = findViewById(R.id.btn_save);
+
+        img_calender = (ImageView) findViewById(R.id.img_calender);
 
 //네비게이션 시작
         navigationView=findViewById(R.id.nav);
@@ -70,26 +84,32 @@ public class WritingActivity extends AppCompatActivity{
                 switch(item.getItemId()){
                     case R.id.menu_home:
                         Intent home = new Intent(getApplicationContext(), HomeActivity.class);
+                        home.putExtra("ID", id);
                         startActivity(home);
                         break;
                     case R.id.menu_writing:
                         Intent writing = new Intent(getApplicationContext(), WritingActivity.class);
+                        writing.putExtra("ID", id);
                         startActivity(writing);
                         break;
                     case R.id.menu_all:
                         Intent all = new Intent(getApplicationContext(), AllActivity.class);
+                        all.putExtra("ID", id);
                         startActivity(all);
                         break;
                     case R.id.menu_partici:
                         Intent partici = new Intent(getApplicationContext(), PartiActivity.class);
+                        partici.putExtra("ID", id);
                         startActivity(partici);
                         break;
                     case R.id.menu_lead:
                         Intent lead = new Intent(getApplicationContext(), LeadActivity.class);
+                        lead.putExtra("ID", id);
                         startActivity(lead);
                         break;
                     case R.id.menu_membership:
                         Intent membership = new Intent(getApplicationContext(), MembershipActivity.class);
+                        membership.putExtra("ID", id);
                         startActivity(membership);
                         break;
                 }
@@ -113,8 +133,52 @@ public class WritingActivity extends AppCompatActivity{
         //삼선 아이콘과 화살표아이콘이 자동으로 변환하도록
         drawerLayout.addDrawerListener(barDrawerToggle);
 
+        getNickname(id);
 
+        img_calender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(WritingActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayofMonth) {
+                        txt_date.setText(year + "년" + (month + 1) + "월" + dayofMonth + "일");
+                    }
+                }, 2020, 1, 1);
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+                datePickerDialog.show();
+            }
+        });
 
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String title = edt_title.getText().toString();
+                String location = edt_location.getText().toString();
+                String vegetable = edt_vegetable.getText().toString();
+                String s_people = edt_people.getText().toString();
+                int people = Integer.parseInt(s_people);
+                String date = txt_date.getText().toString();
+                String other = edt_other.getText().toString();
+
+                if(title.equals("")){
+                    Toast.makeText(WritingActivity.this, "입력되지 않은 칸이 있습니다.", Toast.LENGTH_SHORT).show();
+                    edt_title.requestFocus();
+                } else if(location.equals("")){
+                    Toast.makeText(WritingActivity.this, "입력되지 않은 칸이 있습니다.", Toast.LENGTH_SHORT).show();
+                    edt_location.requestFocus();
+                } else if(vegetable.equals("")){
+                    Toast.makeText(WritingActivity.this, "입력되지 않은 칸이 있습니다.", Toast.LENGTH_SHORT).show();
+                    edt_vegetable.requestFocus();
+                } else if(people == 0){
+                    Toast.makeText(WritingActivity.this, "입력되지 않은 칸이 있습니다.", Toast.LENGTH_SHORT).show();
+                    edt_people.requestFocus();
+                } else if(date.equals("")){
+                    Toast.makeText(WritingActivity.this, "입력되지 않은 칸이 있습니다.", Toast.LENGTH_SHORT).show();
+                } else {
+                    setContent(id, title, location, vegetable, people, date, other);
+                }
+            }
+        });
     }//onCreate method..
 
     //액션바의 메뉴를 클릭하는 이벤트를 듣는
@@ -126,37 +190,6 @@ public class WritingActivity extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
     //네비게이션 끝
-
-    private void setContent(String id, String title, String location, String vegetable, int people, Date date, String other) {
-        getNickname(id);
-
-        Map<String, Object> result = new HashMap<>();
-        result.put("title", title);
-        result.put("location", location);
-        result.put("vegetable", vegetable);
-        result.put("people", people);
-        result.put("date", date);
-        result.put("other", other);
-        result.put("nickname", nickname);
-
-        mDataBase.collection("market")
-                .document(title)
-                .set(result)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(WritingActivity.this, "저장되었습니다", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
-                        startActivity(intent);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(WritingActivity.this, "저장에 실패했습니다", Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
 
     private void getNickname(String getUserId) {
         mDataBase.collection("users")
@@ -179,7 +212,39 @@ public class WritingActivity extends AppCompatActivity{
                 });
     }
 
-    public void setNickname(String nickname) {
+    void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    private void setContent(String id, String title, String location, String vegetable, int people, String date, String other) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("count", count);
+        result.put("title", title);
+        result.put("location", location);
+        result.put("vegetable", vegetable);
+        result.put("people", people);
+        result.put("date", date);
+        result.put("other", other);
+        result.put("nickname", this.nickname);
+
+        mDataBase.collection("market")
+                .document(title)
+                .set(result)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        count++;
+                        Toast.makeText(WritingActivity.this, "저장되었습니다", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                        intent.putExtra("ID", id);
+                        startActivity(intent);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(WritingActivity.this, "저장에 실패했습니다", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
