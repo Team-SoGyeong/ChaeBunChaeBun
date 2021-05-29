@@ -108,7 +108,8 @@
             android:background="@drawable/edittext_rounded_corner_rectangle"
             android:layout_margin="5dp"
             android:padding="7dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:inputType="textPassword"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="350dp"
@@ -130,7 +131,8 @@
             android:background="@drawable/edittext_rounded_corner_rectangle"
             android:layout_margin="5dp"
             android:padding="7dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:inputType="textPassword"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="350dp"

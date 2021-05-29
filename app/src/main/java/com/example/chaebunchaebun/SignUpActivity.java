@@ -68,11 +68,10 @@ public class SignUpActivity extends AppCompatActivity {
                 result.put("mileage", 0);
 
                 mDataBase.collection("users")
-                        .document(getUserId)
-                        .set(result)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        .add(result)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
-                            public void onSuccess(Void aVoid) {
+                            public void onSuccess(DocumentReference documentReference) {
                                 Toast.makeText(SignUpActivity.this, "저장되었습니다", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
                                 startActivity(intent);
@@ -81,7 +80,7 @@ public class SignUpActivity extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(SignUpActivity.this, "저장되었습니다", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, "저장에 실패했습니다", Toast.LENGTH_SHORT).show();
                             }
                         });
             }
