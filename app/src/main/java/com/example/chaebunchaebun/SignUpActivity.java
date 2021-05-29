@@ -32,11 +32,10 @@ import java.util.Map;
 public class SignUpActivity extends AppCompatActivity {
     private FirebaseFirestore mDataBase;
     private static final String TAG = "user";
-    EditText et_user_name, et_user_nickname, et_user_id, et_user_pw, et_user_address;
+    EditText et_user_name, et_user_nickname, et_user_id, et_user_pw, et_user_address, et_user_PwCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("pull_test");
         super.onCreate(savedInstanceState);
         setContentView((R.layout.signup));
 
@@ -45,6 +44,7 @@ public class SignUpActivity extends AppCompatActivity {
         et_user_id = findViewById(R.id.userId);
         et_user_pw = findViewById(R.id.userPw);
         et_user_address = findViewById(R.id.userAddress);
+        et_user_PwCheck = findViewById(R.id.userPwCheck);
 
         mDataBase = FirebaseFirestore.getInstance();
 
@@ -59,32 +59,68 @@ public class SignUpActivity extends AppCompatActivity {
                 String getUserId = et_user_id.getText().toString();
                 String getUserPw = et_user_pw.getText().toString();
                 String getUserAddress = et_user_address.getText().toString();
+                String getUserPwChk = et_user_PwCheck.getText().toString();
 
-                Map<String, Object> result = new HashMap<>();
-                result.put("userName", getUserName);
-                result.put("userNickname", getUserNickname);
-                result.put("userId", getUserId);
-                result.put("userPw", getUserPw);
-                result.put("userAddress", getUserAddress);
-                result.put("mileage", 0);
-
-                mDataBase.collection("users")
-                        .add(result)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(SignUpActivity.this, "저장되었습니다", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
-                                startActivity(intent);
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(SignUpActivity.this, "저장에 실패했습니다", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                if(!android.util.Patterns.EMAIL_ADDRESS.matcher(getUserId).matches()) {
+                    Toast.makeText(SignUpActivity.this,"이메일 형식이 아닙니다",Toast.LENGTH_SHORT).show();
+                    et_user_id.setText("");
+                    et_user_id.requestFocus();
+                } else if(getUserName.equals("") || getUserNickname.equals("") || getUserId.equals("") || getUserPw.equals("") || getUserAddress.equals("")){
+                    Toast.makeText(SignUpActivity.this, "입력되지 않은 칸이 있습니다", Toast.LENGTH_SHORT).show();
+                } else if(!getUserPw.equals(getUserPwChk)) {
+                    Toast.makeText(SignUpActivity.this, "비밀번호가 일치되지 않았습니다", Toast.LENGTH_SHORT).show();
+                }else {
+                    CheckNickname(getUserName, getUserNickname, getUserId, getUserPw, getUserAddress);
+                }
             }
         });
+    }
+
+    private void setData(String getUserName, String getUserNickname, String getUserId, String getUserPw, String getUserAddress) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("userName", getUserName);
+        result.put("userNickname", getUserNickname);
+        result.put("userId", getUserId);
+        result.put("userPw", getUserPw);
+        result.put("userAddress", getUserAddress);
+        result.put("mileage", 0);
+
+        mDataBase.collection("users")
+                .document(getUserId)
+                .set(result)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(SignUpActivity.this, "저장되었습니다", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(SignUpActivity.this, "저장에 실패했습니다", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void CheckNickname(String getUserName, String getUserNickname, String getUserId, String getUserPw, String getUserAddress) {
+        mDataBase.collection("users")
+                .whereEqualTo("userNickname", getUserNickname)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            if(task.getResult().isEmpty()) {
+                                setData(getUserName, getUserNickname, getUserId, getUserPw, getUserAddress);
+                            } else {
+                                Toast.makeText(SignUpActivity.this, "이미 있는 닉네임입니다.", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
     }
 }
