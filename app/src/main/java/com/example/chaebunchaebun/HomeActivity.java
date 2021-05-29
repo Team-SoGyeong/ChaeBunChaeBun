@@ -32,6 +32,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String id = intent.getStringExtra("ID");
+        System.out.println(id);
 
         //네비게이션 시작
         navigationView=findViewById(R.id.nav);
