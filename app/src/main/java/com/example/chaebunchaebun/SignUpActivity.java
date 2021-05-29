@@ -36,6 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("pull_test");
         super.onCreate(savedInstanceState);
         setContentView((R.layout.signup));
 
