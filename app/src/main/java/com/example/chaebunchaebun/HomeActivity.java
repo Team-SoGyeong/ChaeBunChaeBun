@@ -45,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent example = new Intent(getApplicationContext(), DetailActivity.class);
+                example.putExtra("ID", id);
                 startActivity(example);
             }
         });
