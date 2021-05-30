@@ -33,6 +33,7 @@ public class DetailActivity extends AppCompatActivity {
     ListView comment_list;
     View header, footer;
     EditText comment_edit;
+    Button comment_btn;
     String nickname = "";
     private static final String TAG = "user";
 
@@ -40,10 +41,13 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {//DB
         //DB
         mDataBase = FirebaseFirestore.getInstance();
-        footer = getLayoutInflater().inflate(R.layout.detail_page_footer, null, false);
         //
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_page);
+
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("ID");
+        getNickname(id);
 
         comment_list = (ListView)findViewById(R.id.jrv_comment_list);
         header = getLayoutInflater().inflate(R.layout.detail_page_header, null, false);
@@ -70,35 +74,35 @@ public class DetailActivity extends AppCompatActivity {
 
     private void setFooter(){
         comment_edit = (EditText)footer.findViewById(R.id.footer_edit);
-        Button comment_btn = (Button)footer.findViewById(R.id.footer_btn);
+        comment_btn = (Button)footer.findViewById(R.id.footer_btn);
 
-        String getComment = comment_edit.getText().toString();
-        String time = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date(System.currentTimeMillis()));
-        Intent intent = getIntent();
-        String id = intent.getStringExtra("ID");
+        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(System.currentTimeMillis()));
 
         comment_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String getComment = comment_edit.getText().toString();
+                System.out.println(nickname);
+                System.out.println(getComment + " 댓글");
                 //private void setContent() {
                 //getNickname(id);
-
-                System.out.println("getComment: "+ getComment);
                 Map<String, Object> result = new HashMap<>();
+                result.put("nickname", nickname);
                 result.put("comment", getComment);
                 result.put("time", time);
                 //result.put("nickname", nickname);
                 System.out.println(result);
 
                 mDataBase.collection("comments")
-                        .document(time)
+                        .document(nickname)
                         .set(result)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(DetailActivity.this, "저장되었습니다", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
-                                startActivity(intent);
+                                comment_edit.setText("");
+                                /*Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+                                startActivity(intent);*/
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {

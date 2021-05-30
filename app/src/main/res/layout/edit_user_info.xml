@@ -35,6 +35,7 @@
             android:layout_margin="5dp"
             android:layout_weight="4"/>
         <EditText
+            android:id="@+id/edit_name"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/edittext_rounded_corner_rectangle"
@@ -56,6 +57,7 @@
             android:layout_margin="5dp"
             android:layout_weight="4"/>
         <EditText
+            android:id="@+id/edit_nickname"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/edittext_rounded_corner_rectangle"
@@ -77,6 +79,7 @@
             android:layout_margin="5dp"
             android:layout_weight="4"/>
         <EditText
+            android:id="@+id/edit_Id"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/edittext_rounded_corner_rectangle"
@@ -100,12 +103,14 @@
             android:layout_margin="5dp"
             android:layout_weight="4"/>
         <EditText
+            android:id="@+id/edit_pw"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/edittext_rounded_corner_rectangle"
             android:layout_margin="5dp"
             android:padding="7dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:inputType="textPassword"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="350dp"
@@ -121,12 +126,14 @@
             android:layout_margin="5dp"
             android:layout_weight="4"/>
         <EditText
+            android:id="@+id/edit_pwchk"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/edittext_rounded_corner_rectangle"
             android:layout_margin="5dp"
             android:padding="7dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:inputType="textPassword"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="350dp"
@@ -142,6 +149,7 @@
             android:layout_margin="5dp"
             android:layout_weight="4"/>
         <EditText
+            android:id="@+id/edit_address"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/edittext_rounded_corner_rectangle"

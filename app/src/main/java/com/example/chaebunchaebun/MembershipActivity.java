@@ -14,6 +14,9 @@ public class MembershipActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView((R.layout.choose_membership));
 
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("ID");
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
@@ -23,6 +26,7 @@ public class MembershipActivity extends AppCompatActivity {
         edit.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent intent = new Intent(getApplicationContext(), EditUserActivity.class);
+                intent.putExtra("ID", id);
                 startActivity(intent);
             }
         });
@@ -31,6 +35,7 @@ public class MembershipActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), WithdrawActivity.class);
+                intent.putExtra("ID", id);
                 startActivity(intent);
             }
         });
