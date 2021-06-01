@@ -13,6 +13,14 @@
         android:textSize="30dp"
         android:layout_margin="10dp"
         android:gravity="center"/>
+    <TextView
+        android:id="@+id/header_nickname"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="닉네임"
+        android:textSize="15dp"
+        android:layout_margin="10dp"
+        android:gravity="center"/>
     <ImageView
         android:id="@+id/img_vegetables"
         android:layout_width="100dp"
@@ -20,7 +28,7 @@
         android:src="@drawable/vegetables"
         android:layout_margin="10dp" />
     <TextView
-        android:id="@+id/header_address"
+        android:id="@+id/header_location"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:text="거래지역"
@@ -36,7 +44,7 @@
         android:layout_margin="10dp"
         android:gravity="center"/>
     <TextView
-        android:id="@+id/header_count"
+        android:id="@+id/header_people"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:text="구하는 인원"
