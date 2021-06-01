@@ -48,6 +48,8 @@ public class DetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String id = intent.getStringExtra("ID");
+        count = intent.getIntExtra("market_count", 0);
+        System.out.println(count);
         getNickname(id);
 
         comment_list = (ListView)findViewById(R.id.jrv_comment_list);

@@ -23,7 +23,7 @@ public class MyItem {
     }
 
     public String getNickname() {
-        return title;
+        return nickname;
     }
 
     public void setNickname(String nickname) {
