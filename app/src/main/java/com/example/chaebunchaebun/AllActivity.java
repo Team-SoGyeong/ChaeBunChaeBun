@@ -159,6 +159,7 @@ public class AllActivity extends AppCompatActivity{
                                 String location = document.getData().get("location").toString();
 
                                 myAdapter.addItem(count, title, nickname, location);
+                                mListView.setAdapter(myAdapter);
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
@@ -166,6 +167,5 @@ public class AllActivity extends AppCompatActivity{
                     }
                 });
 
-        mListView.setAdapter(myAdapter);
     }
 }
