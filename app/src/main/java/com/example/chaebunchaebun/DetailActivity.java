@@ -36,6 +36,7 @@ public class DetailActivity extends AppCompatActivity {
     Button comment_btn;
     String nickname = "";
     private static final String TAG = "user";
+    int count = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {//DB
@@ -114,6 +115,7 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
     }
+
     private void getNickname(String getUserId) {
         mDataBase.collection("users")
                 .whereEqualTo("userId", getUserId)
@@ -135,7 +137,33 @@ public class DetailActivity extends AppCompatActivity {
                 });
     }
 
-    public void setNickname(String nickname) {
+    private void setNickname(String nickname) {
         this.nickname = nickname;
     }
+
+//    private void getCount(int count) {
+//        mDataBase.collection("market")
+//                .whereEqualTo("count", count)
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if(task.isSuccessful()) {
+//                            for(QueryDocumentSnapshot document : task.getResult()){
+//                                Log.d(TAG, document.getId() + " => " + document.getData().get("userPw"));
+//                                String s_count = document.getData().get("count").toString();
+//                                int i_count = Integer.parseInt(s_count);
+//                                Log.d(TAG, s_count);
+//                                setCount(i_count);
+//                            }
+//                        } else {
+//                            Log.w(TAG, "Error getting documents.", task.getException());
+//                        }
+//                    }
+//                });
+//    }
+//
+//    private void setCount(int count) {
+//        this.count = count;
+//    }
 }

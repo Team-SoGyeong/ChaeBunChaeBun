@@ -139,6 +139,7 @@ public class WritingActivity extends AppCompatActivity{
         //삼선 아이콘과 화살표아이콘이 자동으로 변환하도록
         drawerLayout.addDrawerListener(barDrawerToggle);
 
+        getCount();
         getNickname(id);
 
         img_calender.setOnClickListener(new View.OnClickListener() {
@@ -147,7 +148,7 @@ public class WritingActivity extends AppCompatActivity{
                 DatePickerDialog datePickerDialog = new DatePickerDialog(WritingActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayofMonth) {
-                        txt_date.setText(year + "-" + (month + 1) + "-" + dayofMonth + "-");
+                        txt_date.setText(year + "-" + (month + 1) + "-" + dayofMonth);
                     }
                 }, 2020, 1, 1);
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
@@ -162,9 +163,10 @@ public class WritingActivity extends AppCompatActivity{
                 String location = edt_location.getText().toString();
                 String vegetable = edt_vegetable.getText().toString();
                 String s_people = edt_people.getText().toString();
-                int people = Integer.parseInt(s_people);
                 String date = txt_date.getText().toString();
                 String other = edt_other.getText().toString();
+
+                System.out.println(count);
 
                 if(title.equals("")){
                     Toast.makeText(WritingActivity.this, "입력되지 않은 칸이 있습니다.", Toast.LENGTH_SHORT).show();
@@ -175,12 +177,13 @@ public class WritingActivity extends AppCompatActivity{
                 } else if(vegetable.equals("")){
                     Toast.makeText(WritingActivity.this, "입력되지 않은 칸이 있습니다.", Toast.LENGTH_SHORT).show();
                     edt_vegetable.requestFocus();
-                } else if(people == 0){
+                } else if(s_people.equals("")){
                     Toast.makeText(WritingActivity.this, "입력되지 않은 칸이 있습니다.", Toast.LENGTH_SHORT).show();
                     edt_people.requestFocus();
                 } else if(date.equals("")){
                     Toast.makeText(WritingActivity.this, "입력되지 않은 칸이 있습니다.", Toast.LENGTH_SHORT).show();
                 } else {
+                    int people = Integer.parseInt(s_people);
                     setContent(id, title, location, vegetable, people, date, other);
                 }
             }
@@ -197,7 +200,7 @@ public class WritingActivity extends AppCompatActivity{
     }
     //네비게이션 끝
 
-    private void getNickname(String getUserId) {
+    private synchronized void getNickname(String getUserId) {
         mDataBase.collection("users")
                 .whereEqualTo("userId", getUserId)
                 .get()
@@ -222,13 +225,11 @@ public class WritingActivity extends AppCompatActivity{
         this.nickname = nickname;
     }
 
-    private void setContent(String id, String title, String location, String vegetable, int people, String date, String other) {
-
-        count++;
-        System.out.println("btncount"+count);
+    private synchronized void setContent(String id, String title, String location, String vegetable, int people, String date, String other) {
+        this.count++;
 
         Map<String, Object> result = new HashMap<>();
-        result.put("count", count);
+        result.put("market count", this.count);
         result.put("title", title);
         result.put("location", location);
         result.put("vegetable", vegetable);
@@ -236,10 +237,10 @@ public class WritingActivity extends AppCompatActivity{
         result.put("date", date);
         result.put("other", other);
         result.put("nickname", this.nickname);
-        System.out.println("dbcount: "+count);
+        System.out.println("dbcount: "+ this.count);
 
         mDataBase.collection("market")
-                .document(title)
+                .document(Integer.toString(this.count))
                 .set(result)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -256,5 +257,28 @@ public class WritingActivity extends AppCompatActivity{
                         Toast.makeText(WritingActivity.this, "저장에 실패했습니다", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private synchronized void getCount(){
+        mDataBase.collection("market")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            for(QueryDocumentSnapshot document : task.getResult()){
+                                int docCount = 1;
+                                setCount(docCount);
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+    }
+
+    private void setCount(int count){
+        this.count += count;
     }
 }

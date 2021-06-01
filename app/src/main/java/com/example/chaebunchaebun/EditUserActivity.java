@@ -196,32 +196,36 @@ public class EditUserActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()) {
-                            for(QueryDocumentSnapshot document : task.getResult()){
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                String getComment = document.getData().get("comment").toString();
-                                String time = document.getData().get("time").toString();
+                            if(task.getResult().isEmpty()){
+                                finish();
+                            } else {
+                                for(QueryDocumentSnapshot document : task.getResult()){
+                                    Log.d(TAG, document.getId() + " => " + document.getData());
+                                    String getComment = document.getData().get("comment").toString();
+                                    String time = document.getData().get("time").toString();
 
-                                Map<String, Object> comment = new HashMap<>();
-                                comment.put("nickname", newNickname);
-                                comment.put("comment", getComment);
-                                comment.put("time", time);
+                                    Map<String, Object> comment = new HashMap<>();
+                                    comment.put("nickname", newNickname);
+                                    comment.put("comment", getComment);
+                                    comment.put("time", time);
 
-                                mDataBase.collection("comments")
-                                        .document(nickname)
-                                        .set(comment)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                Toast.makeText(EditUserActivity.this, "수정되었습니다", Toast.LENGTH_SHORT).show();
-                                                finish();
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(EditUserActivity.this, "수정에 실패했습니다", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
+                                    mDataBase.collection("comments")
+                                            .document(nickname)
+                                            .set(comment)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Toast.makeText(EditUserActivity.this, "수정되었습니다", Toast.LENGTH_SHORT).show();
+                                                    finish();
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(EditUserActivity.this, "수정에 실패했습니다", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                }
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
