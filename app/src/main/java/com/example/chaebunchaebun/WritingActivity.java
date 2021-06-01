@@ -229,7 +229,7 @@ public class WritingActivity extends AppCompatActivity{
         this.count++;
 
         Map<String, Object> result = new HashMap<>();
-        result.put("market count", this.count);
+        result.put("count", this.count);
         result.put("title", title);
         result.put("location", location);
         result.put("vegetable", vegetable);

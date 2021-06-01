@@ -1,17 +1,23 @@
 package com.example.chaebunchaebun;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+
+import com.google.firebase.database.annotations.NotNull;
 
 import java.util.ArrayList;
 
+
 public class MyAdapter extends BaseAdapter {
     private ArrayList<MyItem> mItems = new ArrayList<MyItem>();
-
     @Override
     public int getCount() {
         return mItems.size();

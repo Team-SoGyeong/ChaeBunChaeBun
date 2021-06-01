@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +37,6 @@ public class DetailActivity extends AppCompatActivity {
     Button comment_btn;
     String nickname = "";
     private static final String TAG = "user";
-    int count = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {//DB
@@ -48,7 +48,8 @@ public class DetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String id = intent.getStringExtra("ID");
-        count = intent.getIntExtra("market_count", 0);
+        int count = intent.getIntExtra("count", 0);
+
         System.out.println(count);
         getNickname(id);
 
@@ -62,17 +63,53 @@ public class DetailActivity extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.detail_page);
         comment_list.setAdapter(adapter);
 
-        setHeader();
+        setHeader(count);
         setFooter();
+
     }
 
-    private void setHeader(){
+    private void setHeader(int count){
         TextView title = (TextView)findViewById(R.id.header_title);
-        TextView address = (TextView)findViewById(R.id.header_address);
+        TextView nickname = (TextView)findViewById(R.id.header_nickname);
+        TextView location = (TextView)findViewById(R.id.header_location);
         TextView vegetable = (TextView)findViewById(R.id.header_vegetable);
-        TextView count = (TextView)findViewById(R.id.header_count);
+        TextView people = (TextView)findViewById(R.id.header_people);
         TextView date = (TextView) findViewById(R.id.header_date);
-        TextView etc = (TextView) findViewById(R.id.header_ect);
+        TextView other = (TextView) findViewById(R.id.header_ect);
+
+        mDataBase.collection("market")
+                .whereEqualTo("count", count)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            for(QueryDocumentSnapshot document : task.getResult()){
+                                String s_count = document.getData().get("count").toString();
+                                int count = Integer.parseInt(s_count);
+                                String getTitle = document.getData().get("title").toString();
+                                String getNickname = document.getData().get("nickname").toString();
+                                String getLocation = document.getData().get("location").toString();
+                                String getVegetable = document.getData().get("vegetable").toString();
+                                String getPeople = document.getData().get("people").toString();
+                                String getDate = document.getData().get("date").toString();
+                                String getOther = document.getData().get("other").toString();
+                                System.out.println("title:"+ title + " vegetable" + vegetable);
+
+                                title.setText(getTitle);
+                                nickname.setText(getNickname);
+                                location.setText(getLocation);
+                                vegetable.setText(getVegetable);
+                                people.setText(getPeople);
+                                date.setText(getDate);
+                                other.setText(getOther);
+
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
     }
 
     private void setFooter(){
@@ -143,29 +180,4 @@ public class DetailActivity extends AppCompatActivity {
         this.nickname = nickname;
     }
 
-//    private void getCount(int count) {
-//        mDataBase.collection("market")
-//                .whereEqualTo("count", count)
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if(task.isSuccessful()) {
-//                            for(QueryDocumentSnapshot document : task.getResult()){
-//                                Log.d(TAG, document.getId() + " => " + document.getData().get("userPw"));
-//                                String s_count = document.getData().get("count").toString();
-//                                int i_count = Integer.parseInt(s_count);
-//                                Log.d(TAG, s_count);
-//                                setCount(i_count);
-//                            }
-//                        } else {
-//                            Log.w(TAG, "Error getting documents.", task.getException());
-//                        }
-//                    }
-//                });
-//    }
-//
-//    private void setCount(int count) {
-//        this.count = count;
-//    }
 }
