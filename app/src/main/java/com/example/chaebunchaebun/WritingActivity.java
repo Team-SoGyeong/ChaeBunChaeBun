@@ -139,8 +139,10 @@ public class WritingActivity extends AppCompatActivity{
         //삼선 아이콘과 화살표아이콘이 자동으로 변환하도록
         drawerLayout.addDrawerListener(barDrawerToggle);
 
-        getCount();
         getNickname(id);
+        System.out.println("바로 밑" + nickname);
+
+        getCount();
 
         img_calender.setOnClickListener(new View.OnClickListener() {
             @Override
