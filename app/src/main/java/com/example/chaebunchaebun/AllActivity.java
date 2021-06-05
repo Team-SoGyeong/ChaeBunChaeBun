@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,6 +31,7 @@ public class AllActivity extends AppCompatActivity{
     private ListView mListView;
     private FirebaseFirestore mDataBase;
     private static final String TAG = "user";
+    private MyAdapter myAdapter;
 
 
     @Override
@@ -109,7 +112,21 @@ public class AllActivity extends AppCompatActivity{
         //삼선 아이콘과 화살표아이콘이 자동으로 변환하도록
         drawerLayout.addDrawerListener(barDrawerToggle);
 
+        myAdapter = new MyAdapter();
         dataSetting();
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                int count = ((MyItem)myAdapter.getItem(position)).getCount();
+                System.out.println(count);
+
+                Intent content = new Intent(getApplicationContext(), DetailActivity.class);
+                content.putExtra("count", count);
+                content.putExtra("ID", id);
+                startActivity(content);
+            }
+        });
     }//onCreate method..
 
     //액션바의 메뉴를 클릭하는 이벤트를 듣는
@@ -143,8 +160,6 @@ public class AllActivity extends AppCompatActivity{
     }
 
     private void dataSetting() {
-        MyAdapter myAdapter = new MyAdapter();
-
         mDataBase.collection("market")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
