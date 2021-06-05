@@ -26,24 +26,27 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.navigation.NavigationView;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class DetailActivity extends AppCompatActivity {
     private FirebaseFirestore mDataBase;
+    private static final String TAG = "user";
+    private CommentAdapter commentAdapter;
     ListView comment_list;
     View header, footer;
     EditText comment_edit;
     Button comment_btn;
     String nickname = "";
-    private static final String TAG = "user";
+    ArrayList<Map<String, Object>> commentList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {//DB
@@ -57,6 +60,10 @@ public class DetailActivity extends AppCompatActivity {
         String id = intent.getStringExtra("ID");
         int count = intent.getIntExtra("count", 0);
         getNickname(id);
+        getComment(count);
+
+        commentList = new ArrayList<>();
+        commentAdapter = new CommentAdapter();
 
         comment_list = (ListView)findViewById(R.id.jrv_comment_list);
         header = getLayoutInflater().inflate(R.layout.detail_page_header, null, false);
@@ -65,11 +72,11 @@ public class DetailActivity extends AppCompatActivity {
         comment_list.addHeaderView(header);
         comment_list.addFooterView(footer);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.detail_page);
-        comment_list.setAdapter(adapter);
+        /*ArrayAdapter adapter = new ArrayAdapter(this, R.layout.detail_page);
+        comment_list.setAdapter(adapter);*/
 
         setHeader(count);
-        setFooter();
+        setFooter(count);
 
     }
     private void setHeader(int count){
@@ -116,15 +123,14 @@ public class DetailActivity extends AppCompatActivity {
                 });
     }
 
-    private void setFooter(){
+    private synchronized void setFooter(int count){
         comment_edit = (EditText)footer.findViewById(R.id.footer_edit);
         comment_btn = (Button)footer.findViewById(R.id.footer_btn);
-
-        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(System.currentTimeMillis()));
 
         comment_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(System.currentTimeMillis()));
                 String getComment = comment_edit.getText().toString();
                 System.out.println(nickname);
                 System.out.println(getComment + " 댓글");
@@ -137,14 +143,21 @@ public class DetailActivity extends AppCompatActivity {
                 //result.put("nickname", nickname);
                 System.out.println(result);
 
+                commentList.add(result);
+                Log.d(TAG, "comment data: " + commentList);
+
+                Map<String, ArrayList<Map<String, Object>>> comment = new HashMap<>();
+                comment.put("comment list", commentList);
+
                 mDataBase.collection("comments")
-                        .document(nickname)
-                        .set(result)
+                        .document(Integer.toString(count))
+                        .set(comment)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(DetailActivity.this, "저장되었습니다", Toast.LENGTH_SHORT).show();
-                                comment_edit.setText("");
+                                commentAdapter.addItem(getComment, nickname, time);
+                                comment_list.setAdapter(commentAdapter);
                                 /*Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
                                 startActivity(intent);*/
                             }
@@ -184,4 +197,37 @@ public class DetailActivity extends AppCompatActivity {
         this.nickname = nickname;
     }
 
+    private void getComment(int count) {
+        DocumentReference doc_comment = mDataBase.collection("comments").document(Integer.toString(count));
+        doc_comment.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                ArrayList list = (ArrayList) document.getData().get("comment list");
+                                setComment(list);
+                            } else {
+                                Log.d(TAG, "No such document");
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+    }
+
+    private void setComment(ArrayList list) {
+        this.commentList = list;
+        for(int i = 0; i < list.size(); i++){
+            HashMap<String, Object> map = (HashMap) list.get(i);
+            String comment = map.get("comment").toString();
+            String nickname = map.get("nickname").toString();
+            String time = map.get("time").toString();
+
+            commentAdapter.addItem(comment, nickname, time);
+            comment_list.setAdapter(commentAdapter);
+        }
+    }
 }
