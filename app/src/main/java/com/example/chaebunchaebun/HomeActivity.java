@@ -93,7 +93,8 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case R.id.menu_logout:
                         Toast.makeText(getApplicationContext(), "로그아웃 되었습니다.", Toast.LENGTH_LONG).show();
-                        Intent logout = new Intent(getApplicationContext(), LogoutActivity.class);
+                        Intent logout = new Intent(getApplicationContext(), SignInActivity.class);
+                        logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(logout);
                         break;
                 }
@@ -124,7 +125,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 int count = ((MyItem)myAdapter.getItem(position)).getCount();
-                System.out.println(count);
+                System.out.println("글 숫자" + count);
 
                 Intent content = new Intent(getApplicationContext(), DetailActivity.class);
                 content.putExtra("count", count);
@@ -132,7 +133,6 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(content);
             }
         });
-
     }//onCreate method..
 
     //액션바의 메뉴를 클릭하는 이벤트를 듣는
@@ -160,6 +160,7 @@ public class HomeActivity extends AppCompatActivity {
 
         if(id == R.id.action_search){
             Intent search = new Intent(getApplicationContext(), SearchActivity.class);
+            search.putExtra("ID", id);
             startActivity(search);
             return true;
         }
@@ -176,7 +177,6 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()) {
-                            int num = 0;
                             for(QueryDocumentSnapshot document : task.getResult()){
                                 String s_count = document.getData().get("count").toString();
                                 int count = Integer.parseInt(s_count);

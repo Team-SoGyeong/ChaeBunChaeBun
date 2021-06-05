@@ -32,7 +32,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -116,7 +120,8 @@ public class WritingActivity extends AppCompatActivity{
                         break;
                     case R.id.menu_logout:
                         Toast.makeText(getApplicationContext(), "로그아웃 되었습니다.", Toast.LENGTH_LONG).show();
-                        Intent logout = new Intent(getApplicationContext(), LogoutActivity.class);
+                        Intent logout = new Intent(getApplicationContext(), SignInActivity.class);
+                        logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(logout);
                         break;
                 }
@@ -144,7 +149,6 @@ public class WritingActivity extends AppCompatActivity{
         System.out.println("바로 밑" + nickname);
 
         getCount();
-
         img_calender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,7 +159,7 @@ public class WritingActivity extends AppCompatActivity{
                         SimpleDateFormat sd_year = new SimpleDateFormat("yyyy-MM-dd");
 
                         txt_date.setText(sd_year.format(date));
-                        }
+                    }
                 }, 2020, 1, 1);
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 datePickerDialog.show();
