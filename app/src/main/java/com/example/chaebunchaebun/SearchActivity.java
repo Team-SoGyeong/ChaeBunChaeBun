@@ -79,10 +79,12 @@ public class SearchActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()) {
+                            boolean flag = false;
                             for(QueryDocumentSnapshot document : task.getResult()){
                                 String title = document.getData().get("title").toString();
 
                                 if(title.contains(search)){
+                                    flag = true;
                                     String s_count = document.getData().get("count").toString();
                                     int count = Integer.parseInt(s_count);
                                     String nickname = document.getData().get("nickname").toString();
@@ -91,6 +93,9 @@ public class SearchActivity extends AppCompatActivity {
                                     myAdapter.addItem(count, title, nickname, location);
                                     search_list.setAdapter(myAdapter);
                                 }
+                            }
+                            if(flag == false) {
+                                Toast.makeText(getApplicationContext(), "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
