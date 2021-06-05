@@ -11,19 +11,31 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class HomeActivity extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle barDrawerToggle;
-    LinearLayout example;
+    private ListView mListView;
+    private FirebaseFirestore mDataBase;
+    private static final String TAG = "user";
+    private MyAdapter myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +49,12 @@ public class HomeActivity extends AppCompatActivity {
         //네비게이션 시작
         navigationView=findViewById(R.id.nav);
         drawerLayout=findViewById(R.id.layout_drawer);
-        example = findViewById(R.id.example);
         //item icon색조를 적용하지 않도록.. 설정 안하면 회색 색조
         navigationView.setItemIconTintList(null);
 
-        example.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent example = new Intent(getApplicationContext(), DetailActivity.class);
-                example.putExtra("ID", id);
-                startActivity(example);
-            }
-        });
+        mDataBase = FirebaseFirestore.getInstance();
+
+        mListView = (ListView) findViewById(R.id.home_list);
 
         //네비게이션뷰의 아이템을 클릭했을때
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -111,6 +117,22 @@ public class HomeActivity extends AppCompatActivity {
         //삼선 아이콘과 화살표아이콘이 자동으로 변환하도록
         drawerLayout.addDrawerListener(barDrawerToggle);
 
+        myAdapter = new MyAdapter();
+        dataSetting();
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                int count = ((MyItem)myAdapter.getItem(position)).getCount();
+                System.out.println(count);
+
+                Intent content = new Intent(getApplicationContext(), DetailActivity.class);
+                content.putExtra("count", count);
+                content.putExtra("ID", id);
+                startActivity(content);
+            }
+        });
+
     }//onCreate method..
 
     //액션바의 메뉴를 클릭하는 이벤트를 듣는
@@ -143,6 +165,34 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void dataSetting() {
+        mDataBase.collection("market")
+                .orderBy("count", Query.Direction.DESCENDING)
+                .limit(5)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            int num = 0;
+                            for(QueryDocumentSnapshot document : task.getResult()){
+                                String s_count = document.getData().get("count").toString();
+                                int count = Integer.parseInt(s_count);
+                                String title = document.getData().get("title").toString();
+                                String nickname = document.getData().get("nickname").toString();
+                                String location = document.getData().get("location").toString();
+
+                                myAdapter.addItem(count, title, nickname, location);
+                                mListView.setAdapter(myAdapter);
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
     }
 }
 

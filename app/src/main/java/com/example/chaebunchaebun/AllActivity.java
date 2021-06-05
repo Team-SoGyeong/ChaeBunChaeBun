@@ -160,7 +160,6 @@ public class AllActivity extends AppCompatActivity{
     }
 
     private void dataSetting() {
-
         mDataBase.collection("market")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
