@@ -1,8 +1,12 @@
 package com.example.chaebunchaebun;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,14 +18,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -54,8 +59,6 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String id = intent.getStringExtra("ID");
         int count = intent.getIntExtra("count", 0);
-
-        System.out.println(count);
         getNickname(id);
         getComment(count);
 
@@ -76,7 +79,6 @@ public class DetailActivity extends AppCompatActivity {
         setFooter(count);
 
     }
-
     private void setHeader(int count){
         TextView title = (TextView)findViewById(R.id.header_title);
         TextView nickname = (TextView)findViewById(R.id.header_nickname);
