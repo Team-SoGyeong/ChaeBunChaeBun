@@ -9,15 +9,36 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PartiActivity extends AppCompatActivity{
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle barDrawerToggle;
+    private ListView mListView;
+    private FirebaseFirestore mDataBase;
+    private static final String TAG = "user";
+    private MyAdapter myAdapter;
+    String nickname = "";
+    String count = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +50,15 @@ public class PartiActivity extends AppCompatActivity{
         //item icon색조를 적용하지 않도록.. 설정 안하면 회색 색조
         navigationView.setItemIconTintList(null);
 
+        mDataBase = FirebaseFirestore.getInstance();
+
+        mListView = (ListView) findViewById(R.id.parti_list);
+
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("ID");
+        System.out.println(id);
+
+        getNickname(id);
 
         //네비게이션뷰의 아이템을 클릭했을때
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -37,31 +67,38 @@ public class PartiActivity extends AppCompatActivity{
                 switch(item.getItemId()){
                     case R.id.menu_home:
                         Intent home = new Intent(getApplicationContext(), HomeActivity.class);
+                        home.putExtra("ID", id);
                         startActivity(home);
                         break;
                     case R.id.menu_writing:
                         Intent writing = new Intent(getApplicationContext(), WritingActivity.class);
+                        writing.putExtra("ID", id);
                         startActivity(writing);
                         break;
                     case R.id.menu_all:
                         Intent all = new Intent(getApplicationContext(), AllActivity.class);
+                        all.putExtra("ID", id);
                         startActivity(all);
                         break;
                     case R.id.menu_partici:
                         Intent partici = new Intent(getApplicationContext(), PartiActivity.class);
+                        partici.putExtra("ID", id);
                         startActivity(partici);
                         break;
                     case R.id.menu_lead:
                         Intent lead = new Intent(getApplicationContext(), LeadActivity.class);
+                        lead.putExtra("ID", id);
                         startActivity(lead);
                         break;
                     case R.id.menu_membership:
                         Intent membership = new Intent(getApplicationContext(), MembershipActivity.class);
+                        membership.putExtra("ID", id);
                         startActivity(membership);
                         break;
                     case R.id.menu_logout:
                         Toast.makeText(getApplicationContext(), "로그아웃 되었습니다.", Toast.LENGTH_LONG).show();
-                        Intent logout = new Intent(getApplicationContext(), LogoutActivity.class);
+                        Intent logout = new Intent(getApplicationContext(), SignInActivity.class);
+                        logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(logout);
                         break;
                 }
@@ -85,6 +122,20 @@ public class PartiActivity extends AppCompatActivity{
         //삼선 아이콘과 화살표아이콘이 자동으로 변환하도록
         drawerLayout.addDrawerListener(barDrawerToggle);
 
+        myAdapter = new MyAdapter();
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                int count = ((MyItem)myAdapter.getItem(position)).getCount();
+                System.out.println(count);
+
+                Intent content = new Intent(getApplicationContext(), DetailActivity.class);
+                content.putExtra("count", count);
+                content.putExtra("ID", id);
+                startActivity(content);
+            }
+        });
     }//onCreate method..
 
     //액션바의 메뉴를 클릭하는 이벤트를 듣는
@@ -97,4 +148,97 @@ public class PartiActivity extends AppCompatActivity{
     }
 //네비게이션 끝
 
+    private synchronized void getNickname(String getUserId) {
+        mDataBase.collection("users")
+                .whereEqualTo("userId", getUserId)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            for(QueryDocumentSnapshot document : task.getResult()){
+                                String userNickname = document.getData().get("userNickname").toString();
+                                Log.d(TAG, userNickname);
+                                setNickname(userNickname);
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+    }
+
+    void setNickname(String nickname) {
+        this.nickname = nickname;
+        getDoc(this.nickname);
+    }
+
+    private synchronized void getDoc(String nickname) {
+        mDataBase.collection("comments")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            for(QueryDocumentSnapshot document : task.getResult()){
+                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                ArrayList list = (ArrayList) document.getData().get("comment list");
+                                for(int i = 0; i < list.size(); i++){
+                                    HashMap<String, Object> map = (HashMap) list.get(i);
+                                    String mapNickname = map.get("nickname").toString();
+
+                                    String s_count = document.getId();
+
+                                    System.out.println("확인: " + nickname);
+                                    if(nickname.equals(mapNickname)){
+                                        setDoc(s_count);
+                                        break;
+                                    }
+                                }
+                                /*String s_count = document.getData().get("count").toString();
+                                int count = Integer.parseInt(s_count);
+                                String title = document.getData().get("title").toString();
+                                String nickname = document.getData().get("nickname").toString();
+                                String location = document.getData().get("location").toString();
+
+                                myAdapter.addItem(count, title, nickname, location);
+                                mListView.setAdapter(myAdapter);*/
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+    }
+
+    private void setDoc(String count) {
+        this.count = count;
+
+        mDataBase.collection("market")
+                .document(count)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                Map<String, Object> map = document.getData();
+
+                                String title = map.get("title").toString();
+                                String nickname = map.get("nickname").toString();
+                                String location = map.get("location").toString();
+
+                                myAdapter.addItem(Integer.parseInt(count), title, nickname, location);
+                                mListView.setAdapter(myAdapter);
+                            } else {
+                                Log.d(TAG, "No such document");
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+    }
 }

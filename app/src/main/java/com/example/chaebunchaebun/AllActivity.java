@@ -88,7 +88,8 @@ public class AllActivity extends AppCompatActivity{
                         break;
                     case R.id.menu_logout:
                         Toast.makeText(getApplicationContext(), "로그아웃 되었습니다.", Toast.LENGTH_LONG).show();
-                        Intent logout = new Intent(getApplicationContext(), LogoutActivity.class);
+                        Intent logout = new Intent(getApplicationContext(), SignInActivity.class);
+                        logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(logout);
                         break;
                 }
@@ -140,6 +141,7 @@ public class AllActivity extends AppCompatActivity{
 
         if(id == R.id.action_search){
             Intent search = new Intent(getApplicationContext(), SearchActivity.class);
+            search.putExtra("ID", id);
             startActivity(search);
             return true;
         }

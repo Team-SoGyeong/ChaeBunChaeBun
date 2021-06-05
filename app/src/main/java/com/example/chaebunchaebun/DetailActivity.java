@@ -55,7 +55,7 @@ public class DetailActivity extends AppCompatActivity {
         String id = intent.getStringExtra("ID");
         int count = intent.getIntExtra("count", 0);
 
-        System.out.println(count);
+        System.out.println("숫자: " + count);
         getNickname(id);
         getComment(count);
 
@@ -69,8 +69,8 @@ public class DetailActivity extends AppCompatActivity {
         comment_list.addHeaderView(header);
         comment_list.addFooterView(footer);
 
-        /*ArrayAdapter adapter = new ArrayAdapter(this, R.layout.detail_page);
-        comment_list.setAdapter(adapter);*/
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.detail_page);
+        comment_list.setAdapter(adapter);
 
         setHeader(count);
         setFooter(count);
@@ -94,6 +94,7 @@ public class DetailActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()) {
                             for(QueryDocumentSnapshot document : task.getResult()){
+                                Log.d(TAG, document.getId() + " => " + document.getData());
                                 String s_count = document.getData().get("count").toString();
                                 int count = Integer.parseInt(s_count);
                                 String getTitle = document.getData().get("title").toString();
@@ -103,7 +104,7 @@ public class DetailActivity extends AppCompatActivity {
                                 String getPeople = document.getData().get("people").toString();
                                 String getDate = document.getData().get("date").toString();
                                 String getOther = document.getData().get("other").toString();
-                                System.out.println("title:"+ title + " vegetable" + vegetable);
+                                System.out.println("title:"+ getTitle + " vegetable" + getVegetable);
 
                                 title.setText(getTitle);
                                 nickname.setText(getNickname);
@@ -156,6 +157,7 @@ public class DetailActivity extends AppCompatActivity {
                                 Toast.makeText(DetailActivity.this, "저장되었습니다", Toast.LENGTH_SHORT).show();
                                 commentAdapter.addItem(getComment, nickname, time);
                                 comment_list.setAdapter(commentAdapter);
+                                comment_edit.setText("");
                                 /*Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
                                 startActivity(intent);*/
                             }
