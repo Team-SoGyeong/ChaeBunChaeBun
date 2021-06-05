@@ -1,8 +1,9 @@
 package com.example.chaebunchaebun;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -15,12 +16,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
     private FirebaseFirestore mDataBase;
@@ -66,17 +68,7 @@ public class SearchActivity extends AppCompatActivity {
                 dataSetting(search);
             }
         });
-        /*search_edit.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                switch (i){
-                    case KeyEvent.KEYCODE_ENTER:
-                        finish();
-                        break;
-                }
-                return true;
-            }
-        });*/
+        
     }
 
     private void dataSetting(String search) {
