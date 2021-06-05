@@ -32,6 +32,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -150,8 +151,11 @@ public class WritingActivity extends AppCompatActivity{
                 DatePickerDialog datePickerDialog = new DatePickerDialog(WritingActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayofMonth) {
-                        txt_date.setText(year + "-" + (month + 1) + "-" + dayofMonth);
-                    }
+                        Date date = new Date(year - 1900, month, dayofMonth);
+                        SimpleDateFormat sd_year = new SimpleDateFormat("yyyy-MM-dd");
+
+                        txt_date.setText(sd_year.format(date));
+                        }
                 }, 2020, 1, 1);
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 datePickerDialog.show();
