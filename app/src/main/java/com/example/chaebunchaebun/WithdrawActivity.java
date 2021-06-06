@@ -30,7 +30,7 @@ public class WithdrawActivity extends AppCompatActivity {
     private static final String TAG = "user";
     String password = "";
     String nickname = "";
-    boolean flag = false;
+    boolean flag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,7 +123,6 @@ public class WithdrawActivity extends AppCompatActivity {
 
         mDataBase.collection("market")
                 .whereEqualTo("nickname", nickname)
-//                .orderBy("date")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -135,8 +134,7 @@ public class WithdrawActivity extends AppCompatActivity {
                                 int compare = getDate.compareTo(date);
                                 System.out.println("getDate: " + getDate + " date: " + date + " compare: " + compare);
 
-                                if(compare < 0) flag = true;
-                                else flag = false;
+                                if(flag == true && compare > 0) flag = false;
 
                             }
                         } else {
