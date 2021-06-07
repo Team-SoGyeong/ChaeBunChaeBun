@@ -149,45 +149,50 @@ public class EditUserActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()) {
-                            for(QueryDocumentSnapshot document : task.getResult()){
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                String s_count = document.getData().get("count").toString();
-                                int count = Integer.parseInt(s_count);
-                                String title = document.getData().get("title").toString();
-                                String location = document.getData().get("location").toString();
-                                String vegetable = document.getData().get("vegetable").toString();
-                                String s_people = document.getData().get("people").toString();
-                                int people = Integer.parseInt(s_people);
-                                String date = document.getData().get("date").toString();
-                                String other = document.getData().get("other").toString();
+                            if(task.getResult().isEmpty()){
+                                Toast.makeText(EditUserActivity.this, "수정되었습니다", Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else {
+                                for(QueryDocumentSnapshot document : task.getResult()){
+                                    Log.d(TAG, document.getId() + " => " + document.getData());
+                                    String s_count = document.getData().get("count").toString();
+                                    int count = Integer.parseInt(s_count);
+                                    String title = document.getData().get("title").toString();
+                                    String location = document.getData().get("location").toString();
+                                    String vegetable = document.getData().get("vegetable").toString();
+                                    String s_people = document.getData().get("people").toString();
+                                    int people = Integer.parseInt(s_people);
+                                    String date = document.getData().get("date").toString();
+                                    String other = document.getData().get("other").toString();
 
-                                Map<String, Object> market = new HashMap<>();
-                                market.put("count", count);
-                                market.put("title", title);
-                                market.put("location", location);
-                                market.put("vegetable", vegetable);
-                                market.put("people", people);
-                                market.put("date", date);
-                                market.put("other", other);
-                                market.put("nickname", newNickname);
+                                    Map<String, Object> market = new HashMap<>();
+                                    market.put("count", count);
+                                    market.put("title", title);
+                                    market.put("location", location);
+                                    market.put("vegetable", vegetable);
+                                    market.put("people", people);
+                                    market.put("date", date);
+                                    market.put("other", other);
+                                    market.put("nickname", newNickname);
 
-                                mDataBase.collection("market")
-                                        .document(title)
-                                        .set(market)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                setUpdateComment(nickname, newNickname);
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(EditUserActivity.this, "수정에 실패했습니다", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
+                                    mDataBase.collection("market")
+                                            .document(title)
+                                            .set(market)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    setUpdateComment(nickname, newNickname);
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(EditUserActivity.this, "수정에 실패했습니다", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                }
                             }
-                        } else {
+                        }else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }

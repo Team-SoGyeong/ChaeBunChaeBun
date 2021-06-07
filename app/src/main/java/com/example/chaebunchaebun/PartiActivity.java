@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,6 +34,7 @@ public class PartiActivity extends AppCompatActivity{
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle barDrawerToggle;
+    View user_information;
     private ListView mListView;
     private FirebaseFirestore mDataBase;
     private static final String TAG = "user";
@@ -59,6 +61,33 @@ public class PartiActivity extends AppCompatActivity{
         System.out.println(id);
 
         getNickname(id);
+
+
+//네비게이션 user_infor
+        user_information = navigationView.inflateHeaderView(R.layout.tab_header);
+        TextView name = (TextView) user_information.findViewById(R.id.iv_name);
+        TextView mileage = (TextView) user_information.findViewById(R.id.iv_mileage);
+
+        mDataBase.collection("users")
+                .whereEqualTo("userId", id)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            for(QueryDocumentSnapshot document : task.getResult()){
+                                String getNickname = document.getData().get("userNickname").toString();
+                                String getMileage = document.getData().get("mileage").toString();
+                                System.out.println("id: " + id + " nickname: " + getNickname + " 마일리지: " + getMileage);
+
+                                name.setText(getNickname);
+                                mileage.setText("마일리지: " + getMileage);
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
 
         //네비게이션뷰의 아이템을 클릭했을때
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
