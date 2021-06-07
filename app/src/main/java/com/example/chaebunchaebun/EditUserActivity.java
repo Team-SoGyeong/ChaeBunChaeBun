@@ -30,6 +30,7 @@ public class EditUserActivity extends AppCompatActivity {
     private static final String TAG = "user";
     EditText edit_name, edit_nickname, edit_Id, edit_pw, edit_pwchk, edit_address;
     String nickname, title;
+    int mileage = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,13 +81,14 @@ public class EditUserActivity extends AppCompatActivity {
                                 String userNickname = document.getData().get("userNickname").toString();
                                 String userId = document.getData().get("userId").toString();
                                 String userAddress = document.getData().get("userAddress").toString();
+                                String s_mileage = document.getData().get("mileage").toString();
 
                                 edit_name.setText(userName);
                                 edit_nickname.setText(userNickname);
                                 edit_Id.setText(userId);
                                 edit_address.setText(userAddress);
 
-                                getMarket(userNickname);
+                                getMarket(userNickname, s_mileage);
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
@@ -95,8 +97,9 @@ public class EditUserActivity extends AppCompatActivity {
                 });
     }
 
-    void getMarket(String nickname) {
+    void getMarket(String nickname, String mileage) {
         this.nickname = nickname;
+        this.mileage = Integer.parseInt(mileage);
     }
 
     private void setUpdateUser(String getUserName, String getUserNickname, String getUserId, String getUserPw, String getUserPwChk, String getUserAddress) {
@@ -106,6 +109,7 @@ public class EditUserActivity extends AppCompatActivity {
         result.put("userId", getUserId);
         result.put("userPw", getUserPw);
         result.put("userAddress", getUserAddress);
+        result.put("mileage", this.mileage);
 
         mDataBase.collection("users")
                 .document(getUserId)
@@ -115,6 +119,8 @@ public class EditUserActivity extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         if(getUserName.equals("") || getUserNickname.equals("") || getUserPw.equals("") || getUserPwChk.equals("") || getUserAddress.equals("")){
                             Toast.makeText(EditUserActivity.this, "입력되지 않은 칸이 있습니다", Toast.LENGTH_SHORT).show();
+                        }else if(!getUserPw.matches("^(?=.*[a-z]+[0-9]+).{8,20}$")){
+                            Toast.makeText(EditUserActivity.this, "비밀번호 형식이 아닙니다.", Toast.LENGTH_SHORT).show();
                         } else if(!getUserPw.equals(getUserPwChk)) {
                             Toast.makeText(EditUserActivity.this, "비밀번호가 일치되지 않았습니다", Toast.LENGTH_SHORT).show();
                         } else {
@@ -197,6 +203,7 @@ public class EditUserActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()) {
                             if(task.getResult().isEmpty()){
+                                Toast.makeText(EditUserActivity.this, "수정되었습니다", Toast.LENGTH_SHORT).show();
                                 finish();
                             } else {
                                 for(QueryDocumentSnapshot document : task.getResult()){

@@ -36,6 +36,7 @@ public class HomeActivity extends AppCompatActivity {
     private FirebaseFirestore mDataBase;
     private static final String TAG = "user";
     private MyAdapter myAdapter;
+    String id = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.homepage);
 
         Intent intent = getIntent();
-        String id = intent.getStringExtra("ID");
+        id = intent.getStringExtra("ID");
         System.out.println(id);
 
         //네비게이션 시작
@@ -156,9 +157,10 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         barDrawerToggle.onOptionsItemSelected(item);
 
-        int id = item.getItemId();
+        int click = item.getItemId();
 
-        if(id == R.id.action_search){
+        if(click == R.id.action_search){
+            System.out.println("닉네임 확인" + id);
             Intent search = new Intent(getApplicationContext(), SearchActivity.class);
             search.putExtra("ID", id);
             startActivity(search);

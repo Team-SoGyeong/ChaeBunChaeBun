@@ -67,6 +67,8 @@ public class SignUpActivity extends AppCompatActivity {
                     et_user_id.requestFocus();
                 } else if(getUserName.equals("") || getUserNickname.equals("") || getUserId.equals("") || getUserPw.equals("") || getUserAddress.equals("")){
                     Toast.makeText(SignUpActivity.this, "입력되지 않은 칸이 있습니다", Toast.LENGTH_SHORT).show();
+                } else if(!getUserPw.matches("^(?=.*[a-z]+[0-9]+).{8,20}$")){
+                    Toast.makeText(SignUpActivity.this, "비밀번호 형식이 아닙니다.", Toast.LENGTH_SHORT).show();
                 } else if(!getUserPw.equals(getUserPwChk)) {
                     Toast.makeText(SignUpActivity.this, "비밀번호가 일치되지 않았습니다", Toast.LENGTH_SHORT).show();
                 }else {
