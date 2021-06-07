@@ -119,7 +119,7 @@ public class EditUserActivity extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         if(getUserName.equals("") || getUserNickname.equals("") || getUserPw.equals("") || getUserPwChk.equals("") || getUserAddress.equals("")){
                             Toast.makeText(EditUserActivity.this, "입력되지 않은 칸이 있습니다", Toast.LENGTH_SHORT).show();
-                        }else if(!getUserPw.matches("^(?=.*[a-z]+[0-9]+).{8,20}$")){
+                        }else if(!getUserPw.matches("^(?=.*[a-z0-9]+).{8,20}$")){
                             Toast.makeText(EditUserActivity.this, "비밀번호 형식이 아닙니다.", Toast.LENGTH_SHORT).show();
                         } else if(!getUserPw.equals(getUserPwChk)) {
                             Toast.makeText(EditUserActivity.this, "비밀번호가 일치되지 않았습니다", Toast.LENGTH_SHORT).show();
