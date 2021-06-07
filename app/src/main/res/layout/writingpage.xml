@@ -28,7 +28,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/vegetables" />
+            app:srcCompat="@drawable/logo" />
         <EditText
             android:id="@+id/edt_location"
             android:layout_width="300dp"
