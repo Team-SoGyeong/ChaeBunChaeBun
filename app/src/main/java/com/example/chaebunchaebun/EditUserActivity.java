@@ -176,7 +176,7 @@ public class EditUserActivity extends AppCompatActivity {
                                     market.put("nickname", newNickname);
 
                                     mDataBase.collection("market")
-                                            .document(title)
+                                            .document(Integer.toString(count))
                                             .set(market)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
