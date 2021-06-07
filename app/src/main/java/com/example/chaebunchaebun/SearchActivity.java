@@ -55,6 +55,7 @@ public class SearchActivity extends AppCompatActivity {
                 Intent content = new Intent(getApplicationContext(), DetailActivity.class);
                 content.putExtra("count", count);
                 content.putExtra("ID", id);
+                System.out.println("Search ID: " + id);
                 startActivity(content);
             }
         });
