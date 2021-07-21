@@ -10,13 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChaeBunChaeBun">
         <activity android:name=".SignInActivity">
+        </activity>
+        <activity android:name=".HomeActivity"
+            android:label="홈 화면">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity"
-            android:label="홈 화면" />
         <activity android:name=".EditUserActivity"
             android:label="회원정보 수정"/>
         <activity android:name=".DetailActivity" />
