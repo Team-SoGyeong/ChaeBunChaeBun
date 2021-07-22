@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.TabActivity;
@@ -24,10 +26,16 @@ import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
+
 public class HomeActivity extends AppCompatActivity{
+    private RecyclerView mRecyclerView;
     private Integer[] vegetableID = {R.drawable.onion, R.drawable.garlic, R.drawable.green_onion,
             R.drawable.carrot, R.drawable.mushroom, R.drawable.green_vege, R.drawable.cabbage,
             R.drawable.radish, R.drawable.potato, R.drawable.sweet_potato};
+    private ArrayList<MainRecyclerData> itemList;
+    private MainRecyclerAdapter mainRecyclerAdapter;
+    private LinearLayoutManager mLayoutManager;
     ActionBar.Tab tabNew, tabSoon, tabLast, tabMy;
 
     @Override
@@ -35,9 +43,26 @@ public class HomeActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
 
-        Gallery main_gallery = (Gallery) findViewById(R.id.main_gallery);
-        MyGallaryAdapter galAdapter = new MyGallaryAdapter(this);
-        main_gallery.setAdapter(galAdapter);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+        itemList = new ArrayList<MainRecyclerData>();
+
+        itemList.add(new MainRecyclerData(R.drawable.onion));
+        itemList.add(new MainRecyclerData(R.drawable.garlic));
+        itemList.add(new MainRecyclerData(R.drawable.green_onion));
+        itemList.add(new MainRecyclerData(R.drawable.carrot));
+        itemList.add(new MainRecyclerData(R.drawable.mushroom));
+        itemList.add(new MainRecyclerData(R.drawable.green_vege));
+        itemList.add(new MainRecyclerData(R.drawable.cabbage));
+        itemList.add(new MainRecyclerData(R.drawable.radish));
+        itemList.add(new MainRecyclerData(R.drawable.potato));
+        itemList.add(new MainRecyclerData(R.drawable.sweet_potato));
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mainRecyclerAdapter = new MainRecyclerAdapter(itemList);
+        mRecyclerView.setAdapter(mainRecyclerAdapter);
 
         ViewPager vp = findViewById(R.id.view_pager);
         MainVPAdapter adapter = new MainVPAdapter(getSupportFragmentManager());
@@ -45,47 +70,5 @@ public class HomeActivity extends AppCompatActivity{
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(vp);
-    }
-
-    public class MyGallaryAdapter extends BaseAdapter {
-        Context context;
-
-        public MyGallaryAdapter(Context c) {
-            context = c;
-        }
-
-        @Override
-        public int getCount() {
-            return vegetableID.length;
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            final int width = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 122, getResources().getDisplayMetrics());
-            final int height = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 194, getResources().getDisplayMetrics());
-
-            final int left = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
-            final int top = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, getResources().getDisplayMetrics());
-            final int right = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
-            final int bottom = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, getResources().getDisplayMetrics());
-
-            ImageView imageview = new ImageView(context);
-            imageview.setLayoutParams(new Gallery.LayoutParams(width, height));
-            imageview.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            imageview.setPadding(left, top, right, bottom);
-            imageview.setImageResource(vegetableID[position]);
-
-            return imageview;
-        }
     }
 }

@@ -109,12 +109,11 @@
         android:textSize="20sp"
         android:textColor="#000000"
         android:text="신선한 채분을 둘러보세요"/>
-    <Gallery
-        android:id="@+id/main_gallery"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:spacing="5dp" />
+        android:layout_margin="15dp" />
     <ImageButton
         android:id="@+id/btn_start"
         android:layout_width="match_parent"
