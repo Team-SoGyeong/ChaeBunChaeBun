@@ -37,6 +37,7 @@ public class HomeActivity extends AppCompatActivity{
     private MainRecyclerAdapter mainRecyclerAdapter;
     private LinearLayoutManager mLayoutManager;
     ActionBar.Tab tabNew, tabSoon, tabLast, tabMy;
+    ViewGroup viewGroup;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
