@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_home"
+        android:enabled="true"
+        android:icon="@drawable/group_723"
+        android:title="홈"/>
+    <item
+        android:id="@+id/bottom_like"
+        android:enabled="true"
+        android:icon="@drawable/group_720"
+        android:title="찜 목록"/>
+    <item
+        android:id="@+id/bottom_community"
+        android:enabled="true"
+        android:icon="@drawable/group_721"
+        android:title="커뮤니티"/>
+    <item
+        android:id="@+id/bottom_mypage"
+        android:enabled="true"
+        android:icon="@drawable/group_722"
+        android:title="마이페이지"/>
+</menu>
