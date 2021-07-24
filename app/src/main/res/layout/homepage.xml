@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/layout_drawer"
     tools:context=".HomeActivity">
@@ -30,7 +31,7 @@
                 <TextView
                     android:layout_width="34dp"
                     android:layout_height="14dp"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/roboto_light"
                     android:textStyle="normal"
                     android:textSize="12sp"
                     android:textColor="#ffffff"
@@ -42,7 +43,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="19dp"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/roboto_bold"
                     android:gravity="center"
                     android:textColor="#f0f4ed"
                     android:textSize="16sp"
@@ -76,11 +77,11 @@
                 android:background="#f4f6f2"
                 android:orientation="horizontal">
                 <TextView
-                    android:layout_width="145dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="14dp"
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/roboto_black"
+                    android:fontFamily="@font/roboto_regular"
                     android:textColor="#999999"
                     android:textSize="12sp"
                     android:textStyle="normal"
@@ -103,19 +104,40 @@
         android:layout_height="23dp"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
-        android:fontFamily="@font/roboto_black"
+        android:fontFamily="@font/roboto_bold"
         android:textStyle="bold"
         android:textSize="20sp"
         android:textColor="#000000"
         android:text="신선한 채분을 둘러보세요"/>
-    <Gallery
-        android:id="@+id/main_gallary"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:spacing="5dp" />
-    <ImageView
-        android:id="@+id/iv_vegetable"
+        android:layout_margin="15dp" />
+    <ImageButton
+        android:id="@+id/btn_start"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="5dp"/>
+        android:layout_height="35dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/group_703"/>
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        app:tabTextColor="@color/black"
+        app:tabTextAppearance="@style/tab_text"
+        app:tabSelectedTextColor="@color/black"
+        app:tabBackground="@color/white"
+        app:tabIndicatorColor="#036635"
+        app:tabIndicatorHeight="1dp">
+    </com.google.android.material.tabs.TabLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>
