@@ -4,4 +4,8 @@
         <item name="android:fontFamily">@font/roboto_bold</item>
         <item name="android:textSize">12sp</item>
     </style>
+    <style name="category_tab_text" parent="android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>

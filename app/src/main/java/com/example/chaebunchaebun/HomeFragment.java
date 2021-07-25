@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -43,6 +44,7 @@ public class HomeFragment extends Fragment {
     ViewGroup viewGroup;
     ViewPager vp;
     TabLayout tabLayout;
+    int recyclerPosition = -1;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -102,6 +104,19 @@ public class HomeFragment extends Fragment {
         mainRecyclerAdapter = new MainRecyclerAdapter(itemList);
         mRecyclerView.setAdapter(mainRecyclerAdapter);
 
+        mainRecyclerAdapter.setOnItemClickListener(new MainRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int pos) {
+                Bundle categoryBundle = new Bundle();
+                categoryBundle.putInt("vegetable", pos);
+                FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                CategoryFragment categoryFragment = new CategoryFragment();
+                categoryFragment.setArguments(categoryBundle);
+                categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
+                categoryTransaction.commit();
+            }
+        });
+
         MainVPAdapter adapter = new MainVPAdapter(getChildFragmentManager());
         vp.setAdapter(adapter);
 
@@ -109,5 +124,9 @@ public class HomeFragment extends Fragment {
 
         // Inflate the layout for this fragment
         return view;
+    }
+
+    public void getRecyclerPosition(int pos) {
+        this.recyclerPosition = pos;
     }
 }

@@ -24,7 +24,7 @@ public class NavigationActivity extends AppCompatActivity {
     private HomeFragment homefg;
     private MainLastFragment lastfg;
     private MainMyFragment myfg;
-    private MainSoonFragment soonfg;
+    private CategoryFragment catefg;
 
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class NavigationActivity extends AppCompatActivity {
         });
 
         homefg = new HomeFragment();
-        soonfg = new MainSoonFragment();
+        catefg = new CategoryFragment();
         lastfg = new MainLastFragment();
         myfg = new MainMyFragment();
         setFragment(0);
@@ -69,7 +69,7 @@ public class NavigationActivity extends AppCompatActivity {
                 ft.commit();
                 break;
             case 1:
-                ft.replace(R.id.bottom_frame, soonfg);
+                ft.replace(R.id.bottom_frame, catefg);
                 ft.commit();
                 break;
             case 2:
