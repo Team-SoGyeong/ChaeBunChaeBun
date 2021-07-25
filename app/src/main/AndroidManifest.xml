@@ -21,8 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EditUserActivity"
-            android:label="회원정보 수정"/>
         <activity android:name=".DetailActivity" />
         <activity android:name=".AllActivity"
             android:label="전체 소분팟"/>
@@ -33,12 +31,7 @@
         <activity android:name=".LeadActivity"
             android:label="내가 작성한 글"/>
         <activity android:name=".SignUpActivity"/>
-        <activity android:name=".MembershipActivity"
-            android:label="Your Account"/>
-        <activity android:name=".WithdrawActivity"
-            android:label="회원정보 탈퇴"/>
         <activity android:name=".SearchActivity" android:windowSoftInputMode="adjustResize"/>
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

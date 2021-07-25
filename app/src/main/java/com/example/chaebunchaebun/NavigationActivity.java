@@ -23,7 +23,7 @@ public class NavigationActivity extends AppCompatActivity {
     private FragmentTransaction ft;
     private HomeFragment homefg;
     private MainLastFragment lastfg;
-    private MainMyFragment myfg;
+    private MypageFragment myfg;
     private CategoryFragment catefg;
 
     @Override
@@ -56,7 +56,7 @@ public class NavigationActivity extends AppCompatActivity {
         homefg = new HomeFragment();
         catefg = new CategoryFragment();
         lastfg = new MainLastFragment();
-        myfg = new MainMyFragment();
+        myfg = new MypageFragment();
         setFragment(0);
     }
 
