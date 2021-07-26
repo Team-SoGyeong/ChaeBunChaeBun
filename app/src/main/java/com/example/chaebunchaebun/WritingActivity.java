@@ -82,57 +82,6 @@ public class WritingActivity extends AppCompatActivity{
         //item icon색조를 적용하지 않도록.. 설정 안하면 회색 색조
         navigationView.setItemIconTintList(null);
 
-
-        //네비게이션뷰의 아이템을 클릭했을때
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch(item.getItemId()){
-                    case R.id.menu_home:
-                        Intent home = new Intent(getApplicationContext(), HomeActivity.class);
-                        home.putExtra("ID", id);
-                        startActivity(home);
-                        break;
-                    case R.id.menu_writing:
-                        Intent writing = new Intent(getApplicationContext(), WritingActivity.class);
-                        writing.putExtra("ID", id);
-                        startActivity(writing);
-                        break;
-                    case R.id.menu_all:
-                        Intent all = new Intent(getApplicationContext(), AllActivity.class);
-                        all.putExtra("ID", id);
-                        startActivity(all);
-                        break;
-                    case R.id.menu_partici:
-                        Intent partici = new Intent(getApplicationContext(), PartiActivity.class);
-                        partici.putExtra("ID", id);
-                        startActivity(partici);
-                        break;
-                    case R.id.menu_lead:
-                        Intent lead = new Intent(getApplicationContext(), LeadActivity.class);
-                        lead.putExtra("ID", id);
-                        startActivity(lead);
-                        break;
-                    case R.id.menu_membership:
-                        Intent membership = new Intent(getApplicationContext(), MembershipActivity.class);
-                        membership.putExtra("ID", id);
-                        startActivity(membership);
-                        break;
-                    case R.id.menu_logout:
-                        Toast.makeText(getApplicationContext(), "로그아웃 되었습니다.", Toast.LENGTH_LONG).show();
-                        Intent logout = new Intent(getApplicationContext(), SignInActivity.class);
-                        logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(logout);
-                        break;
-                }
-
-                //Drawer를 닫기...
-                drawerLayout.closeDrawer(navigationView);
-
-                return false;
-            }
-        });
-
         //Drawer 조절용 토글 버튼 객체 생성
         barDrawerToggle= new ActionBarDrawerToggle(this, drawerLayout, R.string.app_name,R.string.app_name);
         //ActionBar(제목줄)의 홈or업버튼의 위치에 토글아이콘이 보이게끔...
