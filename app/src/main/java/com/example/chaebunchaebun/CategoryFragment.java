@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -32,6 +33,7 @@ public class CategoryFragment extends Fragment {
     private int vegetable;
 
     View category;
+    ImageView imgBack;
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -69,6 +71,7 @@ public class CategoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         category = inflater.inflate(R.layout.fragment_category, container, false);
         ViewPager categoryvp = category.findViewById(R.id.category_view_pager);
+        imgBack = category.findViewById(R.id.category_back);
         CategoryVPAdapter categoryVPAdapter = new CategoryVPAdapter(getChildFragmentManager());
         categoryvp.setAdapter(categoryVPAdapter);
 
@@ -79,6 +82,16 @@ public class CategoryFragment extends Fragment {
             vegetable = getArguments().getInt("vegetable");
             categoryvp.setCurrentItem(vegetable);
         }
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction homeTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                HomeFragment homeFragment = new HomeFragment();
+                homeTransaction.replace(R.id.bottom_frame, homeFragment);
+                homeTransaction.commit();
+            }
+        });
 
         return category;
     }

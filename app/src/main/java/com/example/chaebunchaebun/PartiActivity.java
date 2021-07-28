@@ -1,10 +1,8 @@
 package com.example.chaebunchaebun;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
@@ -15,14 +13,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -38,7 +34,7 @@ public class PartiActivity extends AppCompatActivity{
     private ListView mListView;
     private FirebaseFirestore mDataBase;
     private static final String TAG = "user";
-    private MyAdapter myAdapter;
+    private SearchListAdapter searchListAdapter;
     String nickname = "";
     String count = "";
 
@@ -59,9 +55,6 @@ public class PartiActivity extends AppCompatActivity{
         Intent intent = getIntent();
         String id = intent.getStringExtra("ID");
         System.out.println(id);
-
-        getNickname(id);
-
 
 //네비게이션 user_infor
         user_information = navigationView.inflateHeaderView(R.layout.tab_header);
@@ -102,18 +95,12 @@ public class PartiActivity extends AppCompatActivity{
         //삼선 아이콘과 화살표아이콘이 자동으로 변환하도록
         drawerLayout.addDrawerListener(barDrawerToggle);
 
-        myAdapter = new MyAdapter();
+        searchListAdapter = new SearchListAdapter();
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                int count = ((MyItem)myAdapter.getItem(position)).getCount();
-                System.out.println(count);
 
-                Intent content = new Intent(getApplicationContext(), DetailActivity.class);
-                content.putExtra("count", count);
-                content.putExtra("ID", id);
-                startActivity(content);
             }
         });
     }//onCreate method..
@@ -127,98 +114,4 @@ public class PartiActivity extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 //네비게이션 끝
-
-    private synchronized void getNickname(String getUserId) {
-        mDataBase.collection("users")
-                .whereEqualTo("userId", getUserId)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()) {
-                            for(QueryDocumentSnapshot document : task.getResult()){
-                                String userNickname = document.getData().get("userNickname").toString();
-                                Log.d(TAG, userNickname);
-                                setNickname(userNickname);
-                            }
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-    }
-
-    void setNickname(String nickname) {
-        this.nickname = nickname;
-        getDoc(this.nickname);
-    }
-
-    private synchronized void getDoc(String nickname) {
-        mDataBase.collection("comments")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()) {
-                            for(QueryDocumentSnapshot document : task.getResult()){
-                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                                ArrayList list = (ArrayList) document.getData().get("comment list");
-                                for(int i = 0; i < list.size(); i++){
-                                    HashMap<String, Object> map = (HashMap) list.get(i);
-                                    String mapNickname = map.get("nickname").toString();
-
-                                    String s_count = document.getId();
-
-                                    System.out.println("확인: " + nickname);
-                                    if(nickname.equals(mapNickname)){
-                                        setDoc(s_count);
-                                        break;
-                                    }
-                                }
-                                /*String s_count = document.getData().get("count").toString();
-                                int count = Integer.parseInt(s_count);
-                                String title = document.getData().get("title").toString();
-                                String nickname = document.getData().get("nickname").toString();
-                                String location = document.getData().get("location").toString();
-
-                                myAdapter.addItem(count, title, nickname, location);
-                                mListView.setAdapter(myAdapter);*/
-                            }
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-    }
-
-    private void setDoc(String count) {
-        this.count = count;
-
-        mDataBase.collection("market")
-                .document(count)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if(task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                                Map<String, Object> map = document.getData();
-
-                                String title = map.get("title").toString();
-                                String nickname = map.get("nickname").toString();
-                                String location = map.get("location").toString();
-
-                                myAdapter.addItem(Integer.parseInt(count), title, nickname, location);
-                                mListView.setAdapter(myAdapter);
-                            } else {
-                                Log.d(TAG, "No such document");
-                            }
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-    }
 }

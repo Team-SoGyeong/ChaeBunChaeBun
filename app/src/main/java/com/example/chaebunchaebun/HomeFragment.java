@@ -1,5 +1,6 @@
 package com.example.chaebunchaebun;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
@@ -13,6 +14,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -44,6 +46,7 @@ public class HomeFragment extends Fragment {
     ViewGroup viewGroup;
     ViewPager vp;
     TabLayout tabLayout;
+    LinearLayout searchView;
     int recyclerPosition = -1;
 
     public HomeFragment() {
@@ -84,6 +87,7 @@ public class HomeFragment extends Fragment {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         vp = view.findViewById(R.id.view_pager);
         tabLayout = view.findViewById(R.id.tab_layout);
+        searchView = view.findViewById(R.id.view_search);
 
         itemList = new ArrayList<MainRecyclerData>();
 
@@ -97,6 +101,7 @@ public class HomeFragment extends Fragment {
         itemList.add(new MainRecyclerData(R.drawable.radish));
         itemList.add(new MainRecyclerData(R.drawable.potato));
         itemList.add(new MainRecyclerData(R.drawable.sweet_potato));
+        itemList.add(new MainRecyclerData(R.drawable.frame_550));
 
         mLayoutManager = new LinearLayoutManager(getContext());
         mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -113,6 +118,7 @@ public class HomeFragment extends Fragment {
                 CategoryFragment categoryFragment = new CategoryFragment();
                 categoryFragment.setArguments(categoryBundle);
                 categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
+                categoryTransaction.addToBackStack(null);
                 categoryTransaction.commit();
             }
         });
@@ -121,6 +127,13 @@ public class HomeFragment extends Fragment {
         vp.setAdapter(adapter);
 
         tabLayout.setupWithViewPager(vp);
+
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().startActivity(new Intent(getActivity(), SearchActivity.class));
+            }
+        });
 
         // Inflate the layout for this fragment
         return view;

@@ -65,20 +65,20 @@ public class NavigationActivity extends AppCompatActivity {
         ft = fm.beginTransaction();
         switch (n) {
             case 0:
-                ft.replace(R.id.bottom_frame, homefg);
-                ft.commit();
+                ft.replace(R.id.bottom_frame, homefg).commitAllowingStateLoss();
+                //ft.commit();
                 break;
             case 1:
-                ft.replace(R.id.bottom_frame, catefg);
-                ft.commit();
+                ft.replace(R.id.bottom_frame, catefg).commitAllowingStateLoss();
+                //ft.commit();
                 break;
             case 2:
-                ft.replace(R.id.bottom_frame, lastfg);
-                ft.commit();
+                ft.replace(R.id.bottom_frame, lastfg).commitAllowingStateLoss();
+                //ft.commit();
                 break;
             case 3:
-                ft.replace(R.id.bottom_frame, myfg);
-                ft.commit();
+                ft.replace(R.id.bottom_frame, myfg).commitAllowingStateLoss();
+                //ft.commit();
                 break;
         }
     }
