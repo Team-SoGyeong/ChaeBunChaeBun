@@ -37,9 +37,9 @@ public class CommentAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.listview_custom, parent, false);
         }
 
-        TextView tv_nickname = (TextView) convertView.findViewById(R.id.tv_title);
-        TextView tv_comment = (TextView) convertView.findViewById(R.id.tv_nickname);
-        TextView tv_time = (TextView) convertView.findViewById(R.id.tv_location);
+        TextView tv_nickname = (TextView) convertView.findViewById(R.id.search_list_price);
+        TextView tv_comment = (TextView) convertView.findViewById(R.id.search_list_date);
+        TextView tv_time = (TextView) convertView.findViewById(R.id.search_list_people);
 
         CommentItem commentItem = getItem(position);
 

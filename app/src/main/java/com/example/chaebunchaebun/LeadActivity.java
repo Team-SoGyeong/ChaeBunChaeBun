@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,7 +33,7 @@ public class LeadActivity extends AppCompatActivity{
     private FirebaseFirestore mDataBase;
     private static final String TAG = "user";
     String nickname = "";
-    private MyAdapter myAdapter;
+    private SearchListAdapter searchListAdapter;
 
 
     @Override
@@ -53,7 +52,6 @@ public class LeadActivity extends AppCompatActivity{
 
         Intent intent = getIntent();
         String id = intent.getStringExtra("ID");
-        getNickname(id);
         System.out.println("getNickname 후 nickname: "+ this.nickname);
 
 //네비게이션 user_infor
@@ -94,18 +92,12 @@ public class LeadActivity extends AppCompatActivity{
         //삼선 아이콘과 화살표아이콘이 자동으로 변환하도록
         drawerLayout.addDrawerListener(barDrawerToggle);
 
-        myAdapter = new MyAdapter();
+        searchListAdapter = new SearchListAdapter();
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                int count = ((MyItem)myAdapter.getItem(position)).getCount();
-                System.out.println(count);
 
-                Intent content = new Intent(getApplicationContext(), DetailActivity.class);
-                content.putExtra("count", count);
-                content.putExtra("ID", id);
-                startActivity(content);
             }
         });
     }//onCreate method..
@@ -138,57 +130,5 @@ public class LeadActivity extends AppCompatActivity{
             drawable.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         }
         return true;
-    }
-    public void getNickname(String getUserId) {
-        mDataBase.collection("users")
-                .whereEqualTo("userId", getUserId)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()) {
-                            for(QueryDocumentSnapshot document : task.getResult()){
-                                Log.d(TAG, document.getId() + " => " + document.getData().get("userPw"));
-                                String userNickname = document.getData().get("userNickname").toString();
-                                Log.d(TAG, userNickname);
-                                setNickname(userNickname);
-                            }
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-
-        dataSetting(this.nickname);
-    }
-
-    private void dataSetting(String dataNickname) {
-        mDataBase.collection("market")
-                .whereEqualTo("nickname", dataNickname)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()) {
-                            for(QueryDocumentSnapshot document : task.getResult()){
-                                String s_count = document.getData().get("count").toString();
-                                int count = Integer.parseInt(s_count);
-                                String title = document.getData().get("title").toString();
-                                String nickname = document.getData().get("nickname").toString();
-                                String location = document.getData().get("location").toString();
-
-                                myAdapter.addItem(count, title, nickname, location);
-                                mListView.setAdapter(myAdapter);
-                            }
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-
     }
 }

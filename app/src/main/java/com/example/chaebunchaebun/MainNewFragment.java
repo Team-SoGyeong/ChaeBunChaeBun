@@ -2,11 +2,14 @@ package com.example.chaebunchaebun;
 
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +26,10 @@ public class MainNewFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    TextView main_new_text;
+    ListView main_new_list;
+    HomeListAdapter homeListAdapter;
 
     public MainNewFragment() {
         // Required empty public constructor
@@ -59,6 +66,19 @@ public class MainNewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main_new, container, false);
+        View mainNew = inflater.inflate(R.layout.fragment_main_new, container, false);
+
+        main_new_text = mainNew.findViewById(R.id.main_new_text);
+        main_new_list = mainNew.findViewById(R.id.main_new_list);
+
+        homeListAdapter = new HomeListAdapter();
+
+        homeListAdapter.addItem(ContextCompat.getDrawable(getActivity(), R.drawable.vegetables), "예제 1번", "예제 1번", "예제 1번", "예제 1번");
+        homeListAdapter.addItem(ContextCompat.getDrawable(getActivity(), R.drawable.logo), "예제 2번", "예제 2번", "예제 2번", "예제 2번");
+        homeListAdapter.addItem(ContextCompat.getDrawable(getActivity(), R.drawable.logo_2), "제목 긴 게시물 연습 양파양파양파양파양파양파양파양파양파", "양파", "양파", "양파");
+
+        main_new_list.setAdapter(homeListAdapter);
+
+        return mainNew;
     }
 }
