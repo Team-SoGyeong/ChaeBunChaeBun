@@ -26,5 +26,6 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="16dp"
         android:dividerHeight="10dp"
-        android:divider="#ebebeb"/>
+        android:divider="#ebebeb"
+        android:scrollbars="none"/>
 </FrameLayout>
