@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -34,6 +35,7 @@ public class CategoryFragment extends Fragment {
 
     View category;
     ImageView imgBack;
+    TextView category_name;
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -72,6 +74,7 @@ public class CategoryFragment extends Fragment {
         category = inflater.inflate(R.layout.fragment_category, container, false);
         ViewPager categoryvp = category.findViewById(R.id.category_view_pager);
         imgBack = category.findViewById(R.id.category_back);
+        category_name = category.findViewById(R.id.tv_categoryName);
         CategoryVPAdapter categoryVPAdapter = new CategoryVPAdapter(getChildFragmentManager());
         categoryvp.setAdapter(categoryVPAdapter);
 
@@ -81,7 +84,25 @@ public class CategoryFragment extends Fragment {
         if(getArguments() != null){
             vegetable = getArguments().getInt("vegetable");
             categoryvp.setCurrentItem(vegetable);
+            category_name.setText(categoryVPAdapter.getPageTitle(categoryTabLayout.getSelectedTabPosition()));
         }
+
+        categoryTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                category_name.setText(categoryVPAdapter.getPageTitle(tab.getPosition()));
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                category_name.setText(categoryVPAdapter.getPageTitle(tab.getPosition()));
+            }
+        });
 
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
