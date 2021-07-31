@@ -101,7 +101,7 @@
             android:layout_height="1dp"
             android:background="#e5e5e5"/>
         <TextView
-            android:id="@+id/my_share"
+                android:id="@+id/my_share"
             android:layout_width="match_parent"
             android:layout_height="59dp"
             android:fontFamily="@font/roboto_bold"
