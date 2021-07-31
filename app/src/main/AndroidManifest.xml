@@ -32,6 +32,8 @@
             android:label="내가 작성한 글"/>
         <activity android:name=".SignUpActivity"/>
         <activity android:name=".SearchActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ProfileActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".MyInfoActivity" android:windowSoftInputMode="adjustResize"/>
     </application>
 
 </manifest>
