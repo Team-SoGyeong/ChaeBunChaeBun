@@ -9,17 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ChaeBunChaeBun">
-        <activity android:name=".SignInActivity">
-        </activity>
         <activity android:name=".HomeActivity"
             android:label="홈 화면">
         </activity>
         <activity android:name=".NavigationActivity"
             android:label="하단 네비게이션">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+        <!--
+        <activity android:name=".SignInActivity">
         </activity>
         <activity android:name=".DetailActivity" />
         <activity android:name=".AllActivity"
@@ -31,9 +28,22 @@
         <activity android:name=".LeadActivity"
             android:label="내가 작성한 글"/>
         <activity android:name=".SignUpActivity"/>
+        -->
         <activity android:name=".SearchActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ProfileActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".MyInfoActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".SetNicknameActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".SetLocationActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".SetStartActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".LogoutActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".WithdrawActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".SelectCategoryActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".LoginActivity" android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

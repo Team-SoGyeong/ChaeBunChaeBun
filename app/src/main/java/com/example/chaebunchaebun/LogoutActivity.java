@@ -4,26 +4,34 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LogoutActivity extends AppCompatActivity {
-    private FirebaseFirestore mDataBase;
+    ImageButton logout, cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView((R.layout.homepage));
+        setContentView((R.layout.my_logout));
 
-        Button logout_Btn = (Button)findViewById(R.id.menu_logout);
-        logout_Btn.setOnClickListener(new View.OnClickListener() {
+        logout = (ImageButton) findViewById(R.id.btn_logout);
+        cancel = (ImageButton) findViewById(R.id.btn_cancel);
+
+        logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "로그아웃 되었습니다.", Toast.LENGTH_LONG).show();
-                Intent logout = new Intent(getApplicationContext(), SignInActivity.class);
-                startActivity(logout);
+                Intent intent = new Intent(getApplicationContext(), SetNicknameActivity.class);
+                startActivity(intent);
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }

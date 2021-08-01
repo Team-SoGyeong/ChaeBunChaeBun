@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SetNicknameActivity"
+    android:background="#f4f6f2">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:layout_gravity="center"
+        android:layout_marginTop="106dp"
+        android:textColor="#036635"
+        android:textSize="30sp"
+        android:text="채분채분" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:layout_gravity="center"
+        android:layout_marginTop="19dp"
+        android:textColor="#999999"
+        android:textSize="16sp"
+        android:text="환경을 향한 한 걸음의 시작" />
+    <EditText
+        android:id="@+id/input_id"
+        android:layout_width="289dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="191dp"
+        android:layout_gravity="center"
+        android:hint="이메일을 입력하세요"/>
+    <EditText
+        android:id="@+id/input_pw"
+        android:layout_width="289dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="7dp"
+        android:layout_gravity="center"
+        android:hint="비밀번호를 입력하세요"/>
+    <ImageButton
+        android:id="@+id/sign_in"
+        android:layout_width="320dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="44dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/do_button_long" />
+    <ImageButton
+        android:id="@+id/sing_up"
+        android:layout_width="320dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/do_button_long" />
+    <TextView
+        android:id="@+id/set_invaild"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="51dp"
+        android:layout_gravity="center"
+        android:textColor="#9a9792"
+        android:textSize="12sp"
+        android:text="*특수문자, 이모티콘은 사용 불가합니다." />
+</LinearLayout>

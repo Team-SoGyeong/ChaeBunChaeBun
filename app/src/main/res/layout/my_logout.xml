@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:background="@color/cardview_dark_background"
+    android:gravity="center">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="252dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        card_view:cardCornerRadius="20dp"
+        card_view:cardElevation="0dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginTop="74dp"
+            android:layout_marginLeft="96dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:text="로그아웃" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginTop="113dp"
+            android:layout_marginLeft="34dp"
+            android:textColor="#999999"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:text="지금 로그아웃 하시면 새로 올라오는\n좋은 채분을 놓칠 수 있어요:(\n그래도 로그아웃 하시겠어요?" />
+        <ImageButton
+            android:id="@+id/btn_logout"
+            android:layout_width="210dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="186dp"
+            android:layout_marginLeft="21dp"
+            android:background="@drawable/do_button_long" />
+        <ImageButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="210dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="232dp"
+            android:layout_marginLeft="21dp"
+            android:background="@drawable/do_button_long" />
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
