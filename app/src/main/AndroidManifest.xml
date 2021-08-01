@@ -37,6 +37,7 @@
         <activity android:name=".SetStartActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".LogoutActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".WithdrawActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".SelectCategoryActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".LoginActivity" android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
