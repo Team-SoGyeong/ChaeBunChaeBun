@@ -3,19 +3,25 @@ package com.example.chaebunchaebun;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CategoryOnionFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CategoryOnionFragment extends Fragment {
+public class CategoryOnionFragment extends Fragment{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,9 +32,12 @@ public class CategoryOnionFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private RecyclerView categoryOnionList;
+    private ArrayList<CategoryListItem> categoryListItems;
+    private CategoryListAdapter categoryListAdapter;
+    private LinearLayoutManager cLayoutManager;
+
     TextView categoryNoList;
-    ListView categoryOnionList;
-    CategoryListAdapter categoryListAdapter;
 
     public CategoryOnionFragment() {
         // Required empty public constructor
@@ -71,27 +80,31 @@ public class CategoryOnionFragment extends Fragment {
         categoryNoList = categoryOnion.findViewById(R.id.onion_nonlist);
         categoryNoList.setVisibility(View.GONE);
 
-        categoryListAdapter = new CategoryListAdapter();
+        categoryListItems = new ArrayList<CategoryListItem>();
 
-        categoryListAdapter.addItem("깐 양파 한망 채분해요~", "심장이 분분", "07/11",
+        categoryListItems.add(new CategoryListItem("깐 양파 한망 채분해요~", "심장이 분분", "07/11",
                 "볶음밥 먹으려고 샀는데 너무 많아서 소분합니다\n산지 얼마 되지 않아서 오래 모집합니다!", "일주일 전 구매",
-                "5명", "200원", "5", "3");
-        categoryListAdapter.addItem("긴 제목 테스트 양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파",
+                "5명", "200원", "5", "3"));
+        categoryListItems.add(new CategoryListItem("긴 제목 테스트 양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파",
                 "심장이 분분", "07/11",
                 "볶음밥 먹으려고 샀는데 너무 많아서 소분합니다\n산지 얼마 되지 않아서 오래 모집합니다!\n세 줄 이상 테스트를 위해\n더 추가해보는 내용들",
-                "1일 전 구매", "5명", "200원", "10", "13");
+                "1일 전 구매", "5명", "200원", "10", "13"));
 
-        int totalHeight = 0;
-        for(int i = 0; i < categoryListAdapter.getCount(); i++){
-            View listitem = categoryListAdapter.getView(i, null, categoryOnionList);
-            listitem.measure(0, 0);
-            totalHeight += listitem.getMeasuredHeight();
-        }
-
-        ViewGroup.LayoutParams params = categoryOnionList.getLayoutParams();
-        params.height = totalHeight + (categoryOnionList.getDividerHeight() * (categoryListAdapter.getCount() - 1));
-        categoryOnionList.setLayoutParams(params);
+        cLayoutManager = new LinearLayoutManager(getContext());
+        categoryOnionList.setLayoutManager(cLayoutManager);
+        categoryListAdapter = new CategoryListAdapter(categoryListItems);
         categoryOnionList.setAdapter(categoryListAdapter);
+
+        categoryListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int pos) {
+                FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                ArticleFragment articleFragment = new ArticleFragment();
+                articleTransaction.replace(R.id.bottom_frame, articleFragment);
+                articleTransaction.addToBackStack(null);
+                articleTransaction.commit();
+            }
+        });
 
         return categoryOnion;
     }
