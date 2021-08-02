@@ -21,7 +21,7 @@ import com.google.android.material.tabs.TabLayout;
  * Use the {@link CategoryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CategoryFragment extends Fragment {
+public class CategoryFragment extends Fragment{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,6 +33,7 @@ public class CategoryFragment extends Fragment {
     private String mParam2;
     private int vegetable;
 
+    TabLayout categoryTabLayout;
     View category;
     ImageView imgBack;
     TextView category_name;
@@ -78,7 +79,7 @@ public class CategoryFragment extends Fragment {
         CategoryVPAdapter categoryVPAdapter = new CategoryVPAdapter(getChildFragmentManager());
         categoryvp.setAdapter(categoryVPAdapter);
 
-        TabLayout categoryTabLayout = category.findViewById(R.id.tab_category);
+        categoryTabLayout = category.findViewById(R.id.tab_category);
         categoryTabLayout.setupWithViewPager(categoryvp);
 
         if(getArguments() != null){

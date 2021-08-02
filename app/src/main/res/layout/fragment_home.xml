@@ -65,7 +65,6 @@
                     android:layout_marginRight="16dp"
                     android:src="@drawable/slice_10"/>
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/view_search"
                 android:layout_width="match_parent"

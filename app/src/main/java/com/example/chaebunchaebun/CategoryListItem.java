@@ -11,6 +11,18 @@ public class CategoryListItem {
     private String likeCount = "";
     private String commentCount = "";
 
+    public CategoryListItem(String title, String nickname, String writingDate, String content, String buyingDate, String people, String price, String likeCount, String commentCount) {
+        this.title = title;
+        this.nickname = nickname;
+        this.writingDate = writingDate;
+        this.content = content;
+        this.buyingDate = buyingDate;
+        this.people = people;
+        this.price = price;
+        this.likeCount = likeCount;
+        this.commentCount = commentCount;
+    }
+
     public String getTitle() {
         return this.title;
     }
