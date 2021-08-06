@@ -3,49 +3,43 @@ package com.example.chaebunchaebun;
 import android.graphics.drawable.Drawable;
 
 public class HomeListItem {
-    private Drawable img;
+    private int img;
     private String title = "";
     private String date = "";
     private String people = "";
     private String price = "";
+    private  String writingDate = "";
 
-    public Drawable getImg() {
-        return this.img;
+    public HomeListItem(int img, String title, String date, String people, String price, String writingDate){
+        this.img = img;
+        this.title = title;
+        this.date = date;
+        this.people = people;
+        this.price = price;
+        this.writingDate = writingDate;
     }
 
-    public void setImg(Drawable img) {
-        this.img = img;
+    public int getImg() {
+        return this.img;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getDate() {
         return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getPeople() {
         return people;
     }
 
-    public void setPeople(String people) {
-        this.people = people;
-    }
-
     public String getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public String getWritingDate() {
+        return writingDate;
     }
 }
