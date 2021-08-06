@@ -17,7 +17,7 @@
         android:text="아직 최신 채분이 없어요\n직접 채분을 시작해 신선함을 나눠 보세요!"
         android:textColor="#656565" />
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_new_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

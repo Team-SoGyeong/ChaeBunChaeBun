@@ -85,6 +85,9 @@ public class CategoryOnionFragment extends Fragment{
         categoryListItems.add(new CategoryListItem("깐 양파 한망 채분해요~", "심장이 분분", "07/11",
                 "볶음밥 먹으려고 샀는데 너무 많아서 소분합니다\n산지 얼마 되지 않아서 오래 모집합니다!", "일주일 전 구매",
                 "5명", "200원", "5", "3"));
+        categoryListItems.add(new CategoryListItem("깐 양파 한망 채분해요~", "심장이 분분", "07/11",
+                "볶음밥 먹으려고 샀는데 너무 많아서 소분합니다\n산지 얼마 되지 않아서 오래 모집합니다!", "일주일 전 구매",
+                "5명", "200원", "5", "3"));
         categoryListItems.add(new CategoryListItem("긴 제목 테스트 양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파",
                 "심장이 분분", "07/11",
                 "볶음밥 먹으려고 샀는데 너무 많아서 소분합니다\n산지 얼마 되지 않아서 오래 모집합니다!\n세 줄 이상 테스트를 위해\n더 추가해보는 내용들",
@@ -103,6 +106,19 @@ public class CategoryOnionFragment extends Fragment{
                 articleTransaction.replace(R.id.bottom_frame, articleFragment);
                 articleTransaction.addToBackStack(null);
                 articleTransaction.commit();
+            }
+        });
+
+        categoryListAdapter.setModalClickListener(new CategoryListAdapter.OnModalClickListener() {
+            @Override
+            public void OnModlaClick() {
+                if(categoryListAdapter.getItemCount() % 2 != 0){
+                    BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
+                    bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                } else {
+                    MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
+                    myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                }
             }
         });
 

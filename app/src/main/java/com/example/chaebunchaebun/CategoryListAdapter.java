@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -21,13 +22,22 @@ import java.util.ArrayList;
 public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapter.ViewHolder> {
     private ArrayList<CategoryListItem> categoryListItems = null;
     private OnItemClickListener mListener = null;
+    private  OnModalClickListener modalClickListener = null;
 
     public interface OnItemClickListener {
         void onItemClick(int pos);
     }
 
+    public interface OnModalClickListener {
+        void OnModlaClick();
+    }
+
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.mListener = listener ;
+    }
+
+    public void setModalClickListener(OnModalClickListener modalClickListener) {
+        this.modalClickListener = modalClickListener;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -41,6 +51,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         TextView categoryListPrice;
         TextView categoryListLikeCount;
         TextView categoryListCommentCount;
+        ImageButton categoryListModalBtn;
         public ViewHolder(@NonNull @NotNull View categoryView) {
             super(categoryView);
             categoryListTop = (LinearLayout) categoryView.findViewById(R.id.category_list_top);
@@ -53,6 +64,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
             categoryListPrice = (TextView) categoryView.findViewById(R.id.categorylist_price);
             categoryListLikeCount = (TextView) categoryView.findViewById(R.id.categorylist_likecount);
             categoryListCommentCount = (TextView) categoryView.findViewById(R.id.categorylist_commentcount);
+            categoryListModalBtn = (ImageButton) categoryView.findViewById(R.id.category_list_modalbtn);
 
             categoryListTop.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -62,6 +74,15 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
                         if(mListener != null) {
                             mListener.onItemClick(pos);
                         }
+                    }
+                }
+            });
+
+            categoryListModalBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(modalClickListener != null){
+                        modalClickListener.OnModlaClick();
                     }
                 }
             });

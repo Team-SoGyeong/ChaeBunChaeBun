@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/homelist_top"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -68,12 +69,42 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="1"/>
-    <ImageButton
-        android:id="@+id/homelist_modalbtn"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/fix_delete_btn"
-        android:background="@color/white"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="end"
+            android:scaleType="fitCenter"
+            android:src="@drawable/type_filled_icon_verified"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <ImageButton
+            android:id="@+id/homelist_modalbtn"
+            android:layout_width="29dp"
+            android:layout_height="32dp"
+            android:layout_gravity="end"
+            android:src="@drawable/fix_delete_btn"
+            android:background="@color/white"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/homelist_writing_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:text="작성날짜"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:textColor="#999999"/>
+    </LinearLayout>
 </LinearLayout>

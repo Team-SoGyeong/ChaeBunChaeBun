@@ -116,6 +116,8 @@
                 android:layout_width="29dp"
                 android:layout_height="32dp"
                 android:layout_marginRight="6dp"
+                android:scaleType="fitCenter"
+                android:padding="5dp"
                 android:src="@drawable/fix_delete_btn"
                 android:background="@color/white"/>
         </LinearLayout>
