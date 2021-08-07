@@ -4,15 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
@@ -97,7 +93,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View view = inflater.inflate(R.layout.categorylist_custom, parent, false);
+        View view = inflater.inflate(R.layout.custom_categorylist, parent, false);
         CategoryListAdapter.ViewHolder cvh = new CategoryListAdapter.ViewHolder(view);
 
         return cvh;

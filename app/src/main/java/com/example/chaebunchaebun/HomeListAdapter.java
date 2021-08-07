@@ -1,11 +1,9 @@
 package com.example.chaebunchaebun;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -92,7 +90,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View view = inflater.inflate(R.layout.homelist_custom, parent, false);
+        View view = inflater.inflate(R.layout.custom_homelist, parent, false);
         HomeListAdapter.ViewHolder hvh = new HomeListAdapter.ViewHolder(view);
 
         return hvh;

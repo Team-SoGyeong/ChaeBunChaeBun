@@ -36,12 +36,34 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"/>
             <ImageView
-                android:id="@+id/ic_like"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="14dp"
-                android:src="@drawable/group_624"/>
+                android:id="@+id/ic_complete"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/group_778"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical">
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/type_filled_icon_favorite_gray"
+                    android:background="@color/white"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="#999999"
+                    android:textSize="10sp"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/roboto_bold"
+                    android:includeFontPadding="false"/>
+            </LinearLayout>
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
     <ScrollView
@@ -58,12 +80,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="19dp"
+                android:layout_marginTop="14dp"
                 android:layout_marginLeft="10dp">
                 <ImageView
                     android:id="@+id/article_proile_img"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/custom_categorylist_profileimg"
                     android:src="@drawable/logo"
                     android:scaleType="fitCenter"/>
@@ -71,6 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
                     android:orientation="vertical">
                     <TextView
                         android:id="@+id/article_title"
@@ -97,10 +121,17 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_weight="1"/>
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginRight="11dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/type_filled_icon_verified"/>
                 <TextView
                     android:id="@+id/article_writing_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="11dp"
                     android:text="00/00"
                     android:textColor="#999999"
@@ -112,9 +143,10 @@
                     android:id="@+id/article_modalbtn"
                     android:layout_width="wrap_content"
                     android:layout_height="14dp"
-                    android:scaleType="fitCenter"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="10dp"
                     android:src="@drawable/fix_delete_btn"
+                    android:scaleType="fitCenter"
                     android:background="@color/white"/>
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
@@ -250,7 +282,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="24dp"
                 android:background="#ebebeb"/>
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/article_comment_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>

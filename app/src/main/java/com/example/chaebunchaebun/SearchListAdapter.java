@@ -33,7 +33,7 @@ public class SearchListAdapter extends BaseAdapter {
 
         if(convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview_custom, parent, false);
+            convertView = inflater.inflate(R.layout.custom_listview, parent, false);
         }
 
         TextView search_list_title = (TextView) convertView.findViewById(R.id.search_list_title);

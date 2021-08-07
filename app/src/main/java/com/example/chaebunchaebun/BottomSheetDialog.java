@@ -1,6 +1,5 @@
 package com.example.chaebunchaebun;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,12 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-
-import org.jetbrains.annotations.NotNull;
 
 public class BottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener {
     public static BottomSheetDialog getInstance() {
@@ -27,7 +23,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
     @org.jetbrains.annotations.Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.modalbutton_custom, container, false);
+        View view = inflater.inflate(R.layout.custom_modalbutton, container, false);
         nomore = (ImageButton) view.findViewById(R.id.list_modal_nomore);
         report = (ImageButton) view.findViewById(R.id.list_modal_report);
 

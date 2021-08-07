@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import org.w3c.dom.Comment;
-
 import java.util.ArrayList;
 
 public class CommentAdapter extends BaseAdapter {
@@ -34,7 +32,7 @@ public class CommentAdapter extends BaseAdapter {
 
         if(convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview_custom, parent, false);
+            convertView = inflater.inflate(R.layout.custom_listview, parent, false);
         }
 
         TextView tv_nickname = (TextView) convertView.findViewById(R.id.search_list_price);
