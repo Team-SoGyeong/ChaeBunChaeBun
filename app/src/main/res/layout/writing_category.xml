@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".SelectCategoryActivity">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,7 +42,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center_vertical"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginTop="20dp"
             android:textColor="#000000"
             android:textSize="16sp"
@@ -57,20 +56,24 @@
                     android:id="@+id/btn_onion"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/btn_onion"/>
                 <ImageButton
                     android:id="@+id/btn_garlic"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/btn_garlic"/>
                 <ImageButton
                     android:id="@+id/btn_greenonion"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/btn_greenonion"/>
             </TableRow>
@@ -79,20 +82,24 @@
                     android:id="@+id/btn_carrot"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/btn_carrot"/>
                 <ImageButton
                     android:id="@+id/btn_mushroom"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/btn_mushroom"/>
                 <ImageButton
                     android:id="@+id/btn_greenvege"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/btn_greenvege"/>
             </TableRow>
@@ -101,20 +108,24 @@
                     android:id="@+id/btn_cabbage"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/btn_cabbage"/>
                 <ImageButton
                     android:id="@+id/btn_radish"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/btn_radish"/>
                 <ImageButton
                     android:id="@+id/btn_potato"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/btn_potato"/>
             </TableRow>
@@ -123,13 +134,16 @@
                     android:id="@+id/btn_sweetpotato"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/btn_sweetpotato"/>
                 <ImageButton
                     android:id="@+id/btn_etc"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/btn_etc"/>
             </TableRow>
