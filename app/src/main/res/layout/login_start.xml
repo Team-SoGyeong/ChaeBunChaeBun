@@ -27,15 +27,19 @@
         android:text="환경을 향한 한 걸음의 시작" />
     <EditText
         android:id="@+id/input_id"
-        android:layout_width="289dp"
+        android:layout_width="match_parent"
         android:layout_height="51dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_marginTop="191dp"
         android:layout_gravity="center"
         android:hint="이메일을 입력하세요"/>
     <EditText
         android:id="@+id/input_pw"
-        android:layout_width="289dp"
+        android:layout_width="match_parent"
         android:layout_height="51dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_marginTop="7dp"
         android:layout_gravity="center"
         android:hint="비밀번호를 입력하세요"/>
