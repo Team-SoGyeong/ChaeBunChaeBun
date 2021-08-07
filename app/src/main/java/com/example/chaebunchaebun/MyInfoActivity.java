@@ -15,7 +15,7 @@ public class MyInfoActivity extends AppCompatActivity {
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.my_infomation);
+        setContentView(R.layout.profile_myinfo);
         back = (ImageView) findViewById(R.id.id_back);
 
         back.setOnClickListener(new View.OnClickListener() {

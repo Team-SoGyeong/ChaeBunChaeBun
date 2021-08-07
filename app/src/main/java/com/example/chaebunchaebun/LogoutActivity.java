@@ -3,12 +3,9 @@ package com.example.chaebunchaebun;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LogoutActivity extends AppCompatActivity {
     ImageButton logout, cancel;
@@ -16,7 +13,7 @@ public class LogoutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView((R.layout.my_logout));
+        setContentView((R.layout.profile_logout));
 
         logout = (ImageButton) findViewById(R.id.btn_logout);
         cancel = (ImageButton) findViewById(R.id.btn_cancel);

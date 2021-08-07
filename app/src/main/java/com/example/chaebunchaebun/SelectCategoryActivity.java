@@ -11,7 +11,7 @@ public class SelectCategoryActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView((R.layout.selectcategory_page));
+        setContentView((R.layout.writing_category));
         btn = (ImageButton) findViewById(R.id.btn_next);
 
         btn.setOnClickListener(new View.OnClickListener() {

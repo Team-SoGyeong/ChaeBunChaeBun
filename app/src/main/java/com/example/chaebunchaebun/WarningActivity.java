@@ -13,7 +13,7 @@ public class WarningActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView((R.layout.warningpage));
+        setContentView((R.layout.writing_warning));
 
         iv = (ImageView) findViewById(R.id.warning);
         iv.setOnClickListener(new View.OnClickListener() {

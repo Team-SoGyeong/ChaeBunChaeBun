@@ -30,10 +30,11 @@
         <activity android:name=".SignUpActivity"/>
         -->
         <activity android:name=".SearchActivity" android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ProfileActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".MyPageProfileActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".MyInfoActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".SetNicknameActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".SetLocationActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".SearchLocationActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".SetStartActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".LogoutActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".WithdrawActivity" android:windowSoftInputMode="adjustResize"/>

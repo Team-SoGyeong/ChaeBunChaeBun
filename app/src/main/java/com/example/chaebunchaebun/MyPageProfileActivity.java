@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ProfileActivity extends AppCompatActivity {
+public class MyPageProfileActivity extends AppCompatActivity {
     ImageView back;
     TextView info, logout, withdraw;
 
