@@ -7,12 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-
-import org.jetbrains.annotations.NotNull;
 
 public class MyBottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener {
     public static MyBottomSheetDialog getInstance() {
@@ -24,7 +19,7 @@ public class MyBottomSheetDialog extends BottomSheetDialogFragment implements Vi
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.my_modalbtn_custom, container, false);
+        View view = inflater.inflate(R.layout.custom_my_modalbtn, container, false);
         modify = (ImageButton) view.findViewById(R.id.list_modal_modify);
         delete = (ImageButton) view.findViewById(R.id.list_modal_delete);
 

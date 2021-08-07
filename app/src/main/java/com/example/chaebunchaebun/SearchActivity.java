@@ -52,7 +52,7 @@ public class SearchActivity extends AppCompatActivity {
         main_list.add("오이");
         main_list.add("브로콜리");
 
-        ArrayAdapter<String> mainAdapter = new ArrayAdapter<String>(this, R.layout.searchlist_main_custom, R.id.searchlist_main_tv, main_list);
+        ArrayAdapter<String> mainAdapter = new ArrayAdapter<String>(this, R.layout.custom_searchlist_main, R.id.searchlist_main_tv, main_list);
         search_list.setAdapter(mainAdapter);
 
         search_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
