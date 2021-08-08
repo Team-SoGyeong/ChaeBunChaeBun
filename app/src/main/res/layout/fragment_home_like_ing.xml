@@ -4,20 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ebebeb"
-    tools:context=".MainNewFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context=".HomeLikeIngFragment">
     <TextView
-        android:id="@+id/main_new_text"
+        android:id="@+id/homelike_Ing_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="31dp"
         android:layout_gravity="center"
         android:gravity="center_horizontal"
-        android:text="아직 최신 채분이 없어요\n직접 채분을 시작해 신선함을 나눠 보세요!"
+        android:text="아직 찜한 채분이 없어요\n관심있는 채분을 찜 해보세요!"
         android:textColor="#656565" />
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/main_new_list"
+        android:id="@+id/homelike_Ing_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

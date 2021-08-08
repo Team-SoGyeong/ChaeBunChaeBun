@@ -3,6 +3,7 @@ package com.example.chaebunchaebun;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -34,7 +36,13 @@ public class ArticleFragment extends Fragment {
     private ArticleRecyclerAdapter articleRecyclerAdapter;
     private LinearLayoutManager aLayoutManager;
 
+    private RecyclerView cRecyclerView;
+    private ArrayList<CommentRecyclerItem> commentRecyclerItems;
+    private CommentRecyclerAdapter commentRecyclerAdapter;
+    private LinearLayoutManager cLayoutManager;
+
     View view;
+    ImageView articleBack;
     int recyclerPosition = -1;
 
     public ArticleFragment() {
@@ -74,6 +82,9 @@ public class ArticleFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_article, container, false);
         aRecyclerView = (RecyclerView) view.findViewById(R.id.article_recycler_img);
+        cRecyclerView = (RecyclerView) view.findViewById(R.id.article_comment_list);
+
+        articleBack = (ImageView) view.findViewById(R.id.article_back);
 
         articleItemList = new ArrayList<ArticleRecyclerData>();
 
@@ -88,6 +99,26 @@ public class ArticleFragment extends Fragment {
         aRecyclerView.setLayoutManager(aLayoutManager);
         articleRecyclerAdapter = new ArticleRecyclerAdapter(articleItemList);
         aRecyclerView.setAdapter(articleRecyclerAdapter);
+
+        commentRecyclerItems = new ArrayList<CommentRecyclerItem>();
+
+        commentRecyclerItems.add(new CommentRecyclerItem("심장이 분분대", "꺄오 참여하고 싶어요 양파를 파파파팟", "07/22 03:25"));
+        commentRecyclerItems.add(new CommentRecyclerItem("심장이 분분대", "꺄오 참여하고 싶어요 양파를 파파파팟", "07/22 03:25"));
+        commentRecyclerItems.add(new CommentRecyclerItem("심장이 분분대", "꺄오 참여하고 싶어요 양파를 파파파팟", "07/22 03:25"));
+
+        cLayoutManager = new LinearLayoutManager(getContext());
+        cRecyclerView.setLayoutManager(cLayoutManager);
+        commentRecyclerAdapter = new CommentRecyclerAdapter(commentRecyclerItems);
+        cRecyclerView.setAdapter(commentRecyclerAdapter);
+
+        articleBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().remove(ArticleFragment.this).commit();
+                fragmentManager.popBackStack();
+            }
+        });
 
         return view;
     }

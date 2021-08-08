@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,11 +13,17 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.google.android.material.tabs.TabLayout;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,6 +52,7 @@ public class HomeFragment extends Fragment {
     ViewPager vp;
     TabLayout tabLayout;
     LinearLayout searchView;
+    ImageView iconLike;
     int recyclerPosition = -1;
 
     public HomeFragment() {
@@ -78,6 +84,31 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        String resultText = "[NULL]";
+
+        try {
+            resultText = new HomeTask().execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            JSONObject jsonObject = new JSONObject(resultText);
+            String data = jsonObject.getString("data");
+            JSONArray jsonArray = new JSONArray(data);
+            for(int i = 0; i < jsonArray.length(); i++){
+                JSONObject subJsonObject = jsonArray.getJSONObject(i);
+                String fullAddress = subJsonObject.getString("full_address");
+                int userId = subJsonObject.getInt("user_id");
+
+                System.out.println("full address: " + fullAddress + "\n" + "user id: " + userId);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -88,6 +119,7 @@ public class HomeFragment extends Fragment {
         vp = view.findViewById(R.id.view_pager);
         tabLayout = view.findViewById(R.id.tab_layout);
         searchView = view.findViewById(R.id.view_search);
+        iconLike = view.findViewById(R.id.ic_like);
 
         itemList = new ArrayList<MainRecyclerData>();
 
@@ -132,6 +164,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getActivity().startActivity(new Intent(getActivity(), SearchActivity.class));
+            }
+        });
+
+        iconLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().startActivity(new Intent(getActivity(), HomeLikeActivity.class));
             }
         });
 
