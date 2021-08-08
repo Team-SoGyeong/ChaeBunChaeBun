@@ -3,6 +3,7 @@ package com.example.chaebunchaebun;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -108,10 +109,9 @@ public class CategoryFragment extends Fragment{
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction homeTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                HomeFragment homeFragment = new HomeFragment();
-                homeTransaction.replace(R.id.bottom_frame, homeFragment);
-                homeTransaction.commit();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().remove(CategoryFragment.this).commit();
+                fragmentManager.popBackStack();
             }
         });
 
