@@ -14,6 +14,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.google.android.material.tabs.TabLayout;
@@ -47,6 +48,7 @@ public class HomeFragment extends Fragment {
     ViewPager vp;
     TabLayout tabLayout;
     LinearLayout searchView;
+    ImageButton writing;
     int recyclerPosition = -1;
 
     public HomeFragment() {
@@ -88,6 +90,7 @@ public class HomeFragment extends Fragment {
         vp = view.findViewById(R.id.view_pager);
         tabLayout = view.findViewById(R.id.tab_layout);
         searchView = view.findViewById(R.id.view_search);
+        writing = view.findViewById(R.id.btn_start);
 
         itemList = new ArrayList<MainRecyclerData>();
 
@@ -135,6 +138,12 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        writing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startActivity(new Intent(getActivity(), WarningActivity.class));
+            }
+        });
         // Inflate the layout for this fragment
         return view;
     }
