@@ -13,7 +13,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.writing_chaebun);
+        setContentView(R.layout.writing_chaebun_frame);
 
         back = (ImageView) findViewById(R.id.id_back);
         writing = (ImageView) findViewById(R.id.btn_next);
@@ -29,8 +29,14 @@ public class WritingChaebunActivity extends AppCompatActivity {
         writing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), WritingChaebunActivity.class);
+                Intent intent = new Intent(getApplicationContext(), WritingPopupActivity.class);
                 startActivity(intent);
+            }
+        });
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }

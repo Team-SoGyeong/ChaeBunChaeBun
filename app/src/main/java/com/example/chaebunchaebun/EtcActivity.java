@@ -17,7 +17,7 @@ public class EtcActivity extends AppCompatActivity {
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.withdraw_little);
+        setContentView(R.layout.withdraw_etc);
 
         back = (ImageView) findViewById(R.id.id_back);
         content = (EditText) findViewById(R.id.input_reason);

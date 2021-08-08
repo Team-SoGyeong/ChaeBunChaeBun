@@ -84,7 +84,9 @@
             android:background="@drawable/signup_edittext"
             android:textSize="12sp"
             android:paddingLeft="10dp"
+            android:paddingTop="10dp"
             android:backgroundTint="#f4f6f2"
+            android:gravity="top"
             android:hint="불편한 점, 채분채분을 사용하고 싶지 않은 이유를 알려주세요!" />
 
         <ImageButton

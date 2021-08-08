@@ -43,6 +43,7 @@
         <activity android:name=".WithdrawActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".SelectCategoryActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".WritingChaebunActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".WarningActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".LittleActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".UnknownActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".NoMannerActivity" android:windowSoftInputMode="adjustResize"/>

@@ -28,6 +28,7 @@ public class LittleActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
         writing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
