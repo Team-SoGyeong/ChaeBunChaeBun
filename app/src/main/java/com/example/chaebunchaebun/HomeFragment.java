@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.google.android.material.tabs.TabLayout;
@@ -53,6 +54,8 @@ public class HomeFragment extends Fragment {
     TabLayout tabLayout;
     LinearLayout searchView;
     ImageView iconLike;
+    ImageButton writing;
+  
     int recyclerPosition = -1;
 
     public HomeFragment() {
@@ -120,6 +123,7 @@ public class HomeFragment extends Fragment {
         tabLayout = view.findViewById(R.id.tab_layout);
         searchView = view.findViewById(R.id.view_search);
         iconLike = view.findViewById(R.id.ic_like);
+        writing = view.findViewById(R.id.btn_start);
 
         itemList = new ArrayList<MainRecyclerData>();
 
@@ -174,6 +178,13 @@ public class HomeFragment extends Fragment {
             }
         });
 
+      writing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startActivity(new Intent(getActivity(), WarningActivity.class));
+            }
+        });
+      
         // Inflate the layout for this fragment
         return view;
     }

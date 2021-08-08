@@ -62,108 +62,118 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#e5e5e5"/>
+            android:background="#e5e5e5"/><View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e5e5e5"/>
         <LinearLayout
+            android:id="@+id/little"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageButton
-                android:id="@+id/check_less"
+                android:id="@+id/check_little"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
-                android:background="@drawable/ic_search" />
+                android:background="@drawable/checkbox_off" />
             <TextView
+                android:id="@+id/text_little"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:fontFamily="@font/roboto_bold"
                 android:paddingTop="12dp"
                 android:paddingLeft="20dp"
                 android:gravity="left"
-                android:textColor="#000000"
+                android:textColor="#999999"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:text="소분이 많이 없어요" />
+                android:text="채분이 많이 없어요" />
             <ImageButton
-                android:id="@+id/next_less"
+                android:id="@+id/next_little"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/type_filled_icon_favorite" />
+                android:background="@drawable/ic_arrow" />
         </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#e5e5e5"/>
         <LinearLayout
+            android:id="@+id/unknown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageButton
-                android:id="@+id/check_solo"
+                android:id="@+id/check_unknown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
-                android:background="@drawable/ic_search" />
+                android:background="@drawable/checkbox_off" />
             <TextView
+                android:id="@+id/text_unknown"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:fontFamily="@font/roboto_bold"
                 android:paddingTop="12dp"
                 android:paddingLeft="20dp"
-                android:textColor="#000000"
+                android:textColor="#999999"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:text="모집했는데 사람이 많이 안 모여요" />
             <ImageButton
-                android:id="@+id/next_solo"
+                android:id="@+id/next_unknown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/type_filled_icon_favorite" />
+                android:background="@drawable/ic_arrow"/>
         </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#e5e5e5"/>
         <LinearLayout
+            android:id="@+id/no_manner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageButton
-                android:id="@+id/check_badUser"
+                android:id="@+id/check_no_manner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
-                android:background="@drawable/ic_search" />
+                android:background="@drawable/checkbox_off" />
             <TextView
+                android:id="@+id/text_no_manner"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:fontFamily="@font/roboto_bold"
                 android:paddingTop="12dp"
                 android:paddingLeft="20dp"
-                android:textColor="#000000"
+                android:textColor="#999999"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:text="다른 사용자로 인해 기분이 상했어요" />
             <ImageButton
-                android:id="@+id/next_badUser"
+                android:id="@+id/next_no_manner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/type_filled_icon_favorite" />
+                android:background="@drawable/ic_arrow"/>
         </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#e5e5e5"/>
         <LinearLayout
+            android:id="@+id/etc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -173,14 +183,15 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
-                android:background="@drawable/ic_search" />
+                android:background="@drawable/checkbox_off" />
             <TextView
+                android:id="@+id/text_etc"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:fontFamily="@font/roboto_bold"
                 android:paddingTop="12dp"
                 android:paddingLeft="20dp"
-                android:textColor="#000000"
+                android:textColor="#999999"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:text="기타" />
@@ -190,20 +201,19 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/type_filled_icon_favorite" />
+                android:background="@drawable/ic_arrow" />
         </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#e5e5e5"/>
-
         <ImageButton
-            android:id="@+id/btn_next"
+            android:id="@+id/btn_withdraw"
             android:layout_width="320dp"
             android:layout_height="36dp"
             android:layout_gravity="center"
             android:layout_marginTop="171dp"
-            android:background="@drawable/do_button_long" />
+            android:background="@drawable/group_withdraw" />
     </LinearLayout>
 
 </LinearLayout>

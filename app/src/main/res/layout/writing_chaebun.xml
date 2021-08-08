@@ -12,12 +12,88 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <!-- View -->
-        <ImageView
-            android:id="@+id/add_image"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="222dp"
-            android:background="@drawable/up"/>
-
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="222dp"
+                android:background="#ebebeb"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="17dp"
+                android:background="@drawable/main_picture"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="#dad9d9"/>
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/add_picture"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="#c6c5c5"/>
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/sub_picture"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="#a9a9a9"/>
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/sub_picture"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="#848484"/>
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/sub_picture"/>
+            </RelativeLayout>
+        </LinearLayout>
         <!-- 영수증 -->
         <TextView
             android:layout_width="wrap_content"
@@ -43,7 +119,7 @@
             android:layout_height="80dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/ic_search" />
+            android:background="@drawable/add_receipt" />
 
         <!-- 제목 -->
         <TextView
@@ -61,13 +137,13 @@
             android:layout_height="29dp"
             android:layout_marginLeft="19dp"
             android:layout_marginRight="19dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="7dp"
             android:background="@drawable/signup_edittext"
             android:textSize="14sp"
             android:paddingLeft="9dp"
             android:backgroundTint="#f4f6f2"
             android:fontFamily="@font/roboto_regular"
-            android:hint="채분할 사람 오여라!" />
+            android:hint="채분할 사람 모여라!" />
 
         <!-- 소개글 -->
         <TextView
@@ -90,15 +166,19 @@
             android:background="@drawable/signup_edittext"
             android:textSize="14sp"
             android:paddingLeft="9dp"
+            android:paddingTop="10dp"
             android:backgroundTint="#f4f6f2"
+            android:gravity="top"
             android:hint="우리 가족들이 먹을 거라 좋은 걸로 골랐어요~" />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_regular"
             android:layout_marginLeft="303dp"
             android:layout_marginRight="19dp"
             android:layout_marginTop="10dp"
+            android:paddingRight="2dp"
+            android:textAlignment="viewEnd"
             android:textColor="#999999"
             android:textSize="10sp"
             android:text="(0/500)" />
@@ -113,8 +193,8 @@
             android:textColor="#000000"
             android:textSize="16sp"
             android:text="더 자세한 정보를 입력해 주세요" />
-        <include layout="@layout/writing_chaebun_detail"/>
         <!-- 그리드 렉이 너무 심해서 xml 나눠봄
+        <include layout="@layout/writing_chaebun_detail"/>
         <GridLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -324,7 +404,9 @@
             android:background="@drawable/signup_edittext"
             android:textSize="14sp"
             android:paddingLeft="10dp"
+            android:paddingTop="10dp"
             android:backgroundTint="#f4f6f2"
+            android:gravity="top"
             android:hint="소분을 위해 언제, 어느 시간대에 만날지 정하기 위함이니 제일 편한 연락망을 써주세요!\nex) 카카오톡 아이디, 오픈 카톡 링크, 인스타 아이디" />
 
         <!-- 하단 버튼 -->
@@ -341,6 +423,7 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/group_708" />
     </LinearLayout>
 </ScrollView>

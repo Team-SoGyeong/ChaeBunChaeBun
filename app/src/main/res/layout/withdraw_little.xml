@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical">
+        <!-- TopView -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/id_back"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:src="@drawable/group_84"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:layout_marginLeft="-44dp"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="탈퇴하기" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e5e5e5"/>
+
+        <!-- View -->
+        <LinearLayout
+            android:id="@+id/little"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/check_little"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/checkbox_on" />
+            <TextView
+                android:id="@+id/text_little"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:fontFamily="@font/roboto_bold"
+                android:paddingTop="15dp"
+                android:paddingLeft="20dp"
+                android:gravity="left"
+                android:textColor="#036635"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="채분이 많이 없어요" />
+        </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e5e5e5"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:text="아직 우리 동네에 분분님 같은 이용자가 적은가 봐요!\n더 활발하고 많은 교류를 위해 필요한 채분을 직접 올리거나\n우리 동네 이웃에게 어플을 공유해 보는 건 어떠세요?\n분분님을 통해 채분채분이 더욱 활발해질 거에요!" />
+
+        <ImageButton
+            android:id="@+id/btn_writing"
+            android:layout_width="320dp"
+            android:layout_height="34dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/frame_go_chaebun" />
+        <ImageButton
+            android:id="@+id/btn_share"
+            android:layout_width="320dp"
+            android:layout_height="34dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/frame_share_app" />
+    </LinearLayout>
+</LinearLayout>

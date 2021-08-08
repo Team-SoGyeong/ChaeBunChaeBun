@@ -1,5 +1,6 @@
 package com.example.chaebunchaebun;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -38,6 +40,7 @@ public class CategoryOnionFragment extends Fragment{
     private LinearLayoutManager cLayoutManager;
 
     TextView categoryNoList;
+    ImageButton writing;
 
     public CategoryOnionFragment() {
         // Required empty public constructor
@@ -79,6 +82,8 @@ public class CategoryOnionFragment extends Fragment{
         categoryOnionList = categoryOnion.findViewById(R.id.onion_list);
         categoryNoList = categoryOnion.findViewById(R.id.onion_nonlist);
         categoryNoList.setVisibility(View.GONE);
+
+        writing = categoryOnion.findViewById(R.id.onion_newbtn);
 
         categoryListItems = new ArrayList<CategoryListItem>();
 
@@ -122,6 +127,12 @@ public class CategoryOnionFragment extends Fragment{
             }
         });
 
+        writing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startActivity(new Intent(getActivity(), WarningActivity.class));
+            }
+        });
         return categoryOnion;
     }
 }
