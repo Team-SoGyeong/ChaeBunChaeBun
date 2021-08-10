@@ -75,13 +75,13 @@ public class HomeLikeFinishFragment extends Fragment {
 
         homelike_finish_text = homeLikeFinishView.findViewById(R.id.homelike_finish_text);
         homelike_finish_list = homeLikeFinishView.findViewById(R.id.homelike_finish_list);
-        homelike_finish_text.setVisibility(View.GONE);
+        //homelike_finish_text.setVisibility(View.GONE);
 
         homeListItems = new ArrayList<HomeListItem>();
 
-        homeListItems.add(new HomeListItem(R.drawable.vegetables, "예제 1번", "예제 1번", "예제 1번", "예제 1번", "08/02"));
-        homeListItems.add(new HomeListItem(R.drawable.logo, "예제 2번", "예제 2번", "예제 2번", "예제 2번", "07/11"));
-        homeListItems.add(new HomeListItem(R.drawable.logo_2, "제목 긴 게시물 연습 양파양파양파양파양파양파양파양파양파", "양파", "양파", "양파", "07/31"));
+        //homeListItems.add(new HomeListItem(R.drawable.vegetables, "예제 1번", "예제 1번", "예제 1번", "예제 1번", "08/02"));
+        //homeListItems.add(new HomeListItem(R.drawable.logo, "예제 2번", "예제 2번", "예제 2번", "예제 2번", "07/11"));
+        //homeListItems.add(new HomeListItem(R.drawable.logo_2, "제목 긴 게시물 연습 양파양파양파양파양파양파양파양파양파", "양파", "양파", "양파", "07/31"));
 
         hLayoutManager = new LinearLayoutManager(getContext());
         homelike_finish_list.setLayoutManager(hLayoutManager);
