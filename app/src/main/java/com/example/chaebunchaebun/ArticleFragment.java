@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
@@ -41,8 +42,9 @@ public class ArticleFragment extends Fragment {
     private CommentRecyclerAdapter commentRecyclerAdapter;
     private LinearLayoutManager cLayoutManager;
 
-    View view;
-    ImageView articleBack;
+    View articleView;
+    ImageView articleBack, articleRecipt;
+    LinearLayout articleReciptHelp;
     int recyclerPosition = -1;
 
     public ArticleFragment() {
@@ -80,11 +82,14 @@ public class ArticleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_article, container, false);
-        aRecyclerView = (RecyclerView) view.findViewById(R.id.article_recycler_img);
-        cRecyclerView = (RecyclerView) view.findViewById(R.id.article_comment_list);
+        articleView = inflater.inflate(R.layout.fragment_article, container, false);
+        aRecyclerView = (RecyclerView) articleView.findViewById(R.id.article_recycler_img);
+        cRecyclerView = (RecyclerView) articleView.findViewById(R.id.article_comment_list);
 
-        articleBack = (ImageView) view.findViewById(R.id.article_back);
+        articleBack = (ImageView) articleView.findViewById(R.id.article_back);
+        articleRecipt = (ImageView) articleView.findViewById(R.id.article_receipt);
+        articleReciptHelp = (LinearLayout) articleView.findViewById(R.id.article_receipt_help);
+        articleReciptHelp.setVisibility(View.GONE);
 
         articleItemList = new ArrayList<ArticleRecyclerData>();
 
@@ -120,6 +125,20 @@ public class ArticleFragment extends Fragment {
             }
         });
 
-        return view;
+        articleRecipt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                articleReciptHelp.setVisibility(View.VISIBLE);
+            }
+        });
+
+        articleReciptHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                articleReciptHelp.setVisibility(View.GONE);
+            }
+        });
+
+        return articleView;
     }
 }

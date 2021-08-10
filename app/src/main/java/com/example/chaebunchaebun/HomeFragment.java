@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -46,14 +47,16 @@ public class HomeFragment extends Fragment {
     private MainRecyclerAdapter mainRecyclerAdapter;
     private LinearLayoutManager mLayoutManager;
 
-    View view;
+    View homeView;
     ActionBar.Tab tabNew, tabSoon, tabLast, tabMy;
     ViewGroup viewGroup;
     ViewPager vp;
     TabLayout tabLayout;
     LinearLayout searchView;
     ImageView iconLike;
+    TextView homeLocation;
     int recyclerPosition = -1;
+    String[] address = {"",};
 
     public HomeFragment() {
         // Required empty public constructor
@@ -104,7 +107,7 @@ public class HomeFragment extends Fragment {
                 String fullAddress = subJsonObject.getString("full_address");
                 int userId = subJsonObject.getInt("user_id");
 
-                System.out.println("full address: " + fullAddress + "\n" + "user id: " + userId);
+                address = fullAddress.split(" ");
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -114,12 +117,15 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_home, container, false);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        vp = view.findViewById(R.id.view_pager);
-        tabLayout = view.findViewById(R.id.tab_layout);
-        searchView = view.findViewById(R.id.view_search);
-        iconLike = view.findViewById(R.id.ic_like);
+        homeView = inflater.inflate(R.layout.fragment_home, container, false);
+        mRecyclerView = (RecyclerView) homeView.findViewById(R.id.recycler_view);
+        vp = homeView.findViewById(R.id.view_pager);
+        tabLayout = homeView.findViewById(R.id.tab_layout);
+        searchView = homeView.findViewById(R.id.view_search);
+        iconLike = homeView.findViewById(R.id.ic_like);
+        homeLocation = homeView.findViewById(R.id.home_location_text);
+
+        homeLocation.setText(address[address.length - 1]);
 
         itemList = new ArrayList<MainRecyclerData>();
 
@@ -175,7 +181,7 @@ public class HomeFragment extends Fragment {
         });
 
         // Inflate the layout for this fragment
-        return view;
+        return homeView;
     }
 
     public void getRecyclerPosition(int pos) {

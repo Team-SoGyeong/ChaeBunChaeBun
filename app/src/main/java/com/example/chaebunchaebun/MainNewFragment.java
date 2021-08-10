@@ -17,7 +17,12 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,6 +76,45 @@ public class MainNewFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        homeListItems = new ArrayList<HomeListItem>();
+        String resultText = "[NULL]";
+
+        try {
+            resultText = new HomeTask().execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            JSONObject jsonObject = new JSONObject(resultText);
+            String data = jsonObject.getString("data");
+            JSONArray jsonArray = new JSONArray(data);
+            for(int i = 0; i < jsonArray.length(); i++){
+                JSONObject subJsonObject = jsonArray.getJSONObject(i);
+
+                String lastList = subJsonObject.getString("last_list");
+                JSONArray jsonLastListArray = new JSONArray(lastList);
+                for(int j = 0; j < jsonLastListArray.length(); j++){
+                    JSONObject subJsonObject2 = jsonLastListArray.getJSONObject(j);
+
+                    String img = subJsonObject2.getString("url");
+                    String title = subJsonObject2.getString("title");
+                    String buyDate = subJsonObject2.getString("buy_date");
+                    int membersInt = subJsonObject2.getInt("members");
+                    String member = String.valueOf(membersInt) + "명";
+                    String perPrice = subJsonObject2.getString("per_price");
+                    String writtenBy = subJsonObject2.getString("witten_by");
+                    int isAuth = subJsonObject2.getInt("isAuth");
+
+                    homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth));
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -82,12 +126,6 @@ public class MainNewFragment extends Fragment {
         main_new_text = mainNew.findViewById(R.id.main_new_text);
         main_new_list = mainNew.findViewById(R.id.main_new_list);
         main_new_text.setVisibility(View.GONE);
-
-        homeListItems = new ArrayList<HomeListItem>();
-
-        homeListItems.add(new HomeListItem(R.drawable.vegetables, "예제 1번", "예제 1번", "예제 1번", "예제 1번", "08/02"));
-        homeListItems.add(new HomeListItem(R.drawable.logo, "예제 2번", "예제 2번", "예제 2번", "예제 2번", "07/11"));
-        homeListItems.add(new HomeListItem(R.drawable.logo_2, "제목 긴 게시물 연습 양파양파양파양파양파양파양파양파양파", "양파", "양파", "양파", "07/31"));
 
         hLayoutManager = new LinearLayoutManager(getContext());
         main_new_list.setLayoutManager(hLayoutManager);
