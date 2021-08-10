@@ -10,7 +10,7 @@
         android:id="@+id/sample"
         android:layout_width="302dp"
         android:layout_height="342dp"
-        android:background="@drawable/warning_popup"
+        android:background="@drawable/check_popup"
         />
 <!--
     <androidx.cardview.widget.CardView

@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -54,7 +55,12 @@ public class HomeFragment extends Fragment {
     TabLayout tabLayout;
     LinearLayout searchView;
     ImageView iconLike;
+<<<<<<< HEAD
     TextView homeLocation;
+=======
+    ImageButton writing;
+  
+>>>>>>> e8a5f4d7faa9a77d66b25b0f184a0f04bf4e2f09
     int recyclerPosition = -1;
     String[] address = {"",};
 
@@ -117,6 +123,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+<<<<<<< HEAD
         homeView = inflater.inflate(R.layout.fragment_home, container, false);
         mRecyclerView = (RecyclerView) homeView.findViewById(R.id.recycler_view);
         vp = homeView.findViewById(R.id.view_pager);
@@ -126,6 +133,15 @@ public class HomeFragment extends Fragment {
         homeLocation = homeView.findViewById(R.id.home_location_text);
 
         homeLocation.setText(address[address.length - 1]);
+=======
+        view = inflater.inflate(R.layout.fragment_home, container, false);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        vp = view.findViewById(R.id.view_pager);
+        tabLayout = view.findViewById(R.id.tab_layout);
+        searchView = view.findViewById(R.id.view_search);
+        iconLike = view.findViewById(R.id.ic_like);
+        writing = view.findViewById(R.id.btn_start);
+>>>>>>> e8a5f4d7faa9a77d66b25b0f184a0f04bf4e2f09
 
         itemList = new ArrayList<MainRecyclerData>();
 
@@ -180,6 +196,13 @@ public class HomeFragment extends Fragment {
             }
         });
 
+      writing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startActivity(new Intent(getActivity(), WarningActivity.class));
+            }
+        });
+      
         // Inflate the layout for this fragment
         return homeView;
     }
