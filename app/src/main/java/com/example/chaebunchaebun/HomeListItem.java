@@ -1,25 +1,28 @@
 package com.example.chaebunchaebun;
 
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
 public class HomeListItem {
-    private int img;
+    private String img;
     private String title = "";
     private String date = "";
     private String people = "";
     private String price = "";
     private  String writingDate = "";
+    private int isAuth = 5;
 
-    public HomeListItem(int img, String title, String date, String people, String price, String writingDate){
+    public HomeListItem(String img, String title, String date, String people, String price, String writingDate, int isAuth){
         this.img = img;
         this.title = title;
         this.date = date;
         this.people = people;
         this.price = price;
         this.writingDate = writingDate;
+        this.isAuth = isAuth;
     }
 
-    public int getImg() {
+    public String getImg() {
         return this.img;
     }
 
@@ -41,5 +44,9 @@ public class HomeListItem {
 
     public String getWritingDate() {
         return writingDate;
+    }
+
+    public int getIsAuth() {
+        return isAuth;
     }
 }

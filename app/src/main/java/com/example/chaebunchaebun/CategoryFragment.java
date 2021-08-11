@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
@@ -36,7 +37,8 @@ public class CategoryFragment extends Fragment{
 
     TabLayout categoryTabLayout;
     View category;
-    ImageView imgBack;
+    ImageView imgBack, icHelp;
+    LinearLayout contenthelp;
     TextView category_name;
 
     public CategoryFragment() {
@@ -77,6 +79,11 @@ public class CategoryFragment extends Fragment{
         ViewPager categoryvp = category.findViewById(R.id.category_view_pager);
         imgBack = category.findViewById(R.id.category_back);
         category_name = category.findViewById(R.id.tv_categoryName);
+        icHelp = category.findViewById(R.id.category_ic_help);
+        contenthelp = category.findViewById(R.id.category_content_help);
+
+        contenthelp.setVisibility(View.GONE);
+
         CategoryVPAdapter categoryVPAdapter = new CategoryVPAdapter(getChildFragmentManager());
         categoryvp.setAdapter(categoryVPAdapter);
 
@@ -112,6 +119,20 @@ public class CategoryFragment extends Fragment{
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.beginTransaction().remove(CategoryFragment.this).commit();
                 fragmentManager.popBackStack();
+            }
+        });
+
+        icHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                contenthelp.setVisibility(View.VISIBLE);
+            }
+        });
+
+        contenthelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                contenthelp.setVisibility(View.GONE);
             }
         });
 
