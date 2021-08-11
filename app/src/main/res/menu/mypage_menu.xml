@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:id="@+id/item_ing"
+            android:title="진행중인 채분"/>
+        <item android:id="@+id/item_fin"
+            android:title="완료된 채분"/>
+</menu>

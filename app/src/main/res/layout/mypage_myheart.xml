@@ -46,6 +46,11 @@
         app:tabIndicatorColor="#036635"
         app:tabIndicatorHeight="1dp">
     </com.google.android.material.tabs.TabLayout>
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="143dp"
+        android:layout_height="40dp"
+        android:hint="임시 메뉴"/>
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
