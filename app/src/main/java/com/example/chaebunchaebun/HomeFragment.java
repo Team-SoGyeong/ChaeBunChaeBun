@@ -55,12 +55,8 @@ public class HomeFragment extends Fragment {
     TabLayout tabLayout;
     LinearLayout searchView;
     ImageView iconLike;
-<<<<<<< HEAD
     TextView homeLocation;
-=======
     ImageButton writing;
-  
->>>>>>> e8a5f4d7faa9a77d66b25b0f184a0f04bf4e2f09
     int recyclerPosition = -1;
     String[] address = {"",};
 
@@ -93,7 +89,7 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
+/*
         String resultText = "[NULL]";
 
         try {
@@ -117,13 +113,12 @@ public class HomeFragment extends Fragment {
             }
         } catch (JSONException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-<<<<<<< HEAD
         homeView = inflater.inflate(R.layout.fragment_home, container, false);
         mRecyclerView = (RecyclerView) homeView.findViewById(R.id.recycler_view);
         vp = homeView.findViewById(R.id.view_pager);
@@ -131,17 +126,9 @@ public class HomeFragment extends Fragment {
         searchView = homeView.findViewById(R.id.view_search);
         iconLike = homeView.findViewById(R.id.ic_like);
         homeLocation = homeView.findViewById(R.id.home_location_text);
+        writing = homeView.findViewById(R.id.btn_start);
 
         homeLocation.setText(address[address.length - 1]);
-=======
-        view = inflater.inflate(R.layout.fragment_home, container, false);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        vp = view.findViewById(R.id.view_pager);
-        tabLayout = view.findViewById(R.id.tab_layout);
-        searchView = view.findViewById(R.id.view_search);
-        iconLike = view.findViewById(R.id.ic_like);
-        writing = view.findViewById(R.id.btn_start);
->>>>>>> e8a5f4d7faa9a77d66b25b0f184a0f04bf4e2f09
 
         itemList = new ArrayList<MainRecyclerData>();
 

@@ -17,7 +17,7 @@ import android.widget.TextView;
  */
 public class MypageFragment extends Fragment {
 
-    TextView MyProfile, MyStory, MyComment, MyFavorite, MyQuestion, MyShare;
+    TextView MyProfile, MyPosting, MyComment, MyHeart, MyQuestion, MyShare;
 
 
     public MypageFragment() {
@@ -44,9 +44,9 @@ public class MypageFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_mypage, null);
 
         MyProfile = (TextView) view.findViewById(R.id.my_profile);
-        MyStory = (TextView) view.findViewById(R.id.my_story);
+        MyPosting = (TextView) view.findViewById(R.id.my_story);
         MyComment = (TextView) view.findViewById(R.id.my_comment);
-        MyFavorite = (TextView) view.findViewById(R.id.my_favorite);
+        MyHeart = (TextView) view.findViewById(R.id.my_favorite);
         MyQuestion = (TextView) view.findViewById(R.id.my_question);
         MyShare = (TextView) view.findViewById(R.id.my_share);
 
@@ -54,6 +54,19 @@ public class MypageFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), MyPageProfileActivity.class));
+            }
+        });
+
+        MyPosting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), MypageMypostingActivity.class));
+            }
+        });
+        MyHeart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), MypageMyHeartActivity.class));
             }
         });
 
