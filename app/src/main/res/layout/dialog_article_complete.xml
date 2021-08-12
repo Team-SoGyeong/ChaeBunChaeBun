@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/popup_radius"
+    android:paddingTop="25dp"
+    android:paddingBottom="35dp"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/type_outlined_icon_done_outline"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:text="채분이 완료 되었나요?"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_bold"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:text="채분이 완료되었으면 완료 버튼을 눌러주세요.\n완료된 채분은 마이페이지에서 확인 가능해요!"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_regular"/>
+    <ImageButton
+        android:id="@+id/article_dialog_complete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/group_780"
+        android:background="@color/white"/>
+    <ImageButton
+        android:id="@+id/article_dialog_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/group_779"
+        android:background="@color/white"/>
+</LinearLayout>
