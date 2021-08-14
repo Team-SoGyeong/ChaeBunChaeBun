@@ -5,11 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -38,29 +41,43 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         LinearLayout categoryListTop;
+        ImageView categoryListProfile;
         TextView categoryListTitle;
         TextView categoryListNickname;
         TextView categoryListWritingDate;
         TextView categoryListContent;
+        ImageView categoryListImg1;
+        ImageView categoryListImg2;
+        ImageView categoryListImg3;
+        ImageView categoryListImg4;
+        ImageView categoryListImg5;
         TextView categoryListBuyingDate;
         TextView categoryListPeople;
         TextView categoryListPrice;
         TextView categoryListLikeCount;
         TextView categoryListCommentCount;
         ImageButton categoryListModalBtn;
+        ImageView categoryListReceipt;
         public ViewHolder(@NonNull @NotNull View categoryView) {
             super(categoryView);
             categoryListTop = (LinearLayout) categoryView.findViewById(R.id.category_list_top);
+            categoryListProfile = (ImageView) categoryView.findViewById(R.id.categorylist_profile_img);
             categoryListTitle = (TextView) categoryView.findViewById(R.id.categorylist_title);
             categoryListNickname = (TextView) categoryView.findViewById(R.id.categorylist_nickname);
             categoryListWritingDate = (TextView) categoryView.findViewById(R.id.categorylist_writing_date);
             categoryListContent = (TextView) categoryView.findViewById(R.id.categorylist_content);
+            categoryListImg1 = (ImageView) categoryView.findViewById(R.id.categorylist_content_img_1);
+            categoryListImg2 = (ImageView) categoryView.findViewById(R.id.categorylist_content_img_2);
+            categoryListImg3 = (ImageView) categoryView.findViewById(R.id.categorylist_content_img_3);
+            categoryListImg4 = (ImageView) categoryView.findViewById(R.id.categorylist_content_img_4);
+            categoryListImg5 = (ImageView) categoryView.findViewById(R.id.categorylist_content_img_5);
             categoryListBuyingDate = (TextView) categoryView.findViewById(R.id.categorylist_buying_date);
             categoryListPeople = (TextView) categoryView.findViewById(R.id.categorylist_people);
             categoryListPrice = (TextView) categoryView.findViewById(R.id.categorylist_price);
             categoryListLikeCount = (TextView) categoryView.findViewById(R.id.categorylist_likecount);
             categoryListCommentCount = (TextView) categoryView.findViewById(R.id.categorylist_commentcount);
             categoryListModalBtn = (ImageButton) categoryView.findViewById(R.id.category_list_modalbtn);
+            categoryListReceipt = (ImageView) categoryView.findViewById(R.id.categorylist_recipeicon);
 
             categoryListTop.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -103,15 +120,26 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
         CategoryListItem categoryListItem = categoryListItems.get(position);
 
+        Glide.with(holder.itemView.getContext()).load(categoryListItem.getProfile()).into(holder.categoryListProfile);
         holder.categoryListTitle.setText(categoryListItem.getTitle());
         holder.categoryListNickname.setText(categoryListItem.getNickname());
         holder.categoryListWritingDate.setText((categoryListItem.getWritingDate()));
         holder.categoryListContent.setText(categoryListItem.getContent());
+        Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg1()).into(holder.categoryListImg1);
+        Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg2()).into(holder.categoryListImg2);
+        Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg3()).into(holder.categoryListImg3);
+        Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg4()).into(holder.categoryListImg4);
+        Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg5()).into(holder.categoryListImg5);
         holder.categoryListBuyingDate.setText(categoryListItem.getBuyingDate());
         holder.categoryListPeople.setText(categoryListItem.getPeople());
         holder.categoryListPrice.setText(categoryListItem.getPrice());
         holder.categoryListLikeCount.setText(categoryListItem.getLikeCount());
         holder.categoryListCommentCount.setText(categoryListItem.getCommentCount());
+        if(categoryListItem.getIsAuth() == 0) {
+            holder.categoryListReceipt.setVisibility(View.GONE);
+        } else {
+            holder.categoryListReceipt.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

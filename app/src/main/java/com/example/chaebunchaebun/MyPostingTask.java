@@ -10,19 +10,14 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class HomeTask extends AsyncTask<String, Void, String> {
-    private String str, receiveMsg, urlString;
-
-    public HomeTask(String urlString) {
-        this.urlString = urlString;
-
-    }
+public class MyPostingTask extends AsyncTask<String, Void, String> {
+    private String str, receiveMsg;
 
     @Override
     protected String doInBackground(String... strings) {
         URL url = null;
         try {
-            url = new URL("http://3.37.243.188:8080/" + this.urlString);
+            url = new URL("http://3.37.243.188:8080/posts/category/11/5");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestProperty("Content-Type", "application/json");

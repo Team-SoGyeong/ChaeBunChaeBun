@@ -38,6 +38,8 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
         switch (view.getId()){
             case R.id.list_modal_nomore:
                 Toast.makeText(getContext(),"더 이상 보지 않기",Toast.LENGTH_SHORT).show();
+                //NoseeDialogFragment e = NoseeDialogFragment.getInstance();
+                //e.show(getChildFragmentManager(), NoseeDialogFragment.TAG_EVENT_DIALOG);
                 break;
             case R.id.list_modal_report:
                 Toast.makeText(getContext(),"신고",Toast.LENGTH_SHORT).show();

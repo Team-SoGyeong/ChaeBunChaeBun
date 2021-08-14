@@ -60,6 +60,12 @@
                     android:textAlignment="center"
                     android:textSize="12sp"
                     android:fontFamily="@font/roboto_regular"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/cabbage_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="#ebebeb"
+                    android:scrollbars="none"/>
             </LinearLayout>
         </ScrollView>
         <ImageButton
