@@ -132,7 +132,7 @@ public class MainNewFragment extends Fragment {
         main_new_text = mainNew.findViewById(R.id.main_new_text);
         main_new_list = mainNew.findViewById(R.id.main_new_list);
 
-        if(homeListItems.size() < 1) {
+        if(homeListItems.isEmpty()) {
             main_new_text.setVisibility(View.VISIBLE);
         } else {
             main_new_text.setVisibility(View.GONE);
