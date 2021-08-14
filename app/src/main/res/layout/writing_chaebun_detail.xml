@@ -1,180 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:columnCount="3"
-    android:rowCount="4"
-    tools:showIn="@layout/writing_chaebun">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="35dp"
-            android:fontFamily="@font/roboto_bold"
-            android:text="구매 날짜"
-            android:textColor="#000000"
-            android:textSize="14sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="23dp"
-            android:fontFamily="@font/roboto_bold"
-            android:text="총 구매양"
-            android:textColor="#000000"
-            android:textSize="14sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="2"
-            android:layout_column="0"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="23dp"
-            android:fontFamily="@font/roboto_bold"
-            android:text="구매 가격"
-            android:textColor="#000000"
-            android:textSize="14sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="3"
-            android:layout_column="0"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="23dp"
-            android:fontFamily="@font/roboto_bold"
-            android:text="소분 멤버"
-            android:textColor="#000000"
-            android:textSize="14sp" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="218dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="15dp"
+    android:layout_gravity="center"
+    android:background="@drawable/writing_box"
+    >
+    <!-- 고정 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="구매 날짜"
+        android:textColor="#000000"
+        android:textSize="14sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="59dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="총 구매양"
+        android:textColor="#000000"
+        android:textSize="14sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="98dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="구매 가격"
+        android:textColor="#000000"
+        android:textSize="14sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="137dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="소분 멤버"
+        android:textColor="#000000"
+        android:textSize="14sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="286dp"
+        android:layout_marginTop="98dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="원"
+        android:textColor="#000000"
+        android:textSize="12sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="286dp"
+        android:layout_marginTop="137dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="명"
+        android:textColor="#000000"
+        android:textSize="12sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="238dp"
+        android:layout_marginTop="182dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="원"
+        android:textColor="#000000"
+        android:textSize="12sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="118dp"
+        android:layout_marginTop="182dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="1  명 당"
+        android:textColor="#000000"
+        android:textSize="12sp" />
 
-        <EditText
-            android:id="@+id/input_date"
-            android:layout_width="200dp"
-            android:layout_height="29dp"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/signup_edittext"
-            android:backgroundTint="#f4f6f2"
-            android:fontFamily="@font/roboto_regular"
-            android:paddingLeft="9dp"
-            android:textSize="14sp" />
-        <EditText
-            android:id="@+id/input_amount"
-            android:layout_width="138dp"
-            android:layout_height="29dp"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="17dp"
-            android:background="@drawable/signup_edittext"
-            android:backgroundTint="#f4f6f2"
-            android:fontFamily="@font/roboto_regular"
-            android:paddingLeft="9dp"
-            android:textSize="14sp" />
-        <EditText
-            android:id="@+id/input_getPrice"
-            android:layout_width="176dp"
-            android:layout_height="29dp"
-            android:layout_row="2"
-            android:layout_column="1"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="23dp"
-            android:background="@drawable/signup_edittext"
-            android:backgroundTint="#f4f6f2"
-            android:fontFamily="@font/roboto_regular"
-            android:paddingLeft="9dp"
-            android:textSize="14sp" />
-        <EditText
-            android:id="@+id/input_memberNum"
-            android:layout_width="176dp"
-            android:layout_height="29dp"
-            android:layout_row="3"
-            android:layout_column="1"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="23dp"
-            android:background="@drawable/signup_edittext"
-            android:backgroundTint="#f4f6f2"
-            android:fontFamily="@font/roboto_regular"
-            android:paddingLeft="9dp"
-            android:textSize="14sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="4"
-            android:layout_column="1"
-            android:layout_marginLeft="43dp"
-            android:layout_marginTop="23dp"
-            android:fontFamily="@font/roboto_bold"
-            android:text="1  명 당"
-            android:textColor="#000000"
-            android:textSize="12sp" />
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="29dp"
+        android:layout_marginLeft="173dp"
+        android:layout_marginTop="174dp"
+        android:background="@drawable/writing_box"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="#000000"
+        android:textSize="12sp" />
 
+    <!-- Edit -->
+    <EditText
+        android:id="@+id/input_amount"
+        android:layout_width="100dp"
+        android:layout_height="29dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="52dp"
+        android:background="#f4f6f2"
+        android:fontFamily="@font/roboto_regular"
+        android:paddingLeft="9dp"
+        android:textSize="14sp" />
+    <EditText
+        android:id="@+id/input_getPrice"
+        android:layout_width="176dp"
+        android:layout_height="29dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="91dp"
+        android:background="#f4f6f2"
+        android:fontFamily="@font/roboto_regular"
+        android:paddingLeft="9dp"
+        android:textSize="14sp" />
+    <EditText
+        android:id="@+id/input_memberNum"
+        android:layout_width="176dp"
+        android:layout_height="29dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="130dp"
+        android:background="#f4f6f2"
+        android:fontFamily="@font/roboto_regular"
+        android:paddingLeft="9dp"
+        android:textSize="14sp" />
+    <!-- list -->
+    <Spinner
+        android:id="@+id/date_spinner1"
+        android:layout_width="match_parent"
+        android:layout_height="29dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="13dp"/>
+    <Spinner
+        android:id="@+id/date_spinner2"
+        android:layout_width="match_parent"
+        android:layout_height="29dp"
+        android:layout_below="@+id/date_spinner1"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="-29dp"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="12dp" />
+    <Spinner
+        android:id="@+id/amount_spinner1"
+        android:layout_width="match_parent"
+        android:layout_height="29dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="52dp"/>
 
-        <EditText
-            android:id="@+id/input_point"
-            android:layout_width="50dp"
-            android:layout_height="29dp"
-            android:layout_row="1"
-            android:layout_column="2"
-            android:layout_marginLeft="-49dp"
-            android:layout_marginTop="23dp"
-            android:background="@drawable/signup_edittext"
-            android:backgroundTint="#f4f6f2"
-            android:fontFamily="@font/roboto_regular"
-            android:paddingLeft="9dp"
-            android:textSize="14sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="2"
-            android:layout_column="2"
-            android:layout_marginLeft="-12dp"
-            android:layout_marginTop="23dp"
-            android:fontFamily="@font/roboto_bold"
-            android:text="원"
-            android:textColor="#000000"
-            android:textSize="12sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="3"
-            android:layout_column="2"
-            android:layout_marginLeft="-12dp"
-            android:layout_marginTop="23dp"
-            android:fontFamily="@font/roboto_bold"
-            android:text="명"
-            android:textColor="#000000"
-            android:textSize="12sp" />
-        <EditText
-            android:id="@+id/set_price"
-            android:layout_width="60dp"
-            android:layout_height="29dp"
-            android:layout_row="4"
-            android:layout_column="2"
-            android:layout_marginLeft="-130dp"
-            android:layout_marginTop="23dp"
-            android:background="@drawable/signup_edittext"
-            android:backgroundTint="#f4f6f2"
-            android:fontFamily="@font/roboto_regular"
-            android:paddingLeft="9dp"
-            android:textSize="14sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="4"
-            android:layout_column="2"
-            android:layout_marginLeft="-60dp"
-            android:layout_marginTop="23dp"
-            android:fontFamily="@font/roboto_bold"
-            android:text="원"
-            android:textColor="#000000"
-            android:textSize="12sp" />
-</GridLayout>
+    <Spinner
+        android:id="@+id/amount_spinner2"
+        android:layout_width="match_parent"
+        android:layout_height="29dp"
+        android:layout_below="@+id/amount_spinner1"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="-29dp"
+        android:layout_marginRight="20dp"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="5dp" />
+
+</RelativeLayout>

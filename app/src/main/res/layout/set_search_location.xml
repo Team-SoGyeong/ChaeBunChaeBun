@@ -41,40 +41,45 @@
         android:layout_height="1dp"
         android:background="#ebebeb"/>
     <LinearLayout
+        android:id="@+id/search_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/get_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="16dp"
+            android:text="돈암동"
+            android:textSize="14sp"
+            android:textColor="#036635"
+            android:fontFamily="@font/roboto_regular"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="1dp"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:text="에 대한 검색결과에요."/>
+    </LinearLayout>
+
+        <include layout="@layout/set_serch_locationlist"/>
+<!--
+
+    <LinearLayout
         android:id="@+id/jrv_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/input_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="16dp"
-                android:text="돈암동"
-                android:textSize="14sp"
-                android:textColor="#036635"
-                android:fontFamily="@font/roboto_regular"/>
-            <TextView
-                android:id="@+id/search_no_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="1dp"
-                android:textColor="#000000"
-                android:textSize="14sp"
-                android:text="에 대한 검색결과에요."/>
-        </LinearLayout>
-<!--        <ListView
+
+        <ListView
             android:id="@+id/jrv_search_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        </ListView> -->
+        </ListView>
         <ImageButton
             android:id="@+id/select_location"
             android:layout_width="match_parent"
@@ -84,4 +89,5 @@
             android:src="@drawable/btn_signup_next"
             android:background="@color/white"/>
     </LinearLayout>
+    -->
 </LinearLayout>
