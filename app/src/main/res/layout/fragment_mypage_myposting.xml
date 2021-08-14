@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ebebeb"
     tools:context=".MypageMypostingFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/main_new_text"
+        android:id="@+id/mypage_posting_nolist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="31dp"
@@ -16,7 +17,7 @@
         android:text="아직 내가 쓴 글이 없어요\n직접 채분을 시작해 신선함을 나눠 보세요!"
         android:textColor="#656565" />
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/main_new_list"
+        android:id="@+id/mypage_posting_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
