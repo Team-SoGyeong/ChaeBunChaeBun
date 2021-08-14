@@ -52,7 +52,7 @@
                     android:layout_marginTop="14dp"
                     android:background="#ebebeb"/>
                 <TextView
-                    android:id="@+id/sweetpotato_nonlist"
+                    android:id="@+id/sweetpotato_nolist"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
@@ -60,6 +60,12 @@
                     android:textAlignment="center"
                     android:textSize="12sp"
                     android:fontFamily="@font/roboto_regular"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/sweetpotato_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="#ebebeb"
+                    android:scrollbars="none"/>
             </LinearLayout>
         </ScrollView>
         <ImageButton

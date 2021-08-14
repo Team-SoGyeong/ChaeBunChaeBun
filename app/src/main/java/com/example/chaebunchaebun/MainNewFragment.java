@@ -46,6 +46,8 @@ public class MainNewFragment extends Fragment {
     private LinearLayoutManager hLayoutManager;
 
     TextView main_new_text;
+    String loationCode = "";
+    String userId = "1";
 
     public MainNewFragment() {
         // Required empty public constructor
@@ -69,6 +71,10 @@ public class MainNewFragment extends Fragment {
         return fragment;
     }
 
+    public void getLocationCode(String locationCode){
+        this.loationCode = locationCode;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +87,7 @@ public class MainNewFragment extends Fragment {
         String resultText = "[NULL]";
 
         try {
-            resultText = new HomeTask().execute().get();
+            resultText = new HomeTask("home/" + userId).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -125,44 +131,49 @@ public class MainNewFragment extends Fragment {
 
         main_new_text = mainNew.findViewById(R.id.main_new_text);
         main_new_list = mainNew.findViewById(R.id.main_new_list);
-        main_new_text.setVisibility(View.GONE);
 
-        hLayoutManager = new LinearLayoutManager(getContext());
-        main_new_list.setLayoutManager(hLayoutManager);
-        MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(40);
-        main_new_list.addItemDecoration(mainRecyclerDecoration);
-        main_new_list.setLayoutManager(new LinearLayoutManager(getContext()) {
-            @Override
-            public boolean canScrollHorizontally() {
-                return false;
-            }
+        if(homeListItems.size() < 1) {
+            main_new_text.setVisibility(View.VISIBLE);
+        } else {
+            main_new_text.setVisibility(View.GONE);
 
-            @Override
-            public boolean canScrollVertically() {
-                return false;
-            }
-        });
-        homeListAdapter = new HomeListAdapter(homeListItems);
-        homeListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int pos) {
-                FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                ArticleFragment articleFragment = new ArticleFragment();
-                articleTransaction.replace(R.id.bottom_frame, articleFragment);
-                articleTransaction.addToBackStack(null);
-                articleTransaction.commit();
-            }
-        });
-        homeListAdapter.setModalClickListener(new CategoryListAdapter.OnModalClickListener() {
-            @Override
-            public void OnModlaClick() {
-                //BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
-                //bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
-                MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
-                myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
-            }
-        });
-        main_new_list.setAdapter(homeListAdapter);
+            hLayoutManager = new LinearLayoutManager(getContext());
+            main_new_list.setLayoutManager(hLayoutManager);
+            MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(40);
+            main_new_list.addItemDecoration(mainRecyclerDecoration);
+            main_new_list.setLayoutManager(new LinearLayoutManager(getContext()) {
+                @Override
+                public boolean canScrollHorizontally() {
+                    return false;
+                }
+
+                @Override
+                public boolean canScrollVertically() {
+                    return false;
+                }
+            });
+            homeListAdapter = new HomeListAdapter(homeListItems);
+            homeListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(int pos) {
+                    FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    ArticleFragment articleFragment = new ArticleFragment();
+                    articleTransaction.replace(R.id.bottom_frame, articleFragment);
+                    articleTransaction.addToBackStack(null);
+                    articleTransaction.commit();
+                }
+            });
+            homeListAdapter.setModalClickListener(new CategoryListAdapter.OnModalClickListener() {
+                @Override
+                public void OnModlaClick() {
+                    //BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
+                    //bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                    MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
+                    myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                }
+            });
+            main_new_list.setAdapter(homeListAdapter);
+        }
 
         return mainNew;
     }

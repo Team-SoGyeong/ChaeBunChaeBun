@@ -1,5 +1,6 @@
 package com.example.chaebunchaebun;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -53,12 +54,13 @@ public class HomeFragment extends Fragment {
     ViewGroup viewGroup;
     ViewPager vp;
     TabLayout tabLayout;
-    LinearLayout searchView;
+    LinearLayout searchView, homeLocation;
     ImageView iconLike;
-    TextView homeLocation;
+    TextView homeLocationText;
     ImageButton writing;
     int recyclerPosition = -1;
     String[] address = {"",};
+    String userId = "1";
 
     public HomeFragment() {
         // Required empty public constructor
@@ -89,11 +91,11 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-/*
+
         String resultText = "[NULL]";
 
         try {
-            resultText = new HomeTask().execute().get();
+            resultText = new HomeTask("home/" + userId).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -108,12 +110,14 @@ public class HomeFragment extends Fragment {
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
                 String fullAddress = subJsonObject.getString("full_address");
                 int userId = subJsonObject.getInt("user_id");
+                String locationCode = subJsonObject.getString("address_id");
 
                 address = fullAddress.split(" ");
+
             }
         } catch (JSONException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     @Override
@@ -125,10 +129,11 @@ public class HomeFragment extends Fragment {
         tabLayout = homeView.findViewById(R.id.tab_layout);
         searchView = homeView.findViewById(R.id.view_search);
         iconLike = homeView.findViewById(R.id.ic_like);
-        homeLocation = homeView.findViewById(R.id.home_location_text);
+        homeLocationText = homeView.findViewById(R.id.home_location_text);
+        homeLocation = homeView.findViewById(R.id.home_location);
         writing = homeView.findViewById(R.id.btn_start);
 
-        homeLocation.setText(address[address.length - 1]);
+        homeLocationText.setText(address[address.length - 1]);
 
         itemList = new ArrayList<MainRecyclerData>();
 
@@ -189,6 +194,17 @@ public class HomeFragment extends Fragment {
                 getActivity().startActivity(new Intent(getActivity(), WarningActivity.class));
             }
         });
+
+      homeLocation.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              Bundle args = new Bundle();
+              args.putString("location", address[address.length - 1]);
+              LocationDialogFragment e = LocationDialogFragment.getInstance();
+              e.setArguments(args);
+              e.show(getChildFragmentManager(), LocationDialogFragment.TAG_EVENT_DIALOG);
+          }
+      });
       
         // Inflate the layout for this fragment
         return homeView;

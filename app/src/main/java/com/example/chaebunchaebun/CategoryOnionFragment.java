@@ -16,7 +16,12 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,6 +46,8 @@ public class CategoryOnionFragment extends Fragment{
 
     TextView categoryNoList;
     ImageButton writing;
+    String id = "1";
+    String category = "1";
 
     public CategoryOnionFragment() {
         // Required empty public constructor
@@ -71,6 +78,65 @@ public class CategoryOnionFragment extends Fragment{
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        categoryListItems = new ArrayList<CategoryListItem>();
+        categoryListItems.clear();
+        String resultText = "[NULL]";
+
+        try {
+            resultText = new HomeTask("posts/category/" + category + "/" + id).execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            JSONObject jsonObject = new JSONObject(resultText);
+            String data = jsonObject.getString("data");
+            JSONArray jsonArray = new JSONArray(data);
+            for(int i = 0; i < jsonArray.length(); i++){
+                JSONObject subJsonObject = jsonArray.getJSONObject(i);
+
+                String post = subJsonObject.getString("posts");
+                JSONArray jsonPostArray = new JSONArray(post);
+                for(int j = 0; j < jsonPostArray.length(); j++){
+                    JSONObject subJsonObject2 = jsonPostArray.getJSONObject(j);
+                    String profile = subJsonObject2.getString("profile");
+                    String title = subJsonObject2.getString("title");
+                    String nickname = subJsonObject2.getString("nickname");
+                    String writtenBy = subJsonObject2.getString("witten_by");
+                    String content = subJsonObject2.getString("contents");
+
+                    String img1 = null;
+                    String img2 = null;
+                    String img3 = null;
+                    String img4 = null;
+                    String img5 = null;
+
+                    String imgs = subJsonObject2.getString("imgs");
+                    JSONObject subJsonObject3 = new JSONObject(imgs);
+                    img1 = subJsonObject3.getString("img1");
+                    img2 = subJsonObject3.getString("img2");
+                    img3 = subJsonObject3.getString("img3");
+                    img4 = subJsonObject3.getString("img4");
+                    img5 = subJsonObject3.getString("img5");
+
+                    String buyDate = subJsonObject2.getString("buy_date");
+                    String member = subJsonObject2.getString("headcounts") + "명";
+                    String perPrice = subJsonObject2.getString("per_price");
+                    int myWishInt = subJsonObject2.getInt("wish_cnts");
+                    String myWish = String.valueOf(myWishInt);
+                    int commentInt = subJsonObject2.getInt("comment_cnts");
+                    String comment = String.valueOf(commentInt);
+                    int isAuth = subJsonObject2.getInt("isAuth");
+
+                    categoryListItems.add(new CategoryListItem(profile, title, nickname, writtenBy, content, img1, img2, img3, img4, img5, buyDate, member, perPrice, myWish, comment, isAuth));
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -81,51 +147,42 @@ public class CategoryOnionFragment extends Fragment{
 
         categoryOnionList = categoryOnion.findViewById(R.id.onion_list);
         categoryNoList = categoryOnion.findViewById(R.id.onion_nonlist);
-        categoryNoList.setVisibility(View.GONE);
 
         writing = categoryOnion.findViewById(R.id.onion_newbtn);
 
-        categoryListItems = new ArrayList<CategoryListItem>();
+        if(categoryListItems.isEmpty()) {
+            categoryNoList.setVisibility(View.VISIBLE);
+        } else {
+            categoryNoList.setVisibility(View.GONE);
+            cLayoutManager = new LinearLayoutManager(getContext());
+            categoryOnionList.setLayoutManager(cLayoutManager);
+            categoryListAdapter = new CategoryListAdapter(categoryListItems);
+            categoryOnionList.setAdapter(categoryListAdapter);
 
-        categoryListItems.add(new CategoryListItem("깐 양파 한망 채분해요~", "심장이 분분", "07/11",
-                "볶음밥 먹으려고 샀는데 너무 많아서 소분합니다\n산지 얼마 되지 않아서 오래 모집합니다!", "일주일 전 구매",
-                "5명", "200원", "5", "3"));
-        categoryListItems.add(new CategoryListItem("깐 양파 한망 채분해요~", "심장이 분분", "07/11",
-                "볶음밥 먹으려고 샀는데 너무 많아서 소분합니다\n산지 얼마 되지 않아서 오래 모집합니다!", "일주일 전 구매",
-                "5명", "200원", "5", "3"));
-        categoryListItems.add(new CategoryListItem("긴 제목 테스트 양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파양파",
-                "심장이 분분", "07/11",
-                "볶음밥 먹으려고 샀는데 너무 많아서 소분합니다\n산지 얼마 되지 않아서 오래 모집합니다!\n세 줄 이상 테스트를 위해\n더 추가해보는 내용들",
-                "1일 전 구매", "5명", "200원", "10", "13"));
-
-        cLayoutManager = new LinearLayoutManager(getContext());
-        categoryOnionList.setLayoutManager(cLayoutManager);
-        categoryListAdapter = new CategoryListAdapter(categoryListItems);
-        categoryOnionList.setAdapter(categoryListAdapter);
-
-        categoryListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int pos) {
-                FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                ArticleFragment articleFragment = new ArticleFragment();
-                articleTransaction.replace(R.id.bottom_frame, articleFragment);
-                articleTransaction.addToBackStack(null);
-                articleTransaction.commit();
-            }
-        });
-
-        categoryListAdapter.setModalClickListener(new CategoryListAdapter.OnModalClickListener() {
-            @Override
-            public void OnModlaClick() {
-                if(categoryListAdapter.getItemCount() % 2 != 0){
-                    BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
-                    bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
-                } else {
-                    MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
-                    myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+            categoryListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(int pos) {
+                    FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    ArticleFragment articleFragment = new ArticleFragment();
+                    articleTransaction.replace(R.id.bottom_frame, articleFragment);
+                    articleTransaction.addToBackStack(null);
+                    articleTransaction.commit();
                 }
-            }
-        });
+            });
+
+            categoryListAdapter.setModalClickListener(new CategoryListAdapter.OnModalClickListener() {
+                @Override
+                public void OnModlaClick() {
+                    if(categoryListAdapter.getItemCount() % 2 != 0){
+                        BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
+                        bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                    } else {
+                        MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
+                        myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                    }
+                }
+            });
+        }
 
         writing.setOnClickListener(new View.OnClickListener() {
             @Override

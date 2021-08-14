@@ -152,7 +152,7 @@
                 android:layout_gravity="bottom">
                 <TextView
                     android:id="@+id/categorylist_buying_date"
-                    android:layout_width="70dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     android:text="구매 날짜"
@@ -166,7 +166,7 @@
                     android:background="#036635"/>
                 <TextView
                     android:id="@+id/categorylist_people"
-                    android:layout_width="20dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:textAlignment="center"

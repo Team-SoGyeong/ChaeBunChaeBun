@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class MainVPAdapter extends FragmentPagerAdapter {
     private ArrayList<Fragment> items;
     private ArrayList<String> itext = new ArrayList<String>();
+    private String location = "";
 
     public MainVPAdapter(@NonNull FragmentManager fm) {
         super(fm);

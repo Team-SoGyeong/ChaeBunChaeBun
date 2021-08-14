@@ -43,7 +43,7 @@ public class ArticleFragment extends Fragment {
     private LinearLayoutManager cLayoutManager;
 
     View articleView;
-    ImageView articleBack, articleRecipt;
+    ImageView articleBack, articleRecipt, articleComplete;
     LinearLayout articleReciptHelp;
     int recyclerPosition = -1;
 
@@ -88,6 +88,7 @@ public class ArticleFragment extends Fragment {
 
         articleBack = (ImageView) articleView.findViewById(R.id.article_back);
         articleRecipt = (ImageView) articleView.findViewById(R.id.article_receipt);
+        articleComplete = (ImageView) articleView.findViewById(R.id.ic_complete);
         articleReciptHelp = (LinearLayout) articleView.findViewById(R.id.article_receipt_help);
         articleReciptHelp.setVisibility(View.GONE);
 
@@ -136,6 +137,14 @@ public class ArticleFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 articleReciptHelp.setVisibility(View.GONE);
+            }
+        });
+
+        articleComplete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CompleteDialogFragment e = CompleteDialogFragment.getInstance();
+                e.show(getChildFragmentManager(), CompleteDialogFragment.TAG_EVENT_DIALOG);
             }
         });
 
