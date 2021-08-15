@@ -1,16 +1,27 @@
 package com.example.chaebunchaebun;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import com.bumptech.glide.load.resource.drawable.DrawableResource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SearchLocationActivity extends AppCompatActivity {
     ImageButton select;
@@ -21,6 +32,7 @@ public class SearchLocationActivity extends AppCompatActivity {
     LinearLayout result;
     TextView location_nonlist;
     ListView locationList;
+
 
     String location_item = null;
     @Override
@@ -40,18 +52,52 @@ public class SearchLocationActivity extends AppCompatActivity {
         location_nonlist.setVisibility(View.GONE);
         result.setVisibility(View.GONE);
 
+        List<String> lc_list = new ArrayList<>();
+        lc_list.add("서울특별시 성북구 돈암동");
+        lc_list.add("서울특별시 성북구 동선동");
+        lc_list.add("서울특별시 성북구 돈암 1동");
+        lc_list.add("서울특별시 성북구 돈암 2동");
+
+        ArrayAdapter<String> adpater = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, lc_list);
+
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(location_item == null){
                     location_nonlist.setVisibility(View.VISIBLE);
+                    locationList.setVisibility(View.GONE);
                     result.setVisibility(View.GONE);
+                    Toast.makeText(SearchLocationActivity.this, "location item: null", Toast.LENGTH_SHORT).show();
+                    location_item = "Not null";
                 }else{
                     location_nonlist.setVisibility(View.GONE);
+                    locationList.setVisibility(View.VISIBLE);
                     result.setVisibility(View.VISIBLE);
+                    Toast.makeText(SearchLocationActivity.this, "location item: not null", Toast.LENGTH_SHORT).show();
+
+                    locationList.setAdapter(adpater);
+
+                    locationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                            String data = (String) adapterView.getItemAtPosition(position);
+                            location.setText(data);
+                            view.setBackground(ContextCompat.getDrawable(SearchLocationActivity.this, R.drawable.green_box));
+                        }
+                    });
+
+                    location_item = null;
                 }
             }
         });
+
+
+
+
+
+
+
+        //기본 세팅
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

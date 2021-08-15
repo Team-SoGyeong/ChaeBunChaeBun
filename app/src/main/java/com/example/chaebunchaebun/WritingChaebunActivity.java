@@ -54,7 +54,6 @@ public class WritingChaebunActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String amount_str = amount_arr[position];
-                Toast.makeText(WritingChaebunActivity.this,"선택 단위:"+amount_str,Toast.LENGTH_SHORT).show();
             }
 
             @Override
