@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -95,7 +94,7 @@ public class ArticleFragment extends Fragment {
         articleItemList = new ArrayList<ArticleRecyclerData>();
 
         articleItemList.add(new ArticleRecyclerData(R.drawable.vegetables));
-        articleItemList.add(new ArticleRecyclerData(R.drawable.onion));
+        articleItemList.add(new ArticleRecyclerData(R.drawable.btn_select_onion));
         articleItemList.add(new ArticleRecyclerData(R.drawable.group_624));
         articleItemList.add(new ArticleRecyclerData(R.drawable.logo_2));
         articleItemList.add(new ArticleRecyclerData(R.drawable.logo));

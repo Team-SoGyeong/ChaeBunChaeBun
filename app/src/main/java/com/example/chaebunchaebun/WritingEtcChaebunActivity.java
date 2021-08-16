@@ -10,11 +10,8 @@ import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-public class WritingChaebunActivity extends AppCompatActivity {
+public class WritingEtcChaebunActivity extends AppCompatActivity {
     ImageView back, writing, btn_back;
     Spinner date_spinner, amount_spinner;
     String date_arr[] = {"1일 전", "2일 전", "3일 전", "일주일 이내", "2주 이내"};
@@ -22,7 +19,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.writing_chaebun_frame);
+        setContentView(R.layout.writing_chaebun_etc);
 
         back = (ImageView) findViewById(R.id.id_back);
         writing = (ImageView) findViewById(R.id.btn_next);
@@ -86,4 +83,5 @@ public class WritingChaebunActivity extends AppCompatActivity {
             }
         });
     }
+
 }

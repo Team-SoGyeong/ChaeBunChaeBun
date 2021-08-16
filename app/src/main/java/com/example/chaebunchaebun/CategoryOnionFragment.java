@@ -11,9 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -187,7 +185,7 @@ public class CategoryOnionFragment extends Fragment{
         writing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startActivity(new Intent(getActivity(), WarningActivity.class));
+                getActivity().startActivity(new Intent(getActivity(), WarningDialogFragment.class));
             }
         });
         return categoryOnion;

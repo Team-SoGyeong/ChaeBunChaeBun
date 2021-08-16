@@ -1,6 +1,5 @@
 package com.example.chaebunchaebun;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -55,7 +54,7 @@ public class HomeFragment extends Fragment {
     ViewPager vp;
     TabLayout tabLayout;
     LinearLayout searchView, homeLocation;
-    ImageView iconLike;
+    ImageView iconLike, iconNotice;
     TextView homeLocationText;
     ImageButton writing;
     int recyclerPosition = -1;
@@ -132,6 +131,7 @@ public class HomeFragment extends Fragment {
         homeLocationText = homeView.findViewById(R.id.home_location_text);
         homeLocation = homeView.findViewById(R.id.home_location);
         writing = homeView.findViewById(R.id.btn_start);
+        iconNotice = homeView.findViewById(R.id.ic_notice);
 
         homeLocationText.setText(address[address.length - 1]);
 
@@ -146,7 +146,7 @@ public class HomeFragment extends Fragment {
         itemList.add(new MainRecyclerData(R.drawable.cabbage));
         itemList.add(new MainRecyclerData(R.drawable.radish));
         itemList.add(new MainRecyclerData(R.drawable.potato));
-        itemList.add(new MainRecyclerData(R.drawable.sweet_potato));
+        itemList.add(new MainRecyclerData(R.drawable.btn_select_etc));
         itemList.add(new MainRecyclerData(R.drawable.frame_550));
 
         mLayoutManager = new LinearLayoutManager(getContext());
@@ -191,7 +191,8 @@ public class HomeFragment extends Fragment {
       writing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startActivity(new Intent(getActivity(), WarningActivity.class));
+                WarningDialogFragment e = WarningDialogFragment.getInstance();
+                e.show(getChildFragmentManager(), WarningDialogFragment.TAG_EVENT_DIALOG);
             }
         });
 
@@ -205,6 +206,14 @@ public class HomeFragment extends Fragment {
               e.show(getChildFragmentManager(), LocationDialogFragment.TAG_EVENT_DIALOG);
           }
       });
+
+      iconNotice.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               QuestionCompleteDialogFragment e = QuestionCompleteDialogFragment.getInstance();
+               e.show(getChildFragmentManager(), QuestionCompleteDialogFragment.TAG_EVENT_DIALOG);
+           }
+       });
       
         // Inflate the layout for this fragment
         return homeView;
