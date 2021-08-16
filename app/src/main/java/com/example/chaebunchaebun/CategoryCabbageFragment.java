@@ -1,7 +1,6 @@
 package com.example.chaebunchaebun;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -83,7 +82,7 @@ public class CategoryCabbageFragment extends Fragment {
         writing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startActivity(new Intent(getActivity(), WarningActivity.class));
+                getActivity().startActivity(new Intent(getActivity(), WarningDialogFragment.class));
             }
         });
 

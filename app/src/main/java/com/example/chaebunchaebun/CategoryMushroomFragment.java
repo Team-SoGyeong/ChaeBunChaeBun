@@ -184,7 +184,7 @@ public class CategoryMushroomFragment extends Fragment {
         writing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startActivity(new Intent(getActivity(), WarningActivity.class));
+                getActivity().startActivity(new Intent(getActivity(), WarningDialogFragment.class));
             }
         });
         // Inflate the layout for this fragment
