@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -36,7 +38,7 @@ public class ArticleRecyclerAdapter extends RecyclerView.Adapter<ArticleRecycler
     public void onBindViewHolder(ArticleRecyclerAdapter.ViewHolder holder, int position) {
         ArticleRecyclerData articleItem = imgContent.get(position);
 
-        holder.imageView.setImageResource(articleItem.getImg());
+        Glide.with(holder.itemView.getContext()).load(articleItem.getImg()).into(holder.imageView);
         holder.textView.setText((position + 1) + "/5");
     }
 

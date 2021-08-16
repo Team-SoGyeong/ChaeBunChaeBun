@@ -52,6 +52,11 @@ public class SearchLocationActivity extends AppCompatActivity {
         location_nonlist.setVisibility(View.GONE);
         result.setVisibility(View.GONE);
 
+        Intent intent = getIntent();
+        String searchLocation = intent.getStringExtra("searchLocation");
+        search.setText(searchLocation);
+        location_item = search.getText().toString();
+
         List<String> lc_list = new ArrayList<>();
         lc_list.add("서울특별시 성북구 돈암동");
         lc_list.add("서울특별시 성북구 동선동");
@@ -60,42 +65,38 @@ public class SearchLocationActivity extends AppCompatActivity {
 
         ArrayAdapter<String> adpater = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, lc_list);
 
+        if(location_item == null){
+            location_nonlist.setVisibility(View.VISIBLE);
+            locationList.setVisibility(View.GONE);
+            result.setVisibility(View.GONE);
+            Toast.makeText(SearchLocationActivity.this, "location item: null", Toast.LENGTH_SHORT).show();
+            location_item = "Not null";
+        }else{
+            location_nonlist.setVisibility(View.GONE);
+            locationList.setVisibility(View.VISIBLE);
+            result.setVisibility(View.VISIBLE);
+            Toast.makeText(SearchLocationActivity.this, "location item: not null", Toast.LENGTH_SHORT).show();
+
+            locationList.setAdapter(adpater);
+
+            locationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                    String data = (String) adapterView.getItemAtPosition(position);
+                    location.setText(data);
+                    view.setBackground(ContextCompat.getDrawable(SearchLocationActivity.this, R.drawable.green_box));
+                }
+            });
+
+            location_item = null;
+        }
+
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(location_item == null){
-                    location_nonlist.setVisibility(View.VISIBLE);
-                    locationList.setVisibility(View.GONE);
-                    result.setVisibility(View.GONE);
-                    Toast.makeText(SearchLocationActivity.this, "location item: null", Toast.LENGTH_SHORT).show();
-                    location_item = "Not null";
-                }else{
-                    location_nonlist.setVisibility(View.GONE);
-                    locationList.setVisibility(View.VISIBLE);
-                    result.setVisibility(View.VISIBLE);
-                    Toast.makeText(SearchLocationActivity.this, "location item: not null", Toast.LENGTH_SHORT).show();
 
-                    locationList.setAdapter(adpater);
-
-                    locationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                            String data = (String) adapterView.getItemAtPosition(position);
-                            location.setText(data);
-                            view.setBackground(ContextCompat.getDrawable(SearchLocationActivity.this, R.drawable.green_box));
-                        }
-                    });
-
-                    location_item = null;
-                }
             }
         });
-
-
-
-
-
-
 
         //기본 세팅
         back.setOnClickListener(new View.OnClickListener() {

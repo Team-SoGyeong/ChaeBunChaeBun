@@ -1,8 +1,10 @@
 package com.example.chaebunchaebun;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +37,20 @@ public class LocationDialogFragment extends DialogFragment {
         Bundle mArgs = getArguments();
         String location = mArgs.getString("location");
         locationDialogEdt.setText(location);
+
+        locationDialogEdt.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                if((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    //getActivity().startActivity(new Intent(getActivity(), SearchLocationActivity.class));
+                    Intent intent = new Intent(getActivity(), SearchLocationActivity.class);
+                    intent.putExtra("searchLocation", location);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
 
         locationDialogfine.setOnClickListener(new View.OnClickListener() {
             @Override
