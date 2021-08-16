@@ -69,13 +69,14 @@
                     android:layout_marginRight="10dp"
                     android:src="@drawable/slice_6"
                     android:scaleType="fitCenter"/>
+
                 <ImageView
                     android:id="@+id/ic_notice"
-                    android:layout_width="24dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:layout_marginRight="16dp"
-                    android:src="@drawable/slice_10"
-                    android:scaleType="fitCenter"/>
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/slice_10" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/view_search"

@@ -40,8 +40,8 @@ public class MyPageProfileActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LogoutActivity.class);
-                startActivity(intent);
+                LogoutDialogFragment e = LogoutDialogFragment.getInstance();
+                e.show(getSupportFragmentManager(), LogoutDialogFragment.TAG_EVENT_DIALOG);
             }
         });
 
