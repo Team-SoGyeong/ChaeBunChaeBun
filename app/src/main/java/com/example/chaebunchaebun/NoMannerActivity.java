@@ -21,6 +21,13 @@ public class NoMannerActivity extends AppCompatActivity {
         report = (ImageButton) findViewById(R.id.btn_report);
         inquire = (ImageButton) findViewById(R.id.btn_inquire);
 
+        report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArticleReportDialogFragment e = ArticleReportDialogFragment.getInstance();
+                e.show(getSupportFragmentManager(), ArticleReportDialogFragment.TAG_EVENT_DIALOG);
+            }
+        });
         inquire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

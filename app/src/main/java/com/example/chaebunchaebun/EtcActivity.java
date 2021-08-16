@@ -32,8 +32,7 @@ public class EtcActivity extends AppCompatActivity {
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), WithdrawActivity.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
     }
