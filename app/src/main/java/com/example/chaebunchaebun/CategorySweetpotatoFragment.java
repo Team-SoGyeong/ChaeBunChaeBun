@@ -45,6 +45,7 @@ public class CategorySweetpotatoFragment extends Fragment {
     TextView categoryNoList;
     String id = "1";
     String category = "10";
+    ArrayList<String> postId;
 
     public CategorySweetpotatoFragment() {
         // Required empty public constructor
@@ -78,6 +79,8 @@ public class CategorySweetpotatoFragment extends Fragment {
 
         categoryListItems = new ArrayList<CategoryListItem>();
         categoryListItems.clear();
+        postId = new ArrayList<String>();
+        postId.clear();
 
         String resultText = "[NULL]";
 
@@ -129,6 +132,8 @@ public class CategorySweetpotatoFragment extends Fragment {
                     String comment = String.valueOf(commentInt);
                     int isAuth = subJsonObject2.getInt("isAuth");
 
+                    this.postId.add(subJsonObject2.getString("post_id"));
+
                     categoryListItems.add(new CategoryListItem(profile, title, nickname, writtenBy, content, img1, img2, img3, img4, img5, buyDate, member, perPrice, myWish, comment, isAuth));
                 }
             }
@@ -158,8 +163,11 @@ public class CategorySweetpotatoFragment extends Fragment {
             categoryListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int pos) {
+                    Bundle articleBundle = new Bundle();
+                    articleBundle.putString("postId", postId.get(pos));
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     ArticleFragment articleFragment = new ArticleFragment();
+                    articleFragment.setArguments(articleBundle);
                     articleTransaction.replace(R.id.bottom_frame, articleFragment);
                     articleTransaction.addToBackStack(null);
                     articleTransaction.commit();

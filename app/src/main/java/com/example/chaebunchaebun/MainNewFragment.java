@@ -48,6 +48,7 @@ public class MainNewFragment extends Fragment {
     TextView main_new_text;
     String loationCode = "";
     String userId = "1";
+    ArrayList<String> postId;
 
     public MainNewFragment() {
         // Required empty public constructor
@@ -84,6 +85,9 @@ public class MainNewFragment extends Fragment {
         }
 
         homeListItems = new ArrayList<HomeListItem>();
+        postId = new ArrayList<String>();
+        homeListItems.clear();
+        postId.clear();
         String resultText = "[NULL]";
 
         try {
@@ -114,6 +118,8 @@ public class MainNewFragment extends Fragment {
                     String perPrice = subJsonObject2.getString("per_price");
                     String writtenBy = subJsonObject2.getString("witten_by");
                     int isAuth = subJsonObject2.getInt("isAuth");
+
+                    this.postId.add(subJsonObject2.getString("post_id"));
 
                     homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth));
                 }
@@ -156,8 +162,11 @@ public class MainNewFragment extends Fragment {
             homeListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int pos) {
+                    Bundle articleBundle = new Bundle();
+                    articleBundle.putString("postId", postId.get(pos));
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     ArticleFragment articleFragment = new ArticleFragment();
+                    articleFragment.setArguments(articleBundle);
                     articleTransaction.replace(R.id.bottom_frame, articleFragment);
                     articleTransaction.addToBackStack(null);
                     articleTransaction.commit();

@@ -13,8 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,9 +51,15 @@ public class ArticleFragment extends Fragment {
     private LinearLayoutManager cLayoutManager;
 
     View articleView;
-    ImageView articleBack, articleRecipt, articleComplete;
+    ImageView articleBack, articleRecipt, articleComplete, articleProfile;
+    TextView categoryName, articleWishcnt, articleTitle, articleNickname, articleWritingDate,
+            articleBuyingDate, articleTotal, articlePeople, articlePrice, articleContent;
     LinearLayout articleReciptHelp;
     int recyclerPosition = -1;
+    String postId = "";
+    String userId = "1";
+    String categoryNameString, title, nickname, content, buyDate, members, perPrice, writtenBy, profile;
+    int isAuth, wishcount;
 
     public ArticleFragment() {
         // Required empty public constructor
@@ -75,6 +89,108 @@ public class ArticleFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+            this.postId = getArguments().getString("postId");
+            articleItemList = new ArrayList<ArticleRecyclerData>();
+            articleItemList.clear();
+            commentRecyclerItems = new ArrayList<CommentRecyclerItem>();
+            commentRecyclerItems.clear();
+
+            String resultText = "[NULL]";
+            String commentResult = "[NULL]";
+
+            try {
+                resultText = new HomeTask("posts/" + postId + "/" + userId).execute().get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                JSONObject jsonObject = new JSONObject(resultText);
+                String data = jsonObject.getString("data");
+                JSONArray jsonArray = new JSONArray(data);
+                for(int i = 0; i < jsonArray.length(); i++){
+                    JSONObject subJsonObject = jsonArray.getJSONObject(i);
+
+                    this.categoryNameString = subJsonObject.getString("category_name");
+
+                    String posts = subJsonObject.getString("posts");
+                    JSONArray jsonLastListArray = new JSONArray(posts);
+                    for(int j = 0; j < jsonLastListArray.length(); j++){
+                        JSONObject subJsonObject2 = jsonLastListArray.getJSONObject(j);
+
+                        //String profile = subJsonObject2.getString("profile");
+                        this.title = subJsonObject2.getString("title");
+                        this.nickname = subJsonObject2.getString("nickname");
+                        this.content = subJsonObject2.getString("contents");
+                        this.buyDate = subJsonObject2.getString("buy_date");
+                        this.members = subJsonObject2.getString("headcounts");
+                        this.perPrice = subJsonObject2.getString("per_price");
+                        this.writtenBy = subJsonObject2.getString("witten_by");
+                        this.isAuth = subJsonObject2.getInt("isAuth");
+                        this.wishcount = subJsonObject2.getInt("wish_cnts");
+                        this.profile = subJsonObject2.getString("profile");
+
+                        String img1 = null;
+                        String img2 = null;
+                        String img3 = null;
+                        String img4 = null;
+                        String img5 = null;
+
+                        String imgs = subJsonObject2.getString("imgs");
+                        JSONObject subJsonObject3 = new JSONObject(imgs);
+                        img1 = subJsonObject3.getString("img1");
+                        img2 = subJsonObject3.getString("img2");
+                        img3 = subJsonObject3.getString("img3");
+                        img4 = subJsonObject3.getString("img4");
+                        img5 = subJsonObject3.getString("img5");
+
+                        articleItemList.add(new ArticleRecyclerData(img1));
+                        articleItemList.add(new ArticleRecyclerData(img2));
+                        articleItemList.add(new ArticleRecyclerData(img3));
+                        articleItemList.add(new ArticleRecyclerData(img4));
+                        articleItemList.add(new ArticleRecyclerData(img5));
+                        //this.postId = subJsonObject2.getString("post_id");
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                commentResult = new HomeTask("posts/comment" + this.postId).execute().get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                JSONObject jsonObject = new JSONObject(commentResult);
+                String data = jsonObject.getString("data");
+                JSONArray jsonArray = new JSONArray(data);
+                for(int i = 0; i < jsonArray.length(); i++){
+                    JSONObject subJsonObject = jsonArray.getJSONObject(i);
+
+                    String commentList = subJsonObject.getString("cmts");
+                    JSONArray jsonLastListArray = new JSONArray(commentList);
+                    for(int j = 0; j < jsonLastListArray.length(); j++){
+                        JSONObject subJsonObject2 = jsonLastListArray.getJSONObject(j);
+
+                        //String profile = subJsonObject2.getString("profile");
+                        String commentNickname = subJsonObject2.getString("nickname");
+                        String comments = subJsonObject2.getString("comments");
+                        String commentWrittenBy = subJsonObject2.getString("witten_by");
+                        //this.profile = subJsonObject2.getString("profile");
+
+                        commentRecyclerItems.add(new CommentRecyclerItem(commentNickname, comments, commentWrittenBy));
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -83,22 +199,27 @@ public class ArticleFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         articleView = inflater.inflate(R.layout.fragment_article, container, false);
+
+        categoryName = (TextView) articleView.findViewById(R.id.article_category_name);
+        articleWishcnt = (TextView) articleView.findViewById(R.id.article_wishcount);
+        articleTitle = (TextView) articleView.findViewById(R.id.article_title);
+        articleNickname = (TextView) articleView.findViewById(R.id.article_nickname);
+        articleWritingDate = (TextView) articleView.findViewById(R.id.article_writing_date);
+        articleBuyingDate = (TextView) articleView.findViewById(R.id.article_buying_date);
+        articleTotal = (TextView) articleView.findViewById(R.id.article_total);
+        articlePeople = (TextView) articleView.findViewById(R.id.article_people);
+        articlePrice = (TextView) articleView.findViewById(R.id.article_price);
+        articleContent = (TextView) articleView.findViewById(R.id.article_content);
+        articleRecipt = (ImageView) articleView.findViewById(R.id.article_receipt);
+        articleProfile = (ImageView) articleView.findViewById(R.id.article_proile_img);
+
         aRecyclerView = (RecyclerView) articleView.findViewById(R.id.article_recycler_img);
         cRecyclerView = (RecyclerView) articleView.findViewById(R.id.article_comment_list);
 
         articleBack = (ImageView) articleView.findViewById(R.id.article_back);
-        articleRecipt = (ImageView) articleView.findViewById(R.id.article_receipt);
         articleComplete = (ImageView) articleView.findViewById(R.id.ic_complete);
         articleReciptHelp = (LinearLayout) articleView.findViewById(R.id.article_receipt_help);
         articleReciptHelp.setVisibility(View.GONE);
-
-        articleItemList = new ArrayList<ArticleRecyclerData>();
-
-        articleItemList.add(new ArticleRecyclerData(R.drawable.vegetables));
-        articleItemList.add(new ArticleRecyclerData(R.drawable.onion));
-        articleItemList.add(new ArticleRecyclerData(R.drawable.group_624));
-        articleItemList.add(new ArticleRecyclerData(R.drawable.logo_2));
-        articleItemList.add(new ArticleRecyclerData(R.drawable.logo));
 
         aLayoutManager = new LinearLayoutManager(getContext());
         aLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -106,11 +227,21 @@ public class ArticleFragment extends Fragment {
         articleRecyclerAdapter = new ArticleRecyclerAdapter(articleItemList);
         aRecyclerView.setAdapter(articleRecyclerAdapter);
 
-        commentRecyclerItems = new ArrayList<CommentRecyclerItem>();
-
-        commentRecyclerItems.add(new CommentRecyclerItem("심장이 분분대", "꺄오 참여하고 싶어요 양파를 파파파팟", "07/22 03:25"));
-        commentRecyclerItems.add(new CommentRecyclerItem("심장이 분분대", "꺄오 참여하고 싶어요 양파를 파파파팟", "07/22 03:25"));
-        commentRecyclerItems.add(new CommentRecyclerItem("심장이 분분대", "꺄오 참여하고 싶어요 양파를 파파파팟", "07/22 03:25"));
+        categoryName.setText(this.categoryNameString);
+        articleTitle.setText(this.title);
+        articleNickname.setText(this.nickname);
+        articleContent.setText(this.content);
+        articleBuyingDate.setText(this.buyDate);
+        articlePeople.setText(this.members);
+        articlePrice.setText(this.perPrice);
+        articleWritingDate.setText(this.writtenBy);
+        if(isAuth == 0){
+            articleRecipt.setVisibility(View.GONE);
+        } else {
+            articleRecipt.setVisibility(View.VISIBLE);
+        }
+        articleWishcnt.setText(String.valueOf(this.wishcount));
+        Glide.with(getContext()).load(this.profile).into(articleProfile);
 
         cLayoutManager = new LinearLayoutManager(getContext());
         cRecyclerView.setLayoutManager(cLayoutManager);
