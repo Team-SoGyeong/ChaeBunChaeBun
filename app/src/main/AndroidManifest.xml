@@ -83,7 +83,7 @@
             android:name=".EtcActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".WithdrawPopupActivity"
+            android:name=".WithdrawDialogFragment"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MypageMypostingActivity"

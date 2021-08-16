@@ -21,6 +21,18 @@ public class NoMannerActivity extends AppCompatActivity {
         report = (ImageButton) findViewById(R.id.btn_report);
         inquire = (ImageButton) findViewById(R.id.btn_inquire);
 
+        inquire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent email = new Intent(Intent.ACTION_SEND);
+                email.setType("plain/text");
+                String[] address = {"email@address.com"};
+                email.putExtra(Intent.EXTRA_EMAIL, address);
+                email.putExtra(Intent.EXTRA_SUBJECT, "[채분채분 문의하기]");
+                email.putExtra(Intent.EXTRA_TEXT, "문의할 내용을 적어주세요!");
+                startActivity(email);
+            }
+        });
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

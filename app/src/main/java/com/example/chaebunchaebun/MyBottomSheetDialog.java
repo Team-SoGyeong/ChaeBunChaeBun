@@ -37,6 +37,8 @@ public class MyBottomSheetDialog extends BottomSheetDialogFragment implements Vi
                 break;
             case R.id.list_modal_delete:
                 Toast.makeText(getContext(),"삭제",Toast.LENGTH_SHORT).show();
+//                ArticleDeleteDialogFragment e = ArticleDeleteDialogFragment.getInstance();
+//                e.show(getChildFragmentManager(), ArticleDeleteDialogFragment.TAG_EVENT_DIALOG);
                 break;
         }
         dismiss();

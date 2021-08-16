@@ -34,14 +34,18 @@ public class QuestionCompleteDialogFragment extends DialogFragment {
         complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dismiss();
+                RealCompleteDialogFragment e = RealCompleteDialogFragment.getInstance();
+                e.show(getChildFragmentManager(), RealCompleteDialogFragment.TAG_EVENT_DIALOG);
+                onStop();
             }
         });
 
         NotComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dismiss();
+                UncompleteDialogFragment e = UncompleteDialogFragment.getInstance();
+                e.show(getChildFragmentManager(), UncompleteDialogFragment.TAG_EVENT_DIALOG);
+                onStop();
             }
         });
         setCancelable(false);
