@@ -38,7 +38,10 @@
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_article_complete.xml" value="0.2717391304347826" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_article_nosee.xml" value="0.2717391304347826" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_home_complete.xml" value="0.4" />
+        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_home_complete_complete.xml" value="0.4" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_home_location.xml" value="0.2717391304347826" />
+        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_home_uncomplete.xml" value="0.264" />
+        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_home_uncomplete_fin.xml" value="0.2015625" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_writing_warning.xml" value="0.2015625" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/fragment_category.xml" value="0.2105978260869565" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/fragment_category_onion.xml" value="0.1" />
@@ -61,6 +64,7 @@
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/set_location.xml" value="0.15489130434782608" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/set_search_location.xml" value="0.264" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/set_serch_locationlist.xml" value="0.176" />
+        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/withdraw_no_manner.xml" value="0.2105978260869565" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/writing_category.xml" value="0.2015625" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun.xml" value="0.24221635883905013" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun_detail.xml" value="0.264" />
