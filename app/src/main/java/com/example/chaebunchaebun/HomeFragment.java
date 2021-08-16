@@ -137,17 +137,17 @@ public class HomeFragment extends Fragment {
 
         itemList = new ArrayList<MainRecyclerData>();
 
-        itemList.add(new MainRecyclerData(R.drawable.onion));
-        itemList.add(new MainRecyclerData(R.drawable.garlic));
-        itemList.add(new MainRecyclerData(R.drawable.green_onion));
-        itemList.add(new MainRecyclerData(R.drawable.carrot));
-        itemList.add(new MainRecyclerData(R.drawable.mushroom));
-        itemList.add(new MainRecyclerData(R.drawable.green_vege));
-        itemList.add(new MainRecyclerData(R.drawable.cabbage));
-        itemList.add(new MainRecyclerData(R.drawable.radish));
-        itemList.add(new MainRecyclerData(R.drawable.potato));
-        itemList.add(new MainRecyclerData(R.drawable.btn_select_etc));
-        itemList.add(new MainRecyclerData(R.drawable.frame_550));
+        itemList.add(new MainRecyclerData(R.drawable.home_onion));
+        itemList.add(new MainRecyclerData(R.drawable.home_garlic));
+        itemList.add(new MainRecyclerData(R.drawable.home_green_onion));
+        itemList.add(new MainRecyclerData(R.drawable.home_carrot));
+        itemList.add(new MainRecyclerData(R.drawable.home_mushroom));
+        itemList.add(new MainRecyclerData(R.drawable.home_green_vege));
+        itemList.add(new MainRecyclerData(R.drawable.home_cabbage));
+        itemList.add(new MainRecyclerData(R.drawable.home_radish));
+        itemList.add(new MainRecyclerData(R.drawable.home_potato));
+        itemList.add(new MainRecyclerData(R.drawable.home_sweet_potato));
+        itemList.add(new MainRecyclerData(R.drawable.home_etc));
 
         mLayoutManager = new LinearLayoutManager(getContext());
         mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -210,8 +210,8 @@ public class HomeFragment extends Fragment {
       iconNotice.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               QuestionCompleteDialogFragment e = QuestionCompleteDialogFragment.getInstance();
-               e.show(getChildFragmentManager(), QuestionCompleteDialogFragment.TAG_EVENT_DIALOG);
+//               QuestionCompleteDialogFragment e = QuestionCompleteDialogFragment.getInstance();
+//               e.show(getChildFragmentManager(), QuestionCompleteDialogFragment.TAG_EVENT_DIALOG);
            }
        });
       

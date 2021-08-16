@@ -43,6 +43,8 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
                 break;
             case R.id.list_modal_report:
                 Toast.makeText(getContext(),"신고",Toast.LENGTH_SHORT).show();
+                //ArticleReportDialogFragment e = ArticleReportDialogFragment.getInstance();
+                //e.show(getChildFragmentManager(), ArticleReportDialogFragment.TAG_EVENT_DIALOG);
                 break;
         }
         dismiss();

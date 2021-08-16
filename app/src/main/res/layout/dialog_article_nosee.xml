@@ -22,6 +22,7 @@
         android:layout_marginTop="30dp"
         android:orientation="vertical">
         <RadioButton
+            android:id="@+id/partici"
             android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:button="@drawable/selector_radio_nosee"
@@ -30,6 +31,7 @@
             android:textSize="14sp"
             android:paddingLeft="10dp"/>
         <RadioButton
+            android:id="@+id/many_see"
             android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:layout_marginTop="26dp"

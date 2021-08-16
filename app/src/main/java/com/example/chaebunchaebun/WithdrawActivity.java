@@ -1,7 +1,6 @@
 package com.example.chaebunchaebun;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -64,8 +63,8 @@ public class WithdrawActivity extends AppCompatActivity {
         withdraw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), WithdrawPopupActivity.class);
-                startActivity(intent);
+                WithdrawDialogFragment e = WithdrawDialogFragment.getInstance();
+                e.show(getSupportFragmentManager(), WithdrawDialogFragment.TAG_EVENT_DIALOG);
             }
         });
     }
