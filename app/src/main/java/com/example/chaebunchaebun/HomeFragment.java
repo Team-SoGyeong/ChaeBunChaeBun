@@ -210,8 +210,8 @@ public class HomeFragment extends Fragment {
       iconNotice.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-//               QuestionCompleteDialogFragment e = QuestionCompleteDialogFragment.getInstance();
-//               e.show(getChildFragmentManager(), QuestionCompleteDialogFragment.TAG_EVENT_DIALOG);
+               QuestionCompleteDialogFragment e = QuestionCompleteDialogFragment.getInstance();
+               e.show(getChildFragmentManager(), QuestionCompleteDialogFragment.TAG_EVENT_DIALOG);
            }
        });
       
