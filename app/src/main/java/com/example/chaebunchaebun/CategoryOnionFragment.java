@@ -46,6 +46,7 @@ public class CategoryOnionFragment extends Fragment{
     ImageButton writing;
     String id = "1";
     String category = "1";
+    ArrayList<String> postId;
 
     public CategoryOnionFragment() {
         // Required empty public constructor
@@ -79,6 +80,9 @@ public class CategoryOnionFragment extends Fragment{
 
         categoryListItems = new ArrayList<CategoryListItem>();
         categoryListItems.clear();
+        postId = new ArrayList<String>();
+        postId.clear();
+
         String resultText = "[NULL]";
 
         try {
@@ -129,6 +133,8 @@ public class CategoryOnionFragment extends Fragment{
                     String comment = String.valueOf(commentInt);
                     int isAuth = subJsonObject2.getInt("isAuth");
 
+                    this.postId.add(subJsonObject2.getString("post_id"));
+
                     categoryListItems.add(new CategoryListItem(profile, title, nickname, writtenBy, content, img1, img2, img3, img4, img5, buyDate, member, perPrice, myWish, comment, isAuth));
                 }
             }
@@ -160,8 +166,11 @@ public class CategoryOnionFragment extends Fragment{
             categoryListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int pos) {
+                    Bundle articleBundle = new Bundle();
+                    articleBundle.putString("postId", postId.get(pos));
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     ArticleFragment articleFragment = new ArticleFragment();
+                    articleFragment.setArguments(articleBundle);
                     articleTransaction.replace(R.id.bottom_frame, articleFragment);
                     articleTransaction.addToBackStack(null);
                     articleTransaction.commit();

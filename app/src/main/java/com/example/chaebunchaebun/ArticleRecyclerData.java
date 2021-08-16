@@ -1,13 +1,13 @@
 package com.example.chaebunchaebun;
 
 public class ArticleRecyclerData {
-    private int img;
+    private String img;
 
-    public ArticleRecyclerData(int img){
+    public ArticleRecyclerData(String img){
         this.img = img;
     }
 
-    public int getImg() {
+    public String getImg() {
         return this.img;
     }
 }
