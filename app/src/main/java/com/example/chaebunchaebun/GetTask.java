@@ -10,10 +10,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class HomeTask extends AsyncTask<String, Void, String> {
+public class GetTask extends AsyncTask<String, Void, String> {
     private String str, receiveMsg, urlString;
 
-    public HomeTask(String urlString) {
+    public GetTask(String urlString) {
         this.urlString = urlString;
 
     }

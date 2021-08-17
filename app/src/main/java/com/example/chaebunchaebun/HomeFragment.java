@@ -94,7 +94,7 @@ public class HomeFragment extends Fragment {
         String resultText = "[NULL]";
 
         try {
-            resultText = new HomeTask("home/" + userId).execute().get();
+            resultText = new GetTask("home/" + userId).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
