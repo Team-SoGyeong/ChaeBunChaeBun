@@ -4,9 +4,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -29,12 +33,24 @@ public class WritingPopupDialogFragment extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View checkDialog = inflater.inflate(R.layout.dialog_writing_popup, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        ImageView warning = (ImageView) checkDialog.findViewById(R.id.sample);
+        ImageButton btn_ok = (ImageButton) checkDialog.findViewById(R.id.btn_ok);
+        ImageButton btn_modify = (ImageButton) checkDialog.findViewById(R.id.btn_modify);
 
-        warning.setOnClickListener(new View.OnClickListener() {
+        EditText check_date = (EditText) checkDialog.findViewById(R.id.check_date);
+        EditText check_member = (EditText) checkDialog.findViewById(R.id.check_member);
+        EditText check_price = (EditText) checkDialog.findViewById(R.id.check_price);
+
+        btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 startActivity(new Intent(getActivity(), NavigationActivity.class));
+            }
+        });
+
+        btn_modify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
             }
         });
 
