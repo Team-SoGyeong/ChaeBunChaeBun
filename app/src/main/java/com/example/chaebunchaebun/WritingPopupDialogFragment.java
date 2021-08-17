@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -33,6 +35,10 @@ public class WritingPopupDialogFragment extends DialogFragment {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         ImageButton btn_ok = (ImageButton) checkDialog.findViewById(R.id.btn_ok);
         ImageButton btn_modify = (ImageButton) checkDialog.findViewById(R.id.btn_modify);
+
+        EditText check_date = (EditText) checkDialog.findViewById(R.id.check_date);
+        EditText check_member = (EditText) checkDialog.findViewById(R.id.check_member);
+        EditText check_price = (EditText) checkDialog.findViewById(R.id.check_price);
 
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
