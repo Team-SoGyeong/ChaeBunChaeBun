@@ -36,6 +36,20 @@ public class WritingPopupDialogFragment extends DialogFragment {
         ImageButton btn_ok = (ImageButton) checkDialog.findViewById(R.id.btn_ok);
         ImageButton btn_modify = (ImageButton) checkDialog.findViewById(R.id.btn_modify);
 
+        Bundle args = getArguments();
+        int categoryId = args.getInt("categoryId");
+        String title = args.getString("inputTitle");
+        String content = args.getString("inputContent");
+        String amountString = args.getString("inputAmount");
+        String getPrice = args.getString("inputGetPrice");
+        String memberNum = args.getString("inputMemberNum");
+        String call = args.getString("inputCall");
+        String buyDate = args.getString("inputBuyDate");
+        String amount_str = args.getString("inputAmountStr");
+
+        System.out.println(categoryId + " " + title + " " + content + " " + amountString + " " + getPrice + " " + memberNum + " " + call + " " + buyDate + " " + amount_str);
+
+        warning.setOnClickListener(new View.OnClickListener() {
         EditText check_date = (EditText) checkDialog.findViewById(R.id.check_date);
         EditText check_member = (EditText) checkDialog.findViewById(R.id.check_member);
         EditText check_price = (EditText) checkDialog.findViewById(R.id.check_price);
