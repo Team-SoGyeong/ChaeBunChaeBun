@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_homelist.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_writing_popup.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_writing_warning.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/fragment_article.xml" value="0.16485507246376813" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/fragment_home.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/fragment_home_like.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/fragment_home_like_finish.xml" value="0.25364583333333335" />
@@ -14,7 +17,10 @@
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/home_like.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/main_recylerview_item.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/search_page.xml" value="0.264" />
-        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/drawable/category_btn_onion.xml" value="0.21770833333333334" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/writing_category.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun_detail.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun_frame.xml" value="0.25364583333333335" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/drawable/category_warning_box.xml" value="0.2552083333333333" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/drawable/custom_categorylist_modalline.xml" value="0.29010416666666666" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/drawable/custom_categorylist_profileimg.xml" value="0.29010416666666666" />
@@ -37,16 +43,9 @@
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/custom_my_modalbtn.xml" value="0.2717391304347826" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/custom_searchlist_main.xml" value="0.21784420289855072" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_article_complete.xml" value="0.2717391304347826" />
-        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_article_delete.xml" value="0.2717391304347826" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_article_nosee.xml" value="0.2717391304347826" />
-        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_article_report.xml" value="0.4" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_home_complete.xml" value="0.4" />
-        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_home_complete_complete.xml" value="0.4" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_home_location.xml" value="0.2717391304347826" />
-        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_home_uncomplete.xml" value="0.264" />
-        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_home_uncomplete_fin.xml" value="0.2015625" />
-        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_withdraw_pop.xml" value="0.2717391304347826" />
-        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_writing_popup.xml" value="0.2717391304347826" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_writing_warning.xml" value="0.2015625" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/fragment_category.xml" value="0.2105978260869565" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/fragment_category_onion.xml" value="0.1" />
@@ -63,17 +62,12 @@
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/mypage_mycomment.xml" value="0.1634963768115942" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/mypage_myheart.xml" value="0.18541666666666667" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/mypage_myposting.xml" value="0.16576086956521738" />
-        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/mypage_profile.xml" value="0.264" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/profile_logout.xml" value="0.2105978260869565" />
-        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/profile_myinfo.xml" value="0.2015625" />
-        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/profile_withdraw.xml" value="0.13323201621073963" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/search_location.xml" value="0.15489130434782608" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/search_page.xml" value="0.15489130434782608" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/set_location.xml" value="0.15489130434782608" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/set_search_location.xml" value="0.264" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/set_serch_locationlist.xml" value="0.176" />
-        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/withdraw_no_manner.xml" value="0.2105978260869565" />
-        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/withdraw_popup.xml" value="0.2105978260869565" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/writing_category.xml" value="0.2015625" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun.xml" value="0.24221635883905013" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun_detail.xml" value="0.264" />

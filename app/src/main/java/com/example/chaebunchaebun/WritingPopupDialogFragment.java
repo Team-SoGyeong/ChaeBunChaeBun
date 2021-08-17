@@ -31,6 +31,19 @@ public class WritingPopupDialogFragment extends DialogFragment {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         ImageView warning = (ImageView) checkDialog.findViewById(R.id.sample);
 
+        Bundle args = getArguments();
+        int categoryId = args.getInt("categoryId");
+        String title = args.getString("inputTitle");
+        String content = args.getString("inputContent");
+        String amountString = args.getString("inputAmount");
+        String getPrice = args.getString("inputGetPrice");
+        String memberNum = args.getString("inputMemberNum");
+        String call = args.getString("inputCall");
+        String buyDate = args.getString("inputBuyDate");
+        String amount_str = args.getString("inputAmountStr");
+
+        System.out.println(categoryId + " " + title + " " + content + " " + amountString + " " + getPrice + " " + memberNum + " " + call + " " + buyDate + " " + amount_str);
+
         warning.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

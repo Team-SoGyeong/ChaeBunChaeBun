@@ -209,7 +209,6 @@ public class ArticleFragment extends Fragment {
                         jsonCommentTransfer.put("user_id", Integer.parseInt(userId));
                         String jsonString = jsonCommentTransfer.toString();
                         postTask.execute("posts/comment", jsonString);
-                        getCommentList();
                     }catch (JSONException e) {
                         e.printStackTrace();
                     }

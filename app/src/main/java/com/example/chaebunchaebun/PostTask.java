@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PostTask extends AsyncTask<String, Void, Void> {
-    String urlString;
+    String receiveMsg, str;
     String res_json;
 
     @Override
@@ -45,20 +45,20 @@ public class PostTask extends AsyncTask<String, Void, Void> {
 
             BufferedReader br = null;
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(tmp);
+                StringBuffer buffer = new StringBuffer();
+                while ((str = bufferedReader.readLine()) != null){
+                    buffer.append(str);
+                }
+                receiveMsg = buffer.toString();
+                Log.i("receiveMsg: ", receiveMsg);
+
+                bufferedReader.close();
                 br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
             } else {
                 br = new BufferedReader(new InputStreamReader(conn.getErrorStream(), "UTF-8"));
             }
-
-            String line;
-            StringBuffer response = new StringBuffer();
-            while((line = br.readLine()) != null) {
-                response.append(line);
-                response.append('\r');
-            }
-            br.close();
-            this.res_json = response.toString();
-            System.out.println(this.res_json);
         }  catch (Exception e) {
             e.printStackTrace();
         }
