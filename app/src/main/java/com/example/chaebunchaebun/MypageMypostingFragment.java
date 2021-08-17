@@ -3,7 +3,6 @@ package com.example.chaebunchaebun;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -80,7 +79,7 @@ public class MypageMypostingFragment extends Fragment {
         String resultText = "[NULL]";
 
         try {
-            resultText = new HomeTask("mypage/mypost/" + id + "/" + platform +"/" + state).execute().get();
+            resultText = new GetTask("mypage/mypost/" + id + "/" + platform +"/" + state).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
