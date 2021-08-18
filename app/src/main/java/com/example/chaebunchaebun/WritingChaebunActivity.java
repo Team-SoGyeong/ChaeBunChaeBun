@@ -2,6 +2,8 @@ package com.example.chaebunchaebun;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,13 +20,15 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class WritingChaebunActivity extends AppCompatActivity {
     ImageView back, writing, btn_back;
-    TextView inputPerPrice;
+    TextView inputPerPrice,  inputContentCount;
     EditText inputTitle, inputContent, inputAmount, inputGetPrice, inputMemberNum, inputCall;
     Spinner date_spinner, amount_spinner;
     String date_arr[] = {"1일 전", "2일 전", "3일 전", "일주일 이내", "2주 이내"};
     String amount_arr[] ={"kg","g","개"};
     String str, amount_str;
-    int categoryId;
+    String amount, totalPrice, people = "1";
+    int categoryId, perPrice;
+    boolean isPrice, isMember, isAmount = false;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,13 +45,90 @@ public class WritingChaebunActivity extends AppCompatActivity {
         inputCall = (EditText) findViewById(R.id.input_call);
 
         inputPerPrice = (TextView) findViewById(R.id.input_per_price);
-        if(!inputAmount.getText().toString().equals("") && !inputGetPrice.getText().toString().equals("") && !inputMemberNum.getText().toString().equals("")){
-            String amount = inputAmount.getText().toString();
-            String totalPrice = inputGetPrice.getText().toString();
-            String people = inputMemberNum.getText().toString();
-            int perPrice = ((Integer.parseInt(totalPrice) / Integer.parseInt(people)) * (Integer.parseInt(amount) / Integer.parseInt(people)));
-            inputPerPrice.setText(String.valueOf(perPrice).toString());
-        }
+        inputContentCount = (TextView) findViewById(R.id.input_content_count);
+
+        inputContent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String input = inputContent.getText().toString();
+                if(input.length() <= 500){
+                    inputContentCount.setText("(" + input.length() + "/500)");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        inputAmount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                amount = inputAmount.getText().toString();
+                isAmount = true;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        inputGetPrice.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                totalPrice = inputGetPrice.getText().toString();
+                isPrice = true;
+//                if(isAmount == true && isPrice == true && isMember == true){
+//                    perPrice = ((Integer.parseInt(totalPrice) / Integer.parseInt(amount)) * (Integer.parseInt(amount) / Integer.parseInt(people)));
+//                    inputPerPrice.setText(String.valueOf(perPrice).toString());
+//                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        inputMemberNum.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                people = inputMemberNum.getText().toString();
+                isMember = true;
+//                if(isAmount == true && isPrice == true && isMember == true){
+//                    perPrice = ((Integer.parseInt(totalPrice) / Integer.parseInt(amount)) * (Integer.parseInt(amount) / Integer.parseInt(people)));
+//                    inputPerPrice.setText(String.valueOf(perPrice).toString());
+//                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(isAmount == true && isPrice == true && isMember == true){
+                    perPrice = ((Integer.parseInt(totalPrice) / Integer.parseInt(amount)) * (Integer.parseInt(amount) / Integer.parseInt(people)));
+                    inputPerPrice.setText(String.valueOf(perPrice).toString());
+                }
+            }
+        });
 
         back = (ImageView) findViewById(R.id.id_back);
         writing = (ImageView) findViewById(R.id.btn_next);
@@ -110,6 +191,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 args.putString("inputCall", inputCall.getText().toString());
                 args.putString("inputBuyDate", str);
                 args.putString("inputAmountStr", amount_str);
+                args.putString("inputPerPrice", inputPerPrice.getText().toString());
                 WritingPopupDialogFragment e = WritingPopupDialogFragment.getInstance();
                 e.setArguments(args);
                 e.show(getSupportFragmentManager(), WritingPopupDialogFragment.TAG_EVENT_DIALOG);

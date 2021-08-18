@@ -36,11 +36,11 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_onion.setImageResource(R.drawable.btn_select_onion);
                     select = false;
+                    cateoryid = 1;
                 }
                 else{
                     btn_onion.setImageResource(R.drawable.btn_onion);
                     select = true;
-                    cateoryid = 1;
                 }
             }
         });
@@ -51,11 +51,11 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_garlic.setImageResource(R.drawable.btn_select_garlic);
                     select = false;
+                    cateoryid = 2;
                 }
                 else{
                     btn_garlic.setImageResource(R.drawable.btn_garlic);
                     select = true;
-                    cateoryid = 2;
                 }
             }
         });
@@ -66,11 +66,11 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_greenonion.setImageResource(R.drawable.btn_select_greenonion);
                     select = false;
+                    cateoryid = 3;
                 }
                 else{
                     btn_greenonion.setImageResource(R.drawable.btn_greenonion);
                     select = true;
-                    cateoryid = 3;
                 }
             }
         });
@@ -81,11 +81,11 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_carrot.setImageResource(R.drawable.btn_select_carrot);
                     select = false;
+                    cateoryid = 4;
                 }
                 else{
                     btn_carrot.setImageResource(R.drawable.btn_carrot);
                     select = true;
-                    cateoryid = 4;
                 }
             }
         });
@@ -97,11 +97,11 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_mushroom.setImageResource(R.drawable.btn_select_mushroom);
                     select = false;
+                    cateoryid = 5;
                 }
                 else{
                     btn_mushroom.setImageResource(R.drawable.btn_mushroom);
                     select = true;
-                    cateoryid = 5;
                 }
             }
         });
@@ -112,11 +112,11 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_greenvege.setImageResource(R.drawable.btn_select_greenvege);
                     select = false;
+                    cateoryid = 6;
                 }
                 else{
                     btn_greenvege.setImageResource(R.drawable.btn_greenvege);
                     select = true;
-                    cateoryid = 6;
                 }
             }
         });
@@ -127,11 +127,11 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_cabbage.setImageResource(R.drawable.btn_select_cabbage);
                     select = false;
+                    cateoryid = 7;
                 }
                 else{
                     btn_cabbage.setImageResource(R.drawable.btn_cabbage);
                     select = true;
-                    cateoryid = 7;
                 }
             }
         });
@@ -142,11 +142,11 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_radish.setImageResource(R.drawable.btn_select_radish);
                     select = false;
+                    cateoryid = 8;
                 }
                 else{
                     btn_radish.setImageResource(R.drawable.btn_radish);
                     select = true;
-                    cateoryid = 8;
                 }
             }
         });
@@ -158,11 +158,11 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_potato.setImageResource(R.drawable.btn_select_potato);
                     select = false;
+                    cateoryid = 9;
                 }
                 else{
                     btn_potato.setImageResource(R.drawable.btn_potato);
                     select = true;
-                    cateoryid = 9;
                 }
             }
         });
@@ -173,11 +173,11 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_sweetpotato.setImageResource(R.drawable.btn_select_sweetpotato);
                     select = false;
+                    cateoryid = 10;
                 }
                 else{
                     btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
                     select = true;
-                    cateoryid = 10;
                 }
             }
         });
@@ -191,12 +191,12 @@ public class SelectCategoryActivity extends AppCompatActivity{
                     btn_etc.setImageResource(R.drawable.btn_select_etc);
                     select = false;
                     flag = true;
+                    cateoryid = 11;
                 }
                 else{
                     btn_etc.setImageResource(R.drawable.btn_etc);
                     select = true;
                     flag = false;
-                    cateoryid = 11;
                 }
             }
         });
@@ -209,12 +209,13 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(flag == true){
                     intent = new Intent(getApplicationContext(), WritingEtcChaebunActivity.class);
                     intent.putExtra("categoryId", cateoryid);
+                    startActivity(intent);
                 }
                 else{
                     intent = new Intent(getApplicationContext(), WritingChaebunActivity.class);
                     intent.putExtra("categoryId", cateoryid);
+                    startActivity(intent);
                 }
-                startActivity(intent);
             }
         });
 

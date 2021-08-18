@@ -150,7 +150,7 @@ public class ArticleFragment extends Fragment {
 
         cLayoutManager = new LinearLayoutManager(getContext());
         cRecyclerView.setLayoutManager(cLayoutManager);
-        cRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()) {
+        /*cRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()) {
             @Override
             public boolean canScrollHorizontally() {
                 return false;
@@ -160,7 +160,7 @@ public class ArticleFragment extends Fragment {
             public boolean canScrollVertically() {
                 return false;
             }
-        });
+        });*/
         commentRecyclerAdapter = new CommentRecyclerAdapter(commentRecyclerItems);
         commentRecyclerAdapter.notifyDataSetChanged();
         cRecyclerView.setAdapter(commentRecyclerAdapter);

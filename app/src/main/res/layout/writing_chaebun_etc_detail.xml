@@ -193,6 +193,7 @@
             android:gravity="top"
             android:hint="우리 가족들이 먹을 거라 좋은 걸로 골랐어요~" />
         <TextView
+            android:id="@+id/input_content_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_regular"
