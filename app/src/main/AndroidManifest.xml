@@ -23,7 +23,13 @@
             android:exported="true" /> -->
         <activity
             android:name=".NavigationActivity"
-            android:label="하단 네비게이션" />
+            android:label="하단 네비게이션">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".HomeLikeActivity"
             android:label="홈 찜 록록" />
@@ -31,11 +37,6 @@
         <activity
             android:name=".LoginActivity"
             android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".SearchActivity"
@@ -81,9 +82,6 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".EtcActivity"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".WithdrawDialogFragment"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MypageMypostingActivity"

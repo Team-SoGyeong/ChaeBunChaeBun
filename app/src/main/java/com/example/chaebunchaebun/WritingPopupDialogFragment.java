@@ -75,22 +75,25 @@ public class WritingPopupDialogFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 if(categoryId < 11) {
+                    String buyDate2 = check_date.getText().toString();
+                    String memberNum2 = check_member.getText().toString();
+                    String perPrice2 = check_price.getText().toString();
                     PostTask postTask = new PostTask();
                     JSONObject jsonPostTransfer = new JSONObject();
                     try {
                         jsonPostTransfer.put("amount", Integer.parseInt(amountString));
                         jsonPostTransfer.put("author_id", 1);
-                        jsonPostTransfer.put("buy_date", buyDate);
+                        jsonPostTransfer.put("buy_date", buyDate2);
                         jsonPostTransfer.put("category_id", categoryId);
                         jsonPostTransfer.put("contact", call);
                         jsonPostTransfer.put("contents", content);
-                        jsonPostTransfer.put("headcount", Integer.parseInt(memberNum));
+                        jsonPostTransfer.put("headcount", Integer.parseInt(memberNum2));
 
                         String imgString = "{\"bill1\": \"" + bill1 + "\", \"bill2\": \"" + bill2 + "\", \"img1\": \"" + img1 + "\"," +
                                 " \"img2\": \"" + img2 + "\", \"img3\": \"" + img3 + "\", \"img4\": \"" + img4 + "\", \"img4\": \"" + img4 + "\", \"img5\": \"" + img5 + "\"}";
                         JSONObject imgs = new JSONObject(imgString);
                         jsonPostTransfer.put("imgs", imgs);
-                        jsonPostTransfer.put("per_price", Integer.parseInt(perPrice));
+                        jsonPostTransfer.put("per_price", Integer.parseInt(perPrice2));
                         jsonPostTransfer.put("title", title);
                         jsonPostTransfer.put("total_price", Integer.parseInt(getPrice));
                         jsonPostTransfer.put("unit", amount_str);
@@ -103,24 +106,27 @@ public class WritingPopupDialogFragment extends DialogFragment {
                         e.printStackTrace();
                     }
                 } else {
+                    String buyDate2 = check_date.getText().toString();
+                    String memberNum2 = check_member.getText().toString();
+                    String perPrice2 = check_price.getText().toString();
                     PostTask postTask = new PostTask();
                     JSONObject jsonPostTransfer = new JSONObject();
                     try {
                         jsonPostTransfer.put("amount", Integer.parseInt(amountString));
                         jsonPostTransfer.put("author_id", 1);
-                        jsonPostTransfer.put("buy_date", buyDate);
+                        jsonPostTransfer.put("buy_date", buyDate2);
                         jsonPostTransfer.put("category_id", categoryId);
                         jsonPostTransfer.put("contact", call);
                         jsonPostTransfer.put("contents", content);
                         String ect_name = args.getString("inputVegetable");
                         jsonPostTransfer.put("ect_name", ect_name);
-                        jsonPostTransfer.put("headcount", Integer.parseInt(memberNum));
+                        jsonPostTransfer.put("headcount", Integer.parseInt(memberNum2));
 
                         String imgString = "{\"bill1\": \"" + bill1 + "\", \"bill2\": \"" + bill2 + "\", \"img1\": \"" + img1 + "\"," +
                                 " \"img2\": \"" + img2 + "\", \"img3\": \"" + img3 + "\", \"img4\": \"" + img4 + "\", \"img4\": \"" + img4 + "\", \"img5\": \"" + img5 + "\"}";
                         JSONObject imgs = new JSONObject(imgString);
                         jsonPostTransfer.put("imgs", imgs);
-                        jsonPostTransfer.put("per_price", Integer.parseInt(perPrice));
+                        jsonPostTransfer.put("per_price", Integer.parseInt(perPrice2));
                         jsonPostTransfer.put("title", title);
                         jsonPostTransfer.put("total_price", Integer.parseInt(getPrice));
                         jsonPostTransfer.put("unit", amount_str);
