@@ -75,12 +75,12 @@ public class WritingChaebunActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 amount = inputAmount.getText().toString();
-                isAmount = true;
+                isAmount = false;
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                isAmount = true;
             }
         });
         inputGetPrice.addTextChangedListener(new TextWatcher() {
@@ -92,7 +92,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 totalPrice = inputGetPrice.getText().toString();
-                isPrice = true;
+                isPrice = false;
 //                if(isAmount == true && isPrice == true && isMember == true){
 //                    perPrice = ((Integer.parseInt(totalPrice) / Integer.parseInt(amount)) * (Integer.parseInt(amount) / Integer.parseInt(people)));
 //                    inputPerPrice.setText(String.valueOf(perPrice).toString());
@@ -101,7 +101,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                isPrice = true;
             }
         });
         inputMemberNum.addTextChangedListener(new TextWatcher() {
@@ -113,19 +113,19 @@ public class WritingChaebunActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 people = inputMemberNum.getText().toString();
-                isMember = true;
-//                if(isAmount == true && isPrice == true && isMember == true){
-//                    perPrice = ((Integer.parseInt(totalPrice) / Integer.parseInt(amount)) * (Integer.parseInt(amount) / Integer.parseInt(people)));
-//                    inputPerPrice.setText(String.valueOf(perPrice).toString());
-//                }
-
+                isMember = false;
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(isAmount == true && isPrice == true && isMember == true){
-                    perPrice = ((Integer.parseInt(totalPrice) / Integer.parseInt(amount)) * (Integer.parseInt(amount) / Integer.parseInt(people)));
-                    inputPerPrice.setText(String.valueOf(perPrice).toString());
+                isMember = true;
+                if(inputMemberNum.getText().toString().equals("")){
+                    inputMemberNum.setText("0");
+                } else if(!inputMemberNum.getText().toString().equals("0")) {
+                    if(isAmount == true && isPrice == true && isMember == true){
+                        perPrice = ((Integer.parseInt(totalPrice) / Integer.parseInt(amount)) * (Integer.parseInt(amount) / Integer.parseInt(people)));
+                        inputPerPrice.setText(String.valueOf(perPrice).toString());
+                    }
                 }
             }
         });

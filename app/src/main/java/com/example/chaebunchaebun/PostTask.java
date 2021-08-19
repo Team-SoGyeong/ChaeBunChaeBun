@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import android.content.ContentValues;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.webkit.SafeBrowsingResponse;
 
 import org.json.JSONObject;
 
@@ -56,7 +57,6 @@ public class PostTask extends AsyncTask<String, Void, Void> {
                 Log.i("receiveMsg: ", receiveMsg);
 
                 bufferedReader.close();
-//                br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
             } else {
                 InputStreamReader tmp = new InputStreamReader(conn.getErrorStream(), "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(tmp);
@@ -68,16 +68,10 @@ public class PostTask extends AsyncTask<String, Void, Void> {
                 Log.i("receiveMsg: ", receiveMsg);
 
                 bufferedReader.close();
-//                br = new BufferedReader(new InputStreamReader(conn.getErrorStream(), "UTF-8"));
             }
         }  catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-
-//    @Override
-//    protected void onPostExecute(Void unused) {
-//        super.onPostExecute(unused);
-//    }
 }

@@ -43,8 +43,9 @@ public class LocationDialogFragment extends DialogFragment {
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
                 if((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     //getActivity().startActivity(new Intent(getActivity(), SearchLocationActivity.class));
+                    String change = locationDialogEdt.getText().toString();
                     Intent intent = new Intent(getActivity(), SearchLocationActivity.class);
-                    intent.putExtra("searchLocation", location);
+                    intent.putExtra("searchLocation", change);
                     startActivity(intent);
                     return true;
                 }
