@@ -21,12 +21,12 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PostTask extends AsyncTask<String, Void, Void> {
+public class PostTask extends AsyncTask<String, Void, String> {
     String receiveMsg, str;
     String res_json;
 
     @Override
-    protected Void doInBackground(String... params) {
+    protected String doInBackground(String... params) {
         HttpURLConnection conn = null;
         try {
             URL url = new URL("http://3.37.243.188:8080/" + params[0]);
@@ -57,6 +57,7 @@ public class PostTask extends AsyncTask<String, Void, Void> {
                 Log.i("receiveMsg: ", receiveMsg);
 
                 bufferedReader.close();
+                return  receiveMsg;
             } else {
                 InputStreamReader tmp = new InputStreamReader(conn.getErrorStream(), "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(tmp);
@@ -68,6 +69,7 @@ public class PostTask extends AsyncTask<String, Void, Void> {
                 Log.i("receiveMsg: ", receiveMsg);
 
                 bufferedReader.close();
+                return  receiveMsg;
             }
         }  catch (Exception e) {
             e.printStackTrace();

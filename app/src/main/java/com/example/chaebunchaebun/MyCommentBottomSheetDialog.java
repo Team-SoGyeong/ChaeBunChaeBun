@@ -11,9 +11,9 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-public class MyBottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener {
-    public static MyBottomSheetDialog getInstance() {
-        return new MyBottomSheetDialog();
+public class MyCommentBottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener{
+    public static MyCommentBottomSheetDialog getInstance() {
+        return new MyCommentBottomSheetDialog();
     }
 
     private ImageButton modify;
@@ -21,10 +21,10 @@ public class MyBottomSheetDialog extends BottomSheetDialogFragment implements Vi
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.custom_my_modalbtn, container, false);
+        View view = inflater.inflate(R.layout.custom_mycomment_modalbtn, container, false);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        modify = (ImageButton) view.findViewById(R.id.list_modal_modify);
-        delete = (ImageButton) view.findViewById(R.id.list_modal_delete);
+        modify = (ImageButton) view.findViewById(R.id.comment_modal_modify);
+        delete = (ImageButton) view.findViewById(R.id.comment_modal_delete);
 
         modify.setOnClickListener(this);
         delete.setOnClickListener(this);

@@ -3,7 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/drawable/green_box.xml" value="0.18796296296296297" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_comment_modalbtn.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_commentlist.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_homelist.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_listview.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_my_modalbtn.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_mycomment_modalbtn.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_searchlist_main.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_writing_popup.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_writing_warning.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/fragment_article.xml" value="0.16485507246376813" />
@@ -18,6 +25,7 @@
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/home_like.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/main_recylerview_item.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/search_page.xml" value="0.264" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/set_location.xml" value="0.13072916666666667" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/set_search_location.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/writing_category.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun.xml" value="0.25364583333333335" />

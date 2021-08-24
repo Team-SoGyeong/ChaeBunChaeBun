@@ -16,6 +16,16 @@ import java.util.ArrayList;
 
 public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecyclerAdapter.ViewHolder> {
     private ArrayList<CommentRecyclerItem> commentRecyclerItems = null;
+    private CategoryListAdapter.OnModalClickListener modalClickListener = null;
+
+    public interface OnModalClickListener {
+        void OnModlaClick();
+    }
+
+    public void setModalClickListener(CategoryListAdapter.OnModalClickListener modalClickListener) {
+        this.modalClickListener = modalClickListener;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView commentNickname;
         TextView commentContent;
@@ -27,6 +37,16 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecycler
             commentNickname = (TextView) commentView.findViewById(R.id.comment_nickname);
             commentContent = (TextView) commentView.findViewById(R.id.comment_content);
             commentTime = (TextView) commentView.findViewById(R.id.comment_time);
+            commentModalBtn = (ImageButton) commentView.findViewById(R.id.comment_modalbtn);
+
+            commentModalBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(modalClickListener != null){
+                        modalClickListener.OnModlaClick();
+                    }
+                }
+            });
         }
     }
 
