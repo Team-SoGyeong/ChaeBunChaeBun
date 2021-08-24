@@ -48,7 +48,7 @@
         <ImageButton
             android:id="@+id/comment_modalbtn"
             android:layout_width="25dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:scaleType="fitCenter"
             android:background="@color/white"
             android:src="@drawable/fix_delete_btn"/>

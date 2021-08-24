@@ -150,19 +150,20 @@ public class ArticleFragment extends Fragment {
 
         cLayoutManager = new LinearLayoutManager(getContext());
         cRecyclerView.setLayoutManager(cLayoutManager);
-        /*cRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()) {
-            @Override
-            public boolean canScrollHorizontally() {
-                return false;
-            }
-
-            @Override
-            public boolean canScrollVertically() {
-                return false;
-            }
-        });*/
         commentRecyclerAdapter = new CommentRecyclerAdapter(commentRecyclerItems);
         commentRecyclerAdapter.notifyDataSetChanged();
+        commentRecyclerAdapter.setModalClickListener(new CategoryListAdapter.OnModalClickListener() {
+            @Override
+            public void OnModlaClick() {
+                if(commentRecyclerAdapter.getItemCount() % 2 != 0){
+                    CommentBottomSheetDialog commentBottomSheetDialog = CommentBottomSheetDialog.getInstance();
+                    commentBottomSheetDialog.show(getChildFragmentManager(), "commentbottomsheet");
+                } else {
+                    MyCommentBottomSheetDialog myCommentBottomSheetDialog = MyCommentBottomSheetDialog.getInstance();
+                    myCommentBottomSheetDialog.show(getChildFragmentManager(), "mycommentbottomsheet");
+                }
+            }
+        });
         cRecyclerView.setAdapter(commentRecyclerAdapter);
 
         articleBack.setOnClickListener(new View.OnClickListener() {
