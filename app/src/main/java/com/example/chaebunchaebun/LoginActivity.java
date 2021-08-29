@@ -23,8 +23,11 @@ import java.security.NoSuchAlgorithmException;
 import android.view.View;
 import android.widget.Button;
 
+import com.kakao.auth.ApiResponseCallback;
+import com.kakao.auth.AuthService;
 import com.kakao.auth.AuthType;
 import com.kakao.auth.Session;
+import com.kakao.auth.network.response.AccessTokenInfoResponse;
 import com.kakao.network.ErrorResult;
 import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.Account;
@@ -53,53 +56,6 @@ public class LoginActivity extends AppCompatActivity {
         session.addCallback(sessionCallback);
 
         Intent intent = new Intent(getBaseContext(), NavigationActivity.class);
-/*  //소셜로그인 토큰으로 처리하는 예제 (실패 / 오류: 셧다운, lateinit property hosts has not been initialized
-        loginV1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                UserApiClient.getInstance().loginWithKakaoTalk(LoginActivity.this,(oAuthToken, error) ->{
-                    if (error != null) {
-                        Log.e(TAG, "로그인 실패", error);
-                    }
-                    else if (oAuthToken != null) {
-                        Log.i(TAG, "로그인 성공 ${token.accessToken}");
-
-                        // 사용자 정보 요청
-                        UserApiClient.getInstance().me((user, meError) -> {
-                            if (meError != null) {
-                                Log.e(TAG, "사용자 정보 요청 실패", meError);
-                            } else {
-                                System.out.println("로그인 됐다");
-                                Log.i(TAG, user.toString());
-
-                                Account user1 = user.getKakaoAccount();
-                                System.out.println("유저 어카운트"+user1);
-                            }
-                            return null;
-                        });
-                    }
-                    return null;
-                }
-                );
-            }
-        });
-
-        set_invaild.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                UserApiClient.getInstance().logout(error->{
-                    if (error != null) {
-                        Log.e(TAG, "로그아웃 실패. SDK에서 토큰 삭제됨", error);
-                    }
-                    else {
-                        Log.i(TAG, "로그아웃 성공. SDK에서 토큰 삭제됨");
-                    }
-                    return null;
-                });
-
-            }
-        });
-*/
 
         loginV1.setOnClickListener(v -> {
             if (Session.getCurrentSession().checkAndImplicitOpen()) {
@@ -130,26 +86,23 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        set_invaild.setOnClickListener(v -> {
-            Log.d(TAG, "onCreate:click ");
-            UserManagement.getInstance()
-                    .requestLogout(new LogoutResponseCallback() {
-                        @Override
-                        public void onSessionClosed(ErrorResult errorResult) {
-                            super.onSessionClosed(errorResult);
-                            Log.d(TAG, "onSessionClosed: "+errorResult.getErrorMessage());
+        AuthService.getInstance()
+                .requestAccessTokenInfo(new ApiResponseCallback<AccessTokenInfoResponse>() {
+                    @Override
+                    public void onSessionClosed(ErrorResult errorResult) {
+                        Log.e("KAKAO_API", "세션이 닫혀 있음: " + errorResult);
+                    }
 
-                        }
-                        @Override
-                        public void onCompleteLogout() {
-                            if (sessionCallback != null) {
-                                Session.getCurrentSession().removeCallback(sessionCallback);
-                            }
-                            Log.d(TAG, "onCompleteLogout:logout ");
-                        }
-                    });
-        });
+                    @Override
+                    public void onFailure(ErrorResult errorResult) {
+                        Log.e("KAKAO_API", "토큰 정보 요청 실패: " + errorResult);
+                    }
 
+                    @Override
+                    public void onSuccess(AccessTokenInfoResponse result) {
+                        Log.i("KAKAO_API", "사용자 아이디: " + result.getUserId());
+                    }
+                });
     }
 
 
