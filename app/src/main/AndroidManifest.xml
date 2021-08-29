@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".GlobalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,15 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChaeBunChaeBun"
         android:usesCleartextTraffic="true">
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key"/>
+
+//원래코드
         <activity
             android:name=".MypageMyHeartActivity"
             android:exported="true" />
         <activity
             android:name=".MypageMycommentActivity"
             android:exported="true" />
-<!--        <activity
-            android:name=".My"
-            android:exported="true" /> -->
         <activity
             android:name=".NavigationActivity"
             android:label="하단 네비게이션" />
@@ -83,11 +86,7 @@
             android:name=".EtcActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".WithdrawDialogFragment"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
             android:name=".MypageMypostingActivity"
             android:windowSoftInputMode="adjustResize" />
     </application>
-
 </manifest>
