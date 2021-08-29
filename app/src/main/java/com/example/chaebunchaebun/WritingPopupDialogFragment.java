@@ -17,6 +17,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class WritingPopupDialogFragment extends DialogFragment {
     public static final String TAG_EVENT_DIALOG = "dialog_event";
 
@@ -36,21 +39,115 @@ public class WritingPopupDialogFragment extends DialogFragment {
         ImageButton btn_ok = (ImageButton) checkDialog.findViewById(R.id.btn_ok);
         ImageButton btn_modify = (ImageButton) checkDialog.findViewById(R.id.btn_modify);
 
+        Bundle args = getArguments();
+        int categoryId = args.getInt("categoryId");
+        String title = args.getString("inputTitle");
+        String content = args.getString("inputContent");
+        String amountString = args.getString("inputAmount");
+        String getPrice = args.getString("inputGetPrice");
+        String memberNum = args.getString("inputMemberNum");
+        String call = args.getString("inputCall");
+        String buyDate = args.getString("inputBuyDate");
+        String amount_str = args.getString("inputAmountStr");
+        String perPrice = args.getString("inputPerPrice");
+
+        String bill1 = null;
+        String bill2 = null;
+        String img1 = null;
+        String img2 = null;
+        String img3 = null;
+        String img4 = null;
+        String img5 = null;
+
         EditText check_date = (EditText) checkDialog.findViewById(R.id.check_date);
         EditText check_member = (EditText) checkDialog.findViewById(R.id.check_member);
         EditText check_price = (EditText) checkDialog.findViewById(R.id.check_price);
 
+        check_date.setText(buyDate);
+        check_member.setText(memberNum);
+        check_price.setText(perPrice);
+
+        check_date.setEnabled(false);
+        check_member.setEnabled(false);
+        check_price.setEnabled(false);
+
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), NavigationActivity.class));
+                if(categoryId < 11) {
+                    String buyDate2 = check_date.getText().toString();
+                    String memberNum2 = check_member.getText().toString();
+                    String perPrice2 = check_price.getText().toString();
+                    PostTask postTask = new PostTask();
+                    JSONObject jsonPostTransfer = new JSONObject();
+                    try {
+                        jsonPostTransfer.put("amount", Integer.parseInt(amountString));
+                        jsonPostTransfer.put("author_id", 1);
+                        jsonPostTransfer.put("buy_date", buyDate2);
+                        jsonPostTransfer.put("category_id", categoryId);
+                        jsonPostTransfer.put("contact", call);
+                        jsonPostTransfer.put("contents", content);
+                        jsonPostTransfer.put("headcount", Integer.parseInt(memberNum2));
+
+                        String imgString = "{\"bill1\": \"" + bill1 + "\", \"bill2\": \"" + bill2 + "\", \"img1\": \"" + img1 + "\"," +
+                                " \"img2\": \"" + img2 + "\", \"img3\": \"" + img3 + "\", \"img4\": \"" + img4 + "\", \"img4\": \"" + img4 + "\", \"img5\": \"" + img5 + "\"}";
+                        JSONObject imgs = new JSONObject(imgString);
+                        jsonPostTransfer.put("imgs", imgs);
+                        jsonPostTransfer.put("per_price", Integer.parseInt(perPrice2));
+                        jsonPostTransfer.put("title", title);
+                        jsonPostTransfer.put("total_price", Integer.parseInt(getPrice));
+                        jsonPostTransfer.put("unit", amount_str);
+
+                        String jsonString = jsonPostTransfer.toString();
+                        System.out.println(jsonString);
+                        postTask.execute("posts/common", jsonString);
+                        startActivity(new Intent(getActivity(), NavigationActivity.class));
+                    }catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    String buyDate2 = check_date.getText().toString();
+                    String memberNum2 = check_member.getText().toString();
+                    String perPrice2 = check_price.getText().toString();
+                    PostTask postTask = new PostTask();
+                    JSONObject jsonPostTransfer = new JSONObject();
+                    try {
+                        jsonPostTransfer.put("amount", Integer.parseInt(amountString));
+                        jsonPostTransfer.put("author_id", 1);
+                        jsonPostTransfer.put("buy_date", buyDate2);
+                        jsonPostTransfer.put("category_id", categoryId);
+                        jsonPostTransfer.put("contact", call);
+                        jsonPostTransfer.put("contents", content);
+                        String ect_name = args.getString("inputVegetable");
+                        jsonPostTransfer.put("ect_name", ect_name);
+                        jsonPostTransfer.put("headcount", Integer.parseInt(memberNum2));
+
+                        String imgString = "{\"bill1\": \"" + bill1 + "\", \"bill2\": \"" + bill2 + "\", \"img1\": \"" + img1 + "\"," +
+                                " \"img2\": \"" + img2 + "\", \"img3\": \"" + img3 + "\", \"img4\": \"" + img4 + "\", \"img4\": \"" + img4 + "\", \"img5\": \"" + img5 + "\"}";
+                        JSONObject imgs = new JSONObject(imgString);
+                        jsonPostTransfer.put("imgs", imgs);
+                        jsonPostTransfer.put("per_price", Integer.parseInt(perPrice2));
+                        jsonPostTransfer.put("title", title);
+                        jsonPostTransfer.put("total_price", Integer.parseInt(getPrice));
+                        jsonPostTransfer.put("unit", amount_str);
+
+                        String jsonString = jsonPostTransfer.toString();
+                        System.out.println(jsonString);
+                        postTask.execute("posts/etc", jsonString);
+                        startActivity(new Intent(getActivity(), NavigationActivity.class));
+                    }catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         });
 
         btn_modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dismiss();
+                check_date.setEnabled(true);
+                check_member.setEnabled(true);
+                check_price.setEnabled(true);
             }
         });
 

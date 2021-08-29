@@ -1,5 +1,7 @@
 package com.example.chaebunchaebun;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +26,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.custom_modalbutton, container, false);
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         nomore = (ImageButton) view.findViewById(R.id.list_modal_nomore);
         report = (ImageButton) view.findViewById(R.id.list_modal_report);
 

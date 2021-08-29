@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 
 public class SelectCategoryActivity extends AppCompatActivity{
     boolean flag = false;
+    int cateoryid = 0;
     ImageButton btn_onion, btn_garlic, btn_greenonion, btn_carrot, btn_mushroom, btn_greenvege, btn_cabbage, btn_radish, btn_potato, btn_sweetpotato, btn_etc, btn_next;
 
     @Override
@@ -35,6 +36,7 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_onion.setImageResource(R.drawable.btn_select_onion);
                     select = false;
+                    cateoryid = 1;
                 }
                 else{
                     btn_onion.setImageResource(R.drawable.btn_onion);
@@ -49,6 +51,7 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_garlic.setImageResource(R.drawable.btn_select_garlic);
                     select = false;
+                    cateoryid = 2;
                 }
                 else{
                     btn_garlic.setImageResource(R.drawable.btn_garlic);
@@ -63,6 +66,7 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_greenonion.setImageResource(R.drawable.btn_select_greenonion);
                     select = false;
+                    cateoryid = 3;
                 }
                 else{
                     btn_greenonion.setImageResource(R.drawable.btn_greenonion);
@@ -77,6 +81,7 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_carrot.setImageResource(R.drawable.btn_select_carrot);
                     select = false;
+                    cateoryid = 4;
                 }
                 else{
                     btn_carrot.setImageResource(R.drawable.btn_carrot);
@@ -92,6 +97,7 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_mushroom.setImageResource(R.drawable.btn_select_mushroom);
                     select = false;
+                    cateoryid = 5;
                 }
                 else{
                     btn_mushroom.setImageResource(R.drawable.btn_mushroom);
@@ -106,6 +112,7 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_greenvege.setImageResource(R.drawable.btn_select_greenvege);
                     select = false;
+                    cateoryid = 6;
                 }
                 else{
                     btn_greenvege.setImageResource(R.drawable.btn_greenvege);
@@ -120,6 +127,7 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_cabbage.setImageResource(R.drawable.btn_select_cabbage);
                     select = false;
+                    cateoryid = 7;
                 }
                 else{
                     btn_cabbage.setImageResource(R.drawable.btn_cabbage);
@@ -134,6 +142,7 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_radish.setImageResource(R.drawable.btn_select_radish);
                     select = false;
+                    cateoryid = 8;
                 }
                 else{
                     btn_radish.setImageResource(R.drawable.btn_radish);
@@ -149,6 +158,7 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_potato.setImageResource(R.drawable.btn_select_potato);
                     select = false;
+                    cateoryid = 9;
                 }
                 else{
                     btn_potato.setImageResource(R.drawable.btn_potato);
@@ -163,6 +173,7 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(select == true){
                     btn_sweetpotato.setImageResource(R.drawable.btn_select_sweetpotato);
                     select = false;
+                    cateoryid = 10;
                 }
                 else{
                     btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
@@ -180,6 +191,7 @@ public class SelectCategoryActivity extends AppCompatActivity{
                     btn_etc.setImageResource(R.drawable.btn_select_etc);
                     select = false;
                     flag = true;
+                    cateoryid = 11;
                 }
                 else{
                     btn_etc.setImageResource(R.drawable.btn_etc);
@@ -196,11 +208,14 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 Intent intent;
                 if(flag == true){
                     intent = new Intent(getApplicationContext(), WritingEtcChaebunActivity.class);
+                    intent.putExtra("categoryId", cateoryid);
+                    startActivity(intent);
                 }
                 else{
                     intent = new Intent(getApplicationContext(), WritingChaebunActivity.class);
+                    intent.putExtra("categoryId", cateoryid);
+                    startActivity(intent);
                 }
-                startActivity(intent);
             }
         });
 

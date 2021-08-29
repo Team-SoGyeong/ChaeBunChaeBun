@@ -85,7 +85,7 @@ public class CategorySweetpotatoFragment extends Fragment {
         String resultText = "[NULL]";
 
         try {
-            resultText = new HomeTask("posts/category/" + category + "/" + id).execute().get();
+            resultText = new GetTask("posts/category/" + category + "/" + id).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
