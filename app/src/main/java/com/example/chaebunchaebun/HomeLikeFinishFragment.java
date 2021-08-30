@@ -88,14 +88,26 @@ public class HomeLikeFinishFragment extends Fragment {
         MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(40);
         homelike_finish_list.addItemDecoration(mainRecyclerDecoration);
         homeListAdapter = new HomeListAdapter(homeListItems);
-        homeListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
+        homeListAdapter.setOnItemClickListener(new HomeListAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(int pos) {
+            public void onItemClick(View view, int pos) {
+                int postId = (int) view.getTag(0);
+                Bundle articleBundle = new Bundle();
+                articleBundle.putString("postId", String.valueOf(postId));
                 FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 ArticleFragment articleFragment = new ArticleFragment();
+                articleFragment.setArguments(articleBundle);
                 articleTransaction.replace(R.id.bottom_frame, articleFragment);
                 articleTransaction.addToBackStack(null);
                 articleTransaction.commit();
+            }
+        });
+
+        homeListAdapter.setModalClickListener(new HomeListAdapter.OnModalClickListener() {
+            @Override
+            public void OnModlaClick(View view, int pos) {
+                BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
+                bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
             }
         });
         homelike_finish_list.setAdapter(homeListAdapter);

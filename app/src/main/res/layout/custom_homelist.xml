@@ -109,4 +109,30 @@
             android:textAlignment="center"
             android:textColor="#999999"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/homelist_postId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:text="글번호"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:textColor="#999999"/>
+        <TextView
+            android:id="@+id/homelist_userId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:text="유저아이디"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:textColor="#999999"/>
+    </LinearLayout>
 </LinearLayout>

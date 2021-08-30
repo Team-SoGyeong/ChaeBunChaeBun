@@ -45,7 +45,6 @@ public class CategoryGarlicFragment extends Fragment {
     TextView categoryNoList;
     String id = "1";
     String category = "2";
-    ArrayList<String> postId;
 
     public CategoryGarlicFragment() {
         // Required empty public constructor
@@ -78,8 +77,6 @@ public class CategoryGarlicFragment extends Fragment {
         }
         categoryListItems = new ArrayList<CategoryListItem>();
         categoryListItems.clear();
-        postId = new ArrayList<String>();
-        postId.clear();
 
         String resultText = "[NULL]";
 
@@ -102,6 +99,8 @@ public class CategoryGarlicFragment extends Fragment {
                 JSONArray jsonPostArray = new JSONArray(post);
                 for(int j = 0; j < jsonPostArray.length(); j++){
                     JSONObject subJsonObject2 = jsonPostArray.getJSONObject(j);
+                    int postId = subJsonObject2.getInt("post_id");
+                    int userId = subJsonObject2.getInt("user_id");
                     String profile = subJsonObject2.getString("profile");
                     String title = subJsonObject2.getString("title");
                     String nickname = subJsonObject2.getString("nickname");
@@ -131,9 +130,8 @@ public class CategoryGarlicFragment extends Fragment {
                     String comment = String.valueOf(commentInt);
                     int isAuth = subJsonObject2.getInt("isAuth");
 
-                    this.postId.add(subJsonObject2.getString("post_id"));
-
-                    categoryListItems.add(new CategoryListItem(profile, title, nickname, writtenBy, content, img1, img2, img3, img4, img5, buyDate, member, perPrice, myWish, comment, isAuth));
+                    categoryListItems.add(new CategoryListItem(profile, title, nickname, writtenBy, content,
+                            img1, img2, img3, img4, img5, buyDate, member, perPrice, myWish, comment, isAuth, postId, userId));
                 }
             }
         } catch (JSONException e) {
@@ -161,9 +159,10 @@ public class CategoryGarlicFragment extends Fragment {
 
             categoryListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
                 @Override
-                public void onItemClick(int pos) {
+                public void onItemClick(View view, int pos) {
+                    String postId = String.valueOf(categoryListAdapter.getItem(pos).getPostId());
                     Bundle articleBundle = new Bundle();
-                    articleBundle.putString("postId", postId.get(pos));
+                    articleBundle.putString("postId", postId);
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     ArticleFragment articleFragment = new ArticleFragment();
                     articleFragment.setArguments(articleBundle);
@@ -175,13 +174,14 @@ public class CategoryGarlicFragment extends Fragment {
 
             categoryListAdapter.setModalClickListener(new CategoryListAdapter.OnModalClickListener() {
                 @Override
-                public void OnModlaClick() {
-                    if(categoryListAdapter.getItemCount() % 2 != 0){
-                        BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
-                        bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
-                    } else {
+                public void OnModlaClick(View view, int pos) {
+                    String userId = String.valueOf(categoryListAdapter.getItem(pos).getUserId());
+                    if (userId.equals(id)) {
                         MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
                         myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                    } else {
+                        BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
+                        bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
                     }
                 }
             });

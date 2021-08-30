@@ -78,5 +78,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </ListView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_search_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="#ebebeb"
+            android:scrollbars="none"/>
     </LinearLayout>
 </LinearLayout>

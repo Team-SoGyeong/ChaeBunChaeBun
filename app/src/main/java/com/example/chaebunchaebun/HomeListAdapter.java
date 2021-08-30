@@ -21,27 +21,26 @@ import java.util.ArrayList;
 public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHolder> {
     private ArrayList<HomeListItem> homeListItems = new ArrayList<HomeListItem>();
 
-    private CategoryListAdapter.OnItemClickListener mListener = null;
-    private CategoryListAdapter.OnModalClickListener modalClickListener = null;
+    private HomeListAdapter.OnItemClickListener mListener = null;
+    private HomeListAdapter.OnModalClickListener modalClickListener = null;
 
     public interface OnItemClickListener {
-        void onItemClick(int pos);
+        void onItemClick(View view, int pos);
     }
 
     public interface OnModalClickListener {
-        void OnModlaClick();
+        void OnModlaClick(View view, int pos);
     }
 
-    public void setOnItemClickListener(CategoryListAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(HomeListAdapter.OnItemClickListener listener) {
         this.mListener = listener ;
     }
 
-    public void setModalClickListener(CategoryListAdapter.OnModalClickListener modalClickListener) {
+    public void setModalClickListener(HomeListAdapter.OnModalClickListener modalClickListener) {
         this.modalClickListener = modalClickListener;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout home_list_top;
         ImageView home_list_img;
         TextView home_list_title;
         TextView home_list_date;
@@ -50,9 +49,10 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
         TextView home_list_writing_date;
         ImageButton home_list_modalbtn;
         ImageView home_list_isauth;
+        TextView home_list_postId;
+        TextView home_list_userId;
         public ViewHolder(@NonNull @NotNull View homeView) {
             super(homeView);
-            home_list_top = (LinearLayout) homeView.findViewById(R.id.homelist_top);
             home_list_img = (ImageView) homeView.findViewById(R.id.homelist_img);
             home_list_title = (TextView) homeView.findViewById(R.id.homelist_title);
             home_list_date = (TextView) homeView.findViewById(R.id.homelist_date);
@@ -61,14 +61,16 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
             home_list_writing_date = (TextView) homeView.findViewById(R.id.homelist_writing_date);
             home_list_modalbtn = (ImageButton) homeView.findViewById(R.id.homelist_modalbtn);
             home_list_isauth = (ImageView) homeView.findViewById(R.id.homelist_isauth);
+            home_list_postId = (TextView) homeView.findViewById(R.id.homelist_postId);
+            home_list_userId = (TextView) homeView.findViewById(R.id.homelist_userId);
 
-            home_list_top.setOnClickListener(new View.OnClickListener() {
+            homeView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int pos = getAdapterPosition();
                     if(pos != RecyclerView.NO_POSITION){
                         if(mListener != null) {
-                            mListener.onItemClick(pos);
+                            mListener.onItemClick(view, pos);
                         }
                     }
                 }
@@ -77,8 +79,11 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
             home_list_modalbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(modalClickListener != null){
-                        modalClickListener.OnModlaClick();
+                    int pos = getAdapterPosition();
+                    if(pos != RecyclerView.NO_POSITION){
+                        if(modalClickListener != null){
+                            modalClickListener.OnModlaClick(view, pos);
+                        }
                     }
                 }
             });
@@ -104,6 +109,10 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
         HomeListItem homeListItem = homeListItems.get(position);
 
+        holder.home_list_postId.setText(String.valueOf(homeListItem.getPostId()));
+        holder.home_list_postId.setVisibility(View.GONE);
+        holder.home_list_userId.setText(String.valueOf(homeListItem.getUserId()));
+        holder.home_list_userId.setVisibility(View.GONE);
         Glide.with(holder.itemView.getContext()).load(homeListItem.getImg()).into(holder.home_list_img);
         holder.home_list_title.setText(homeListItem.getTitle());
         holder.home_list_date.setText(homeListItem.getDate());
@@ -125,5 +134,9 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
     @Override
     public int getItemCount() {
         return homeListItems.size();
+    }
+
+    public HomeListItem getItem(int position){
+        return homeListItems.get(position);
     }
 }

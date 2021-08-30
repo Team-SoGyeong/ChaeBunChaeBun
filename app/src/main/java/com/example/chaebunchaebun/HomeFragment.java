@@ -60,6 +60,7 @@ public class HomeFragment extends Fragment {
     int recyclerPosition = -1;
     String[] address = {"",};
     String userId = "1";
+    int locationCode = 0;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -109,7 +110,7 @@ public class HomeFragment extends Fragment {
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
                 String fullAddress = subJsonObject.getString("full_address");
                 int userId = subJsonObject.getInt("user_id");
-                String locationCode = subJsonObject.getString("address_id");
+                locationCode = subJsonObject.getInt("address_id");
 
                 address = fullAddress.split(" ");
 
@@ -177,7 +178,9 @@ public class HomeFragment extends Fragment {
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().startActivity(new Intent(getActivity(), SearchActivity.class));
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                intent.putExtra("locationCode", locationCode);
+                getActivity().startActivity(intent);
             }
         });
 

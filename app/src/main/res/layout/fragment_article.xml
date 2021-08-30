@@ -161,7 +161,7 @@
 
                         <ImageButton
                             android:id="@+id/article_modalbtn"
-                            android:layout_width="wrap_content"
+                            android:layout_width="20dp"
                             android:layout_height="14dp"
                             android:layout_marginTop="5dp"
                             android:layout_marginRight="10dp"
@@ -298,7 +298,28 @@
                         android:layout_marginLeft="7dp"
                         android:text="내용"
                         android:textColor="@color/black"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp"
+                        android:fontFamily="@font/roboto_regular"/>
+                    <TextView
+                        android:id="@+id/article_contact_guide"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="7dp"
+                        android:text="이렇게 연락해 주세요!"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bold"/>
+                    <TextView
+                        android:id="@+id/article_contact"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="7dp"
+                        android:text="연락방법"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/roboto_regular"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -307,22 +328,36 @@
                     <include layout="@layout/fragment_article_recyclerview"/>
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
-            <EditText
-                android:id="@+id/article_comment"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="14dp"
-                android:padding="10dp"
-                android:background="@drawable/category_warning_box"
-                android:hint="이웃에게 따뜻한 댓글을 달아보세요."
-                android:textColor="#999999"
-                android:textSize="12sp"
-                android:textAlignment="textStart"
-                android:fontFamily="@font/roboto_regular"
-                android:includeFontPadding="false"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/article_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="14dp"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:background="@drawable/custom_comment_edt"
+                    android:hint="이웃에게 따뜻한 댓글을 달아보세요."
+                    android:textColor="#999999"
+                    android:textSize="12sp"
+                    android:textAlignment="textStart"
+                    android:fontFamily="@font/roboto_regular"
+                    android:includeFontPadding="false"/>
+                <ImageButton
+                    android:id="@+id/article_comment_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="14dp"
+                    android:src="@drawable/group_814"
+                    android:background="@color/white"/>
+            </LinearLayout>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/article_receipt_help"

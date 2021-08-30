@@ -42,6 +42,7 @@ public class MainSoonFragment extends Fragment {
 
     View mainSoonView;
     TextView mainSoonText;
+    String userId = "1";
 
     public MainSoonFragment() {
         // Required empty public constructor
@@ -91,6 +92,8 @@ public class MainSoonFragment extends Fragment {
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
 
+                int postId = subJsonObject.getInt("post_id");
+                int userId = subJsonObject.getInt("author_id");
                 String img = subJsonObject.getString("url");
                 String title = subJsonObject.getString("title");
                 String buyDate = subJsonObject.getString("buy_date");
@@ -100,7 +103,7 @@ public class MainSoonFragment extends Fragment {
                 String writtenBy = subJsonObject.getString("witten_by");
                 int isAuth = subJsonObject.getInt("isAuth");
 
-                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth));
+                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -135,23 +138,31 @@ public class MainSoonFragment extends Fragment {
                 }
             });
             homeListAdapter = new HomeListAdapter(homeListItems);
-            homeListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
+            homeListAdapter.setOnItemClickListener(new HomeListAdapter.OnItemClickListener() {
                 @Override
-                public void onItemClick(int pos) {
+                public void onItemClick(View view, int pos) {
+                    String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
+                    Bundle articleBundle = new Bundle();
+                    articleBundle.putString("postId", postId);
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     ArticleFragment articleFragment = new ArticleFragment();
+                    articleFragment.setArguments(articleBundle);
                     articleTransaction.replace(R.id.bottom_frame, articleFragment);
                     articleTransaction.addToBackStack(null);
                     articleTransaction.commit();
                 }
             });
-            homeListAdapter.setModalClickListener(new CategoryListAdapter.OnModalClickListener() {
+            homeListAdapter.setModalClickListener(new HomeListAdapter.OnModalClickListener() {
                 @Override
-                public void OnModlaClick() {
-                    //BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
-                    //bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
-                    MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
-                    myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                public void OnModlaClick(View view, int pos) {
+                    String id = String.valueOf(homeListAdapter.getItem(pos).getUserId());
+                    if (id.equals(userId)) {
+                        MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
+                        myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                    } else {
+                        BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
+                        bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                    }
                 }
             });
             mainSoonList.setAdapter(homeListAdapter);
