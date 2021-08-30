@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,13 +17,13 @@ import java.util.ArrayList;
 
 public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecyclerAdapter.ViewHolder> {
     private ArrayList<CommentRecyclerItem> commentRecyclerItems = null;
-    private CategoryListAdapter.OnModalClickListener modalClickListener = null;
+    private CommentRecyclerAdapter.OnModalClickListener modalClickListener = null;
 
     public interface OnModalClickListener {
-        void OnModlaClick();
+        void OnModlaClick(View view, int pos);
     }
 
-    public void setModalClickListener(CategoryListAdapter.OnModalClickListener modalClickListener) {
+    public void setModalClickListener(CommentRecyclerAdapter.OnModalClickListener modalClickListener) {
         this.modalClickListener = modalClickListener;
     }
 
@@ -42,8 +43,11 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecycler
             commentModalBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(modalClickListener != null){
-                        modalClickListener.OnModlaClick();
+                    int pos = getAdapterPosition();
+                    if(pos != RecyclerView.NO_POSITION){
+                        if(modalClickListener != null){
+                            modalClickListener.OnModlaClick(view, pos);
+                        }
                     }
                 }
             });
@@ -77,5 +81,9 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecycler
     @Override
     public int getItemCount() {
         return commentRecyclerItems.size();
+    }
+
+    public CommentRecyclerItem getItem(int position){
+        return commentRecyclerItems.get(position);
     }
 }

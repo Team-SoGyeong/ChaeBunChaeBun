@@ -5,60 +5,92 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 
-public class SearchListAdapter extends BaseAdapter {
-    private ArrayList<SearchListItem> mItems = new ArrayList<SearchListItem>();
-    @Override
-    public int getCount() {
-        return mItems.size();
+public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.ViewHolder> {
+    private ArrayList<SearchListItem> searchListItems = null;
+    private SearchListAdapter.OnItemClickListener mListener = null;
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int pos);
     }
 
-    @Override
-    public SearchListItem getItem(int position) {
-        return mItems.get(position);
+    public void setOnItemClickListener(SearchListAdapter.OnItemClickListener listener) {
+        this.mListener = listener ;
     }
 
-    @Override
-    public long getItemId(int position) {
-        return 0;
+    public SearchListAdapter(ArrayList<SearchListItem> searchListItems) {
+        this.searchListItems = searchListItems;
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public SearchListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        if(convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.custom_listview, parent, false);
-        }
+        View view = inflater.inflate(R.layout.custom_listview, parent, false);
+        SearchListAdapter.ViewHolder svh = new SearchListAdapter.ViewHolder(view);
 
-        TextView search_list_title = (TextView) convertView.findViewById(R.id.search_list_title);
-        TextView search_list_date = (TextView) convertView.findViewById(R.id.search_list_date);
-        TextView search_list_people = (TextView) convertView.findViewById(R.id.search_list_people);
-        TextView search_list_price = (TextView) convertView.findViewById(R.id.search_list_price);
-
-        SearchListItem searchListItem = getItem(position);
-
-        search_list_title.setText(searchListItem.getTitle());
-        search_list_date.setText(searchListItem.getDate());
-        search_list_people.setText(searchListItem.getPeople());
-        search_list_price.setText(searchListItem.getPrice());
-
-        return convertView;
+        return svh;
     }
 
-    public void addItem(String title, String date, String people, String price) {
-        SearchListItem mItem = new SearchListItem();
+    @Override
+    public void onBindViewHolder(@NonNull SearchListAdapter.ViewHolder holder, int position) {
+        SearchListItem searchListItem = searchListItems.get(position);
 
-        mItem.setTitle(title);
-        mItem.setDate(date);
-        mItem.setPeople(people);
-        mItem.setPrice(price);
+        holder.search_list_top.setTag(searchListItem.getPostId());
+        holder.search_list_title.setText(searchListItem.getTitle());
+        holder.search_list_date.setText(searchListItem.getDate());
+        holder.search_list_people.setText(searchListItem.getPeople());
+        holder.search_list_price.setText(searchListItem.getPrice());
+        if(searchListItem.getIsAuth() == 0){
+            holder.search_list_receipt.setVisibility(View.GONE);
+        } else {
+            holder.search_list_receipt.setVisibility(View.VISIBLE);
+        }
+    }
 
-        mItems.add(mItem);
+    @Override
+    public int getItemCount() {
+        return searchListItems.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout search_list_top;
+        TextView search_list_title;
+        TextView search_list_date;
+        TextView search_list_people;
+        TextView search_list_price;
+        ImageView search_list_receipt;
+        public ViewHolder(@NonNull View searchView) {
+            super(searchView);
+            search_list_top = (LinearLayout) searchView.findViewById(R.id.search_list_top);
+            search_list_title = (TextView) searchView.findViewById(R.id.search_list_title);
+            search_list_date = (TextView) searchView.findViewById(R.id.search_list_date);
+            search_list_people = (TextView) searchView.findViewById(R.id.search_list_people);
+            search_list_price = (TextView) searchView.findViewById(R.id.search_list_price);
+            search_list_receipt = (ImageView) searchView.findViewById(R.id.search_list_receipt);
+
+            search_list_top.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = getAdapterPosition();
+                    if(pos != RecyclerView.NO_POSITION){
+                        if(mListener != null) {
+                            mListener.onItemClick(view, pos);
+                        }
+                    }
+                }
+            });
+        }
     }
 }

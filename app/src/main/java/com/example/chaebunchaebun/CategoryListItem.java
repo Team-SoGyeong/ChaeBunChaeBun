@@ -17,10 +17,13 @@ public class CategoryListItem {
     private String likeCount = "";
     private String commentCount = "";
     private int isAuth = 5;
+    private int postId = 0;
+    private int userId = 0;
 
     public CategoryListItem(String profile, String title, String nickname, String writingDate, String content,
                             String img1, String img2, String img3, String img4, String img5,
-                            String buyingDate, String people, String price, String likeCount, String commentCount, int isAuth) {
+                            String buyingDate, String people, String price, String likeCount, String commentCount, int isAuth,
+                            int postId, int userId) {
         this.profile = profile;
         this.title = title;
         this.nickname = nickname;
@@ -37,11 +40,14 @@ public class CategoryListItem {
         this.likeCount = likeCount;
         this.commentCount = commentCount;
         this.isAuth = isAuth;
+        this.postId = postId;
+        this.userId = userId;
     }
 
     public  String getProfile() {
         return this.profile;
     }
+
     public String getTitle() {
         return this.title;
     }
@@ -100,5 +106,13 @@ public class CategoryListItem {
 
     public int getIsAuth() {
         return isAuth;
+    }
+
+    public int getPostId() {
+        return postId;
+    }
+
+    public int getUserId() {
+        return userId;
     }
 }

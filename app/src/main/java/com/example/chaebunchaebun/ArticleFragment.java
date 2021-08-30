@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -52,16 +53,17 @@ public class ArticleFragment extends Fragment {
     private LinearLayoutManager cLayoutManager;
 
     View articleView;
-    ImageView articleBack, articleRecipt, articleComplete, articleProfile;
+    ImageView articleBack, articleRecipt, articleComplete, articleProfile, articleModalbtn;
     TextView categoryName, articleWishcnt, articleTitle, articleNickname, articleWritingDate,
-            articleBuyingDate, articleTotal, articlePeople, articlePrice, articleContent;
+            articleBuyingDate, articleTotal, articlePeople, articlePrice, articleContent, articleContact;
     EditText articleComment;
+    ImageButton articleCommentbtn;
     LinearLayout articleReciptHelp;
     int recyclerPosition = -1;
     String postId = "";
     String userId = "1";
     String categoryNameString, title, nickname, content, buyDate, members, perPrice, writtenBy, profile;
-    int isAuth, wishcount;
+    int isAuth, wishcount, userIdnum;
 
     public ArticleFragment() {
         // Required empty public constructor
@@ -114,6 +116,7 @@ public class ArticleFragment extends Fragment {
         articlePeople = (TextView) articleView.findViewById(R.id.article_people);
         articlePrice = (TextView) articleView.findViewById(R.id.article_price);
         articleContent = (TextView) articleView.findViewById(R.id.article_content);
+        articleContact = (TextView) articleView.findViewById(R.id.article_contact);
         articleRecipt = (ImageView) articleView.findViewById(R.id.article_receipt);
         articleProfile = (ImageView) articleView.findViewById(R.id.article_proile_img);
 
@@ -121,10 +124,12 @@ public class ArticleFragment extends Fragment {
         cRecyclerView = (RecyclerView) articleView.findViewById(R.id.article_comment_list);
 
         articleComment = (EditText) articleView.findViewById(R.id.article_comment);
+        articleCommentbtn = (ImageButton) articleView.findViewById(R.id.article_comment_btn);
         articleBack = (ImageView) articleView.findViewById(R.id.article_back);
         articleComplete = (ImageView) articleView.findViewById(R.id.ic_complete);
         articleReciptHelp = (LinearLayout) articleView.findViewById(R.id.article_receipt_help);
         articleReciptHelp.setVisibility(View.GONE);
+        articleModalbtn = (ImageView) articleView.findViewById(R.id.article_modalbtn);
 
         aLayoutManager = new LinearLayoutManager(getContext());
         aLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -148,19 +153,33 @@ public class ArticleFragment extends Fragment {
         articleWishcnt.setText(String.valueOf(this.wishcount));
         Glide.with(getContext()).load(this.profile).into(articleProfile);
 
+        articleModalbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (String.valueOf(userIdnum).equals(userId)) {
+                    MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
+                    myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                } else {
+                    BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
+                    bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                }
+            }
+        });
+
         cLayoutManager = new LinearLayoutManager(getContext());
         cRecyclerView.setLayoutManager(cLayoutManager);
         commentRecyclerAdapter = new CommentRecyclerAdapter(commentRecyclerItems);
         commentRecyclerAdapter.notifyDataSetChanged();
-        commentRecyclerAdapter.setModalClickListener(new CategoryListAdapter.OnModalClickListener() {
+        commentRecyclerAdapter.setModalClickListener(new CommentRecyclerAdapter.OnModalClickListener() {
             @Override
-            public void OnModlaClick() {
-                if(commentRecyclerAdapter.getItemCount() % 2 != 0){
-                    CommentBottomSheetDialog commentBottomSheetDialog = CommentBottomSheetDialog.getInstance();
-                    commentBottomSheetDialog.show(getChildFragmentManager(), "commentbottomsheet");
-                } else {
+            public void OnModlaClick(View view, int pos) {
+                String id = String.valueOf(commentRecyclerAdapter.getItem(pos).getUserId());
+                if (id.equals(userId)) {
                     MyCommentBottomSheetDialog myCommentBottomSheetDialog = MyCommentBottomSheetDialog.getInstance();
-                    myCommentBottomSheetDialog.show(getChildFragmentManager(), "mycommentbottomsheet");
+                    myCommentBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                } else {
+                    CommentBottomSheetDialog commentBottomSheetDialog = CommentBottomSheetDialog.getInstance();
+                    commentBottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
                 }
             }
         });
@@ -197,26 +216,21 @@ public class ArticleFragment extends Fragment {
             }
         });
 
-        articleComment.setOnKeyListener(new View.OnKeyListener() {
+        articleCommentbtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
-                if((keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    PostTask postTask = new PostTask();
-                    JSONObject jsonCommentTransfer = new JSONObject();
+            public void onClick(View view) {
+                PostTask postTask = new PostTask();
+                JSONObject jsonCommentTransfer = new JSONObject();
 
-                    try {
-                        jsonCommentTransfer.put("cmts", articleComment.getText().toString());
-                        jsonCommentTransfer.put("post_id", Integer.parseInt(postId));
-                        jsonCommentTransfer.put("user_id", Integer.parseInt(userId));
-                        String jsonString = jsonCommentTransfer.toString();
-                        postTask.execute("posts/comment", jsonString);
-                    }catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    return true;
+                try {
+                    jsonCommentTransfer.put("cmts", articleComment.getText().toString());
+                    jsonCommentTransfer.put("post_id", Integer.parseInt(postId));
+                    jsonCommentTransfer.put("user_id", Integer.parseInt(userId));
+                    String jsonString = jsonCommentTransfer.toString();
+                    postTask.execute("posts/comment", jsonString);
+                }catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                return false;
             }
         });
 
@@ -253,9 +267,10 @@ public class ArticleFragment extends Fragment {
                     String commentNickname = subJsonObject2.getString("nickname");
                     String comments = subJsonObject2.getString("comments");
                     String commentWrittenBy = subJsonObject2.getString("witten_by");
+                    int commentUserId = subJsonObject2.getInt("user_id");
                     //this.profile = subJsonObject2.getString("profile");
 
-                    commentRecyclerItems.add(new CommentRecyclerItem(commentNickname, comments, commentWrittenBy));
+                    commentRecyclerItems.add(new CommentRecyclerItem(commentNickname, comments, commentWrittenBy, commentUserId));
                 }
             }
         } catch (JSONException e) {
@@ -291,6 +306,7 @@ public class ArticleFragment extends Fragment {
                 for(int j = 0; j < jsonLastListArray.length(); j++){
                     JSONObject subJsonObject2 = jsonLastListArray.getJSONObject(j);
 
+                    this.userIdnum = subJsonObject2.getInt("user_id");
                     //String profile = subJsonObject2.getString("profile");
                     this.title = subJsonObject2.getString("title");
                     this.nickname = subJsonObject2.getString("nickname");
@@ -298,7 +314,7 @@ public class ArticleFragment extends Fragment {
                     this.buyDate = subJsonObject2.getString("buy_date");
                     this.members = subJsonObject2.getString("headcounts");
                     this.perPrice = subJsonObject2.getString("per_price");
-                    this.writtenBy = subJsonObject2.getString("witten_by");
+                    this.writtenBy = subJsonObject2.getString("written_by");
                     this.isAuth = subJsonObject2.getInt("isAuth");
                     this.wishcount = subJsonObject2.getInt("wish_cnts");
                     this.profile = subJsonObject2.getString("profile");

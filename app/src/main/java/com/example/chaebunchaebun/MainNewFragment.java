@@ -43,7 +43,6 @@ public class MainNewFragment extends Fragment {
     TextView main_new_text;
     String loationCode = "";
     String userId = "1";
-    ArrayList<String> postId;
 
     public MainNewFragment() {
         // Required empty public constructor
@@ -80,9 +79,8 @@ public class MainNewFragment extends Fragment {
         }
 
         homeListItems = new ArrayList<HomeListItem>();
-        postId = new ArrayList<String>();
         homeListItems.clear();
-        postId.clear();
+
         String resultText = "[NULL]";
 
         try {
@@ -105,18 +103,17 @@ public class MainNewFragment extends Fragment {
                 for(int j = 0; j < jsonLastListArray.length(); j++){
                     JSONObject subJsonObject2 = jsonLastListArray.getJSONObject(j);
 
+                    int postId = subJsonObject2.getInt("post_id");
+                    int userId = subJsonObject2.getInt("author_id");
                     String img = subJsonObject2.getString("url");
                     String title = subJsonObject2.getString("title");
                     String buyDate = subJsonObject2.getString("buy_date");
-                    int membersInt = subJsonObject2.getInt("members");
-                    String member = String.valueOf(membersInt) + "명";
+                    String member = subJsonObject2.getString("members");
                     String perPrice = subJsonObject2.getString("per_price");
                     String writtenBy = subJsonObject2.getString("witten_by");
                     int isAuth = subJsonObject2.getInt("isAuth");
 
-                    this.postId.add(subJsonObject2.getString("post_id"));
-
-                    homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth));
+                    homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId));
                 }
             }
         } catch (JSONException e) {
@@ -154,11 +151,12 @@ public class MainNewFragment extends Fragment {
                 }
             });
             homeListAdapter = new HomeListAdapter(homeListItems);
-            homeListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
+            homeListAdapter.setOnItemClickListener(new HomeListAdapter.OnItemClickListener() {
                 @Override
-                public void onItemClick(int pos) {
+                public void onItemClick(View view, int pos) {
+                    String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
                     Bundle articleBundle = new Bundle();
-                    articleBundle.putString("postId", postId.get(pos));
+                    articleBundle.putString("postId", postId);
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     ArticleFragment articleFragment = new ArticleFragment();
                     articleFragment.setArguments(articleBundle);
@@ -167,13 +165,17 @@ public class MainNewFragment extends Fragment {
                     articleTransaction.commit();
                 }
             });
-            homeListAdapter.setModalClickListener(new CategoryListAdapter.OnModalClickListener() {
+            homeListAdapter.setModalClickListener(new HomeListAdapter.OnModalClickListener() {
                 @Override
-                public void OnModlaClick() {
-                    //BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
-                    //bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
-                    MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
-                    myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                public void OnModlaClick(View view, int pos) {
+                    String id = String.valueOf(homeListAdapter.getItem(pos).getUserId());
+                    if (id.equals(userId)) {
+                        MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
+                        myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                    } else {
+                        BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
+                        bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                    }
                 }
             });
             main_new_list.setAdapter(homeListAdapter);

@@ -88,6 +88,28 @@ public class HomeLikeIngFragment extends Fragment {
         MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(40);
         home_like_list.addItemDecoration(mainRecyclerDecoration);
         homeListAdapter = new HomeListAdapter(homeListItems);
+        homeListAdapter.setOnItemClickListener(new HomeListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int pos) {
+                int postId = (int) view.getTag(0);
+                Bundle articleBundle = new Bundle();
+                articleBundle.putString("postId", String.valueOf(postId));
+                FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                ArticleFragment articleFragment = new ArticleFragment();
+                articleFragment.setArguments(articleBundle);
+                articleTransaction.replace(R.id.bottom_frame, articleFragment);
+                articleTransaction.addToBackStack(null);
+                articleTransaction.commit();
+            }
+        });
+
+        homeListAdapter.setModalClickListener(new HomeListAdapter.OnModalClickListener() {
+            @Override
+            public void OnModlaClick(View view, int pos) {
+                BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
+                bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+            }
+        });
         home_like_list.setAdapter(homeListAdapter);
 
         return homeLikeView;

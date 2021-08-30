@@ -9,10 +9,12 @@ public class HomeListItem {
     private String date = "";
     private String people = "";
     private String price = "";
-    private  String writingDate = "";
+    private String writingDate = "";
     private int isAuth = 5;
+    private int userId = 0;
+    private int postId = 0;
 
-    public HomeListItem(String img, String title, String date, String people, String price, String writingDate, int isAuth){
+    public HomeListItem(String img, String title, String date, String people, String price, String writingDate, int isAuth, int postId, int userId){
         this.img = img;
         this.title = title;
         this.date = date;
@@ -20,6 +22,8 @@ public class HomeListItem {
         this.price = price;
         this.writingDate = writingDate;
         this.isAuth = isAuth;
+        this.postId = postId;
+        this.userId = userId;
     }
 
     public String getImg() {
@@ -48,5 +52,13 @@ public class HomeListItem {
 
     public int getIsAuth() {
         return isAuth;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public int getPostId() {
+        return postId;
     }
 }

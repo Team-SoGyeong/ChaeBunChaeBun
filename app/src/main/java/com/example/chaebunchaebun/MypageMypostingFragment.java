@@ -93,6 +93,8 @@ public class MypageMypostingFragment extends Fragment {
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
 
+                int postId = subJsonObject.getInt("");
+                int userId = subJsonObject.getInt("");
                 String img = subJsonObject.getString("url");
                 String title = subJsonObject.getString("title");
                 String buyDate = subJsonObject.getString("buy_date");
@@ -102,7 +104,7 @@ public class MypageMypostingFragment extends Fragment {
                 String writtenBy = subJsonObject.getString("witten_by");
                 int isAuth = subJsonObject.getInt("isAuth");
 
-                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth));
+                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId));
             }
         } catch (JSONException e) {
             e.printStackTrace();
