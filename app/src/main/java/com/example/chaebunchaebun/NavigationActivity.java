@@ -1,6 +1,5 @@
 package com.example.chaebunchaebun;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -10,10 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomnavigation.LabelVisibilityMode;
-import com.google.android.material.navigation.NavigationBarView;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -22,7 +18,7 @@ public class NavigationActivity extends AppCompatActivity {
     private FragmentManager fm;
     private FragmentTransaction ft;
     private HomeFragment homefg;
-    private MainLastFragment lastfg;
+    private MainWriteFragment lastfg;
     private MypageFragment myfg;
     private LikeListFragment likefg;
 
@@ -55,7 +51,7 @@ public class NavigationActivity extends AppCompatActivity {
 
         homefg = new HomeFragment();
         likefg = new LikeListFragment();
-        lastfg = new MainLastFragment();
+        lastfg = new MainWriteFragment();
         myfg = new MypageFragment();
         setFragment(0);
     }

@@ -127,11 +127,37 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         holder.categoryListNickname.setText(categoryListItem.getNickname());
         holder.categoryListWritingDate.setText((categoryListItem.getWritingDate()));
         holder.categoryListContent.setText(categoryListItem.getContent());
-        Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg1()).into(holder.categoryListImg1);
-        Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg2()).into(holder.categoryListImg2);
-        Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg3()).into(holder.categoryListImg3);
-        Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg4()).into(holder.categoryListImg4);
-        Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg5()).into(holder.categoryListImg5);
+        if(categoryListItem.getImg2().isEmpty()){
+            Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg1()).into(holder.categoryListImg1);
+            holder.categoryListImg2.setVisibility(View.GONE);
+            holder.categoryListImg3.setVisibility(View.GONE);
+            holder.categoryListImg4.setVisibility(View.GONE);
+            holder.categoryListImg5.setVisibility(View.GONE);
+        } else if(categoryListItem.getImg3().isEmpty()){
+            Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg1()).into(holder.categoryListImg1);
+            Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg2()).into(holder.categoryListImg2);
+            holder.categoryListImg3.setVisibility(View.GONE);
+            holder.categoryListImg4.setVisibility(View.GONE);
+            holder.categoryListImg5.setVisibility(View.GONE);
+        } else if(categoryListItem.getImg4().isEmpty()){
+            Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg1()).into(holder.categoryListImg1);
+            Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg2()).into(holder.categoryListImg2);
+            Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg3()).into(holder.categoryListImg3);
+            holder.categoryListImg4.setVisibility(View.GONE);
+            holder.categoryListImg5.setVisibility(View.GONE);
+        } else if(categoryListItem.getImg5().isEmpty()){
+            Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg1()).into(holder.categoryListImg1);
+            Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg2()).into(holder.categoryListImg2);
+            Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg3()).into(holder.categoryListImg3);
+            Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg4()).into(holder.categoryListImg4);
+            holder.categoryListImg5.setVisibility(View.GONE);
+        } else {
+            Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg1()).into(holder.categoryListImg1);
+            Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg2()).into(holder.categoryListImg2);
+            Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg3()).into(holder.categoryListImg3);
+            Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg4()).into(holder.categoryListImg4);
+            Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg5()).into(holder.categoryListImg5);
+        }
         holder.categoryListBuyingDate.setText(categoryListItem.getBuyingDate());
         holder.categoryListPeople.setText(categoryListItem.getPeople());
         holder.categoryListPrice.setText(categoryListItem.getPrice());

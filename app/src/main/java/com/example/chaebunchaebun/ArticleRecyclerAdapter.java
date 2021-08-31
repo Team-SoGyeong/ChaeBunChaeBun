@@ -39,7 +39,7 @@ public class ArticleRecyclerAdapter extends RecyclerView.Adapter<ArticleRecycler
         ArticleRecyclerData articleItem = imgContent.get(position);
 
         Glide.with(holder.itemView.getContext()).load(articleItem.getImg()).into(holder.imageView);
-        holder.textView.setText((position + 1) + "/5");
+        holder.textView.setText((position + 1) + "/" + getItemCount());
     }
 
     @Override

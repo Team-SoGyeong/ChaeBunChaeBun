@@ -43,6 +43,7 @@ public class MainSoonFragment extends Fragment {
     View mainSoonView;
     TextView mainSoonText;
     String userId = "1";
+    String locationCode = null;
 
     public MainSoonFragment() {
         // Required empty public constructor
@@ -66,6 +67,10 @@ public class MainSoonFragment extends Fragment {
         return fragment;
     }
 
+    public void getLocationCode(String locationCode){
+        this.locationCode = locationCode;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +83,7 @@ public class MainSoonFragment extends Fragment {
         String resultText = "[NULL]";
 
         try {
-            resultText = new MainSoonTask().execute().get();
+            resultText = new GetTask("home/deadline/" + this.locationCode).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
