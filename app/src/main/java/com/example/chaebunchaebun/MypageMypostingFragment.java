@@ -93,8 +93,8 @@ public class MypageMypostingFragment extends Fragment {
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
 
-                int postId = subJsonObject.getInt("");
-                int userId = subJsonObject.getInt("");
+                int postId = subJsonObject.getInt("post_id");
+                int userId = Integer.parseInt(id);
                 String img = subJsonObject.getString("url");
                 String title = subJsonObject.getString("title");
                 String buyDate = subJsonObject.getString("buy_date");
@@ -129,17 +129,6 @@ public class MypageMypostingFragment extends Fragment {
             mypagePostingList.setLayoutManager(hLayoutManager);
             MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(40);
             mypagePostingList.addItemDecoration(mainRecyclerDecoration);
-            /*mypagePostingList.setLayoutManager(new LinearLayoutManager(getContext()) {
-                @Override
-                public boolean canScrollHorizontally() {
-                    return false;
-                }
-
-                @Override
-                public boolean canScrollVertically() {
-                    return false;
-                }
-            });*/
             homeListAdapter = new HomeListAdapter(homeListItems);
             /*homeListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
                 @Override
@@ -150,16 +139,14 @@ public class MypageMypostingFragment extends Fragment {
                     articleTransaction.addToBackStack(null);
                     articleTransaction.commit();
                 }
-            });
-            homeListAdapter.setModalClickListener(new CategoryListAdapter.OnModalClickListener() {
+            });*/
+            homeListAdapter.setModalClickListener(new HomeListAdapter.OnModalClickListener() {
                 @Override
-                public void OnModlaClick() {
-                    //BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
-                    //bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                public void OnModlaClick(View view, int pos) {
                     MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
                     myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
                 }
-            });*/
+            });
             mypagePostingList.setAdapter(homeListAdapter);
         }
 

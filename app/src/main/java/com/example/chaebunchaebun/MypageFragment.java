@@ -63,6 +63,12 @@ public class MypageFragment extends Fragment {
                 startActivity(new Intent(getActivity(), MypageMypostingActivity.class));
             }
         });
+        MyComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), MypageMycommentActivity.class));
+            }
+        });
         MyHeart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

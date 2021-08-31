@@ -107,7 +107,9 @@
         android:background="#f4f6f2"
         android:fontFamily="@font/roboto_regular"
         android:paddingLeft="9dp"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:inputType="number"
+        android:digits="0123456789"/>
     <EditText
         android:id="@+id/input_getPrice"
         android:layout_width="176dp"
@@ -117,7 +119,9 @@
         android:background="#f4f6f2"
         android:fontFamily="@font/roboto_regular"
         android:paddingLeft="9dp"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:inputType="number"
+        android:digits="0123456789"/>
     <EditText
         android:id="@+id/input_memberNum"
         android:layout_width="176dp"
@@ -127,7 +131,9 @@
         android:background="#f4f6f2"
         android:fontFamily="@font/roboto_regular"
         android:paddingLeft="9dp"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:inputType="number"
+        android:digits="0123456789"/>
     <!-- list -->
     <Spinner
         android:id="@+id/date_spinner1"

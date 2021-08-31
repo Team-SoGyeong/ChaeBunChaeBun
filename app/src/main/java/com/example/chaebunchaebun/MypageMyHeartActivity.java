@@ -28,7 +28,7 @@ public class MypageMyHeartActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         btn = (Button) findViewById(R.id.btn1);
 
-        MyPostingVPAdapter adapter = new MyPostingVPAdapter(getSupportFragmentManager());
+        MyHeartVPAdapter adapter = new MyHeartVPAdapter(getSupportFragmentManager());
         vp.setAdapter(adapter);
 
         tabLayout.setupWithViewPager(vp);
