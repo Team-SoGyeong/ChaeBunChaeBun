@@ -40,7 +40,7 @@ import static com.kakao.util.helper.Utility.getPackageInfo;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "사용자";
     ImageView signIn, signUp, loginV1, set_invaild;
-    protected SessionCallback sessionCallback = new SessionCallback();
+    private SessionCallback sessionCallback = new SessionCallback();
     Session session;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -83,8 +83,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SetNicknameActivity.class);
                 startActivity(intent);
-            }
-        });
+            }        });
 
         AuthService.getInstance()
                 .requestAccessTokenInfo(new ApiResponseCallback<AccessTokenInfoResponse>() {

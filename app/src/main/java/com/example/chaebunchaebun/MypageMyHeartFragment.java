@@ -9,10 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,6 +47,10 @@ public class MypageMyHeartFragment extends Fragment {
     String state = "2";
     String platform = "0";
     String id = "1";
+
+    //spinner
+    TextView textView;
+    String[] items = {"진행중인 채분", "완료된 채분"};
 
     // TODO: Rename and change types and number of parameters
     public static MypageMyHeartFragment newInstance(String param1, String param2) {
@@ -137,6 +145,25 @@ public class MypageMyHeartFragment extends Fragment {
             });
             mypageHeartList.setAdapter(homeListAdapter);
         }
+
+        //spinner
+        Spinner spinner = myPageHeart.findViewById(R.id.heart_spinner);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         return myPageHeart;
     }
