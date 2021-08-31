@@ -17,9 +17,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
+
 public class LocationDialogFragment extends DialogFragment {
     public static final String TAG_EVENT_DIALOG = "dialog_event";
     EditText locationDialogEdt;
+    Button locationDialogChange;
+    String userId = null;
 
     public LocationDialogFragment() {}
     public static LocationDialogFragment getInstance() {
@@ -34,11 +41,12 @@ public class LocationDialogFragment extends DialogFragment {
         View locationDialog = inflater.inflate(R.layout.dialog_home_location, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         Button locationDialogfine = (Button) locationDialog.findViewById(R.id.location_dialog_fine);
-        Button locationDialogChange = (Button) locationDialog.findViewById(R.id.location_dialog_change);
+        locationDialogChange = (Button) locationDialog.findViewById(R.id.location_dialog_change);
         locationDialogEdt = (EditText) locationDialog.findViewById(R.id.location_dialog_edt);
 
         Bundle mArgs = getArguments();
         String location = mArgs.getString("location");
+        userId = mArgs.getString("userId");
         locationDialogEdt.setText(location);
 
         locationDialogEdt.setOnKeyListener(new View.OnKeyListener() {
@@ -76,6 +84,32 @@ public class LocationDialogFragment extends DialogFragment {
 
             System.out.println("결과: " + dong + " " + addressCode);
             locationDialogEdt.setText(dong);
+
+            locationDialogChange.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    PutTask locationPutTask = new PutTask();
+                    try {
+                        String response = locationPutTask.execute("posts/location/" + userId + "/" + addressCode, userId, String.valueOf(addressCode)).get();
+                        JSONObject jsonObject = new JSONObject(response);
+                        int responseCode = jsonObject.getInt("code");
+                        if(responseCode == 200){
+                            Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            getActivity().startActivity(intent);
+                            getActivity().overridePendingTransition(0, 0);
+                        } else {
+
+                        }
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
     }
 }

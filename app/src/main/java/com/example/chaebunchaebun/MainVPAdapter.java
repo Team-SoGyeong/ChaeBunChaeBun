@@ -12,18 +12,26 @@ public class MainVPAdapter extends FragmentPagerAdapter {
     private ArrayList<String> itext = new ArrayList<String>();
     private String location = "";
 
-    public MainVPAdapter(@NonNull FragmentManager fm) {
+    public MainVPAdapter(@NonNull FragmentManager fm, String locationCode, String userId) {
         super(fm);
         items = new ArrayList<Fragment>();
-        items.add(new MainNewFragment());
-        items.add(new MainSoonFragment());
-        items.add(new MainLastFragment());
-        items.add(new MainMyFragment());
+        MainNewFragment mainNewFragment = new MainNewFragment();
+        mainNewFragment.getLocationCode(locationCode);
+        items.add(mainNewFragment);
+
+        MainSoonFragment mainSoonFragment = new MainSoonFragment();
+        mainSoonFragment.getLocationCode(locationCode);
+        items.add(mainSoonFragment);
+
+        MainMyFragment mainMyFragment = new MainMyFragment();
+        mainMyFragment.getUserId(userId);
+        items.add(mainMyFragment);
+        items.add(new MainWriteFragment());
 
         itext.add("신규 채분");
         itext.add("마감 직전 채분");
-        itext.add("최근에 본 채분");
         itext.add("찜한 채분");
+        itext.add("내 채분");
     }
 
     @Override

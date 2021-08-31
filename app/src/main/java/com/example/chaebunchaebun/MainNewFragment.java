@@ -41,7 +41,7 @@ public class MainNewFragment extends Fragment {
     private LinearLayoutManager hLayoutManager;
 
     TextView main_new_text;
-    String loationCode = "";
+    String locationCode = "";
     String userId = "1";
 
     public MainNewFragment() {
@@ -67,7 +67,7 @@ public class MainNewFragment extends Fragment {
     }
 
     public void getLocationCode(String locationCode){
-        this.loationCode = locationCode;
+        this.locationCode = locationCode;
     }
 
     @Override
@@ -84,7 +84,7 @@ public class MainNewFragment extends Fragment {
         String resultText = "[NULL]";
 
         try {
-            resultText = new GetTask("home/" + userId).execute().get();
+            resultText = new GetTask("home/new/" + this.locationCode).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -97,24 +97,17 @@ public class MainNewFragment extends Fragment {
             JSONArray jsonArray = new JSONArray(data);
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
+                int postId = subJsonObject.getInt("post_id");
+                int userId = subJsonObject.getInt("author_id");
+                String img = subJsonObject.getString("url");
+                String title = subJsonObject.getString("title");
+                String buyDate = subJsonObject.getString("buy_date");
+                String member = subJsonObject.getString("members");
+                String perPrice = subJsonObject.getString("per_price");
+                String writtenBy = subJsonObject.getString("witten_by");
+                int isAuth = subJsonObject.getInt("isAuth");
 
-                String lastList = subJsonObject.getString("last_list");
-                JSONArray jsonLastListArray = new JSONArray(lastList);
-                for(int j = 0; j < jsonLastListArray.length(); j++){
-                    JSONObject subJsonObject2 = jsonLastListArray.getJSONObject(j);
-
-                    int postId = subJsonObject2.getInt("post_id");
-                    int userId = subJsonObject2.getInt("author_id");
-                    String img = subJsonObject2.getString("url");
-                    String title = subJsonObject2.getString("title");
-                    String buyDate = subJsonObject2.getString("buy_date");
-                    String member = subJsonObject2.getString("members");
-                    String perPrice = subJsonObject2.getString("per_price");
-                    String writtenBy = subJsonObject2.getString("witten_by");
-                    int isAuth = subJsonObject2.getInt("isAuth");
-
-                    homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId));
-                }
+                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId));
             }
         } catch (JSONException e) {
             e.printStackTrace();

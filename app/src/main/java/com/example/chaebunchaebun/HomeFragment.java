@@ -92,32 +92,7 @@ public class HomeFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        String resultText = "[NULL]";
-
-        try {
-            resultText = new GetTask("home/" + userId).execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            JSONObject jsonObject = new JSONObject(resultText);
-            String data = jsonObject.getString("data");
-            JSONArray jsonArray = new JSONArray(data);
-            for(int i = 0; i < jsonArray.length(); i++){
-                JSONObject subJsonObject = jsonArray.getJSONObject(i);
-                String fullAddress = subJsonObject.getString("full_address");
-                int userId = subJsonObject.getInt("user_id");
-                locationCode = subJsonObject.getInt("address_id");
-
-                address = fullAddress.split(" ");
-
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        getHome();
     }
 
     @Override
@@ -170,7 +145,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        MainVPAdapter adapter = new MainVPAdapter(getChildFragmentManager());
+        MainVPAdapter adapter = new MainVPAdapter(getChildFragmentManager(), String.valueOf(locationCode), userId);
         vp.setAdapter(adapter);
 
         tabLayout.setupWithViewPager(vp);
@@ -203,6 +178,7 @@ public class HomeFragment extends Fragment {
           @Override
           public void onClick(View view) {
               Bundle args = new Bundle();
+              args.putString("userId", userId);
               args.putString("location", address[address.length - 1]);
               LocationDialogFragment e = LocationDialogFragment.getInstance();
               e.setArguments(args);
@@ -224,5 +200,34 @@ public class HomeFragment extends Fragment {
 
     public void getRecyclerPosition(int pos) {
         this.recyclerPosition = pos;
+    }
+
+    public void getHome(){
+        String resultText = "[NULL]";
+
+        try {
+            resultText = new GetTask("home/" + userId).execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            JSONObject jsonObject = new JSONObject(resultText);
+            String data = jsonObject.getString("data");
+            JSONArray jsonArray = new JSONArray(data);
+            for(int i = 0; i < jsonArray.length(); i++){
+                JSONObject subJsonObject = jsonArray.getJSONObject(i);
+                String fullAddress = subJsonObject.getString("full_address");
+                int userId = subJsonObject.getInt("user_id");
+                locationCode = subJsonObject.getInt("address_id");
+
+                address = fullAddress.split(" ");
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

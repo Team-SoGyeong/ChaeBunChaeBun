@@ -62,7 +62,8 @@ public class ArticleFragment extends Fragment {
     int recyclerPosition = -1;
     String postId = "";
     String userId = "1";
-    String categoryNameString, title, nickname, content, buyDate, members, perPrice, writtenBy, profile;
+    String categoryNameString, title, nickname, content, buyDate, members,
+            perPrice, writtenBy, profile, amount, totalPrice, contact;
     int isAuth, wishcount, userIdnum;
 
     public ArticleFragment() {
@@ -141,7 +142,9 @@ public class ArticleFragment extends Fragment {
         articleTitle.setText(this.title);
         articleNickname.setText(this.nickname);
         articleContent.setText(this.content);
+        articleContact.setText(this.contact);
         articleBuyingDate.setText(this.buyDate);
+        articleTotal.setText(this.amount + ", " + this.totalPrice);
         articlePeople.setText(this.members);
         articlePrice.setText(this.perPrice);
         articleWritingDate.setText(this.writtenBy);
@@ -307,17 +310,19 @@ public class ArticleFragment extends Fragment {
                     JSONObject subJsonObject2 = jsonLastListArray.getJSONObject(j);
 
                     this.userIdnum = subJsonObject2.getInt("user_id");
-                    //String profile = subJsonObject2.getString("profile");
                     this.title = subJsonObject2.getString("title");
                     this.nickname = subJsonObject2.getString("nickname");
                     this.content = subJsonObject2.getString("contents");
                     this.buyDate = subJsonObject2.getString("buy_date");
                     this.members = subJsonObject2.getString("headcounts");
+                    this.amount = subJsonObject2.getString("amount");
+                    this.totalPrice = subJsonObject2.getString("total_price");
                     this.perPrice = subJsonObject2.getString("per_price");
                     this.writtenBy = subJsonObject2.getString("written_by");
                     this.isAuth = subJsonObject2.getInt("isAuth");
                     this.wishcount = subJsonObject2.getInt("wish_cnts");
                     this.profile = subJsonObject2.getString("profile");
+                    this.contact = subJsonObject2.getString("contact");
 
                     String img1 = null;
                     String img2 = null;
@@ -333,12 +338,27 @@ public class ArticleFragment extends Fragment {
                     img4 = subJsonObject3.getString("img4");
                     img5 = subJsonObject3.getString("img5");
 
-                    articleItemList.add(new ArticleRecyclerData(img1));
-                    articleItemList.add(new ArticleRecyclerData(img2));
-                    articleItemList.add(new ArticleRecyclerData(img3));
-                    articleItemList.add(new ArticleRecyclerData(img4));
-                    articleItemList.add(new ArticleRecyclerData(img5));
-                    //this.postId = subJsonObject2.getString("post_id");
+                    if(img2.isEmpty()){
+                        articleItemList.add(new ArticleRecyclerData(img1));
+                    } else if(img3.isEmpty()){
+                        articleItemList.add(new ArticleRecyclerData(img1));
+                        articleItemList.add(new ArticleRecyclerData(img2));
+                    } else if(img4.isEmpty()){
+                        articleItemList.add(new ArticleRecyclerData(img1));
+                        articleItemList.add(new ArticleRecyclerData(img2));
+                        articleItemList.add(new ArticleRecyclerData(img3));
+                    } else if(img5.isEmpty()){
+                        articleItemList.add(new ArticleRecyclerData(img1));
+                        articleItemList.add(new ArticleRecyclerData(img2));
+                        articleItemList.add(new ArticleRecyclerData(img3));
+                        articleItemList.add(new ArticleRecyclerData(img4));
+                    } else {
+                        articleItemList.add(new ArticleRecyclerData(img1));
+                        articleItemList.add(new ArticleRecyclerData(img2));
+                        articleItemList.add(new ArticleRecyclerData(img3));
+                        articleItemList.add(new ArticleRecyclerData(img4));
+                        articleItemList.add(new ArticleRecyclerData(img5));
+                    }
                 }
             }
         } catch (JSONException e) {
