@@ -5,12 +5,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/baseLayout"
+    android:background="#ebebeb"
     tools:context=".MypageMyHeartFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/mypage_heart_nolist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="채분 리스트 꾸미기" />
+        android:layout_marginTop="31dp"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:text="아직 찜한 채분이 없어요\n관심있는 채분을 찜해보세요!"
+        android:textColor="#656565" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mypage_heart_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="16dp"
+        android:scrollbars="none"/>
 
 </LinearLayout>

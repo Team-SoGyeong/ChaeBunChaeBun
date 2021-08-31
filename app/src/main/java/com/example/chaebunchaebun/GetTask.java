@@ -25,6 +25,7 @@ public class GetTask extends AsyncTask<String, Void, String> {
             url = new URL("http://3.37.243.188:8080/" + this.urlString);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("Connection", "Keep-Alive");
 

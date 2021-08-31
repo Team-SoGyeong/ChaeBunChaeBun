@@ -3,12 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ebebeb"
     tools:context=".MypageMyCommentFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/mypage_comment_nolist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="채분 탭 꾸미기" />
+        android:layout_marginTop="31dp"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:text="아직 내가 쓴 댓글이 없어요\n댓글을 작성해 채분에 참여해보세요!"
+        android:textColor="#656565" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mypage_comment_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="16dp"
+        android:scrollbars="none"/>
 
 </FrameLayout>

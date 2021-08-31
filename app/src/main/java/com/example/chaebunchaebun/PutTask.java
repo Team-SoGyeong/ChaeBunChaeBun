@@ -31,7 +31,7 @@ public class PutTask extends AsyncTask<String, Void, String> {
 
             OutputStream os = conn.getOutputStream();
             os.write(params[1].getBytes("UTF-8"));
-            if(params[2].isEmpty()){
+            if(params.length <= 2){
                 os.flush();
             } else {
                 os.write(params[2].getBytes("UTF-8"));

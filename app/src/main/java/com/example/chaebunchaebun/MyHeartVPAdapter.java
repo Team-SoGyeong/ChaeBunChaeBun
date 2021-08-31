@@ -16,8 +16,8 @@ public class MyHeartVPAdapter extends FragmentPagerAdapter {
     public MyHeartVPAdapter(@NonNull @NotNull FragmentManager fm) {
         super(fm);
         items = new ArrayList<Fragment>();
-        items.add(new MypageMypostingFragment());
-        items.add(new MyCommunityPostingFragment());
+        items.add(new MypageMyHeartFragment());
+        items.add(new MyCommunityHeartFragment());
 
         itext.add("채분");
         itext.add("커뮤니티");

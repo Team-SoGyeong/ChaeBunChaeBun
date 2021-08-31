@@ -16,8 +16,8 @@ public class MyCommentVPAdapter extends FragmentPagerAdapter {
     public MyCommentVPAdapter(@NonNull @NotNull FragmentManager fm) {
         super(fm);
         items = new ArrayList<Fragment>();
-        items.add(new MypageMypostingFragment());
-        items.add(new MyCommunityPostingFragment());
+        items.add(new MypageMyCommentFragment());
+        items.add(new MyCommunityCommentFragment());
 
         itext.add("채분");
         itext.add("커뮤니티");
