@@ -67,8 +67,9 @@ public class MainSoonFragment extends Fragment {
         return fragment;
     }
 
-    public void getLocationCode(String locationCode){
+    public void getLocationCode(String locationCode, String userId){
         this.locationCode = locationCode;
+        this.userId = userId;
     }
 
     @Override
@@ -83,7 +84,7 @@ public class MainSoonFragment extends Fragment {
         String resultText = "[NULL]";
 
         try {
-            resultText = new GetTask("home/deadline/" + this.locationCode).execute().get();
+            resultText = new GetTask("home/deadline/" + this.locationCode + "/" + userId).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
