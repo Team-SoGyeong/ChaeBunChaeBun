@@ -47,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_start);
 
+        Log.d("GET KEYHASH", getKeyHash());
+
         loginV1 = (ImageButton) findViewById(R.id.loginV1);
         signIn = (ImageView) findViewById(R.id.sign_in);
         signUp = (ImageView) findViewById(R.id.sign_up);
@@ -83,7 +85,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SetNicknameActivity.class);
                 startActivity(intent);
-            }        });
+            }
+        });
 
         AuthService.getInstance()
                 .requestAccessTokenInfo(new ApiResponseCallback<AccessTokenInfoResponse>() {
@@ -122,6 +125,7 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onActivityResult(requestCode, resultCode, data);
     }
+
     public String getKeyHash(){
         try{
             PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
@@ -140,6 +144,4 @@ public class LoginActivity extends AppCompatActivity {
         }
         return null;
     }
-
-
 }

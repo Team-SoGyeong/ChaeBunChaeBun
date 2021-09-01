@@ -16,11 +16,11 @@ public class MainVPAdapter extends FragmentPagerAdapter {
         super(fm);
         items = new ArrayList<Fragment>();
         MainNewFragment mainNewFragment = new MainNewFragment();
-        mainNewFragment.getLocationCode(locationCode);
+        mainNewFragment.getLocationCode(locationCode, userId);
         items.add(mainNewFragment);
 
         MainSoonFragment mainSoonFragment = new MainSoonFragment();
-        mainSoonFragment.getLocationCode(locationCode);
+        mainSoonFragment.getLocationCode(locationCode, userId);
         items.add(mainSoonFragment);
 
         MainMyFragment mainMyFragment = new MainMyFragment();
