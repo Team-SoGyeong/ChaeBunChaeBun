@@ -3,6 +3,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'key0'
+            storePassword 'codus0822'
+            keyPassword 'codus0822'
+            storeFile file('D:\\AndroidStudio\\jre\\jks.jks')
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
 

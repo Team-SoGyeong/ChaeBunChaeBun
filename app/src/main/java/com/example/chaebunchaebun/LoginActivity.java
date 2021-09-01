@@ -103,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(AccessTokenInfoResponse result) {
                         Log.i("KAKAO_API", "사용자 아이디: " + result.getUserId());
+
                     }
                 });
     }

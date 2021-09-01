@@ -203,7 +203,7 @@
                     android:id="@+id/categorylist_likebtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/type_filled_icon_favorite_border"
+                    android:src="@drawable/slice_6"
                     android:background="@color/white"/>
                 <TextView
                     android:id="@+id/categorylist_likecount"
