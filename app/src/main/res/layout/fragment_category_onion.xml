@@ -6,10 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".CategoryOnionFragment">
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:fillViewport="true"
         android:scrollbars="none">
         <LinearLayout
@@ -59,14 +58,20 @@
                 android:textAlignment="center"
                 android:textSize="12sp"
                 android:fontFamily="@font/roboto_regular"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/onion_list"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:divider="#ebebeb"
-                android:scrollbars="none"/>
+                android:layout_height="wrap_content">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/onion_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constrainedHeight="true"
+                    android:divider="#ebebeb"
+                    android:scrollbars="none"/>
+            </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,9 +80,9 @@
         android:layout_centerHorizontal="true">
         <ImageButton
             android:id="@+id/onion_newbtn"
-            android:layout_width="102dp"
-            android:layout_height="34dp"
-            android:src="@drawable/do_button_long"
-            android:background="#ffffffff"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/do_button"
+            android:background="#00ffffff"/>
     </LinearLayout>
 </RelativeLayout>

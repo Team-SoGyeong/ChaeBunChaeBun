@@ -17,6 +17,7 @@
         android:textSize="16sp"
         android:fontFamily="@font/roboto_bold"/>
     <RadioGroup
+        android:id="@+id/nosee_radiogroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -25,7 +26,7 @@
             android:id="@+id/partici"
             android:layout_width="wrap_content"
             android:layout_height="24dp"
-            android:button="@drawable/selector_radio_nosee"
+            android:buttonTint="#036635"
             android:text="이미 참여한 소분이에요"
             android:textColor="@drawable/selector_radio_nosee_text"
             android:textSize="14sp"
@@ -35,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:layout_marginTop="26dp"
-            android:button="@drawable/selector_radio_nosee"
+            android:buttonTint="#036635"
             android:text="이 글을 너무 많이 봤어요"
             android:textColor="@drawable/selector_radio_nosee_text"
             android:textSize="14sp"
@@ -47,7 +48,7 @@
         android:layout_marginTop="45dp"
         android:orientation="horizontal">
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/location_dialog_ok"
+            android:id="@+id/location_dialog_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_dialog_btn"
@@ -62,7 +63,7 @@
             android:minWidth="0dp"
             android:minHeight="0dp" />
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/location_dialog_cancel"
+            android:id="@+id/location_dialog_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"

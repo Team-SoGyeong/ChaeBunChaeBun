@@ -123,7 +123,7 @@ public class CategoryRadishFragment extends Fragment {
                     img5 = subJsonObject3.getString("img5");
 
                     String buyDate = subJsonObject2.getString("buy_date");
-                    String member = subJsonObject2.getString("headcounts") + "명";
+                    String member = subJsonObject2.getString("headcounts");
                     String perPrice = subJsonObject2.getString("per_price");
                     int myWishInt = subJsonObject2.getInt("wish_cnts");
                     String myWish = String.valueOf(myWishInt);
@@ -177,11 +177,16 @@ public class CategoryRadishFragment extends Fragment {
                 @Override
                 public void OnModlaClick(View view, int pos) {
                     String userId = String.valueOf(categoryListAdapter.getItem(pos).getUserId());
+                    String postId = String.valueOf(categoryListAdapter.getItem(pos).getPostId());
                     if (userId.equals(id)) {
                         MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
                         myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
                     } else {
+                        Bundle args = new Bundle();
+                        args.putString("userId", id);
+                        args.putString("postId", postId);
                         BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
+                        bottomSheetDialog.setArguments(args);
                         bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
                     }
                 }
@@ -192,7 +197,8 @@ public class CategoryRadishFragment extends Fragment {
         writing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startActivity(new Intent(getActivity(), WarningDialogFragment.class));
+                WarningDialogFragment warningDialogFragment = WarningDialogFragment.getInstance();
+                warningDialogFragment.show(getChildFragmentManager(), "WarningBox");
             }
         });
         // Inflate the layout for this fragment

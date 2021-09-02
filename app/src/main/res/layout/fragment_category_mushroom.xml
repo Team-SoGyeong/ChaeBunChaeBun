@@ -1,79 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".CategoryMushroomFragment">
-    <LinearLayout
-        android:id="@+id/mushroom_warning"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <ScrollView
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbars="none">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:orientation="vertical"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/category_warning_box">
-                    <TextView
-                        android:id="@+id/mushroom_warning_text1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginRight="24dp"
-                        android:text="비방글 및 광고, 게시판에 어울리지 않는 글은"
-                        android:textAlignment="center"
-                        android:fontFamily="@font/roboto_regular"
-                        android:textSize="12sp"/>
-                    <TextView
-                        android:id="@+id/mushroom_warning_text2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="경고 없이 삭제될 수 있다는 점 유의해 주시기 바랍니다."
-                        android:textAlignment="center"
-                        android:fontFamily="@font/roboto_bold"
-                        android:textSize="12sp"/>
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="14dp"
-                    android:background="#ebebeb"/>
+                android:layout_height="64dp"
+                android:orientation="vertical"
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/category_warning_box">
                 <TextView
-                    android:id="@+id/mushroom_nolist"
+                    android:id="@+id/mushroom_warning_text1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:text="벌써 모든 채분 자리가 다 나갔어요!\n채분 하기 버튼을 눌러 채분을 시작해 볼까요?"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="24dp"
+                    android:text="비방글 및 광고, 게시판에 어울리지 않는 글은"
                     android:textAlignment="center"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/roboto_regular"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/mushroom_list"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="12sp"/>
+                <TextView
+                    android:id="@+id/mushroom_warning_text2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:divider="#ebebeb"
-                    android:scrollbars="none"/>
+                    android:text="경고 없이 삭제될 수 있다는 점 유의해 주시기 바랍니다."
+                    android:textAlignment="center"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textSize="12sp"/>
             </LinearLayout>
-        </ScrollView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="14dp"
+                android:background="#ebebeb"/>
+            <TextView
+                android:id="@+id/mushroom_nolist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="벌써 모든 채분 자리가 다 나갔어요!\n채분 하기 버튼을 눌러 채분을 시작해 볼까요?"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                android:fontFamily="@font/roboto_regular"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mushroom_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constrainedHeight="true"
+                android:divider="#ebebeb"
+                android:scrollbars="none"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    <LinearLayout
+        android:id="@+id/mushroom_warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="#00FFFFFF">
         <ImageButton
             android:id="@+id/mushroom_newbtn"
-            android:layout_width="102dp"
-            android:layout_height="34dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/do_button_long"/>
+            android:src="@drawable/do_button"
+            android:background="#00FFFFFF"/>
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>
