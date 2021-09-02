@@ -53,7 +53,6 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
                 e.show(getChildFragmentManager(), NoseeDialogFragment.TAG_EVENT_DIALOG);
                 break;
             case R.id.list_modal_report:
-                Toast.makeText(getContext(),"신고",Toast.LENGTH_SHORT).show();
                 Bundle reportArgs = new Bundle();
                 reportArgs.putString("userId", userId);
                 reportArgs.putString("postId", postId);

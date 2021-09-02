@@ -60,67 +60,9 @@ public class NoseeDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 if(radioButton == 2131362355) {
-                    PostTask postTask = new PostTask();
-                    JSONObject jsonPostTransfer = new JSONObject();
-                    try {
-                        jsonPostTransfer.put("author_id", Integer.parseInt(userId));
-                        jsonPostTransfer.put("cmt_id", null);
-                        jsonPostTransfer.put("post_id", Integer.parseInt(postId));
-                        jsonPostTransfer.put("reason", null);
-                        jsonPostTransfer.put("reason_id", 1);
-
-                        System.out.println(postId);
-
-                        String jsonString = jsonPostTransfer.toString();
-                        String response = postTask.execute("posts/blind", jsonString).get();
-
-                        JSONObject jsonObject = new JSONObject(response);
-                        int responseCode = jsonObject.getInt("code");
-                        if(responseCode == 200){
-                            Intent intent = new Intent(getActivity(), NavigationActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            getActivity().startActivity(intent);
-                            getActivity().overridePendingTransition(0, 0);
-                        } else {
-                            Toast.makeText(getContext(),"잘못 된 접근입니다.",Toast.LENGTH_SHORT).show();
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    }
+                    setBlind(userId, postId, 1);
                 } else if(radioButton == 2131362236) {
-                    PostTask postTask = new PostTask();
-                    JSONObject jsonPostTransfer = new JSONObject();
-                    try {
-                        jsonPostTransfer.put("author_id", Integer.parseInt(userId));
-                        jsonPostTransfer.put("cmt_id", null);
-                        jsonPostTransfer.put("post_id", Integer.parseInt(postId));
-                        jsonPostTransfer.put("reason", null);
-                        jsonPostTransfer.put("reason_id", 2);
-
-                        String jsonString = jsonPostTransfer.toString();
-                        String response = postTask.execute("posts/blinds", jsonString).get();
-
-                        JSONObject jsonObject = new JSONObject(response);
-                        int responseCode = jsonObject.getInt("code");
-                        if(responseCode == 200){
-                            Intent intent = new Intent(getActivity(), NavigationActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            getActivity().startActivity(intent);
-                            getActivity().overridePendingTransition(0, 0);
-                        } else {
-                            Toast.makeText(getContext(),"잘못 된 접근입니다.",Toast.LENGTH_SHORT).show();
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    }
+                    setBlind(userId, postId, 2);
                 }
             }
         });
@@ -134,5 +76,39 @@ public class NoseeDialogFragment extends DialogFragment {
         setCancelable(false);
 
         return noseeDialog;
+    }
+
+    private void setBlind(String userId, String postId, int reasonId) {
+        PostTask postTask = new PostTask();
+        JSONObject jsonPostTransfer = new JSONObject();
+        try {
+            jsonPostTransfer.put("author_id", Integer.parseInt(userId));
+            jsonPostTransfer.put("cmt_id", null);
+            jsonPostTransfer.put("post_id", Integer.parseInt(postId));
+            jsonPostTransfer.put("reason", null);
+            jsonPostTransfer.put("reason_id", reasonId);
+
+            System.out.println(postId);
+
+            String jsonString = jsonPostTransfer.toString();
+            String response = postTask.execute("posts/blind", jsonString).get();
+
+            JSONObject jsonObject = new JSONObject(response);
+            int responseCode = jsonObject.getInt("code");
+            if(responseCode == 200){
+                Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(0, 0);
+            } else {
+                Toast.makeText(getContext(),"잘못 된 접근입니다.",Toast.LENGTH_SHORT).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 }

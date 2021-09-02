@@ -161,11 +161,16 @@ public class MainMyFragment extends Fragment {
                 @Override
                 public void OnModlaClick(View view, int pos) {
                     String id = String.valueOf(homeListAdapter.getItem(pos).getUserId());
+                    String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
                     if (id.equals(userId)) {
                         MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
                         myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
                     } else {
+                        Bundle args = new Bundle();
+                        args.putString("userId", userId);
+                        args.putString("postId", postId);
                         BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
+                        bottomSheetDialog.setArguments(args);
                         bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
                     }
                 }
