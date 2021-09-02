@@ -27,6 +27,7 @@
         android:textSize="12sp"
         android:text="충분한 검토 후 즉각 조치를 취할 것이며\n이에 대한 내용은 알림으로 알려 드릴게요." />
     <RadioGroup
+        android:id="@+id/article_report"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"

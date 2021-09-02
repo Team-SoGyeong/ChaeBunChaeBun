@@ -6,11 +6,13 @@
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/drawable/category_warning_box.xml" value="0.146875" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/drawable/custom_categorylist_profileimg.xml" value="0.146875" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/drawable/custom_comment_edt.xml" value="0.146875" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/drawable/custom_dialog_btn.xml" value="0.146875" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/drawable/custom_mypage_profile.xml" value="0.146875" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/drawable/green_box.xml" value="0.18796296296296297" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/drawable/profile_edittext.xml" value="0.146875" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/drawable/profile_edittext_green.xml" value="0.146875" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/drawable/profile_edittext_red.xml" value="0.146875" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/font/font.xml" value="0.1609375" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/article_recyclerview_item.xml" value="0.136" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_comment_modalbtn.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_commentlist.xml" value="0.25364583333333335" />
@@ -19,6 +21,8 @@
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_my_modalbtn.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_mycomment_modalbtn.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_searchlist_main.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_article_nosee.xml" value="0.264" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_article_report.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_writing_popup.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_writing_warning.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/fragment_article.xml" value="0.34812760055478503" />

@@ -178,11 +178,16 @@ public class CategoryCabbageFragment extends Fragment {
                 @Override
                 public void OnModlaClick(View view, int pos) {
                     String userId = String.valueOf(categoryListAdapter.getItem(pos).getUserId());
+                    String postId = String.valueOf(categoryListAdapter.getItem(pos).getPostId());
                     if (userId.equals(id)) {
                         MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
                         myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
                     } else {
+                        Bundle args = new Bundle();
+                        args.putString("userId", id);
+                        args.putString("postId", postId);
                         BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
+                        bottomSheetDialog.setArguments(args);
                         bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
                     }
                 }
@@ -193,7 +198,8 @@ public class CategoryCabbageFragment extends Fragment {
         writing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startActivity(new Intent(getActivity(), WarningDialogFragment.class));
+                WarningDialogFragment warningDialogFragment = WarningDialogFragment.getInstance();
+                warningDialogFragment.show(getChildFragmentManager(), "WarningBox");
             }
         });
 

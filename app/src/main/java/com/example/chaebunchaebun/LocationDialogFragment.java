@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -99,7 +100,7 @@ public class LocationDialogFragment extends DialogFragment {
                             getActivity().startActivity(intent);
                             getActivity().overridePendingTransition(0, 0);
                         } else {
-
+                            Toast.makeText(getContext(),"잘 못 된 접근입니다.",Toast.LENGTH_SHORT).show();
                         }
                     } catch (ExecutionException e) {
                         e.printStackTrace();

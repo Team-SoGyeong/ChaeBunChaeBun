@@ -14,12 +14,13 @@ import androidx.annotation.Nullable;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class BottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener {
+    private ImageButton nomore;
+    private ImageButton report;
+
+    String userId, postId = null;
     public static BottomSheetDialog getInstance() {
         return new BottomSheetDialog();
     }
-
-    private ImageButton nomore;
-    private ImageButton report;
 
     @Nullable
     @org.jetbrains.annotations.Nullable
@@ -29,6 +30,10 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         nomore = (ImageButton) view.findViewById(R.id.list_modal_nomore);
         report = (ImageButton) view.findViewById(R.id.list_modal_report);
+
+        Bundle mArgs = getArguments();
+        userId = mArgs.getString("userId");
+        postId = mArgs.getString("postId");
 
         nomore.setOnClickListener(this);
         report.setOnClickListener(this);
@@ -40,16 +45,22 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.list_modal_nomore:
-                Toast.makeText(getContext(),"더 이상 보지 않기",Toast.LENGTH_SHORT).show();
-                //NoseeDialogFragment e = NoseeDialogFragment.getInstance();
-                //e.show(getChildFragmentManager(), NoseeDialogFragment.TAG_EVENT_DIALOG);
+                Bundle args = new Bundle();
+                args.putString("userId", userId);
+                args.putString("postId", postId);
+                NoseeDialogFragment e = NoseeDialogFragment.getInstance();
+                e.setArguments(args);
+                e.show(getChildFragmentManager(), NoseeDialogFragment.TAG_EVENT_DIALOG);
                 break;
             case R.id.list_modal_report:
                 Toast.makeText(getContext(),"신고",Toast.LENGTH_SHORT).show();
-                //ArticleReportDialogFragment e = ArticleReportDialogFragment.getInstance();
-                //e.show(getChildFragmentManager(), ArticleReportDialogFragment.TAG_EVENT_DIALOG);
+                Bundle reportArgs = new Bundle();
+                reportArgs.putString("userId", userId);
+                reportArgs.putString("postId", postId);
+                ArticleReportDialogFragment articleReportDialogFragment = ArticleReportDialogFragment.getInstance();
+                articleReportDialogFragment.setArguments(reportArgs);
+                articleReportDialogFragment.show(getChildFragmentManager(), ArticleReportDialogFragment.TAG_EVENT_DIALOG);
                 break;
         }
-        dismiss();
     }
 }

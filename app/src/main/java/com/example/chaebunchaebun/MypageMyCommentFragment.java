@@ -44,7 +44,7 @@ public class MypageMyCommentFragment extends Fragment {
     private LinearLayoutManager hLayoutManager;
 
     TextView mypageCommentNolist;
-    String state = "2";
+    String state = "0";
     String platform = "0";
     String id = "1";
 
@@ -83,11 +83,75 @@ public class MypageMyCommentFragment extends Fragment {
         }
 
         homeListItems = new ArrayList<HomeListItem>();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View myPageComment = inflater.inflate(R.layout.fragment_mypage_mycomment, container, false);
+
+        mypageCommentList = myPageComment.findViewById(R.id.mypage_comment_list);
+        mypageCommentNolist = myPageComment.findViewById(R.id.mypage_comment_nolist);
+
+        //spinner
+        Spinner spinner = myPageComment.findViewById(R.id.comment_spinner);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                state = String.valueOf(position);
+                getCommentList(state);
+
+                if(homeListItems.isEmpty()) {
+                    mypageCommentNolist.setVisibility(View.VISIBLE);
+                } else {
+                    mypageCommentNolist.setVisibility(View.GONE);
+
+                    hLayoutManager = new LinearLayoutManager(getContext());
+                    mypageCommentList.setLayoutManager(hLayoutManager);
+                    MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(40);
+                    mypageCommentList.addItemDecoration(mainRecyclerDecoration);
+                    homeListAdapter = new HomeListAdapter(homeListItems);
+                    /*homeListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(int pos) {
+                            FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            ArticleFragment articleFragment = new ArticleFragment();
+                            articleTransaction.replace(R.id.bottom_frame, articleFragment);
+                            articleTransaction.addToBackStack(null);
+                            articleTransaction.commit();
+                        }
+                    });*/
+                    homeListAdapter.setModalClickListener(new HomeListAdapter.OnModalClickListener() {
+                        @Override
+                        public void OnModlaClick(View view, int pos) {
+                            MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
+                            myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                        }
+                    });
+                    mypageCommentList.setAdapter(homeListAdapter);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        return myPageComment;
+    }
+
+    public void getCommentList(String state) {
         homeListItems.clear();
         String resultText = "[NULL]";
 
         try {
-            resultText = new GetTask("mypage/mypost/" + id + "/" + platform +"/" + state).execute().get();
+            resultText = new GetTask("mypage/mycomment/" + id + "/" + platform +"/" + state).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -102,14 +166,14 @@ public class MypageMyCommentFragment extends Fragment {
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
 
                 int postId = subJsonObject.getInt("post_id");
-                int userId = Integer.parseInt(id);
+                int userId = subJsonObject.getInt("wish_id");
                 String img = subJsonObject.getString("url");
                 String title = subJsonObject.getString("title");
                 String buyDate = subJsonObject.getString("buy_date");
                 int membersInt = subJsonObject.getInt("members");
                 String member = String.valueOf(membersInt) + "명";
                 String perPrice = subJsonObject.getString("per_price");
-                String writtenBy = subJsonObject.getString("witten_by");
+                String writtenBy = subJsonObject.getString("written_by");
                 int isAuth = subJsonObject.getInt("isAuth");
 
                 homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId));
@@ -117,65 +181,5 @@ public class MypageMyCommentFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View myPageComment = inflater.inflate(R.layout.fragment_mypage_mycomment, container, false);
-
-        mypageCommentList = myPageComment.findViewById(R.id.mypage_comment_list);
-        mypageCommentNolist = myPageComment.findViewById(R.id.mypage_comment_nolist);
-
-        if(homeListItems.isEmpty()) {
-            mypageCommentNolist.setVisibility(View.VISIBLE);
-        } else {
-            mypageCommentNolist.setVisibility(View.GONE);
-
-            hLayoutManager = new LinearLayoutManager(getContext());
-            mypageCommentList.setLayoutManager(hLayoutManager);
-            MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(40);
-            mypageCommentList.addItemDecoration(mainRecyclerDecoration);
-            homeListAdapter = new HomeListAdapter(homeListItems);
-            /*homeListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(int pos) {
-                    FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    ArticleFragment articleFragment = new ArticleFragment();
-                    articleTransaction.replace(R.id.bottom_frame, articleFragment);
-                    articleTransaction.addToBackStack(null);
-                    articleTransaction.commit();
-                }
-            });*/
-            homeListAdapter.setModalClickListener(new HomeListAdapter.OnModalClickListener() {
-                @Override
-                public void OnModlaClick(View view, int pos) {
-                    MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
-                    myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
-                }
-            });
-            mypageCommentList.setAdapter(homeListAdapter);
-        }
-
-        //spinner
-        Spinner spinner = myPageComment.findViewById(R.id.comment_spinner);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,items);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        return myPageComment;
     }
 }

@@ -44,7 +44,7 @@ public class MypageMypostingFragment extends Fragment {
     private LinearLayoutManager hLayoutManager;
 
     TextView mypagePostingNolist;
-    String state = "2";
+    String state = "0";
     String platform = "0";
     String id = "1";
 
@@ -83,6 +83,72 @@ public class MypageMypostingFragment extends Fragment {
         }
 
         homeListItems = new ArrayList<HomeListItem>();
+        //getMyPostingList(state);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View mypagePosting = inflater.inflate(R.layout.fragment_mypage_myposting, container, false);
+
+        mypagePostingList = mypagePosting.findViewById(R.id.mypage_posting_list);
+        mypagePostingNolist = mypagePosting.findViewById(R.id.mypage_posting_nolist);
+
+        //spinner
+        Spinner spinner = mypagePosting.findViewById(R.id.posting_spinner);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                state = String.valueOf(position);
+                getMyPostingList(state);
+
+                if(homeListItems.isEmpty()) {
+                    mypagePostingNolist.setVisibility(View.VISIBLE);
+                } else {
+                    mypagePostingNolist.setVisibility(View.GONE);
+
+                    hLayoutManager = new LinearLayoutManager(getContext());
+                    mypagePostingList.setLayoutManager(hLayoutManager);
+                    MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(40);
+                    mypagePostingList.addItemDecoration(mainRecyclerDecoration);
+                    homeListAdapter = new HomeListAdapter(homeListItems);
+                    /*homeListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(int pos) {
+                            FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            ArticleFragment articleFragment = new ArticleFragment();
+                            articleTransaction.replace(R.id.bottom_frame, articleFragment);
+                            articleTransaction.addToBackStack(null);
+                            articleTransaction.commit();
+                        }
+                    });*/
+                    homeListAdapter.setModalClickListener(new HomeListAdapter.OnModalClickListener() {
+                        @Override
+                        public void OnModlaClick(View view, int pos) {
+                            MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
+                            myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                        }
+                    });
+                    mypagePostingList.setAdapter(homeListAdapter);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        return mypagePosting;
+    }
+
+    public void getMyPostingList(String state){
         homeListItems.clear();
         String resultText = "[NULL]";
 
@@ -117,66 +183,5 @@ public class MypageMypostingFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View mypagePosting = inflater.inflate(R.layout.fragment_mypage_myposting, container, false);
-
-        mypagePostingList = mypagePosting.findViewById(R.id.mypage_posting_list);
-        mypagePostingNolist = mypagePosting.findViewById(R.id.mypage_posting_nolist);
-
-        if(homeListItems.isEmpty()) {
-            mypagePostingNolist.setVisibility(View.VISIBLE);
-        } else {
-            mypagePostingNolist.setVisibility(View.GONE);
-
-            hLayoutManager = new LinearLayoutManager(getContext());
-            mypagePostingList.setLayoutManager(hLayoutManager);
-            MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(40);
-            mypagePostingList.addItemDecoration(mainRecyclerDecoration);
-            homeListAdapter = new HomeListAdapter(homeListItems);
-            /*homeListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(int pos) {
-                    FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    ArticleFragment articleFragment = new ArticleFragment();
-                    articleTransaction.replace(R.id.bottom_frame, articleFragment);
-                    articleTransaction.addToBackStack(null);
-                    articleTransaction.commit();
-                }
-            });*/
-            homeListAdapter.setModalClickListener(new HomeListAdapter.OnModalClickListener() {
-                @Override
-                public void OnModlaClick(View view, int pos) {
-                    MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
-                    myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
-                }
-            });
-            mypagePostingList.setAdapter(homeListAdapter);
-        }
-
-        //spinner
-        Spinner spinner = mypagePosting.findViewById(R.id.posting_spinner);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,items);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        return mypagePosting;
     }
 }
