@@ -36,30 +36,33 @@
             android:id="@+id/money"
             android:layout_width="wrap_content"
             android:layout_height="24dp"
-            android:button="@drawable/selector_radio_nosee"
+            android:buttonTint="#036635"
             android:text="광고성 글이에요"
             android:textColor="@drawable/selector_radio_nosee_text"
             android:textSize="14sp"
+            android:fontFamily="@font/roboto_bold"
             android:paddingLeft="10dp"/>
         <RadioButton
             android:id="@+id/no_match"
             android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:layout_marginTop="26dp"
-            android:button="@drawable/selector_radio_nosee"
+            android:buttonTint="#036635"
             android:text="부적절한 내용이 담겨 있어요"
             android:textColor="@drawable/selector_radio_nosee_text"
             android:textSize="14sp"
+            android:fontFamily="@font/roboto_bold"
             android:paddingLeft="10dp"/>
         <RadioButton
             android:id="@+id/etc"
             android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:layout_marginTop="26dp"
-            android:button="@drawable/selector_radio_nosee"
+            android:buttonTint="#036635"
             android:text="기타"
             android:textColor="@drawable/selector_radio_nosee_text"
             android:textSize="14sp"
+            android:fontFamily="@font/roboto_bold"
             android:paddingLeft="10dp"/>
     </RadioGroup>
     <EditText

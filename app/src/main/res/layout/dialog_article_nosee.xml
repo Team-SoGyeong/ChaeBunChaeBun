@@ -30,6 +30,7 @@
             android:text="이미 참여한 소분이에요"
             android:textColor="@drawable/selector_radio_nosee_text"
             android:textSize="14sp"
+            android:fontFamily="@font/roboto_bold"
             android:paddingLeft="10dp"/>
         <RadioButton
             android:id="@+id/many_see"
@@ -40,6 +41,7 @@
             android:text="이 글을 너무 많이 봤어요"
             android:textColor="@drawable/selector_radio_nosee_text"
             android:textSize="14sp"
+            android:fontFamily="@font/roboto_bold"
             android:paddingLeft="10dp"/>
     </RadioGroup>
     <LinearLayout

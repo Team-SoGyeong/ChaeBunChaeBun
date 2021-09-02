@@ -1,5 +1,6 @@
 package com.example.chaebunchaebun;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -9,13 +10,27 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
+
 public class ArticleReportDialogFragment extends DialogFragment {
     public static final String TAG_EVENT_DIALOG = "dialog_event";
+
+    private TextView toastText;
+    private Toast toast;
+
+    String userId, postId = null;
+    int radioButton = 0;
 
     public ArticleReportDialogFragment() {}
     public static ArticleReportDialogFragment getInstance() {
@@ -27,19 +42,49 @@ public class ArticleReportDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View deleteDialog = inflater.inflate(R.layout.dialog_article_report, container);
+
+        View customToast = inflater.inflate(R.layout.custom_report_toast, (ViewGroup) deleteDialog.findViewById(R.id.custom_toast_layout));
+
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         ImageButton cancel = (ImageButton) deleteDialog.findViewById(R.id.btn_delete_cancel);
         ImageButton report = (ImageButton) deleteDialog.findViewById(R.id.btn_report);
-        RadioButton money = (RadioButton) deleteDialog.findViewById(R.id.money);
-        RadioButton match = (RadioButton) deleteDialog.findViewById(R.id.no_match);
-        RadioButton etc = (RadioButton) deleteDialog.findViewById(R.id.etc);
+        RadioGroup articleReport = (RadioGroup) deleteDialog.findViewById(R.id.article_report);
         EditText reason = (EditText) deleteDialog.findViewById(R.id.report_reason);
 
+        toastText = (TextView) customToast.findViewById(R.id.custom_toast_text);
+        toast = new Toast(getContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(customToast);
 
-        etc.setOnClickListener(new View.OnClickListener() {
+        Bundle mArgs = getArguments();
+        userId = mArgs.getString("userId");
+        postId = mArgs.getString("postId");
+
+        articleReport.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                reason.setVisibility(View.VISIBLE);
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                radioButton = i;
+                if(radioButton == 2131362088) {
+                    reason.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(radioButton == 2131362262){
+                    setBlind(userId, postId, 1, null);
+                } else if(radioButton == 2131362327) {
+                    setBlind(userId, postId, 2, null);
+                } else if(radioButton == 2131362088) {
+                    String reasonString = reason.getText().toString();
+                    if(reasonString.isEmpty()){
+                        Toast.makeText(getContext(),"사유를 적어주세요!",Toast.LENGTH_SHORT).show();
+                    } else {
+                        setBlind(userId, postId, 3, reasonString);
+                    }
+                }
             }
         });
 
@@ -49,15 +94,41 @@ public class ArticleReportDialogFragment extends DialogFragment {
                 dismiss();
             }
         });
-        report.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        });
+
         setCancelable(false);
 
         return deleteDialog;
     }
 
+    private void setBlind(String userId, String postId, int reasonId, String reason) {
+        PostTask postTask = new PostTask();
+        JSONObject jsonPostTransfer = new JSONObject();
+        try {
+            jsonPostTransfer.put("author_id", Integer.parseInt(userId));
+            jsonPostTransfer.put("cmt_id", null);
+            jsonPostTransfer.put("post_id", Integer.parseInt(postId));
+            jsonPostTransfer.put("reason", reason);
+            jsonPostTransfer.put("reason_num", reasonId);
+
+            System.out.println(postId);
+
+            String jsonString = jsonPostTransfer.toString();
+            String response = postTask.execute("posts/report", jsonString).get();
+
+            JSONObject jsonObject = new JSONObject(response);
+            int responseCode = jsonObject.getInt("code");
+            if(responseCode == 200){
+                toast.show();
+                dismiss();
+            } else {
+                Toast.makeText(getContext(),"잘못 된 접근입니다.",Toast.LENGTH_SHORT).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
 }
