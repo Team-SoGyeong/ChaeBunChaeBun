@@ -26,6 +26,7 @@ import android.widget.Button;
 import com.kakao.auth.ApiResponseCallback;
 import com.kakao.auth.AuthService;
 import com.kakao.auth.AuthType;
+import com.kakao.auth.ISessionCallback;
 import com.kakao.auth.Session;
 import com.kakao.auth.network.response.AccessTokenInfoResponse;
 import com.kakao.network.ErrorResult;
@@ -33,6 +34,12 @@ import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.Account;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.LogoutResponseCallback;
+import com.kakao.usermgmt.callback.MeV2ResponseCallback;
+import com.kakao.usermgmt.response.MeV2Response;
+import com.kakao.usermgmt.response.model.Profile;
+import com.kakao.usermgmt.response.model.UserAccount;
+import com.kakao.util.OptionalBoolean;
+import com.kakao.util.exception.KakaoException;
 
 import static com.kakao.util.helper.Utility.getPackageInfo;
 
@@ -43,11 +50,11 @@ public class LoginActivity extends AppCompatActivity {
     private SessionCallback sessionCallback = new SessionCallback();
     Session session;
 
+    String nickname = "";
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_start);
 
-        Log.d("GET KEYHASH", getKeyHash());
 
         loginV1 = (ImageButton) findViewById(R.id.loginV1);
         signIn = (ImageView) findViewById(R.id.sign_in);
@@ -57,13 +64,11 @@ public class LoginActivity extends AppCompatActivity {
         session = Session.getCurrentSession();
         session.addCallback(sessionCallback);
 
-        Intent intent = new Intent(getBaseContext(), NavigationActivity.class);
-
         loginV1.setOnClickListener(v -> {
             if (Session.getCurrentSession().checkAndImplicitOpen()) {
                 Log.d(TAG, "onClick: 로그인 세션살아있음");
                 // 카카오 로그인 시도 (창이 안뜬다.)
-                sessionCallback.requestMe();
+                Intent intent = new Intent(getApplicationContext(), SessionCallback.class);
                 startActivity(intent);
             } else {
                 Log.d(TAG, "onClick: 로그인 세션끝남");
@@ -108,11 +113,9 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         // 세션 콜백 삭제
         Session.getCurrentSession().removeCallback(sessionCallback);
     }

@@ -100,5 +100,8 @@
         <activity
             android:name=".MypageMypostingActivity"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".SessionCallback"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 </manifest>

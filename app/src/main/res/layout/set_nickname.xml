@@ -34,6 +34,7 @@
         android:id="@+id/set_nickname"
         android:layout_width="match_parent"
         android:layout_height="36dp"
+        android:paddingLeft="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="32dp"
