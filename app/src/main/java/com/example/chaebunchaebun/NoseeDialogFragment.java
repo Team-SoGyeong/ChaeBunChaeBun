@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -25,7 +26,7 @@ public class NoseeDialogFragment extends DialogFragment {
     public static final String TAG_EVENT_DIALOG = "dialog_nosee";
 
     String userId, postId = null;
-    int radioButton = 0;
+    RadioButton radioButton;
 
     public NoseeDialogFragment() {}
     public static NoseeDialogFragment getInstance() {
@@ -43,6 +44,8 @@ public class NoseeDialogFragment extends DialogFragment {
         Button noseeDialogOk = (Button) noseeDialog.findViewById(R.id.location_dialog_ok);
         Button noseeDialogCancel = (Button) noseeDialog.findViewById(R.id.location_dialog_cancel);
         RadioGroup noseeRadioGroup = (RadioGroup) noseeDialog.findViewById(R.id.nosee_radiogroup);
+        RadioButton partici = (RadioButton) noseeDialog.findViewById(R.id.partici);
+        RadioButton manySee = (RadioButton) noseeDialog.findViewById(R.id.many_see);
 
         Bundle mArgs = getArguments();
         userId = mArgs.getString("userId");
@@ -51,17 +54,16 @@ public class NoseeDialogFragment extends DialogFragment {
         noseeRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                radioButton = i;
-                System.out.println(radioButton);
+                radioButton = (RadioButton) noseeDialog.findViewById(i);
             }
         });
 
         noseeDialogOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(radioButton == 2131362355) {
+                if(radioButton == partici) {
                     setBlind(userId, postId, 1);
-                } else if(radioButton == 2131362236) {
+                } else if(radioButton == manySee) {
                     setBlind(userId, postId, 2);
                 }
             }

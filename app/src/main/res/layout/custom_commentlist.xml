@@ -14,7 +14,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/custom_categorylist_profileimg"
-            android:scaleType="centerCrop"
+            android:scaleType="centerInside"
             android:src="@drawable/home_green_onion"/>
         <TextView
             android:id="@+id/comment_nickname"

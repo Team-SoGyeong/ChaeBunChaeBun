@@ -88,14 +88,12 @@ public class SearchLocationActivity extends AppCompatActivity {
             locationList.setVisibility(View.GONE);
             result.setVisibility(View.GONE);
             location.setText(location_item);
-            Toast.makeText(SearchLocationActivity.this, "location item: null", Toast.LENGTH_SHORT).show();
         } else {
             locationList.setAdapter(adpater);
             location_nonlist.setVisibility(View.GONE);
             locationList.setVisibility(View.VISIBLE);
             result.setVisibility(View.VISIBLE);
             location.setText(location_item);
-            Toast.makeText(SearchLocationActivity.this, "location item: not null", Toast.LENGTH_SHORT).show();
 
             locationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -120,14 +118,12 @@ public class SearchLocationActivity extends AppCompatActivity {
                             locationList.setVisibility(View.GONE);
                             result.setVisibility(View.GONE);
                             location.setText(location_item);
-                            Toast.makeText(SearchLocationActivity.this, "location item: null", Toast.LENGTH_SHORT).show();
                         } else {
                             locationList.setAdapter(adpater);
                             location_nonlist.setVisibility(View.GONE);
                             locationList.setVisibility(View.VISIBLE);
                             result.setVisibility(View.VISIBLE);
                             location.setText(change);
-                            Toast.makeText(SearchLocationActivity.this, "location item: not null", Toast.LENGTH_SHORT).show();
 
                             locationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
@@ -141,8 +137,6 @@ public class SearchLocationActivity extends AppCompatActivity {
                         }
 
                         return true;
-                    } else {
-                        Toast.makeText(SearchLocationActivity.this, "location text: null", Toast.LENGTH_SHORT).show();
                     }
                 }
                 return false;

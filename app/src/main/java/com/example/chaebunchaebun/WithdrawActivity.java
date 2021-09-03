@@ -20,7 +20,6 @@ public class WithdrawActivity extends AppCompatActivity {
     ImageButton check_little, check_unknown, check_no_manner, check_etc;
     TextView text_little, text_unknown, text_no_manner, text_etc;
 
-
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_withdraw);
@@ -47,42 +46,68 @@ public class WithdrawActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
         little.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 check_little.setImageResource(R.drawable.checkbox_on);
-                text_little.setTextColor(Color.rgb(3,102,53));
-                Intent intent = new Intent(getApplicationContext(), LittleActivity.class);
-                startActivity(intent);
+                text_little.setTextColor(Color.parseColor("#036635"));
+                check_unknown.setImageResource(R.drawable.checkbox_off);
+                text_unknown.setTextColor(Color.parseColor("#999999"));
+                check_no_manner.setImageResource(R.drawable.checkbox_off);
+                text_no_manner.setTextColor(Color.parseColor("#999999"));
+                check_etc.setImageResource(R.drawable.checkbox_off);
+                text_etc.setTextColor(Color.parseColor("#999999"));
+                Intent intentLittle = new Intent(getApplicationContext(), LittleActivity.class);
+                startActivity(intentLittle);
             }
         });
         unknown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                check_little.setImageResource(R.drawable.checkbox_off);
+                text_little.setTextColor(Color.parseColor("#999999"));
                 check_unknown.setImageResource(R.drawable.checkbox_on);
-                text_unknown.setTextColor(Color.rgb(3,102,53));
-                Intent intent = new Intent(getApplicationContext(), UnknownActivity.class);
-                startActivity(intent);
+                text_unknown.setTextColor(Color.parseColor("#036635"));
+                check_no_manner.setImageResource(R.drawable.checkbox_off);
+                text_no_manner.setTextColor(Color.parseColor("#999999"));
+                check_etc.setImageResource(R.drawable.checkbox_off);
+                text_etc.setTextColor(Color.parseColor("#999999"));
+                Intent intentUnknown = new Intent(getApplicationContext(), UnknownActivity.class);
+                startActivity(intentUnknown);
             }
         });
         manner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                check_little.setImageResource(R.drawable.checkbox_off);
+                text_little.setTextColor(Color.parseColor("#999999"));
+                check_unknown.setImageResource(R.drawable.checkbox_off);
+                text_unknown.setTextColor(Color.parseColor("#999999"));
                 check_no_manner.setImageResource(R.drawable.checkbox_on);
-                text_no_manner.setTextColor(Color.rgb(3,102,53));
-                Intent intent = new Intent(getApplicationContext(), NoMannerActivity.class);
-                startActivity(intent);
+                text_no_manner.setTextColor(Color.parseColor("#036635"));
+                check_etc.setImageResource(R.drawable.checkbox_off);
+                text_etc.setTextColor(Color.parseColor("#999999"));
+                Intent intentNoManner= new Intent(getApplicationContext(), NoMannerActivity.class);
+                startActivity(intentNoManner);
             }
         });
         etc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                check_little.setImageResource(R.drawable.checkbox_off);
+                text_little.setTextColor(Color.parseColor("#999999"));
+                check_unknown.setImageResource(R.drawable.checkbox_off);
+                text_unknown.setTextColor(Color.parseColor("#999999"));
+                check_no_manner.setImageResource(R.drawable.checkbox_off);
+                text_no_manner.setTextColor(Color.parseColor("#999999"));
                 check_etc.setImageResource(R.drawable.checkbox_on);
-                text_etc.setTextColor(Color.rgb(3,102,53));
+                text_etc.setTextColor(Color.parseColor("#036635"));
                 Intent intent = new Intent(getApplicationContext(), EtcActivity.class);
                 startActivity(intent);
             }
         });
+
         withdraw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

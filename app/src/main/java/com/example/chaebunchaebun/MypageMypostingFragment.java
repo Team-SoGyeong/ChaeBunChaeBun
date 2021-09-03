@@ -102,6 +102,9 @@ public class MypageMypostingFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+        MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(40);
+        mypagePostingList.addItemDecoration(mainRecyclerDecoration);
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -115,8 +118,6 @@ public class MypageMypostingFragment extends Fragment {
 
                     hLayoutManager = new LinearLayoutManager(getContext());
                     mypagePostingList.setLayoutManager(hLayoutManager);
-                    MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(40);
-                    mypagePostingList.addItemDecoration(mainRecyclerDecoration);
                     homeListAdapter = new HomeListAdapter(homeListItems);
                     /*homeListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
                         @Override
