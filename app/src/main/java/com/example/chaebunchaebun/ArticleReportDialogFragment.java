@@ -30,7 +30,7 @@ public class ArticleReportDialogFragment extends DialogFragment {
     private Toast toast;
 
     String userId, postId = null;
-    int radioButton = 0;
+    RadioButton radioButton;
 
     public ArticleReportDialogFragment() {}
     public static ArticleReportDialogFragment getInstance() {
@@ -49,6 +49,9 @@ public class ArticleReportDialogFragment extends DialogFragment {
         ImageButton cancel = (ImageButton) deleteDialog.findViewById(R.id.btn_delete_cancel);
         ImageButton report = (ImageButton) deleteDialog.findViewById(R.id.btn_report);
         RadioGroup articleReport = (RadioGroup) deleteDialog.findViewById(R.id.article_report);
+        RadioButton money = (RadioButton) deleteDialog.findViewById(R.id.money);
+        RadioButton noMatch = (RadioButton) deleteDialog.findViewById(R.id.no_match);
+        RadioButton etc = (RadioButton) deleteDialog.findViewById(R.id.etc);
         EditText reason = (EditText) deleteDialog.findViewById(R.id.report_reason);
 
         toastText = (TextView) customToast.findViewById(R.id.custom_toast_text);
@@ -63,8 +66,9 @@ public class ArticleReportDialogFragment extends DialogFragment {
         articleReport.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                radioButton = i;
-                if(radioButton == 2131362088) {
+                radioButton = (RadioButton) deleteDialog.findViewById(i);
+                System.out.println(radioButton);
+                if(radioButton == etc) {
                     reason.setVisibility(View.VISIBLE);
                 }
             }
@@ -73,14 +77,15 @@ public class ArticleReportDialogFragment extends DialogFragment {
         report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(radioButton == 2131362262){
+                if(radioButton == money){
                     setBlind(userId, postId, 1, null);
-                } else if(radioButton == 2131362327) {
+                } else if(radioButton == noMatch) {
                     setBlind(userId, postId, 2, null);
-                } else if(radioButton == 2131362088) {
+                } else if(radioButton == etc) {
                     String reasonString = reason.getText().toString();
                     if(reasonString.isEmpty()){
-                        Toast.makeText(getContext(),"사유를 적어주세요!",Toast.LENGTH_SHORT).show();
+                        toastText.setText("사유를 적어주세요!");
+                        toast.show();
                     } else {
                         setBlind(userId, postId, 3, reasonString);
                     }
@@ -118,6 +123,7 @@ public class ArticleReportDialogFragment extends DialogFragment {
             JSONObject jsonObject = new JSONObject(response);
             int responseCode = jsonObject.getInt("code");
             if(responseCode == 200){
+                toastText.setText("신고가 접수되었어요!");
                 toast.show();
                 dismiss();
             } else {

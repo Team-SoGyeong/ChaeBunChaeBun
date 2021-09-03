@@ -15,7 +15,6 @@ public class GetTask extends AsyncTask<String, Void, String> {
 
     public GetTask(String urlString) {
         this.urlString = urlString;
-
     }
 
     @Override
