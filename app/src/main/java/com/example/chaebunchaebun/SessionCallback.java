@@ -1,6 +1,15 @@
 package com.example.chaebunchaebun;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.kakao.auth.ISessionCallback;
 import com.kakao.network.ErrorResult;
@@ -12,12 +21,22 @@ import com.kakao.usermgmt.response.model.UserAccount;
 import com.kakao.util.OptionalBoolean;
 import com.kakao.util.exception.KakaoException;
 
-public class SessionCallback  implements ISessionCallback {
+public class SessionCallback extends AppCompatActivity implements ISessionCallback {
+    String kakao_email = "";
+    String profile_img = "";
+    String user_id = "";
+    String nickname = "";
+
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        requestMe();
+    }
 
     // 로그인에 성공한 상태
     @Override
     public void onSessionOpened() {
-        requestMe();
+//        requestMe();
     }
 
     // 로그인에 실패한 상태
@@ -27,7 +46,7 @@ public class SessionCallback  implements ISessionCallback {
     }
 
     // 사용자 정보 요청
-    public void requestMe() {
+    public synchronized void requestMe() {
         UserManagement.getInstance()
                 .me(new MeV2ResponseCallback() {
                     @Override
@@ -43,18 +62,22 @@ public class SessionCallback  implements ISessionCallback {
                     @Override
                     public void onSuccess(MeV2Response result) {
                         Log.i("KAKAO_API", "사용자 아이디: " + result.getId());
-                        String id = String.valueOf(result.getId());
+                        user_id = String.valueOf(result.getId());
                         UserAccount kakaoAccount = result.getKakaoAccount();
                         if (kakaoAccount != null) {
-
                             // 이메일
                             String email = kakaoAccount.getEmail();
+                            kakao_email = email;
                             Profile profile = kakaoAccount.getProfile();
                             if (profile ==null){
                                 Log.d("KAKAO_API", "onSuccess:profile null ");
                             }else{
                                 Log.d("KAKAO_API", "onSuccess:getProfileImageUrl "+profile.getProfileImageUrl());
                                 Log.d("KAKAO_API", "onSuccess:getNickname "+profile.getNickname());
+                                profile_img = profile.getProfileImageUrl();
+                                nickname = profile.getNickname();
+
+                                setData(user_id, kakao_email, profile_img, nickname);
                             }
                             if (email != null) {
 
@@ -76,11 +99,19 @@ public class SessionCallback  implements ISessionCallback {
                             } else {
                                 // 프로필 획득 불가
                             }
+
                         }else{
                             Log.i("KAKAO_API", "onSuccess: kakaoAccount null");
                         }
                     }
                 });
-
+    }
+    public void setData(String user_id, String kakao_email, String profile_img, String nickname) {
+        Intent intent = new Intent(getApplicationContext(), SetNicknameActivity.class);
+        intent.putExtra("user_id", user_id);
+        intent.putExtra("kakao_email", kakao_email);
+        intent.putExtra("profile_img", profile_img);
+        intent.putExtra("nickname", nickname);
+        startActivity(intent);
     }
 }
