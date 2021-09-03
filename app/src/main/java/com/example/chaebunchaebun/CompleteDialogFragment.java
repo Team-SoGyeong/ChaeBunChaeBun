@@ -1,5 +1,6 @@
 package com.example.chaebunchaebun;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -14,8 +15,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import java.util.concurrent.ExecutionException;
+
 public class CompleteDialogFragment extends DialogFragment {
     public static final String TAG_EVENT_DIALOG = "dialog_event";
+    String userId, postId = null;
 
     public CompleteDialogFragment() {}
     public static CompleteDialogFragment getInstance() {
@@ -32,6 +36,22 @@ public class CompleteDialogFragment extends DialogFragment {
         ImageButton btnComplete = (ImageButton) articleCompleteDialog.findViewById(R.id.article_dialog_complete);
         ImageButton btnCancel = (ImageButton) articleCompleteDialog.findViewById(R.id.article_dialog_cancel);
         setCancelable(false);
+
+        Bundle mArgs = getArguments();
+        userId = mArgs.getString("userId");
+        postId = mArgs.getString("postId");
+
+        btnComplete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PutTask putTask = new PutTask();
+                putTask.execute("common/processed/" + postId + "/" + userId, postId, userId);
+                Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(0, 0);
+            }
+        });
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -47,6 +48,9 @@ public class ArticleFragment extends Fragment {
     private ArticleRecyclerAdapter articleRecyclerAdapter;
     private LinearLayoutManager aLayoutManager;
 
+    private TextView toastText;
+    private Toast toast;
+
     private RecyclerView cRecyclerView;
     private ArrayList<CommentRecyclerItem> commentRecyclerItems;
     private CommentRecyclerAdapter commentRecyclerAdapter;
@@ -59,12 +63,13 @@ public class ArticleFragment extends Fragment {
     EditText articleComment;
     ImageButton articleCommentbtn;
     LinearLayout articleReciptHelp;
+
     int recyclerPosition = -1;
     String postId = "";
     String userId = "1";
     String categoryNameString, title, nickname, content, buyDate, members,
             perPrice, writtenBy, profile, amount, totalPrice, contact;
-    int isAuth, wishcount, userIdnum;
+    int isAuth, wishcount, userIdnum, status = 0;
 
     public ArticleFragment() {
         // Required empty public constructor
@@ -107,6 +112,8 @@ public class ArticleFragment extends Fragment {
         // Inflate the layout for this fragment
         articleView = inflater.inflate(R.layout.fragment_article, container, false);
 
+        View customToast = inflater.inflate(R.layout.custom_report_toast, (ViewGroup) articleView.findViewById(R.id.custom_toast_layout));
+
         categoryName = (TextView) articleView.findViewById(R.id.article_category_name);
         articleWishcnt = (TextView) articleView.findViewById(R.id.article_wishcount);
         articleTitle = (TextView) articleView.findViewById(R.id.article_title);
@@ -132,6 +139,11 @@ public class ArticleFragment extends Fragment {
         articleReciptHelp.setVisibility(View.GONE);
         articleModalbtn = (ImageView) articleView.findViewById(R.id.article_modalbtn);
 
+        toastText = (TextView) customToast.findViewById(R.id.custom_toast_text);
+        toast = new Toast(getContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(customToast);
+
         aLayoutManager = new LinearLayoutManager(getContext());
         aLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         aRecyclerView.setLayoutManager(aLayoutManager);
@@ -153,6 +165,11 @@ public class ArticleFragment extends Fragment {
         } else {
             articleRecipt.setVisibility(View.VISIBLE);
         }
+        if(status == 0) {
+            articleComplete.setImageResource(R.drawable.group_778);
+        } else {
+            articleComplete.setImageResource(R.drawable.group_778_green);
+        }
         articleWishcnt.setText(String.valueOf(this.wishcount));
         Glide.with(getContext()).load(this.profile).into(articleProfile);
 
@@ -163,7 +180,11 @@ public class ArticleFragment extends Fragment {
                     MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
                     myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
                 } else {
+                    Bundle args = new Bundle();
+                    args.putString("userId", userId);
+                    args.putString("postId", postId);
                     BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
+                    bottomSheetDialog.setArguments(args);
                     bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
                 }
             }
@@ -177,8 +198,14 @@ public class ArticleFragment extends Fragment {
             @Override
             public void OnModlaClick(View view, int pos) {
                 String id = String.valueOf(commentRecyclerAdapter.getItem(pos).getUserId());
+                String commentId = String.valueOf(commentRecyclerAdapter.getItem(pos).getCommentId());
                 if (id.equals(userId)) {
+                    Bundle args = new Bundle();
+                    args.putString("userId", userId);
+                    args.putString("commentId", commentId);
+                    args.putString("postId", postId);
                     MyCommentBottomSheetDialog myCommentBottomSheetDialog = MyCommentBottomSheetDialog.getInstance();
+                    myCommentBottomSheetDialog.setArguments(args);
                     myCommentBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
                 } else {
                     CommentBottomSheetDialog commentBottomSheetDialog = CommentBottomSheetDialog.getInstance();
@@ -214,8 +241,22 @@ public class ArticleFragment extends Fragment {
         articleComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CompleteDialogFragment e = CompleteDialogFragment.getInstance();
-                e.show(getChildFragmentManager(), CompleteDialogFragment.TAG_EVENT_DIALOG);
+                if(status == 1) {
+                    toastText.setText("이미 완료된 글이에요!");
+                    toast.show();
+                } else {
+                    if(String.valueOf(userIdnum).equals(userId)){
+                        Bundle args = new Bundle();
+                        args.putString("userId", userId);
+                        args.putString("postId", postId);
+                        CompleteDialogFragment completeDialogFragment = CompleteDialogFragment.getInstance();
+                        completeDialogFragment.setArguments(args);
+                        completeDialogFragment.show(getChildFragmentManager(), CompleteDialogFragment.TAG_EVENT_DIALOG);
+                    } else {
+                        toastText.setText("본인 글만 완료할 수 있어요!");
+                        toast.show();
+                    }
+                }
             }
         });
 
@@ -266,14 +307,14 @@ public class ArticleFragment extends Fragment {
                 for(int j = 0; j < jsonLastListArray.length(); j++){
                     JSONObject subJsonObject2 = jsonLastListArray.getJSONObject(j);
 
-                    //String profile = subJsonObject2.getString("profile");
+                    String profile = subJsonObject2.getString("profile");
                     String commentNickname = subJsonObject2.getString("nickname");
                     String comments = subJsonObject2.getString("comments");
                     String commentWrittenBy = subJsonObject2.getString("witten_by");
                     int commentUserId = subJsonObject2.getInt("user_id");
-                    //this.profile = subJsonObject2.getString("profile");
+                    int commentId = subJsonObject2.getInt("comment_id");
 
-                    commentRecyclerItems.add(new CommentRecyclerItem(commentNickname, comments, commentWrittenBy, commentUserId));
+                    commentRecyclerItems.add(new CommentRecyclerItem(profile, commentNickname, comments, commentWrittenBy, commentUserId, commentId));
                 }
             }
         } catch (JSONException e) {
@@ -323,6 +364,7 @@ public class ArticleFragment extends Fragment {
                     this.wishcount = subJsonObject2.getInt("wish_cnts");
                     this.profile = subJsonObject2.getString("profile");
                     this.contact = subJsonObject2.getString("contact");
+                    this.status = subJsonObject2.getInt("status");
 
                     String img1 = null;
                     String img2 = null;

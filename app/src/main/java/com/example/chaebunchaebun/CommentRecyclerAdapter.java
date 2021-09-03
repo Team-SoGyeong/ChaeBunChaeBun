@@ -5,11 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -28,6 +31,7 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecycler
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView commentProfileImg;
         TextView commentNickname;
         TextView commentContent;
         TextView commentTime;
@@ -35,6 +39,7 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecycler
         public ViewHolder(View commentView) {
             super(commentView);
 
+            commentProfileImg = (ImageView) commentView.findViewById(R.id.comment_profileimg);
             commentNickname = (TextView) commentView.findViewById(R.id.comment_nickname);
             commentContent = (TextView) commentView.findViewById(R.id.comment_content);
             commentTime = (TextView) commentView.findViewById(R.id.comment_time);
@@ -73,6 +78,7 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecycler
     public void onBindViewHolder(CommentRecyclerAdapter.ViewHolder holder, int position) {
         CommentRecyclerItem commentRecyclerItem = commentRecyclerItems.get(position);
 
+        Glide.with(holder.itemView.getContext()).load(commentRecyclerItem.getProfile()).into(holder.commentProfileImg);
         holder.commentNickname.setText(commentRecyclerItem.getNickname());
         holder.commentContent.setText(commentRecyclerItem.getComment());
         holder.commentTime.setText(commentRecyclerItem.getTime());
