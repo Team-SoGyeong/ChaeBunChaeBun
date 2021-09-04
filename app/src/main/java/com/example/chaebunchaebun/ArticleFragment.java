@@ -177,7 +177,11 @@ public class ArticleFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (String.valueOf(userIdnum).equals(userId)) {
+                    Bundle args = new Bundle();
+                    args.putString("userId", userId);
+                    args.putString("postId", postId);
                     MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
+                    myBottomSheetDialog.setArguments(args);
                     myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
                 } else {
                     Bundle args = new Bundle();
@@ -208,7 +212,12 @@ public class ArticleFragment extends Fragment {
                     myCommentBottomSheetDialog.setArguments(args);
                     myCommentBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
                 } else {
+                    Bundle reportArgs = new Bundle();
+                    reportArgs.putString("userId", userId);
+                    reportArgs.putString("commentId", commentId);
+                    reportArgs.putString("postId", postId);
                     CommentBottomSheetDialog commentBottomSheetDialog = CommentBottomSheetDialog.getInstance();
+                    commentBottomSheetDialog.setArguments(reportArgs);
                     commentBottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
                 }
             }

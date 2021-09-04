@@ -124,10 +124,12 @@ public class MainSoonFragment extends Fragment {
         mainSoonText = (TextView) mainSoonView.findViewById(R.id.main_soon_text);
         mainSoonList = (RecyclerView) mainSoonView.findViewById(R.id.main_soon_list);
 
-        if(homeListItems.size() < 1){
+        if(homeListItems.isEmpty()){
             mainSoonText.setVisibility(View.VISIBLE);
+            mainSoonList.setVisibility(View.GONE);
         } else {
             mainSoonText.setVisibility(View.GONE);
+            mainSoonList.setVisibility(View.VISIBLE);
 
             mLayoutManager = new LinearLayoutManager(getContext());
             MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(40);
@@ -164,7 +166,11 @@ public class MainSoonFragment extends Fragment {
                     String id = String.valueOf(homeListAdapter.getItem(pos).getUserId());
                     String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
                     if (id.equals(userId)) {
+                        Bundle args = new Bundle();
+                        args.putString("userId", userId);
+                        args.putString("postId", postId);
                         MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
+                        myBottomSheetDialog.setArguments(args);
                         myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
                     } else {
                         Bundle args = new Bundle();

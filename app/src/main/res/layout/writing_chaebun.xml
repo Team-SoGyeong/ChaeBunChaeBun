@@ -16,10 +16,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:id="@+id/writing_main_img"
                 android:layout_width="match_parent"
                 android:layout_height="222dp"
                 android:background="#ebebeb"/>
             <ImageView
+                android:id="@+id/writing_main_img_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -35,25 +37,29 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
                 <ImageView
+                    android:id="@+id/writing_sub_img1"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:background="#dad9d9"/>
                 <ImageButton
+                    android:id="@+id/writing_sub_img1_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
-                    android:background="@drawable/add_picture"/>
+                    android:background="@drawable/sub_picture"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
                 <ImageView
+                    android:id="@+id/writing_sub_img2"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:background="#c6c5c5"/>
                 <ImageButton
+                    android:id="@+id/writing_sub_img2_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -66,10 +72,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
                 <ImageView
+                    android:id="@+id/writing_sub_img3"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:background="#a9a9a9"/>
                 <ImageButton
+                    android:id="@+id/writing_sub_img3_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -82,10 +90,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
                 <ImageView
+                    android:id="@+id/writing_sub_img4"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:background="#848484"/>
                 <ImageButton
+                    android:id="@+id/writing_sub_img4_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"

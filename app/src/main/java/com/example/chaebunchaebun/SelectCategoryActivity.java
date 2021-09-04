@@ -10,11 +10,15 @@ public class SelectCategoryActivity extends AppCompatActivity{
     boolean flag = false;
     int cateoryid = 0;
     ImageButton btn_onion, btn_garlic, btn_greenonion, btn_carrot, btn_mushroom, btn_greenvege, btn_cabbage, btn_radish, btn_potato, btn_sweetpotato, btn_etc, btn_next;
+    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView((R.layout.writing_category));
+
+        Intent intent = getIntent();
+        userId = intent.getStringExtra("userId");
 
         btn_onion = (ImageButton) findViewById(R.id.btn_onion);
         btn_garlic = (ImageButton) findViewById(R.id.btn_garlic);
@@ -209,11 +213,13 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 if(flag == true){
                     intent = new Intent(getApplicationContext(), WritingEtcChaebunActivity.class);
                     intent.putExtra("categoryId", cateoryid);
+                    intent.putExtra("userId", userId);
                     startActivity(intent);
                 }
                 else{
                     intent = new Intent(getApplicationContext(), WritingChaebunActivity.class);
                     intent.putExtra("categoryId", cateoryid);
+                    intent.putExtra("userId", userId);
                     startActivity(intent);
                 }
             }

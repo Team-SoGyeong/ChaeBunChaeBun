@@ -16,6 +16,8 @@ import androidx.fragment.app.DialogFragment;
 public class ArticleDeleteDialogFragment extends DialogFragment {
     public static final String TAG_EVENT_DIALOG = "dialog_event";
 
+    String userId, postId = null;
+
     public ArticleDeleteDialogFragment() {}
     public static ArticleDeleteDialogFragment getInstance() {
         ArticleDeleteDialogFragment e = new ArticleDeleteDialogFragment();
@@ -30,6 +32,10 @@ public class ArticleDeleteDialogFragment extends DialogFragment {
         ImageButton cancel = (ImageButton) deleteDialog.findViewById(R.id.btn_delete_cancel);
         ImageButton ok = (ImageButton) deleteDialog.findViewById(R.id.btn_delete_ok);
 
+        Bundle mArgs = getArguments();
+        userId = mArgs.getString("userId");
+        postId = mArgs.getString("postId");
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,7 +45,12 @@ public class ArticleDeleteDialogFragment extends DialogFragment {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dismiss();
+                DeleteTask deleteTask = new DeleteTask();
+                deleteTask.execute("posts/" + postId + "/" + userId, postId, userId);
+                Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(0, 0);
             }
         });
         setCancelable(false);

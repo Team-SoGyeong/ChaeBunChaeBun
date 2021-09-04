@@ -19,12 +19,18 @@ public class MyBottomSheetDialog extends BottomSheetDialogFragment implements Vi
     private ImageButton modify;
     private ImageButton delete;
 
+    String userId, postId = null;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.custom_my_modalbtn, container, false);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         modify = (ImageButton) view.findViewById(R.id.list_modal_modify);
         delete = (ImageButton) view.findViewById(R.id.list_modal_delete);
+
+        Bundle mArgs = getArguments();
+        userId = mArgs.getString("userId");
+        postId = mArgs.getString("postId");
 
         modify.setOnClickListener(this);
         delete.setOnClickListener(this);
@@ -39,11 +45,13 @@ public class MyBottomSheetDialog extends BottomSheetDialogFragment implements Vi
                 Toast.makeText(getContext(),"수정",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.list_modal_delete:
-                Toast.makeText(getContext(),"삭제",Toast.LENGTH_SHORT).show();
-//                ArticleDeleteDialogFragment e = ArticleDeleteDialogFragment.getInstance();
-//                e.show(getChildFragmentManager(), ArticleDeleteDialogFragment.TAG_EVENT_DIALOG);
+                Bundle args = new Bundle();
+                args.putString("userId", userId);
+                args.putString("postId", postId);
+                ArticleDeleteDialogFragment e = ArticleDeleteDialogFragment.getInstance();
+                e.setArguments(args);
+                e.show(getChildFragmentManager(), ArticleDeleteDialogFragment.TAG_EVENT_DIALOG);
                 break;
         }
-        dismiss();
     }
 }

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -77,6 +78,108 @@ public class CategoryCarrotFragment extends Fragment {
         }
 
         categoryListItems = new ArrayList<CategoryListItem>();
+        getCategory();
+    }
+
+    ImageButton writing;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View categoryCarrot = inflater.inflate(R.layout.fragment_category_carrot, container, false);
+
+        categoryCarrotList = categoryCarrot.findViewById(R.id.carrot_list);
+        categoryNoList = categoryCarrot.findViewById(R.id.carrot_nolist);
+
+        if(categoryListItems.isEmpty()) {
+            categoryNoList.setVisibility(View.VISIBLE);
+        } else {
+            categoryNoList.setVisibility(View.GONE);
+            cLayoutManager = new LinearLayoutManager(getContext());
+            categoryCarrotList.setLayoutManager(cLayoutManager);
+            categoryListAdapter = new CategoryListAdapter(categoryListItems);
+            categoryCarrotList.setAdapter(categoryListAdapter);
+
+            categoryListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int pos) {
+                    String postId = String.valueOf(categoryListAdapter.getItem(pos).getPostId());
+                    Bundle articleBundle = new Bundle();
+                    articleBundle.putString("postId", postId);
+                    FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    ArticleFragment articleFragment = new ArticleFragment();
+                    articleFragment.setArguments(articleBundle);
+                    articleTransaction.replace(R.id.bottom_frame, articleFragment);
+                    articleTransaction.addToBackStack(null);
+                    articleTransaction.commit();
+                }
+            });
+
+            categoryListAdapter.setModalClickListener(new CategoryListAdapter.OnModalClickListener() {
+                @Override
+                public void OnModlaClick(View view, int pos) {
+                    String userId = String.valueOf(categoryListAdapter.getItem(pos).getUserId());
+                    String postId = String.valueOf(categoryListAdapter.getItem(pos).getPostId());
+                    if (userId.equals(id)) {
+                        Bundle args = new Bundle();
+                        args.putString("userId", id);
+                        args.putString("postId", postId);
+                        MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
+                        myBottomSheetDialog.setArguments(args);
+                        myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                    } else {
+                        Bundle args = new Bundle();
+                        args.putString("userId", id);
+                        args.putString("postId", postId);
+                        BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
+                        bottomSheetDialog.setArguments(args);
+                        bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                    }
+                }
+            });
+
+            categoryListAdapter.setLikeClickListener(new CategoryListAdapter.OnLikeClickListener() {
+                @Override
+                public void OnLikeClick(View view, int pos) {
+                    int postId = categoryListAdapter.getItem(pos).getPostId();
+                    int userId = categoryListAdapter.getItem(pos).getUserId();
+                    int isWish = categoryListAdapter.getItem(pos).getIsWish();
+                    PostTask myWishTask = new PostTask();
+                    try {
+                        String response = myWishTask.execute("common/wishlist/" + postId + " /" + id, String.valueOf(postId), id).get();
+                        JSONObject jsonObject = new JSONObject(response);
+                        int responseCode = jsonObject.getInt("code");
+                        if(responseCode == 200){
+                            if(isWish == 0) {
+                                categoryListAdapter.getItem(pos).setIsWish(1);
+                            } else {
+                                categoryListAdapter.getItem(pos).setIsWish(0);
+                            }
+                        }
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+
+        writing = (ImageButton) categoryCarrot.findViewById(R.id.carrot_newbtn);
+        writing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WarningDialogFragment warningDialogFragment = WarningDialogFragment.getInstance();
+                warningDialogFragment.show(getChildFragmentManager(), "WarningBox");
+            }
+        });
+        // Inflate the layout for this fragment
+        return categoryCarrot;
+    }
+
+    private void getCategory() {
         categoryListItems.clear();
 
         String resultText = "[NULL]";
@@ -130,79 +233,16 @@ public class CategoryCarrotFragment extends Fragment {
                     int commentInt = subJsonObject2.getInt("comment_cnts");
                     String comment = String.valueOf(commentInt);
                     int isAuth = subJsonObject2.getInt("isAuth");
+                    int isWish = subJsonObject2.getInt("isMyWish");
+                    boolean isSame = id.equals(userId);
 
                     categoryListItems.add(new CategoryListItem(profile, title, nickname, writtenBy, content,
-                            img1, img2, img3, img4, img5, buyDate, member, perPrice, myWish, comment, isAuth, postId, userId));
+                            img1, img2, img3, img4, img5, buyDate, member, perPrice, myWish, comment, isAuth,
+                            isWish, postId, userId, isSame));
                 }
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    ImageButton writing;
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View categoryCarrot = inflater.inflate(R.layout.fragment_category_carrot, container, false);
-
-        categoryCarrotList = categoryCarrot.findViewById(R.id.carrot_list);
-        categoryNoList = categoryCarrot.findViewById(R.id.carrot_nolist);
-
-        if(categoryListItems.isEmpty()) {
-            categoryNoList.setVisibility(View.VISIBLE);
-        } else {
-            categoryNoList.setVisibility(View.GONE);
-            cLayoutManager = new LinearLayoutManager(getContext());
-            categoryCarrotList.setLayoutManager(cLayoutManager);
-            categoryListAdapter = new CategoryListAdapter(categoryListItems);
-            categoryCarrotList.setAdapter(categoryListAdapter);
-
-            categoryListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(View view, int pos) {
-                    String postId = String.valueOf(categoryListAdapter.getItem(pos).getPostId());
-                    Bundle articleBundle = new Bundle();
-                    articleBundle.putString("postId", postId);
-                    FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    ArticleFragment articleFragment = new ArticleFragment();
-                    articleFragment.setArguments(articleBundle);
-                    articleTransaction.replace(R.id.bottom_frame, articleFragment);
-                    articleTransaction.addToBackStack(null);
-                    articleTransaction.commit();
-                }
-            });
-
-            categoryListAdapter.setModalClickListener(new CategoryListAdapter.OnModalClickListener() {
-                @Override
-                public void OnModlaClick(View view, int pos) {
-                    String userId = String.valueOf(categoryListAdapter.getItem(pos).getUserId());
-                    String postId = String.valueOf(categoryListAdapter.getItem(pos).getPostId());
-                    if (userId.equals(id)) {
-                        MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
-                        myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
-                    } else {
-                        Bundle args = new Bundle();
-                        args.putString("userId", id);
-                        args.putString("postId", postId);
-                        BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
-                        bottomSheetDialog.setArguments(args);
-                        bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
-                    }
-                }
-            });
-        }
-
-        writing = (ImageButton) categoryCarrot.findViewById(R.id.carrot_newbtn);
-        writing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                WarningDialogFragment warningDialogFragment = WarningDialogFragment.getInstance();
-                warningDialogFragment.show(getChildFragmentManager(), "WarningBox");
-            }
-        });
-        // Inflate the layout for this fragment
-        return categoryCarrot;
     }
 }

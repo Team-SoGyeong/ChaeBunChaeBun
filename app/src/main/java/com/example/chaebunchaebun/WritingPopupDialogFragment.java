@@ -53,11 +53,11 @@ public class WritingPopupDialogFragment extends DialogFragment {
 
         String bill1 = null;
         String bill2 = null;
-        String img1 = null;
-        String img2 = null;
-        String img3 = null;
-        String img4 = null;
-        String img5 = null;
+        String img1 = args.getString("img1");
+        String img2 = args.getString("img2");
+        String img3 = args.getString("img3");
+        String img4 = args.getString("img4");
+        String img5 = args.getString("img5");
 
         EditText check_date = (EditText) checkDialog.findViewById(R.id.check_date);
         EditText check_member = (EditText) checkDialog.findViewById(R.id.check_member);

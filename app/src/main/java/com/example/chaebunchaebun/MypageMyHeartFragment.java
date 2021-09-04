@@ -98,8 +98,10 @@ public class MypageMyHeartFragment extends Fragment {
 
                 if(homeListItems.isEmpty()) {
                     mypageHeartNolist.setVisibility(View.VISIBLE);
+                    mypageHeartList.setVisibility(View.GONE);
                 } else {
                     mypageHeartNolist.setVisibility(View.GONE);
+                    mypageHeartList.setVisibility(View.VISIBLE);
 
                     hLayoutManager = new LinearLayoutManager(getContext());
                     mypageHeartList.setLayoutManager(hLayoutManager);

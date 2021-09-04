@@ -169,7 +169,10 @@ public class HomeFragment extends Fragment {
       writing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle args = new Bundle();
+                args.putString("userId", userId);
                 WarningDialogFragment e = WarningDialogFragment.getInstance();
+                e.setArguments(args);
                 e.show(getChildFragmentManager(), WarningDialogFragment.TAG_EVENT_DIALOG);
             }
         });

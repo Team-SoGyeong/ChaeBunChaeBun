@@ -319,7 +319,9 @@
                         android:text="연락방법"
                         android:textColor="@color/black"
                         android:textSize="12sp"
-                        android:fontFamily="@font/roboto_regular"/>
+                        android:fontFamily="@font/roboto_regular"
+                        android:linksClickable="true"
+                        android:autoLink="web"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
