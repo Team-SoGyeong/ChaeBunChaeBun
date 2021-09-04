@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +22,11 @@ import java.util.ArrayList;
 public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapter.ViewHolder> {
     private ArrayList<CategoryListItem> categoryListItems = null;
     private OnItemClickListener mListener = null;
-    private  OnModalClickListener modalClickListener = null;
+    private OnModalClickListener modalClickListener = null;
+    private OnLikeClickListener likeClickListener = null;
+
+    private TextView toastText;
+    private Toast toast;
 
     public interface OnItemClickListener {
         void onItemClick(View view, int pos);
@@ -31,12 +36,20 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         void OnModlaClick(View view, int pos);
     }
 
+    public interface OnLikeClickListener {
+        void OnLikeClick(View view, int pos);
+    }
+
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.mListener = listener ;
     }
 
     public void setModalClickListener(OnModalClickListener modalClickListener) {
         this.modalClickListener = modalClickListener;
+    }
+
+    public void setLikeClickListener(OnLikeClickListener likeClickListener) {
+        this.likeClickListener = likeClickListener;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -58,6 +71,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         TextView categoryListCommentCount;
         ImageButton categoryListModalBtn;
         ImageView categoryListReceipt;
+        ImageView categoryListLikeBtn;
         public ViewHolder(@NonNull @NotNull View categoryView) {
             super(categoryView);
             categoryListProfile = (ImageView) categoryView.findViewById(R.id.categorylist_profile_img);
@@ -77,6 +91,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
             categoryListCommentCount = (TextView) categoryView.findViewById(R.id.categorylist_commentcount);
             categoryListModalBtn = (ImageButton) categoryView.findViewById(R.id.category_list_modalbtn);
             categoryListReceipt = (ImageView) categoryView.findViewById(R.id.categorylist_recipeicon);
+            categoryListLikeBtn = (ImageView) categoryView.findViewById(R.id.categorylist_likebtn);
 
             categoryView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -101,6 +116,34 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
                     }
                 }
             });
+
+            categoryListLikeBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = getAdapterPosition();
+                    if(pos != RecyclerView.NO_POSITION){
+                        CategoryListItem data = getItem(pos);
+                        if(likeClickListener != null) {
+                            if(data.isSame() == true) {
+                                toastText.setText("본인의 글은 찜 할 수 없어요!");
+                                toast.show();
+                            } else {
+                                if(data.getIsWish() == 0) {
+                                    toastText.setText("찜 했어요!");
+                                    toast.show();
+                                    categoryListLikeBtn.setImageResource(R.drawable.type_filled_icon_favorite);
+                                    likeClickListener.OnLikeClick(view, pos);
+                                } else if(data.getIsWish() == 1) {
+                                    toastText.setText("찜을 취소했어요!");
+                                    toast.show();
+                                    categoryListLikeBtn.setImageResource(R.drawable.type_filled_icon_favorite_border);
+                                    likeClickListener.OnLikeClick(view, pos);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
         }
     }
 
@@ -113,6 +156,13 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View view = inflater.inflate(R.layout.custom_categorylist, parent, false);
+        View customToast = inflater.inflate(R.layout.custom_report_toast, (ViewGroup) parent.findViewById(R.id.custom_toast_layout));
+
+        toastText = (TextView) customToast.findViewById(R.id.custom_toast_text);
+        toast = new Toast(parent.getContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(customToast);
+
         CategoryListAdapter.ViewHolder cvh = new CategoryListAdapter.ViewHolder(view);
 
         return cvh;
@@ -167,6 +217,12 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
             holder.categoryListReceipt.setVisibility(View.GONE);
         } else {
             holder.categoryListReceipt.setVisibility(View.VISIBLE);
+        }
+
+        if(categoryListItem.getIsWish() == 0) {
+            holder.categoryListLikeBtn.setImageResource(R.drawable.type_filled_icon_favorite_border);
+        } else {
+            holder.categoryListLikeBtn.setImageResource(R.drawable.type_filled_icon_favorite);
         }
     }
 

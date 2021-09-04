@@ -13,13 +13,6 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/custom_categorylist_modalline" />
     <ImageButton
-        android:id="@+id/comment_modal_modify"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/modify"
-        android:background="@color/white"
-        android:layout_marginTop="24dp"/>
-    <ImageButton
         android:id="@+id/comment_modal_delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

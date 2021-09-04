@@ -113,8 +113,10 @@ public class MypageMypostingFragment extends Fragment {
 
                 if(homeListItems.isEmpty()) {
                     mypagePostingNolist.setVisibility(View.VISIBLE);
+                    mypagePostingList.setVisibility(View.GONE);
                 } else {
                     mypagePostingNolist.setVisibility(View.GONE);
+                    mypagePostingList.setVisibility(View.VISIBLE);
 
                     hLayoutManager = new LinearLayoutManager(getContext());
                     mypagePostingList.setLayoutManager(hLayoutManager);

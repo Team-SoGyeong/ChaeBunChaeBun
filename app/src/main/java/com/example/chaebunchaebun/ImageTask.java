@@ -1,28 +1,26 @@
 package com.example.chaebunchaebun;
 
-import static android.content.ContentValues.TAG;
-
-import android.content.ContentValues;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.webkit.SafeBrowsingResponse;
-
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.net.ConnectException;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
+import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 
-public class PostTask extends AsyncTask<String, Void, String> {
+public class ImageTask extends AsyncTask<String, Void, String> {
     String receiveMsg, str;
+    String boundary = "^-----^";
+    String LINE_FEED = "\r\n";
+    String charset = "UTF-8";
+    PrintWriter writer;
 
     @Override
     protected String doInBackground(String... params) {
@@ -36,13 +34,40 @@ public class PostTask extends AsyncTask<String, Void, String> {
             conn.setDoInput(true); // InputStream으로 서버로 부터 응답을 받겠다는 옵션.
             conn.setDoOutput(true); // OutputStream으로 POST 데이터를 넘겨주겠다는 옵션.
             conn.setRequestProperty("Accept-Charset", "UTF-8"); // Accept-Charset 설정.
-            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Content-Type",  "multipart/form-data;charset=utf-8;boundary=" + boundary);
             conn.setRequestProperty("Connection", "Keep-Alive");
 
+            File image = new File(params[1]);
             OutputStream os = conn.getOutputStream();
-            os.write(params[1].getBytes("UTF-8"));
+            writer = new PrintWriter(new OutputStreamWriter(conn.getOutputStream(), "UTF-8"));
+
+            writer.append("--" + boundary).append(LINE_FEED);
+            writer.append("Content-Disposition: form-data; name=\"user\"").append(LINE_FEED);
+            writer.append("Content-Type: text/plain; charset=" + charset).append(LINE_FEED);
+            writer.append(LINE_FEED);
+            writer.append(params[2]).append(LINE_FEED);
+            writer.flush();
+
+            writer.append("--" + boundary).append(LINE_FEED);
+            writer.append("Content-Disposition: form-data; name=\"data\"; filename=\"" + image.getName() + "\"").append(LINE_FEED);
+            writer.append("Content-Type: " + URLConnection.guessContentTypeFromName(image.getName())).append(LINE_FEED);
+            writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
+            writer.append(LINE_FEED);
+            writer.flush();
+
+            FileInputStream inputStream = new FileInputStream(image);
+            byte[] byteBuffer = new byte[(int)image.length()];
+            int bytesRead = -1;
+            while ((bytesRead = inputStream.read(byteBuffer)) != -1) {
+                os.write(byteBuffer, 0, bytesRead);
+            }
             os.flush();
-            os.close();
+            inputStream.close();
+            writer.append(LINE_FEED);
+            writer.flush();
+
+            writer.append("--" + boundary + "--").append(LINE_FEED);
+            writer.close();
 
             //BufferedReader br = null;
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
@@ -56,7 +81,7 @@ public class PostTask extends AsyncTask<String, Void, String> {
                 Log.i("receiveMsg: ", receiveMsg);
 
                 bufferedReader.close();
-                return  receiveMsg;
+                return receiveMsg;
             } else {
                 InputStreamReader tmp = new InputStreamReader(conn.getErrorStream(), "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(tmp);

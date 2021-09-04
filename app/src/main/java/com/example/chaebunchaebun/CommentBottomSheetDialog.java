@@ -12,17 +12,23 @@ import android.widget.Toast;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class CommentBottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener{
+    private ImageButton report;
+    String userId, commentId, postId = null;
+
     public static CommentBottomSheetDialog getInstance() {
         return new CommentBottomSheetDialog();
     }
-
-    private ImageButton report;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.custom_comment_modalbtn, container, false);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         report = (ImageButton) view.findViewById(R.id.comment_modal_report);
+
+        Bundle mArgs = getArguments();
+        userId = mArgs.getString("userId");
+        commentId = mArgs.getString("commentId");
+        postId = mArgs.getString("postId");
 
         report.setOnClickListener(this);
 
@@ -33,9 +39,14 @@ public class CommentBottomSheetDialog extends BottomSheetDialogFragment implemen
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.comment_modal_report:
-                Toast.makeText(getContext(),"신고",Toast.LENGTH_SHORT).show();
+                Bundle args = new Bundle();
+                args.putString("userId", userId);
+                args.putString("commentId", commentId);
+                args.putString("postId", postId);
+                CommentReportDialogFragment commentReportDialogFragment = CommentReportDialogFragment.getInstance();
+                commentReportDialogFragment.setArguments(args);
+                commentReportDialogFragment.show(getChildFragmentManager(), CommentReportDialogFragment.TAG_EVENT_DIALOG);
                 break;
         }
-        dismiss();
     }
 }

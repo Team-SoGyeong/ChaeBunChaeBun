@@ -109,8 +109,10 @@ public class MypageMyCommentFragment extends Fragment {
 
                 if(homeListItems.isEmpty()) {
                     mypageCommentNolist.setVisibility(View.VISIBLE);
+                    mypageCommentList.setVisibility(View.GONE);
                 } else {
                     mypageCommentNolist.setVisibility(View.GONE);
+                    mypageCommentList.setVisibility(View.VISIBLE);
 
                     hLayoutManager = new LinearLayoutManager(getContext());
                     mypageCommentList.setLayoutManager(hLayoutManager);

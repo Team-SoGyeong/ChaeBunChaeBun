@@ -124,8 +124,10 @@ public class MainMyFragment extends Fragment {
 
         if(homeListItems.isEmpty()) {
             mainMytext.setVisibility(View.VISIBLE);
+            mainMyList.setVisibility(View.GONE);
         } else {
             mainMytext.setVisibility(View.GONE);
+            mainMyList.setVisibility(View.VISIBLE);
 
             hLayoutManager = new LinearLayoutManager(getContext());
             mainMyList.setLayoutManager(hLayoutManager);
@@ -160,19 +162,13 @@ public class MainMyFragment extends Fragment {
             homeListAdapter.setModalClickListener(new HomeListAdapter.OnModalClickListener() {
                 @Override
                 public void OnModlaClick(View view, int pos) {
-                    String id = String.valueOf(homeListAdapter.getItem(pos).getUserId());
                     String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
-                    if (id.equals(userId)) {
-                        MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
-                        myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
-                    } else {
-                        Bundle args = new Bundle();
-                        args.putString("userId", userId);
-                        args.putString("postId", postId);
-                        BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
-                        bottomSheetDialog.setArguments(args);
-                        bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
-                    }
+                    Bundle args = new Bundle();
+                    args.putString("userId", userId);
+                    args.putString("postId", postId);
+                    BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
+                    bottomSheetDialog.setArguments(args);
+                    bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
                 }
             });
             mainMyList.setAdapter(homeListAdapter);

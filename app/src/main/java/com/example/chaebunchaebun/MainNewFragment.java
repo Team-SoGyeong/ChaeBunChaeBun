@@ -127,8 +127,10 @@ public class MainNewFragment extends Fragment {
 
         if(homeListItems.isEmpty()) {
             main_new_text.setVisibility(View.VISIBLE);
+            main_new_list.setVisibility(View.GONE);
         } else {
             main_new_text.setVisibility(View.GONE);
+            main_new_list.setVisibility(View.VISIBLE);
 
             hLayoutManager = new LinearLayoutManager(getContext());
             main_new_list.setLayoutManager(hLayoutManager);
@@ -166,7 +168,11 @@ public class MainNewFragment extends Fragment {
                     String id = String.valueOf(homeListAdapter.getItem(pos).getUserId());
                     String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
                     if (id.equals(userId)) {
+                        Bundle args = new Bundle();
+                        args.putString("userId", userId);
+                        args.putString("postId", postId);
                         MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
+                        myBottomSheetDialog.setArguments(args);
                         myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
                     } else {
                         Bundle args = new Bundle();

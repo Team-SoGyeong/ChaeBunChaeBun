@@ -16,7 +16,6 @@ public class MyCommentBottomSheetDialog extends BottomSheetDialogFragment implem
         return new MyCommentBottomSheetDialog();
     }
 
-    private ImageButton modify;
     private ImageButton delete;
 
     String userId, commentId, postId = null;
@@ -25,7 +24,6 @@ public class MyCommentBottomSheetDialog extends BottomSheetDialogFragment implem
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.custom_mycomment_modalbtn, container, false);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        modify = (ImageButton) view.findViewById(R.id.comment_modal_modify);
         delete = (ImageButton) view.findViewById(R.id.comment_modal_delete);
 
         Bundle mArgs = getArguments();
@@ -33,7 +31,6 @@ public class MyCommentBottomSheetDialog extends BottomSheetDialogFragment implem
         commentId = mArgs.getString("commentId");
         postId = mArgs.getString("postId");
 
-        modify.setOnClickListener(this);
         delete.setOnClickListener(this);
 
         return view;
@@ -42,9 +39,6 @@ public class MyCommentBottomSheetDialog extends BottomSheetDialogFragment implem
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.comment_modal_modify:
-                Toast.makeText(getContext(),"수정",Toast.LENGTH_SHORT).show();
-                break;
             case R.id.comment_modal_delete:
                 Bundle args = new Bundle();
                 args.putString("userId", userId);

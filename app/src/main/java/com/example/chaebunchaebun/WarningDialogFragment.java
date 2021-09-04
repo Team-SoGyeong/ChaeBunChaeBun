@@ -16,6 +16,8 @@ import androidx.fragment.app.DialogFragment;
 public class WarningDialogFragment extends DialogFragment {
     public static final String TAG_EVENT_DIALOG = "dialog_event";
 
+    String userId = null;
+
     public WarningDialogFragment() {}
     public static WarningDialogFragment getInstance() {
         WarningDialogFragment e = new WarningDialogFragment();
@@ -31,10 +33,15 @@ public class WarningDialogFragment extends DialogFragment {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         ImageView warning = (ImageView) warningDialog.findViewById(R.id.warning);
 
+        Bundle mArgs = getArguments();
+        userId = mArgs.getString("userId");
+
         warning.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), SelectCategoryActivity.class));
+                Intent intent = new Intent(getActivity(), SelectCategoryActivity.class);
+                intent.putExtra("userId", userId);
+                startActivity(intent);
             }
         });
 
