@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -57,7 +58,7 @@ public class ArticleFragment extends Fragment {
     private LinearLayoutManager cLayoutManager;
 
     View articleView;
-    ImageView articleBack, articleRecipt, articleComplete, articleProfile, articleModalbtn;
+    ImageView articleBack, articleRecipt, articleComplete, articleProfile, articleModalbtn, articleLikebtn;
     TextView categoryName, articleWishcnt, articleTitle, articleNickname, articleWritingDate,
             articleBuyingDate, articleTotal, articlePeople, articlePrice, articleContent, articleContact;
     EditText articleComment;
@@ -69,7 +70,7 @@ public class ArticleFragment extends Fragment {
     String userId = "1";
     String categoryNameString, title, nickname, content, buyDate, members,
             perPrice, writtenBy, profile, amount, totalPrice, contact;
-    int isAuth, wishcount, userIdnum, status = 0;
+    int isAuth, wishcount, userIdnum, status, isMyWish = 0;
 
     public ArticleFragment() {
         // Required empty public constructor
@@ -116,6 +117,7 @@ public class ArticleFragment extends Fragment {
 
         categoryName = (TextView) articleView.findViewById(R.id.article_category_name);
         articleWishcnt = (TextView) articleView.findViewById(R.id.article_wishcount);
+        articleLikebtn = (ImageView) articleView.findViewById(R.id.article_wishicon);
         articleTitle = (TextView) articleView.findViewById(R.id.article_title);
         articleNickname = (TextView) articleView.findViewById(R.id.article_nickname);
         articleWritingDate = (TextView) articleView.findViewById(R.id.article_writing_date);
@@ -169,9 +171,60 @@ public class ArticleFragment extends Fragment {
             articleComplete.setImageResource(R.drawable.group_778);
         } else {
             articleComplete.setImageResource(R.drawable.group_778_green);
+            articleComplete.setClickable(false);
+            articleComment.setClickable(false);
+            articleCommentbtn.setClickable(false);
+            articleModalbtn.setClickable(false);
+        }
+        if(isMyWish == 0) {
+            articleLikebtn.setImageResource(R.drawable.type_filled_icon_favorite_gray);
+        } else {
+            articleLikebtn.setImageResource(R.drawable.type_filled_icon_favorite);
         }
         articleWishcnt.setText(String.valueOf(this.wishcount));
         Glide.with(getContext()).load(this.profile).into(articleProfile);
+
+        articleLikebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(String.valueOf(userIdnum).equals(userId)){
+                    toastText.setText("본인의 글은 찜 할 수 없어요!");
+                    toast.show();
+                } else {
+                    PostTask myWishTask = new PostTask();
+                    try {
+                        String response = myWishTask.execute("common/wishlist/" + postId + " /" + userId, String.valueOf(postId), userId).get();
+                        JSONObject jsonObject = new JSONObject(response);
+                        int responseCode = jsonObject.getInt("code");
+                        if(responseCode == 200) {
+                            String data = jsonObject.getString("data");
+                            JSONArray jsonArray = new JSONArray(data);
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject subJsonObject = jsonArray.getJSONObject(i);
+                                int wishcount = subJsonObject.getInt("wish_cnts");
+                                int status = subJsonObject.getInt("status");
+                                articleWishcnt.setText(String.valueOf(wishcount));
+                                if (status == 0) {
+                                    articleLikebtn.setImageResource(R.drawable.type_filled_icon_favorite_gray);
+                                    toastText.setText("찜을 취소했어요!");
+                                    toast.show();
+                                } else {
+                                    articleLikebtn.setImageResource(R.drawable.type_filled_icon_favorite);
+                                    toastText.setText("찜 했어요!");
+                                    toast.show();
+                                }
+                            }
+                        }
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
 
         articleModalbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -281,6 +334,13 @@ public class ArticleFragment extends Fragment {
                     jsonCommentTransfer.put("user_id", Integer.parseInt(userId));
                     String jsonString = jsonCommentTransfer.toString();
                     postTask.execute("posts/comment", jsonString);
+                    Bundle articleBundle = new Bundle();
+                    articleBundle.putString("postId", postId);
+                    FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    ArticleFragment articleFragment = new ArticleFragment();
+                    articleFragment.setArguments(articleBundle);
+                    articleTransaction.replace(R.id.bottom_frame, articleFragment);
+                    articleTransaction.commit();
                 }catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -374,6 +434,7 @@ public class ArticleFragment extends Fragment {
                     this.profile = subJsonObject2.getString("profile");
                     this.contact = subJsonObject2.getString("contact");
                     this.status = subJsonObject2.getInt("status");
+                    this.isMyWish = subJsonObject2.getInt("isMyWish");
 
                     String img1 = null;
                     String img2 = null;
@@ -389,16 +450,16 @@ public class ArticleFragment extends Fragment {
                     img4 = subJsonObject3.getString("img4");
                     img5 = subJsonObject3.getString("img5");
 
-                    if(img2.isEmpty()){
+                    if(img2.isEmpty() || img2 == null || img2.equals("null")){
                         articleItemList.add(new ArticleRecyclerData(img1));
-                    } else if(img3.isEmpty()){
+                    } else if(img3.isEmpty() || img3 == null || img3.equals("null")){
                         articleItemList.add(new ArticleRecyclerData(img1));
                         articleItemList.add(new ArticleRecyclerData(img2));
-                    } else if(img4.isEmpty()){
+                    } else if(img4.isEmpty() || img4 == null || img4.equals("null")){
                         articleItemList.add(new ArticleRecyclerData(img1));
                         articleItemList.add(new ArticleRecyclerData(img2));
                         articleItemList.add(new ArticleRecyclerData(img3));
-                    } else if(img5.isEmpty()){
+                    } else if(img5.isEmpty() || img5 == null || img5.equals("null")){
                         articleItemList.add(new ArticleRecyclerData(img1));
                         articleItemList.add(new ArticleRecyclerData(img2));
                         articleItemList.add(new ArticleRecyclerData(img3));

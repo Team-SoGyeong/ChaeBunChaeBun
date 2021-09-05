@@ -15,6 +15,8 @@ import androidx.fragment.app.DialogFragment;
 
 public class UncompleteFinDialogFragment extends DialogFragment {
     public static final String TAG_EVENT_DIALOG = "dialog_event";
+    String userId, title, nickname = null;
+    int postId = 0;
 
     public UncompleteFinDialogFragment() {}
     public static UncompleteFinDialogFragment getInstance() {
@@ -30,9 +32,17 @@ public class UncompleteFinDialogFragment extends DialogFragment {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         ImageButton fin = (ImageButton) finDialog.findViewById(R.id.btn_complete);
 
+        Bundle mArgs = getArguments();
+        userId = mArgs.getString("userId");
+        title = mArgs.getString("title");
+        nickname = mArgs.getString("nickname");
+        postId = mArgs.getInt("postId");
+
         fin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                PutTask completeTask = new PutTask();
+                completeTask.execute("common/processed/" + String.valueOf(postId) + "/" + userId, String.valueOf(postId), userId);
                 getActivity().startActivity(new Intent(getActivity(), NavigationActivity.class));
             }
         });

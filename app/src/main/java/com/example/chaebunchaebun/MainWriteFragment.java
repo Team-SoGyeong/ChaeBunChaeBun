@@ -67,6 +67,10 @@ public class MainWriteFragment extends Fragment {
         return fragment;
     }
 
+    public void getUserId(String userId){
+        this.userId = userId;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

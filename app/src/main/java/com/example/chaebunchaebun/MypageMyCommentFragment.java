@@ -3,6 +3,7 @@ package com.example.chaebunchaebun;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,7 +47,10 @@ public class MypageMyCommentFragment extends Fragment {
     TextView mypageCommentNolist;
     String state = "0";
     String platform = "0";
-    String id = "1";
+    String userId = null;
+
+    private TextView toastText;
+    private Toast toast;
 
     //spinner
     TextView textView;
@@ -74,6 +78,10 @@ public class MypageMyCommentFragment extends Fragment {
         return fragment;
     }
 
+    public void getUserId(String userId) {
+        this.userId = userId;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +98,13 @@ public class MypageMyCommentFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View myPageComment = inflater.inflate(R.layout.fragment_mypage_mycomment, container, false);
+
+        View customToast = inflater.inflate(R.layout.custom_report_toast, (ViewGroup) myPageComment.findViewById(R.id.custom_toast_layout));
+
+        toastText = (TextView) customToast.findViewById(R.id.custom_toast_text);
+        toast = new Toast(getContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(customToast);
 
         mypageCommentList = myPageComment.findViewById(R.id.mypage_comment_list);
         mypageCommentNolist = myPageComment.findViewById(R.id.mypage_comment_nolist);
@@ -119,21 +134,50 @@ public class MypageMyCommentFragment extends Fragment {
                     MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(40);
                     mypageCommentList.addItemDecoration(mainRecyclerDecoration);
                     homeListAdapter = new HomeListAdapter(homeListItems);
-                    /*homeListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
+                    homeListAdapter.setOnItemClickListener(new HomeListAdapter.OnItemClickListener() {
                         @Override
-                        public void onItemClick(int pos) {
-                            FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                            ArticleFragment articleFragment = new ArticleFragment();
-                            articleTransaction.replace(R.id.bottom_frame, articleFragment);
-                            articleTransaction.addToBackStack(null);
-                            articleTransaction.commit();
+                        public void onItemClick(View view, int pos) {
+                            if(state.equals("1")){
+                                toastText.setText("완료된 채분은 접근할 수 없어요!");
+                                toast.show();
+                            } else {
+                                String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
+                                Bundle articleBundle = new Bundle();
+                                articleBundle.putString("postId", postId);
+                                FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                ArticleFragment articleFragment = new ArticleFragment();
+                                articleFragment.setArguments(articleBundle);
+                                articleTransaction.replace(R.id.mypage_comment_frame, articleFragment);
+                                articleTransaction.addToBackStack(null);
+                                articleTransaction.commit();
+                            }
                         }
-                    });*/
+                    });
                     homeListAdapter.setModalClickListener(new HomeListAdapter.OnModalClickListener() {
                         @Override
                         public void OnModlaClick(View view, int pos) {
-                            MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
-                            myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                            String id = String.valueOf(homeListAdapter.getItem(pos).getUserId());
+                            String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
+                            if(state.equals("1")){
+                                toastText.setText("완료된 채분은 접근할 수 없어요!");
+                                toast.show();
+                            } else {
+                                if (id.equals(userId)) {
+                                    Bundle args = new Bundle();
+                                    args.putString("userId", userId);
+                                    args.putString("postId", postId);
+                                    MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
+                                    myBottomSheetDialog.setArguments(args);
+                                    myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                                } else {
+                                    Bundle args = new Bundle();
+                                    args.putString("userId", userId);
+                                    args.putString("postId", postId);
+                                    BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
+                                    bottomSheetDialog.setArguments(args);
+                                    bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                                }
+                            }
                         }
                     });
                     mypageCommentList.setAdapter(homeListAdapter);
@@ -153,7 +197,7 @@ public class MypageMyCommentFragment extends Fragment {
         String resultText = "[NULL]";
 
         try {
-            resultText = new GetTask("mypage/mycomment/" + id + "/" + platform +"/" + state).execute().get();
+            resultText = new GetTask("mypage/mycomment/" + userId + "/" + platform +"/" + state).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

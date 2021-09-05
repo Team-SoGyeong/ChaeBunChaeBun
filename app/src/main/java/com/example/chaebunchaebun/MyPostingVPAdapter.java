@@ -13,10 +13,12 @@ public class MyPostingVPAdapter extends FragmentPagerAdapter {
     private ArrayList<Fragment> items;
     private ArrayList<String> itext = new ArrayList<String>();
 
-    public MyPostingVPAdapter(@NonNull @NotNull FragmentManager fm) {
+    public MyPostingVPAdapter(@NonNull @NotNull FragmentManager fm, String userId) {
         super(fm);
         items = new ArrayList<Fragment>();
-        items.add(new MypageMypostingFragment());
+        MypageMypostingFragment mypageMypostingFragment = new MypageMypostingFragment();
+        mypageMypostingFragment.getUserId(userId);
+        items.add(mypageMypostingFragment);
         items.add(new MyCommunityPostingFragment());
 
         itext.add("채분");

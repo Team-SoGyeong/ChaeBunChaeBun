@@ -16,6 +16,7 @@ import androidx.fragment.app.DialogFragment;
 
 public class WithdrawDialogFragment extends DialogFragment {
     public static final String TAG_EVENT_DIALOG = "dialog_event";
+    String userId;
 
     public WithdrawDialogFragment() {}
     public static WithdrawDialogFragment getInstance() {
@@ -31,10 +32,17 @@ public class WithdrawDialogFragment extends DialogFragment {
         ImageButton withdraw = (ImageButton) withdrawDialog.findViewById(R.id.btn_withdraw);
         ImageButton cancel = (ImageButton) withdrawDialog.findViewById(R.id.btn_cancel);
 
+        Bundle mArgs = getArguments();
+        userId = mArgs.getString("userId");
+
         withdraw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                PutTask withDrawTask = new PutTask();
+                withDrawTask.execute("mypage/profile/" + userId, userId);
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                getActivity().startActivity(intent);
             }
         });
         cancel.setOnClickListener(new View.OnClickListener() {

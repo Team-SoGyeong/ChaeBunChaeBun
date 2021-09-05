@@ -3,6 +3,7 @@ package com.example.chaebunchaebun;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,7 +48,10 @@ public class MypageMypostingFragment extends Fragment {
     TextView mypagePostingNolist;
     String state = "0";
     String platform = "0";
-    String id = "1";
+    String userId = null;
+
+    private TextView toastText;
+    private Toast toast;
 
     //spinner
     TextView textView;
@@ -74,6 +79,10 @@ public class MypageMypostingFragment extends Fragment {
         return fragment;
     }
 
+    public void getUserId(String userId) {
+        this.userId = userId;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,9 +90,7 @@ public class MypageMypostingFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
         homeListItems = new ArrayList<HomeListItem>();
-        //getMyPostingList(state);
     }
 
     @Override
@@ -91,6 +98,13 @@ public class MypageMypostingFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View mypagePosting = inflater.inflate(R.layout.fragment_mypage_myposting, container, false);
+
+        View customToast = inflater.inflate(R.layout.custom_report_toast, (ViewGroup) mypagePosting.findViewById(R.id.custom_toast_layout));
+
+        toastText = (TextView) customToast.findViewById(R.id.custom_toast_text);
+        toast = new Toast(getContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(customToast);
 
         mypagePostingList = mypagePosting.findViewById(R.id.mypage_posting_list);
         mypagePostingNolist = mypagePosting.findViewById(R.id.mypage_posting_nolist);
@@ -121,20 +135,29 @@ public class MypageMypostingFragment extends Fragment {
                     hLayoutManager = new LinearLayoutManager(getContext());
                     mypagePostingList.setLayoutManager(hLayoutManager);
                     homeListAdapter = new HomeListAdapter(homeListItems);
-                    /*homeListAdapter.setOnItemClickListener(new CategoryListAdapter.OnItemClickListener() {
+                    homeListAdapter.setOnItemClickListener(new HomeListAdapter.OnItemClickListener() {
                         @Override
-                        public void onItemClick(int pos) {
+                        public void onItemClick(View view, int pos) {
+                            String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
+                            Bundle articleBundle = new Bundle();
+                            articleBundle.putString("postId", postId);
                             FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                             ArticleFragment articleFragment = new ArticleFragment();
-                            articleTransaction.replace(R.id.bottom_frame, articleFragment);
+                            articleFragment.setArguments(articleBundle);
+                            articleTransaction.replace(R.id.mypage_posting_frame, articleFragment);
                             articleTransaction.addToBackStack(null);
                             articleTransaction.commit();
                         }
-                    });*/
+                    });
                     homeListAdapter.setModalClickListener(new HomeListAdapter.OnModalClickListener() {
                         @Override
                         public void OnModlaClick(View view, int pos) {
+                            String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
+                            Bundle args = new Bundle();
+                            args.putString("userId", userId);
+                            args.putString("postId", postId);
                             MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
+                            myBottomSheetDialog.setArguments(args);
                             myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
                         }
                     });
@@ -156,7 +179,7 @@ public class MypageMypostingFragment extends Fragment {
         String resultText = "[NULL]";
 
         try {
-            resultText = new GetTask("mypage/mypost/" + id + "/" + platform +"/" + state).execute().get();
+            resultText = new GetTask("mypage/mypost/" + userId + "/" + platform +"/" + state).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -171,7 +194,7 @@ public class MypageMypostingFragment extends Fragment {
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
 
                 int postId = subJsonObject.getInt("post_id");
-                int userId = Integer.parseInt(id);
+                int userId = Integer.parseInt(this.userId);
                 String img = subJsonObject.getString("url");
                 String title = subJsonObject.getString("title");
                 String buyDate = subJsonObject.getString("buy_date");

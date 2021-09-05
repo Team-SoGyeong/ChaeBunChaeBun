@@ -22,6 +22,8 @@ public class NavigationActivity extends AppCompatActivity {
     private MypageFragment myfg;
     private LikeListFragment likefg;
 
+    String userId = "1";
+
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,7 @@ public class NavigationActivity extends AppCompatActivity {
         ft = fm.beginTransaction();
         switch (n) {
             case 0:
+                homefg.getUserId(userId);
                 ft.replace(R.id.bottom_frame, homefg).commitAllowingStateLoss();
                 //ft.commit();
                 break;
@@ -73,6 +76,7 @@ public class NavigationActivity extends AppCompatActivity {
                 //ft.commit();
                 break;
             case 3:
+                myfg.getUserId(userId);
                 ft.replace(R.id.bottom_frame, myfg).commitAllowingStateLoss();
                 //ft.commit();
                 break;

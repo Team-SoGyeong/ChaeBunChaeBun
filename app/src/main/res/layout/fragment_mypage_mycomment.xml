@@ -27,7 +27,7 @@
         android:layout_marginTop="70dp"
         android:layout_gravity="center"
         android:gravity="center_horizontal"
-        android:text="아직 내가 쓴 글이 없어요\n직접 채분을 시작해 신선함을 나눠 보세요!"
+        android:text="아직 내가 쓴 댓글이 없어요\n댓글을 남겨 채분에 참여해보세요!"
         android:textColor="#656565"
         android:fontFamily="@font/roboto_bold"/>
     <androidx.recyclerview.widget.RecyclerView

@@ -20,9 +20,14 @@ public class WithdrawActivity extends AppCompatActivity {
     ImageButton check_little, check_unknown, check_no_manner, check_etc;
     TextView text_little, text_unknown, text_no_manner, text_etc;
 
+    String userId;
+
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_withdraw);
+
+        Intent intent = getIntent();
+        this.userId = intent.getStringExtra("userId");
 
         back = (ImageView) findViewById(R.id.id_back);
         little = (LinearLayout) findViewById(R.id.little);
@@ -111,7 +116,10 @@ public class WithdrawActivity extends AppCompatActivity {
         withdraw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle args = new Bundle();
+                args.putString("userId", userId);
                 WithdrawDialogFragment e = WithdrawDialogFragment.getInstance();
+                e.setArguments(args);
                 e.show(getSupportFragmentManager(), WithdrawDialogFragment.TAG_EVENT_DIALOG);
             }
         });

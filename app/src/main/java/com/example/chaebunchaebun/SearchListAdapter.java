@@ -64,6 +64,10 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
         return searchListItems.size();
     }
 
+    public SearchListItem getItem(int position){
+        return searchListItems.get(position);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         LinearLayout search_list_top;
         TextView search_list_title;

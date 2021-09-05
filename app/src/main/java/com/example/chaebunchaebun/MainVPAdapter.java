@@ -26,7 +26,10 @@ public class MainVPAdapter extends FragmentPagerAdapter {
         MainMyFragment mainMyFragment = new MainMyFragment();
         mainMyFragment.getUserId(userId);
         items.add(mainMyFragment);
-        items.add(new MainWriteFragment());
+
+        MainWriteFragment mainWriteFragment = new MainWriteFragment();
+        mainWriteFragment.getUserId(userId);
+        items.add(mainWriteFragment);
 
         itext.add("신규 채분");
         itext.add("마감 직전 채분");
