@@ -48,6 +48,10 @@ public class HomeFragment extends Fragment {
     private MainRecyclerAdapter mainRecyclerAdapter;
     private LinearLayoutManager mLayoutManager;
 
+    ArrayList<Integer> deadlinePostId;
+    ArrayList<String> deadlineTitle;
+    ArrayList<String> deadlineNickname;
+
     View homeView;
     ActionBar.Tab tabNew, tabSoon, tabLast, tabMy;
     ViewGroup viewGroup;
@@ -59,7 +63,7 @@ public class HomeFragment extends Fragment {
     ImageButton writing;
     int recyclerPosition = -1;
     String[] address = {"",};
-    String userId = "1";
+    String userId = null;
     int locationCode = 0;
 
     public HomeFragment() {
@@ -84,6 +88,10 @@ public class HomeFragment extends Fragment {
         return fragment;
     }
 
+    public void getUserId(String userId) {
+        this.userId = userId;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +100,11 @@ public class HomeFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+        deadlinePostId = new ArrayList<Integer>();
+        deadlineTitle = new ArrayList<String>();
+        deadlineNickname = new ArrayList<String>();
         getHome();
+        getDeadlineList();
     }
 
     @Override
@@ -150,11 +162,23 @@ public class HomeFragment extends Fragment {
 
         tabLayout.setupWithViewPager(vp);
 
+        if(!(deadlinePostId.isEmpty())){
+            Bundle args = new Bundle();
+            args.putString("userId", userId);
+            args.putString("title", deadlineTitle.get(0));
+            args.putString("nickname", deadlineNickname.get(0));
+            args.putInt("postId", deadlinePostId.get(0));
+            QuestionCompleteDialogFragment questionCompleteDialogFragment = QuestionCompleteDialogFragment.getInstance();
+            questionCompleteDialogFragment.setArguments(args);
+            questionCompleteDialogFragment.show(getChildFragmentManager(), "IsComplete");
+        }
+
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), SearchActivity.class);
                 intent.putExtra("locationCode", locationCode);
+                intent.putExtra("userId", userId);
                 getActivity().startActivity(intent);
             }
         });
@@ -228,6 +252,32 @@ public class HomeFragment extends Fragment {
 
                 address = fullAddress.split(" ");
 
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getDeadlineList() {
+        String resultText = "[NULL]";
+
+        try {
+            resultText = new GetTask("home/mydeadline/" + userId).execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            JSONObject jsonObject = new JSONObject(resultText);
+            String data = jsonObject.getString("data");
+            JSONArray jsonArray = new JSONArray(data);
+            for(int i = 0; i < jsonArray.length(); i++){
+                JSONObject subJsonObject = jsonArray.getJSONObject(i);
+                deadlinePostId.add(subJsonObject.getInt("post_id"));
+                deadlineTitle.add(subJsonObject.getString("post_title"));
+                deadlineNickname.add(subJsonObject.getString("title"));
             }
         } catch (JSONException e) {
             e.printStackTrace();

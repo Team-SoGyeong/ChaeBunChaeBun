@@ -39,6 +39,16 @@ public class SelectCategoryActivity extends AppCompatActivity{
             public void onClick(View v) {
                 if(select == true){
                     btn_onion.setImageResource(R.drawable.btn_select_onion);
+                    btn_garlic.setImageResource(R.drawable.btn_garlic);
+                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
+                    btn_carrot.setImageResource(R.drawable.btn_carrot);
+                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
+                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
+                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
+                    btn_radish.setImageResource(R.drawable.btn_radish);
+                    btn_potato.setImageResource(R.drawable.btn_potato);
+                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
+                    btn_etc.setImageResource(R.drawable.btn_etc);
                     select = false;
                     cateoryid = 1;
                 }
@@ -53,7 +63,17 @@ public class SelectCategoryActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(select == true){
+                    btn_onion.setImageResource(R.drawable.btn_onion);
                     btn_garlic.setImageResource(R.drawable.btn_select_garlic);
+                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
+                    btn_carrot.setImageResource(R.drawable.btn_carrot);
+                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
+                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
+                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
+                    btn_radish.setImageResource(R.drawable.btn_radish);
+                    btn_potato.setImageResource(R.drawable.btn_potato);
+                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
+                    btn_etc.setImageResource(R.drawable.btn_etc);
                     select = false;
                     cateoryid = 2;
                 }
@@ -68,7 +88,17 @@ public class SelectCategoryActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(select == true){
+                    btn_onion.setImageResource(R.drawable.btn_onion);
+                    btn_garlic.setImageResource(R.drawable.btn_garlic);
                     btn_greenonion.setImageResource(R.drawable.btn_select_greenonion);
+                    btn_carrot.setImageResource(R.drawable.btn_carrot);
+                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
+                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
+                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
+                    btn_radish.setImageResource(R.drawable.btn_radish);
+                    btn_potato.setImageResource(R.drawable.btn_potato);
+                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
+                    btn_etc.setImageResource(R.drawable.btn_etc);
                     select = false;
                     cateoryid = 3;
                 }
@@ -83,7 +113,17 @@ public class SelectCategoryActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(select == true){
+                    btn_onion.setImageResource(R.drawable.btn_onion);
+                    btn_garlic.setImageResource(R.drawable.btn_garlic);
+                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
                     btn_carrot.setImageResource(R.drawable.btn_select_carrot);
+                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
+                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
+                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
+                    btn_radish.setImageResource(R.drawable.btn_radish);
+                    btn_potato.setImageResource(R.drawable.btn_potato);
+                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
+                    btn_etc.setImageResource(R.drawable.btn_etc);
                     select = false;
                     cateoryid = 4;
                 }
@@ -99,7 +139,17 @@ public class SelectCategoryActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(select == true){
+                    btn_onion.setImageResource(R.drawable.btn_onion);
+                    btn_garlic.setImageResource(R.drawable.btn_garlic);
+                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
+                    btn_carrot.setImageResource(R.drawable.btn_carrot);
                     btn_mushroom.setImageResource(R.drawable.btn_select_mushroom);
+                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
+                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
+                    btn_radish.setImageResource(R.drawable.btn_radish);
+                    btn_potato.setImageResource(R.drawable.btn_potato);
+                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
+                    btn_etc.setImageResource(R.drawable.btn_etc);
                     select = false;
                     cateoryid = 5;
                 }
@@ -114,7 +164,17 @@ public class SelectCategoryActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(select == true){
+                    btn_onion.setImageResource(R.drawable.btn_onion);
+                    btn_garlic.setImageResource(R.drawable.btn_garlic);
+                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
+                    btn_carrot.setImageResource(R.drawable.btn_carrot);
+                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
                     btn_greenvege.setImageResource(R.drawable.btn_select_greenvege);
+                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
+                    btn_radish.setImageResource(R.drawable.btn_radish);
+                    btn_potato.setImageResource(R.drawable.btn_potato);
+                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
+                    btn_etc.setImageResource(R.drawable.btn_etc);
                     select = false;
                     cateoryid = 6;
                 }
@@ -129,7 +189,17 @@ public class SelectCategoryActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(select == true){
+                    btn_onion.setImageResource(R.drawable.btn_onion);
+                    btn_garlic.setImageResource(R.drawable.btn_garlic);
+                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
+                    btn_carrot.setImageResource(R.drawable.btn_carrot);
+                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
+                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
                     btn_cabbage.setImageResource(R.drawable.btn_select_cabbage);
+                    btn_radish.setImageResource(R.drawable.btn_radish);
+                    btn_potato.setImageResource(R.drawable.btn_potato);
+                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
+                    btn_etc.setImageResource(R.drawable.btn_etc);
                     select = false;
                     cateoryid = 7;
                 }
@@ -144,7 +214,17 @@ public class SelectCategoryActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(select == true){
+                    btn_onion.setImageResource(R.drawable.btn_onion);
+                    btn_garlic.setImageResource(R.drawable.btn_garlic);
+                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
+                    btn_carrot.setImageResource(R.drawable.btn_carrot);
+                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
+                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
+                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
                     btn_radish.setImageResource(R.drawable.btn_select_radish);
+                    btn_potato.setImageResource(R.drawable.btn_potato);
+                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
+                    btn_etc.setImageResource(R.drawable.btn_etc);
                     select = false;
                     cateoryid = 8;
                 }
@@ -160,7 +240,17 @@ public class SelectCategoryActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(select == true){
+                    btn_onion.setImageResource(R.drawable.btn_onion);
+                    btn_garlic.setImageResource(R.drawable.btn_garlic);
+                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
+                    btn_carrot.setImageResource(R.drawable.btn_carrot);
+                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
+                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
+                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
+                    btn_radish.setImageResource(R.drawable.btn_radish);
                     btn_potato.setImageResource(R.drawable.btn_select_potato);
+                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
+                    btn_etc.setImageResource(R.drawable.btn_etc);
                     select = false;
                     cateoryid = 9;
                 }
@@ -175,7 +265,17 @@ public class SelectCategoryActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(select == true){
+                    btn_onion.setImageResource(R.drawable.btn_onion);
+                    btn_garlic.setImageResource(R.drawable.btn_garlic);
+                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
+                    btn_carrot.setImageResource(R.drawable.btn_carrot);
+                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
+                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
+                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
+                    btn_radish.setImageResource(R.drawable.btn_radish);
+                    btn_potato.setImageResource(R.drawable.btn_potato);
                     btn_sweetpotato.setImageResource(R.drawable.btn_select_sweetpotato);
+                    btn_etc.setImageResource(R.drawable.btn_etc);
                     select = false;
                     cateoryid = 10;
                 }
@@ -192,6 +292,16 @@ public class SelectCategoryActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(select == true){
+                    btn_onion.setImageResource(R.drawable.btn_onion);
+                    btn_garlic.setImageResource(R.drawable.btn_garlic);
+                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
+                    btn_carrot.setImageResource(R.drawable.btn_carrot);
+                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
+                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
+                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
+                    btn_radish.setImageResource(R.drawable.btn_radish);
+                    btn_potato.setImageResource(R.drawable.btn_potato);
+                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
                     btn_etc.setImageResource(R.drawable.btn_select_etc);
                     select = false;
                     flag = true;

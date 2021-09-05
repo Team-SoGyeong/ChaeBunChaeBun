@@ -13,10 +13,12 @@ public class MyHeartVPAdapter extends FragmentPagerAdapter {
     private ArrayList<Fragment> items;
     private ArrayList<String> itext = new ArrayList<String>();
 
-    public MyHeartVPAdapter(@NonNull @NotNull FragmentManager fm) {
+    public MyHeartVPAdapter(@NonNull @NotNull FragmentManager fm, String userId) {
         super(fm);
         items = new ArrayList<Fragment>();
-        items.add(new MypageMyHeartFragment());
+        MypageMyHeartFragment mypageMyHeartFragment = new MypageMyHeartFragment();
+        mypageMyHeartFragment.getUserId(userId);
+        items.add(mypageMyHeartFragment);
         items.add(new MyCommunityHeartFragment());
 
         itext.add("채분");

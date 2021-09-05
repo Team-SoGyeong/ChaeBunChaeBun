@@ -132,11 +132,15 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
                                     toastText.setText("찜 했어요!");
                                     toast.show();
                                     categoryListLikeBtn.setImageResource(R.drawable.type_filled_icon_favorite);
+                                    int getLikeCount = Integer.parseInt(data.getLikeCount());
+                                    categoryListLikeCount.setText(String.valueOf(getLikeCount + 1));
                                     likeClickListener.OnLikeClick(view, pos);
                                 } else if(data.getIsWish() == 1) {
                                     toastText.setText("찜을 취소했어요!");
                                     toast.show();
                                     categoryListLikeBtn.setImageResource(R.drawable.type_filled_icon_favorite_border);
+                                    int getLikeCount = Integer.parseInt(data.getLikeCount());
+                                    categoryListLikeCount.setText(String.valueOf(getLikeCount - 1));
                                     likeClickListener.OnLikeClick(view, pos);
                                 }
                             }

@@ -47,14 +47,25 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <TextView
+            <EditText
                 android:id="@+id/set_location"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:layout_marginLeft="13dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="25dp"
-                android:background="@drawable/profile_edittext"/>
+                android:background="@drawable/profile_edittext"
+                android:drawableRight="@drawable/ic_search"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:fontFamily="@font/roboto_regular"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="8dp"
+                android:inputType="text"
+                android:maxLines="1"
+                android:imeOptions="actionSearch"/>
             <ImageButton
                 android:id="@+id/ic_search"
                 android:layout_width="24dp"

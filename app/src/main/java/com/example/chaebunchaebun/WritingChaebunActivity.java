@@ -41,11 +41,11 @@ import java.io.OutputStream;
 import java.util.concurrent.ExecutionException;
 
 public class WritingChaebunActivity extends AppCompatActivity {
-    private final int GET_GALLARY_MAIN_IMAGE = 200;
-    private final int GET_GALLARY_SUB1_IMAGE = 201;
-    private final int GET_GALLARY_SUB2_IMAGE = 202;
-    private final int GET_GALLARY_SUB3_IMAGE = 203;
-    private final int GET_GALLARY_SUB4_IMAGE = 204;
+    private final int GET_GALLERY_MAIN_IMAGE = 200;
+    private final int GET_GALLERY_SUB1_IMAGE = 201;
+    private final int GET_GALLERY_SUB2_IMAGE = 202;
+    private final int GET_GALLERY_SUB3_IMAGE = 203;
+    private final int GET_GALLERY_SUB4_IMAGE = 204;
     private TextView toastText;
     private Toast toast;
 
@@ -99,7 +99,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent mainImgIntent = new Intent(Intent.ACTION_PICK);
                 mainImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                startActivityForResult(mainImgIntent, GET_GALLARY_MAIN_IMAGE);
+                startActivityForResult(mainImgIntent, GET_GALLERY_MAIN_IMAGE);
             }
         });
 
@@ -108,7 +108,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent mainImgIntent = new Intent(Intent.ACTION_PICK);
                 mainImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                startActivityForResult(mainImgIntent, GET_GALLARY_SUB1_IMAGE);
+                startActivityForResult(mainImgIntent, GET_GALLERY_SUB1_IMAGE);
             }
         });
 
@@ -117,7 +117,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent mainImgIntent = new Intent(Intent.ACTION_PICK);
                 mainImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                startActivityForResult(mainImgIntent, GET_GALLARY_SUB2_IMAGE);
+                startActivityForResult(mainImgIntent, GET_GALLERY_SUB2_IMAGE);
             }
         });
 
@@ -126,7 +126,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent mainImgIntent = new Intent(Intent.ACTION_PICK);
                 mainImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                startActivityForResult(mainImgIntent, GET_GALLARY_SUB3_IMAGE);
+                startActivityForResult(mainImgIntent, GET_GALLERY_SUB3_IMAGE);
             }
         });
 
@@ -135,7 +135,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent mainImgIntent = new Intent(Intent.ACTION_PICK);
                 mainImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                startActivityForResult(mainImgIntent, GET_GALLARY_SUB4_IMAGE);
+                startActivityForResult(mainImgIntent, GET_GALLERY_SUB4_IMAGE);
             }
         });
 
@@ -316,7 +316,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == GET_GALLARY_MAIN_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
+        if(requestCode == GET_GALLERY_MAIN_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri selectedMainImage = data.getData();
             writingMainImg.setImageURI(selectedMainImage);
             mainImg = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
@@ -334,7 +334,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if(requestCode == GET_GALLARY_SUB1_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+        } else if(requestCode == GET_GALLERY_SUB1_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
             Uri selectedMainImage = data.getData();
             writingSubImg1.setImageURI(selectedMainImage);
             subImg1 = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
@@ -352,7 +352,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if(requestCode == GET_GALLARY_SUB2_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+        } else if(requestCode == GET_GALLERY_SUB2_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
             Uri selectedMainImage = data.getData();
             writingSubImg2.setImageURI(selectedMainImage);
             subImg2 = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
@@ -370,7 +370,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if(requestCode == GET_GALLARY_SUB3_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+        } else if(requestCode == GET_GALLERY_SUB3_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
             Uri selectedMainImage = data.getData();
             writingSubImg3.setImageURI(selectedMainImage);
             subImg3 = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
@@ -388,7 +388,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if(requestCode == GET_GALLARY_SUB4_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+        } else if(requestCode == GET_GALLERY_SUB4_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
             Uri selectedMainImage = data.getData();
             writingSubImg4.setImageURI(selectedMainImage);
             subImg4 = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);

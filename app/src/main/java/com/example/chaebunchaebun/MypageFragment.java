@@ -16,10 +16,8 @@ import android.widget.TextView;
  * create an instance of this fragment.
  */
 public class MypageFragment extends Fragment {
-
     TextView MyProfile, MyPosting, MyComment, MyHeart, MyQuestion, MyShare;
-
-
+    String userId = null;
     public MypageFragment() {
         // Required empty public constructor
     }
@@ -29,6 +27,10 @@ public class MypageFragment extends Fragment {
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public void getUserId(String userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -53,26 +55,34 @@ public class MypageFragment extends Fragment {
         MyProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), MyPageProfileActivity.class));
+                Intent intent = new Intent(getActivity(), MyPageProfileActivity.class);
+                intent.putExtra("userId", userId);
+                startActivity(intent);
             }
         });
 
         MyPosting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), MypageMypostingActivity.class));
+                Intent intent = new Intent(getActivity(), MypageMypostingActivity.class);
+                intent.putExtra("userId", userId);
+                startActivity(intent);
             }
         });
         MyComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), MypageMycommentActivity.class));
+                Intent intent = new Intent(new Intent(getActivity(), MypageMycommentActivity.class));
+                intent.putExtra("userId", userId);
+                startActivity(intent);
             }
         });
         MyHeart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), MypageMyHeartActivity.class));
+                Intent intent = new Intent(new Intent(getActivity(), MypageMyHeartActivity.class));
+                intent.putExtra("userId", userId);
+                startActivity(intent);
             }
         });
         MyQuestion.setOnClickListener(new View.OnClickListener() {

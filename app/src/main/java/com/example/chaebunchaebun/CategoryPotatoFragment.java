@@ -148,11 +148,15 @@ public class CategoryPotatoFragment extends Fragment {
                         String response = myWishTask.execute("common/wishlist/" + postId + " /" + id, String.valueOf(postId), id).get();
                         JSONObject jsonObject = new JSONObject(response);
                         int responseCode = jsonObject.getInt("code");
+                        String data = jsonObject.getString("data");
                         if(responseCode == 200){
-                            if(isWish == 0) {
-                                categoryListAdapter.getItem(pos).setIsWish(1);
-                            } else {
-                                categoryListAdapter.getItem(pos).setIsWish(0);
+                            JSONArray jsonArray = new JSONArray(data);
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject subJsonObject = jsonArray.getJSONObject(i);
+                                int wishcount = subJsonObject.getInt("wish_cnts");
+                                int status = subJsonObject.getInt("status");
+                                categoryListAdapter.getItem(pos).setLikeCount(String.valueOf(wishcount));
+                                categoryListAdapter.getItem(pos).setIsWish(status);
                             }
                         }
                     } catch (ExecutionException e) {
@@ -233,7 +237,7 @@ public class CategoryPotatoFragment extends Fragment {
                     String comment = String.valueOf(commentInt);
                     int isAuth = subJsonObject2.getInt("isAuth");
                     int isWish = subJsonObject2.getInt("isMyWish");
-                    boolean isSame = id.equals(userId);
+                    boolean isSame = id.equals(String.valueOf(userId));
 
                     categoryListItems.add(new CategoryListItem(profile, title, nickname, writtenBy, content,
                             img1, img2, img3, img4, img5, buyDate, member, perPrice, myWish, comment, isAuth,

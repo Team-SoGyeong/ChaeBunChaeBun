@@ -2,8 +2,10 @@ package com.example.chaebunchaebun;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
@@ -15,21 +17,22 @@ import android.widget.Toast;
 import com.google.android.material.tabs.TabLayout;
 
 public class MypageMyHeartActivity extends AppCompatActivity {
-    ViewPager vp;
-    TabLayout tabLayout;
-    Button btn;
+    String userId = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mypage_myheart);
 
-        vp = (ViewPager) findViewById(R.id.view_pager);
-        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        Intent intent = getIntent();
+        userId = intent.getStringExtra("userId");
 
-        MyHeartVPAdapter adapter = new MyHeartVPAdapter(getSupportFragmentManager());
-        vp.setAdapter(adapter);
-
-        tabLayout.setupWithViewPager(vp);
+        Bundle myPostDetailBundle = new Bundle();
+        myPostDetailBundle.putString("userId", userId);
+        FragmentTransaction myPostingTransaction = getSupportFragmentManager().beginTransaction();
+        MypageMyheartDetailFragment mypageMyheartDetailFragment = new MypageMyheartDetailFragment();
+        mypageMyheartDetailFragment.setArguments(myPostDetailBundle);
+        myPostingTransaction.replace(R.id.mypage_myheart_frame, mypageMyheartDetailFragment);
+        myPostingTransaction.commit();
     }
 }

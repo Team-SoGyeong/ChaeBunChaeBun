@@ -131,4 +131,8 @@ public class CategoryListItem {
     public void setIsWish(int isWish) {
         this.isWish = isWish;
     }
+
+    public void setLikeCount(String likeCount) {
+        this.likeCount = likeCount;
+    }
 }

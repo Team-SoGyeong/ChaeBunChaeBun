@@ -21,11 +21,15 @@ public class SetNicknameActivity extends AppCompatActivity {
         set_nickname = (EditText) findViewById(R.id.set_nickname);
         btn_next = (ImageButton) findViewById(R.id.btn_next);
 
-        Intent intent = getIntent();
-        String nickname = intent.getStringExtra("nickname");
-        String user_id = intent.getStringExtra("user_id");
-        String kakao_email = intent.getStringExtra("kakao_email");
-        String profile_img = intent.getStringExtra("profile_img");
+//        Intent intent = getIntent();
+//        String nickname = intent.getStringExtra("nickname");
+//        String user_id = intent.getStringExtra("user_id");
+//        String kakao_email = intent.getStringExtra("kakao_email");
+//        String profile_img = intent.getStringExtra("profile_img");
+        String nickname = "aaa";
+        String user_id = "1";
+        String kakao_email = "aaa";
+        String profile_img = "aaaa";
 
         set_nickname.setText(nickname);
 
