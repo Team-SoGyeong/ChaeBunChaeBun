@@ -21,8 +21,12 @@ import com.kakao.network.ErrorResult;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.LogoutResponseCallback;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class LogoutDialogFragment extends DialogFragment {
     public static final String TAG_EVENT_DIALOG = "dialog_event";
+    String userId = null;
     protected SessionCallback sessionCallback = new SessionCallback();
     Session session;
 
@@ -41,6 +45,8 @@ public class LogoutDialogFragment extends DialogFragment {
         ImageButton logout = (ImageButton) logoutDialog.findViewById(R.id.btn_logout);
         ImageButton cancel = (ImageButton) logoutDialog.findViewById(R.id.btn_cancel);
 
+        Bundle mArgs = getArguments();
+        userId = mArgs.getString("userId");
 
         logout.setOnClickListener(v -> {
             Log.d(TAG, "onCreate:click ");
@@ -49,16 +55,29 @@ public class LogoutDialogFragment extends DialogFragment {
                         @Override
                         public void onSessionClosed(ErrorResult errorResult) {
                             super.onSessionClosed(errorResult);
-                            Log.d(TAG, "onSessionClosed: "+errorResult.getErrorMessage());
-
+                            Log.d(TAG, "onSessionClosed: " + errorResult.getErrorMessage());
                         }
+
                         @Override
                         public void onCompleteLogout() {
                             if (sessionCallback != null) {
                                 Session.getCurrentSession().removeCallback(sessionCallback);
+
+                                PutTask putTask = new PutTask();
+                                JSONObject jsonCommentTransfer = new JSONObject();
+
+                                try {
+                                    jsonCommentTransfer.put("userId", userId);
+                                    String jsonString = jsonCommentTransfer.toString();
+                                    putTask.execute("auth2/signout/" + userId, jsonString);
+                                    //로그인 화면으로 돌아가기
+                                    getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                             }
                             Log.d(TAG, "onCompleteLogout:logout ");
-                            getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                            System.out.println("컴플릿로그인 후 logout_userid: " + userId);
                         }
                     });
         });

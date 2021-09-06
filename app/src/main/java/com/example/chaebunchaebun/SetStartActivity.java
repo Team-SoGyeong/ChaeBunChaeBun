@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutionException;
 
 public class SetStartActivity  extends AppCompatActivity {
     ImageButton btn_next;
-    int user_id;
+    String user_id="";
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.set_start);
@@ -57,7 +57,7 @@ public class SetStartActivity  extends AppCompatActivity {
                     for(int i = 0; i < jsonArray.length(); i++){
                         JSONObject subJsonObject = jsonArray.getJSONObject(i);
                         //subJsonObject는 data만 추출
-                        user_id = subJsonObject.getInt("user_id");
+                        user_id = String.valueOf(subJsonObject.getInt("user_id"));
                     }
                 }catch (JSONException e) {
                     e.printStackTrace();

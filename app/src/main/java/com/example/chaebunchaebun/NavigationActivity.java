@@ -1,5 +1,6 @@
 package com.example.chaebunchaebun;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -28,6 +29,10 @@ public class NavigationActivity extends AppCompatActivity {
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bottom_navigation);
+        //user_id 받기
+        Intent intent = getIntent();
+        this.userId = intent.getStringExtra("user_id");
+        System.out.println("home user_id: " + userId);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
