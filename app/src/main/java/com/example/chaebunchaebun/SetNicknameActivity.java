@@ -26,6 +26,8 @@ public class SetNicknameActivity extends AppCompatActivity {
         String user_id = intent.getStringExtra("user_id");
         String kakao_email = intent.getStringExtra("kakao_email");
         String profile_img = intent.getStringExtra("profile_img");
+        String sex = intent.getStringExtra("sex");
+        String age_range = intent.getStringExtra("age_range");
 
 
         btn_next.setOnClickListener(new View.OnClickListener() {
@@ -38,6 +40,8 @@ public class SetNicknameActivity extends AppCompatActivity {
                 intent.putExtra("kakao_email", kakao_email);
                 intent.putExtra("profile_img", profile_img);
                 intent.putExtra("nickname", nickname);
+                intent.putExtra("sex", sex);
+                intent.putExtra("age_range", age_range);
                 startActivity(intent);
             }
         });

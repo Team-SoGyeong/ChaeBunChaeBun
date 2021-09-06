@@ -24,8 +24,9 @@ public class SetStartActivity  extends AppCompatActivity {
         String kakao_email = intent.getStringExtra("kakao_email");
         String profile_img = intent.getStringExtra("profile_img");
         String nickname = intent.getStringExtra("nickname");
-        String location = intent.getStringExtra("location");
         int location_seq = intent.getIntExtra("locationCode",0);
+        String sex = intent.getStringExtra("sex");
+        String age_range = intent.getStringExtra("age_range");
 
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,8 +42,8 @@ public class SetStartActivity  extends AppCompatActivity {
                     jsonCommentTransfer.put("address_seq", location_seq);
                     jsonCommentTransfer.put("profile", profile_img);
                     jsonCommentTransfer.put("email", kakao_email);
-                    jsonCommentTransfer.put("sex", "");
-                    jsonCommentTransfer.put("age_range", "");
+                    jsonCommentTransfer.put("sex", sex);
+                    jsonCommentTransfer.put("age_range", age_range);
 
                     String jsonString = jsonCommentTransfer.toString();
                     postTask.execute("auth2/signin/kakao", jsonString);

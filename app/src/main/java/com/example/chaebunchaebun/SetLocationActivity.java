@@ -30,6 +30,8 @@ public class SetLocationActivity extends AppCompatActivity {
         String kakao_email = intent.getStringExtra("kakao_email");
         String profile_img = intent.getStringExtra("profile_img");
         String nickname = intent.getStringExtra("nickname");
+        String sex = intent.getStringExtra("sex");
+        String age_range = intent.getStringExtra("age_range");
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +70,8 @@ public class SetLocationActivity extends AppCompatActivity {
                 intent.putExtra("nickname", nickname);
                 intent.putExtra("location", searchLocation);
                 intent.putExtra("locationCode", locationCode);
+                intent.putExtra("sex", sex);
+                intent.putExtra("age_range", age_range);
                 startActivity(intent);
             }
         });
