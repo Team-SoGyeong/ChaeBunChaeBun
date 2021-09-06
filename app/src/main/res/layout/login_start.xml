@@ -26,6 +26,7 @@
         android:textColor="#999999"
         android:textSize="16sp"
         android:text="환경을 향한 한 걸음의 시작" />
+    <!--
     <EditText
         android:id="@+id/input_id"
         android:layout_width="match_parent"
@@ -65,13 +66,20 @@
         android:layout_height="32dp"
         android:layout_gravity="center"
         android:background="@drawable/group_763" />
+        -->
+    <ImageView
+        android:layout_width="131dp"
+        android:layout_height="131dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="77dp"
+        android:background="@drawable/logo"/>
     <ImageButton
         android:id="@+id/loginV1"
         android:layout_gravity="center_horizontal"
         android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:background="@drawable/kakao_login_medium_wide"
-        android:layout_marginTop="14dp"
+        android:layout_height="44dp"
+        android:background="@drawable/signupbtn"
+        android:layout_marginTop="201dp"
         android:layout_marginBottom="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

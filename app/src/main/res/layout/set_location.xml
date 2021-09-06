@@ -55,7 +55,6 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="25dp"
                 android:background="@drawable/profile_edittext"
-                android:drawableRight="@drawable/ic_search"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:fontFamily="@font/roboto_regular"
@@ -65,14 +64,16 @@
                 android:paddingRight="8dp"
                 android:inputType="text"
                 android:maxLines="1"
-                android:imeOptions="actionSearch"/>
+                android:imeOptions="actionSearch"
+                />
+
             <ImageButton
                 android:id="@+id/ic_search"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginLeft="284dp"
-                android:layout_marginRight="28dp"
+                android:layout_marginLeft="292dp"
                 android:layout_marginTop="31dp"
+                android:layout_marginRight="8dp"
                 android:background="@drawable/ic_search" />
         </RelativeLayout>
     </LinearLayout>

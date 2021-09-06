@@ -26,10 +26,6 @@ public class SetNicknameActivity extends AppCompatActivity {
         String user_id = intent.getStringExtra("user_id");
         String kakao_email = intent.getStringExtra("kakao_email");
         String profile_img = intent.getStringExtra("profile_img");
-//        String nickname = "aaa";
-//        String user_id = "1";
-//        String kakao_email = "aaa";
-//        String profile_img = "aaaa";
 
 
         btn_next.setOnClickListener(new View.OnClickListener() {
