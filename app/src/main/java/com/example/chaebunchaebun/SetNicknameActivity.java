@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SetNicknameActivity extends AppCompatActivity {
     ImageButton btn_next;
+    String nickname="";
     EditText set_nickname;
 
     String chaebun_nickname = "";
@@ -21,28 +22,26 @@ public class SetNicknameActivity extends AppCompatActivity {
         set_nickname = (EditText) findViewById(R.id.set_nickname);
         btn_next = (ImageButton) findViewById(R.id.btn_next);
 
-//        Intent intent = getIntent();
-//        String nickname = intent.getStringExtra("nickname");
-//        String user_id = intent.getStringExtra("user_id");
-//        String kakao_email = intent.getStringExtra("kakao_email");
-//        String profile_img = intent.getStringExtra("profile_img");
-        String nickname = "aaa";
-        String user_id = "1";
-        String kakao_email = "aaa";
-        String profile_img = "aaaa";
+        Intent intent = getIntent();
+        String user_id = intent.getStringExtra("user_id");
+        String kakao_email = intent.getStringExtra("kakao_email");
+        String profile_img = intent.getStringExtra("profile_img");
+        String sex = intent.getStringExtra("sex");
+        String age_range = intent.getStringExtra("age_range");
 
-        set_nickname.setText(nickname);
 
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chaebun_nickname = set_nickname.getText().toString();
+                nickname = set_nickname.getText().toString();
 
                 Intent intent = new Intent(getApplicationContext(), SetLocationActivity.class);
                 intent.putExtra("user_id", user_id);
                 intent.putExtra("kakao_email", kakao_email);
                 intent.putExtra("profile_img", profile_img);
-                intent.putExtra("nickname", chaebun_nickname);
+                intent.putExtra("nickname", nickname);
+                intent.putExtra("sex", sex);
+                intent.putExtra("age_range", age_range);
                 startActivity(intent);
             }
         });

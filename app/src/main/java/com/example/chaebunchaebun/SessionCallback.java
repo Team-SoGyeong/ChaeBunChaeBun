@@ -16,6 +16,7 @@ import com.kakao.network.ErrorResult;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.MeV2ResponseCallback;
 import com.kakao.usermgmt.response.MeV2Response;
+import com.kakao.usermgmt.response.model.Gender;
 import com.kakao.usermgmt.response.model.Profile;
 import com.kakao.usermgmt.response.model.UserAccount;
 import com.kakao.util.OptionalBoolean;
@@ -25,7 +26,8 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
     String kakao_email = "";
     String profile_img = "";
     String user_id = "";
-    String nickname = "";
+    String kakao_gender = "";
+    String kakao_age_range = "";
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +69,12 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                         if (kakaoAccount != null) {
                             // 이메일
                             String email = kakaoAccount.getEmail();
+                            String gender = kakaoAccount.getGender().getValue();
+                            String age_range = kakaoAccount.getAgeRange().getValue();
                             kakao_email = email;
+                            kakao_gender = gender;
+                            kakao_age_range = age_range;
+
                             Profile profile = kakaoAccount.getProfile();
                             if (profile ==null){
                                 Log.d("KAKAO_API", "onSuccess:profile null ");
@@ -75,9 +82,8 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                                 Log.d("KAKAO_API", "onSuccess:getProfileImageUrl "+profile.getProfileImageUrl());
                                 Log.d("KAKAO_API", "onSuccess:getNickname "+profile.getNickname());
                                 profile_img = profile.getProfileImageUrl();
-                                nickname = profile.getNickname();
 
-                                setData(user_id, kakao_email, profile_img, nickname);
+                                setData(user_id, kakao_email, profile_img, kakao_gender, kakao_age_range);
                             }
                             if (email != null) {
 
@@ -106,12 +112,13 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                     }
                 });
     }
-    public void setData(String user_id, String kakao_email, String profile_img, String nickname) {
+    public void setData(String user_id, String kakao_email, String profile_img, String gender, String age_range) {
         Intent intent = new Intent(getApplicationContext(), SetNicknameActivity.class);
         intent.putExtra("user_id", user_id);
         intent.putExtra("kakao_email", kakao_email);
         intent.putExtra("profile_img", profile_img);
-        intent.putExtra("nickname", nickname);
+        intent.putExtra("sex", gender);
+        intent.putExtra("age_range", age_range);
         startActivity(intent);
     }
 }
