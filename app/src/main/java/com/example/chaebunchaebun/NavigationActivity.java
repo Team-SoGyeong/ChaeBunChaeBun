@@ -31,7 +31,7 @@ public class NavigationActivity extends AppCompatActivity {
         setContentView(R.layout.bottom_navigation);
         //user_id 받기
         Intent intent = getIntent();
-        this.userId = intent.getStringExtra("user_id");
+        this.userId = intent.getStringExtra("userId");
         System.out.println("home user_id: " + userId);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
