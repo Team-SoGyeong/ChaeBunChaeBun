@@ -54,7 +54,6 @@ public class LocationDialogFragment extends DialogFragment {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
                 if((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    //getActivity().startActivity(new Intent(getActivity(), SearchLocationActivity.class));
                     String change = locationDialogEdt.getText().toString();
                     Intent intent = new Intent(getContext(), SearchLocationActivity.class);
                     intent.putExtra("searchLocation", change);
@@ -83,7 +82,6 @@ public class LocationDialogFragment extends DialogFragment {
             String dong = data.getStringExtra("dong");
             int addressCode = data.getIntExtra("code", 0);
 
-            System.out.println("결과: " + dong + " " + addressCode);
             locationDialogEdt.setText(dong);
 
             locationDialogChange.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +95,7 @@ public class LocationDialogFragment extends DialogFragment {
                         if(responseCode == 200){
                             Intent intent = new Intent(getActivity(), NavigationActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.putExtra("userId", userId);
                             getActivity().startActivity(intent);
                             getActivity().overridePendingTransition(0, 0);
                         } else {
