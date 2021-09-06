@@ -63,8 +63,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".SetNicknameActivity"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".SetLocationActivity"
             android:windowSoftInputMode="adjustResize" />
@@ -103,6 +102,12 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".SessionCallback"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ChangeChaebunActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ChangeChaebunEtcActivity"
             android:windowSoftInputMode="adjustResize" />
     </application>
 </manifest>

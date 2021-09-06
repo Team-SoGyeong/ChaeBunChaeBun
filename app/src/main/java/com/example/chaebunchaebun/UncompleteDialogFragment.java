@@ -64,7 +64,10 @@ public class UncompleteDialogFragment extends DialogFragment {
                 completeTask.execute("common/donated/" + String.valueOf(postId) + "/" + userId, String.valueOf(postId), userId);
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.foodbank1377.org/"));
                 getActivity().startActivityForResult(intent, TAG_INTENT);
-                getActivity().startActivity(new Intent(getActivity(), NavigationActivity.class));
+                Intent homeIntent = new Intent(getActivity(), NavigationActivity.class);
+                homeIntent.putExtra("userId", userId);
+                getActivity().startActivity(homeIntent);
+                getActivity().overridePendingTransition(0, 0);
             }
         });
         setCancelable(false);

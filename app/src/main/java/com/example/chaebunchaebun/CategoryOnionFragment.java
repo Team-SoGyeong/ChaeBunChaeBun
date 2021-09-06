@@ -45,7 +45,7 @@ public class CategoryOnionFragment extends Fragment{
 
     TextView categoryNoList;
     ImageButton writing;
-    String id = "1";
+    String id = null;
     String category = "1";
 
     public CategoryOnionFragment() {
@@ -68,6 +68,10 @@ public class CategoryOnionFragment extends Fragment{
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public void getUserId(String userId){
+        this.id = userId;
     }
 
     @Override
@@ -106,8 +110,11 @@ public class CategoryOnionFragment extends Fragment{
                 @Override
                 public void onItemClick(View view, int pos) {
                     String postId = String.valueOf(categoryListAdapter.getItem(pos).getPostId());
+                    int categoryId = categoryListAdapter.getItem(pos).getCategoryId();
                     Bundle articleBundle = new Bundle();
+                    articleBundle.putString("userId", id);
                     articleBundle.putString("postId", postId);
+                    articleBundle.putInt("categoryId", categoryId);
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     ArticleFragment articleFragment = new ArticleFragment();
                     articleFragment.setArguments(articleBundle);
@@ -122,10 +129,12 @@ public class CategoryOnionFragment extends Fragment{
                 public void OnModlaClick(View view, int pos) {
                     String userId = String.valueOf(categoryListAdapter.getItem(pos).getUserId());
                     String postId = String.valueOf(categoryListAdapter.getItem(pos).getPostId());
+                    int categoryId = categoryListAdapter.getItem(pos).getCategoryId();
                     if (userId.equals(id)) {
                         Bundle args = new Bundle();
                         args.putString("userId", id);
                         args.putString("postId", postId);
+                        args.putInt("categoryId", categoryId);
                         MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
                         myBottomSheetDialog.setArguments(args);
                         myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
@@ -176,8 +185,11 @@ public class CategoryOnionFragment extends Fragment{
         writing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WarningDialogFragment warningDialogFragment = WarningDialogFragment.getInstance();
-                warningDialogFragment.show(getChildFragmentManager(), "WarningBox");
+                Bundle args = new Bundle();
+                args.putString("userId", id);
+                WarningDialogFragment e = WarningDialogFragment.getInstance();
+                e.setArguments(args);
+                e.show(getChildFragmentManager(), WarningDialogFragment.TAG_EVENT_DIALOG);
             }
         });
         return categoryOnion;
@@ -202,7 +214,7 @@ public class CategoryOnionFragment extends Fragment{
             JSONArray jsonArray = new JSONArray(data);
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
-
+                int categoryId = subJsonObject.getInt("category_id1");
                 String post = subJsonObject.getString("posts");
                 JSONArray jsonPostArray = new JSONArray(post);
                 for(int j = 0; j < jsonPostArray.length(); j++){
@@ -242,7 +254,7 @@ public class CategoryOnionFragment extends Fragment{
 
                     categoryListItems.add(new CategoryListItem(profile, title, nickname, writtenBy, content,
                             img1, img2, img3, img4, img5, buyDate, member, perPrice, myWish, comment, isAuth,
-                            isWish, postId, userId, isSame));
+                            isWish, postId, userId, isSame, categoryId));
                 }
             }
         } catch (JSONException e) {

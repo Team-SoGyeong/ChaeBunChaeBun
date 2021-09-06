@@ -18,9 +18,8 @@ public class MyCommentVPAdapter extends FragmentPagerAdapter {
         items = new ArrayList<Fragment>();
 
         MypageMyCommentFragment mypageMyCommentFragment = new MypageMyCommentFragment();
-
-        items.add(mypageMyCommentFragment);
         mypageMyCommentFragment.getUserId(userId);
+        items.add(mypageMyCommentFragment);
         items.add(new MyCommunityCommentFragment());
 
         itext.add("채분");

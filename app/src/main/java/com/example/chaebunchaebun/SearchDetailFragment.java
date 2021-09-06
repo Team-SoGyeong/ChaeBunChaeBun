@@ -147,8 +147,10 @@ public class SearchDetailFragment extends Fragment {
                         @Override
                         public void onItemClick(View view, int pos) {
                             String postId = String.valueOf(searchListAdapter.getItem(pos).getPostId());
+                            int categoryId = searchListAdapter.getItem(pos).getCategoryId();
                             Bundle articleBundle = new Bundle();
                             articleBundle.putString("postId", postId);
+                            articleBundle.putInt("categoryId", categoryId);
                             FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                             ArticleFragment articleFragment = new ArticleFragment();
                             articleFragment.setArguments(articleBundle);
@@ -185,8 +187,10 @@ public class SearchDetailFragment extends Fragment {
                             @Override
                             public void onItemClick(View view, int pos) {
                                 int postId = searchListAdapter.getItem(pos).getPostId();
+                                int categoryId = searchListAdapter.getItem(pos).getCategoryId();
                                 Bundle articleBundle = new Bundle();
                                 articleBundle.putString("postId", String.valueOf(postId));
+                                articleBundle.putInt("categoryId", categoryId);
                                 FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                                 ArticleFragment articleFragment = new ArticleFragment();
                                 articleFragment.setArguments(articleBundle);
@@ -199,6 +203,17 @@ public class SearchDetailFragment extends Fragment {
                     return true;
                 }
                 return false;
+            }
+        });
+
+        search_no_startbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle args = new Bundle();
+                args.putString("userId", userId);
+                WarningDialogFragment e = WarningDialogFragment.getInstance();
+                e.setArguments(args);
+                e.show(getChildFragmentManager(), WarningDialogFragment.TAG_EVENT_DIALOG);
             }
         });
 
@@ -227,8 +242,9 @@ public class SearchDetailFragment extends Fragment {
                 String price = subJsonObject.getString("per_price");
                 int isAuth = subJsonObject.getInt("isAuth");
                 int postId = subJsonObject.getInt("post_id");
+                int categoryId = subJsonObject.getInt("category_id");
 
-                searchListItems.add(new SearchListItem(title, buyDate, people, price, isAuth, postId));
+                searchListItems.add(new SearchListItem(title, buyDate, people, price, isAuth, postId, categoryId));
             }
         } catch(JSONException e){
             e.printStackTrace();

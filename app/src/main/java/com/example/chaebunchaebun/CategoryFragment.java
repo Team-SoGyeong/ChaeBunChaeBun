@@ -41,6 +41,8 @@ public class CategoryFragment extends Fragment{
     LinearLayout contenthelp;
     TextView category_name;
 
+    String userId;
+
     public CategoryFragment() {
         // Required empty public constructor
     }
@@ -83,8 +85,9 @@ public class CategoryFragment extends Fragment{
         contenthelp = category.findViewById(R.id.category_content_help);
 
         contenthelp.setVisibility(View.GONE);
+        userId = getArguments().getString("userId");
 
-        CategoryVPAdapter categoryVPAdapter = new CategoryVPAdapter(getChildFragmentManager());
+        CategoryVPAdapter categoryVPAdapter = new CategoryVPAdapter(getChildFragmentManager(), userId);
         categoryvp.setAdapter(categoryVPAdapter);
 
         categoryTabLayout = category.findViewById(R.id.tab_category);

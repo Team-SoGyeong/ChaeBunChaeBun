@@ -131,8 +131,11 @@ public class MypageMyHeartFragment extends Fragment {
                                 toast.show();
                             } else {
                                 String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
+                                int categoryId = homeListAdapter.getItem(pos).getCategoryId();
                                 Bundle articleBundle = new Bundle();
+                                articleBundle.putString("userId", userId);
                                 articleBundle.putString("postId", postId);
+                                articleBundle.putInt("categoryId", categoryId);
                                 FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                                 ArticleFragment articleFragment = new ArticleFragment();
                                 articleFragment.setArguments(articleBundle);
@@ -190,7 +193,7 @@ public class MypageMyHeartFragment extends Fragment {
             JSONArray jsonArray = new JSONArray(data);
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
-
+                int categoryId = subJsonObject.getInt("category_id");
                 int postId = subJsonObject.getInt("post_id");
                 int userId = subJsonObject.getInt("wish_id");
                 String img = subJsonObject.getString("url");
@@ -202,7 +205,7 @@ public class MypageMyHeartFragment extends Fragment {
                 String writtenBy = subJsonObject.getString("written_by");
                 int isAuth = subJsonObject.getInt("isAuth");
 
-                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId));
+                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId, categoryId));
             }
         } catch (JSONException e) {
             e.printStackTrace();

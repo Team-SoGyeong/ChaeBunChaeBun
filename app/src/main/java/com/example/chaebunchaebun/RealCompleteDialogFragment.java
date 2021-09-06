@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import io.grpc.InternalManagedChannelProvider;
+
 public class RealCompleteDialogFragment extends DialogFragment {
     public static final String TAG_EVENT_DIALOG = "dialog_event";
 
@@ -45,7 +47,10 @@ public class RealCompleteDialogFragment extends DialogFragment {
             public void onClick(View view) {
                 PutTask completeTask = new PutTask();
                 completeTask.execute("common/processed/" + String.valueOf(postId) + "/" + userId, String.valueOf(postId), userId);
-                getActivity().startActivity(new Intent(getActivity(), NavigationActivity.class));
+                Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                intent.putExtra("userId", userId);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(0, 0);
             }
         });
         setCancelable(false);

@@ -142,8 +142,11 @@ public class MypageMyCommentFragment extends Fragment {
                                 toast.show();
                             } else {
                                 String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
+                                int categoryId = homeListAdapter.getItem(pos).getCategoryId();
                                 Bundle articleBundle = new Bundle();
+                                articleBundle.putString("userId", userId);
                                 articleBundle.putString("postId", postId);
+                                articleBundle.putInt("categoryId", categoryId);
                                 FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                                 ArticleFragment articleFragment = new ArticleFragment();
                                 articleFragment.setArguments(articleBundle);
@@ -158,6 +161,7 @@ public class MypageMyCommentFragment extends Fragment {
                         public void OnModlaClick(View view, int pos) {
                             String id = String.valueOf(homeListAdapter.getItem(pos).getUserId());
                             String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
+                            int categoryId = homeListAdapter.getItem(pos).getCategoryId();
                             if(state.equals("1")){
                                 toastText.setText("완료된 채분은 접근할 수 없어요!");
                                 toast.show();
@@ -166,6 +170,7 @@ public class MypageMyCommentFragment extends Fragment {
                                     Bundle args = new Bundle();
                                     args.putString("userId", userId);
                                     args.putString("postId", postId);
+                                    args.putInt("categoryId", categoryId);
                                     MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
                                     myBottomSheetDialog.setArguments(args);
                                     myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
@@ -210,7 +215,7 @@ public class MypageMyCommentFragment extends Fragment {
             JSONArray jsonArray = new JSONArray(data);
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
-
+                int categoryId = subJsonObject.getInt("category_id");
                 int postId = subJsonObject.getInt("post_id");
                 int userId = subJsonObject.getInt("wish_id");
                 String img = subJsonObject.getString("url");
@@ -222,7 +227,7 @@ public class MypageMyCommentFragment extends Fragment {
                 String writtenBy = subJsonObject.getString("written_by");
                 int isAuth = subJsonObject.getInt("isAuth");
 
-                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId));
+                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId, categoryId));
             }
         } catch (JSONException e) {
             e.printStackTrace();

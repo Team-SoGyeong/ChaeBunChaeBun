@@ -67,7 +67,8 @@ public class ArticleFragment extends Fragment {
 
     int recyclerPosition = -1;
     String postId = "";
-    String userId = "1";
+    String userId = "";
+    int categoryId = 0;
     String categoryNameString, title, nickname, content, buyDate, members,
             perPrice, writtenBy, profile, amount, totalPrice, contact;
     int isAuth, wishcount, userIdnum, status, isMyWish = 0;
@@ -102,6 +103,8 @@ public class ArticleFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
 
             this.postId = getArguments().getString("postId");
+            this.userId = getArguments().getString("userId");
+            this.categoryId = getArguments().getInt("categoryId");
             getPostList();
             getCommentList();
         }
@@ -233,6 +236,7 @@ public class ArticleFragment extends Fragment {
                     Bundle args = new Bundle();
                     args.putString("userId", userId);
                     args.putString("postId", postId);
+                    args.putInt("categoryId", categoryId);
                     MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
                     myBottomSheetDialog.setArguments(args);
                     myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");

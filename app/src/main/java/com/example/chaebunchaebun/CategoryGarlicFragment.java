@@ -44,7 +44,7 @@ public class CategoryGarlicFragment extends Fragment {
     private LinearLayoutManager cLayoutManager;
 
     TextView categoryNoList;
-    String id = "1";
+    String id = null;
     String category = "2";
 
     public CategoryGarlicFragment() {
@@ -67,6 +67,10 @@ public class CategoryGarlicFragment extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public void getUserId(String userId){
+        this.id = userId;
     }
 
     @Override
@@ -102,8 +106,11 @@ public class CategoryGarlicFragment extends Fragment {
                 @Override
                 public void onItemClick(View view, int pos) {
                     String postId = String.valueOf(categoryListAdapter.getItem(pos).getPostId());
+                    int categoryId = categoryListAdapter.getItem(pos).getCategoryId();
                     Bundle articleBundle = new Bundle();
+                    articleBundle.putString("userId", id);
                     articleBundle.putString("postId", postId);
+                    articleBundle.putInt("categoryId", categoryId);
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     ArticleFragment articleFragment = new ArticleFragment();
                     articleFragment.setArguments(articleBundle);
@@ -118,10 +125,12 @@ public class CategoryGarlicFragment extends Fragment {
                 public void OnModlaClick(View view, int pos) {
                     String userId = String.valueOf(categoryListAdapter.getItem(pos).getUserId());
                     String postId = String.valueOf(categoryListAdapter.getItem(pos).getPostId());
+                    int categoryId = categoryListAdapter.getItem(pos).getCategoryId();
                     if (userId.equals(id)) {
                         Bundle args = new Bundle();
                         args.putString("userId", id);
                         args.putString("postId", postId);
+                        args.putInt("categoryId", categoryId);
                         MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
                         myBottomSheetDialog.setArguments(args);
                         myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
@@ -173,8 +182,11 @@ public class CategoryGarlicFragment extends Fragment {
         writing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WarningDialogFragment warningDialogFragment = WarningDialogFragment.getInstance();
-                warningDialogFragment.show(getChildFragmentManager(), "WarningBox");
+                Bundle args = new Bundle();
+                args.putString("userId", id);
+                WarningDialogFragment e = WarningDialogFragment.getInstance();
+                e.setArguments(args);
+                e.show(getChildFragmentManager(), WarningDialogFragment.TAG_EVENT_DIALOG);
             }
         });
         // Inflate the layout for this fragment
@@ -200,7 +212,7 @@ public class CategoryGarlicFragment extends Fragment {
             JSONArray jsonArray = new JSONArray(data);
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
-
+                int categoryId = subJsonObject.getInt("category_id1");
                 String post = subJsonObject.getString("posts");
                 JSONArray jsonPostArray = new JSONArray(post);
                 for(int j = 0; j < jsonPostArray.length(); j++){
@@ -230,7 +242,7 @@ public class CategoryGarlicFragment extends Fragment {
                     String buyDate = subJsonObject2.getString("buy_date");
                     String member = subJsonObject2.getString("headcounts");
                     String perPrice = subJsonObject2.getString("per_price");
-                    int myWishInt = (int) subJsonObject2.getInt("wish_cnts");
+                    int myWishInt = subJsonObject2.getInt("wish_cnts");
                     String myWish = String.valueOf(myWishInt);
                     int commentInt = subJsonObject2.getInt("comment_cnts");
                     String comment = String.valueOf(commentInt);
@@ -240,7 +252,7 @@ public class CategoryGarlicFragment extends Fragment {
 
                     categoryListItems.add(new CategoryListItem(profile, title, nickname, writtenBy, content,
                             img1, img2, img3, img4, img5, buyDate, member, perPrice, myWish, comment, isAuth,
-                            isWish, postId, userId, isSame));
+                            isWish, postId, userId, isSame, categoryId));
                 }
             }
         } catch (JSONException e) {

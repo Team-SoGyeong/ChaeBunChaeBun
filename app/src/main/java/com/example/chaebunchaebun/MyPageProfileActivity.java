@@ -3,6 +3,7 @@ package com.example.chaebunchaebun;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.LabeledIntent;
 import android.graphics.Color;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
@@ -11,11 +12,14 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +37,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.concurrent.ExecutionException;
+import java.util.zip.Inflater;
 
 public class MyPageProfileActivity extends AppCompatActivity {
     private final int GET_GALLERY_PROFILE_IMAGE = 200;
@@ -43,9 +48,20 @@ public class MyPageProfileActivity extends AppCompatActivity {
     String userId = null;
     String nickname, profileImg = null;
 
+    private TextView toastText;
+    private Toast toast;
+
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mypage_profile);
+
+        LayoutInflater inflater = getLayoutInflater();
+        View customToast = inflater.inflate(R.layout.custom_report_toast, (ViewGroup) findViewById(R.id.custom_toast_layout));
+
+        toastText = (TextView) customToast.findViewById(R.id.custom_toast_text);
+        toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(customToast);
 
         Intent intent = getIntent();
         this.userId = intent.getStringExtra("userId");
@@ -131,7 +147,6 @@ public class MyPageProfileActivity extends AppCompatActivity {
                 nickname = changeNickname.getText().toString();
                 int user = Integer.parseInt(userId);
                 setProfile(nickname, profileImg, user);
-                finish();
             }
         });
 
@@ -257,7 +272,19 @@ public class MyPageProfileActivity extends AppCompatActivity {
             String jsonString = jsonProfileTransfer.toString();
             String response = profileTask.execute("mypage/profile", jsonString).get();
             JSONObject jsonObject = new JSONObject(response);
-
+            int responseCode = jsonObject.getInt("code");
+            if(responseCode == 200) {
+                toastText.setText("수정되었어요!");
+                toast.show();
+                finish();
+            } else {
+                toastText.setText("이미 있는 닉네임이에요!");
+                toast.show();
+                changeNickname.setBackgroundResource(R.drawable.profile_edittext_red);
+                nicknameInvalid.setTextColor(Color.parseColor("#BE1700"));
+                nicknameChangeBtn.setImageResource(R.drawable.group_813);
+                nicknameChangeBtn.setClickable(false);
+            }
         }catch (JSONException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

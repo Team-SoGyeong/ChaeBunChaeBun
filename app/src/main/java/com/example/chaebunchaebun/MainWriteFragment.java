@@ -43,7 +43,7 @@ public class MainWriteFragment extends Fragment {
     TextView mainPostingNolist;
     String state = "0";
     String platform = "0";
-    String userId = "1";
+    String userId = null;
 
     public MainWriteFragment() {
         // Required empty public constructor
@@ -119,6 +119,7 @@ public class MainWriteFragment extends Fragment {
                 public void onItemClick(View view, int pos) {
                     String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
                     Bundle articleBundle = new Bundle();
+                    articleBundle.putString("userId", userId);
                     articleBundle.putString("postId", postId);
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     ArticleFragment articleFragment = new ArticleFragment();
@@ -132,9 +133,11 @@ public class MainWriteFragment extends Fragment {
                 @Override
                 public void OnModlaClick(View view, int pos) {
                     String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
+                    int categoryId = homeListAdapter.getItem(pos).getCategoryId();
                     Bundle args = new Bundle();
                     args.putString("userId", userId);
                     args.putString("postId", postId);
+                    args.putInt("categoryId", categoryId);
                     MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
                     myBottomSheetDialog.setArguments(args);
                     myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
@@ -162,21 +165,20 @@ public class MainWriteFragment extends Fragment {
             JSONObject jsonObject = new JSONObject(resultText);
             String data = jsonObject.getString("data");
             JSONArray jsonArray = new JSONArray(data);
-            for(int i = jsonArray.length() - 1; i > jsonArray.length() - 4; i--){
+            for(int i = 0; i < 3; i++){
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
-
+                int categoryId = subJsonObject.getInt("category_id");
                 int postId = subJsonObject.getInt("post_id");
-                int userId = Integer.parseInt(this.userId);
+                int userId = subJsonObject.getInt("wish_id");
                 String img = subJsonObject.getString("url");
                 String title = subJsonObject.getString("title");
                 String buyDate = subJsonObject.getString("buy_date");
-                int membersInt = subJsonObject.getInt("members");
-                String member = String.valueOf(membersInt) + "명";
+                String member = subJsonObject.getString("members");
                 String perPrice = subJsonObject.getString("per_price");
                 String writtenBy = subJsonObject.getString("witten_by");
                 int isAuth = subJsonObject.getInt("isAuth");
 
-                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId));
+                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId, categoryId));
             }
         } catch (JSONException e) {
             e.printStackTrace();
