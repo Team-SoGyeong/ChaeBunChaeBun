@@ -209,9 +209,13 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(isAmount == true && isPrice == true && isMember == true){
-                    perPrice = ((Integer.parseInt(totalPrice) / Integer.parseInt(amount)) * (Integer.parseInt(amount) / Integer.parseInt(people)));
-                    inputPerPrice.setText(String.valueOf(perPrice).toString());
+                if(inputMemberNum.getText().toString().equals("")){
+                    inputMemberNum.setText("0");
+                } else if(!inputMemberNum.getText().toString().equals("0")) {
+                    if(isAmount == true && isPrice == true && isMember == true){
+                        perPrice = ((Integer.parseInt(totalPrice) / Integer.parseInt(amount)) * (Integer.parseInt(amount) / Integer.parseInt(people)));
+                        inputPerPrice.setText(String.valueOf(perPrice).toString());
+                    }
                 }
             }
         });
