@@ -19,7 +19,7 @@ public class NavigationActivity extends AppCompatActivity {
     private FragmentManager fm;
     private FragmentTransaction ft;
     private HomeFragment homefg;
-    private MainWriteFragment lastfg;
+    private CommunityFragment communityfg;
     private MypageFragment myfg;
     private LikeListFragment likefg;
 
@@ -58,7 +58,7 @@ public class NavigationActivity extends AppCompatActivity {
 
         homefg = new HomeFragment();
         likefg = new LikeListFragment();
-        lastfg = new MainWriteFragment();
+        communityfg = new CommunityFragment();
         myfg = new MypageFragment();
         setFragment(0);
     }
@@ -73,11 +73,13 @@ public class NavigationActivity extends AppCompatActivity {
                 //ft.commit();
                 break;
             case 1:
+                likefg.getUserId(userId);
                 ft.replace(R.id.bottom_frame, likefg).commitAllowingStateLoss();
                 //ft.commit();
                 break;
             case 2:
-                ft.replace(R.id.bottom_frame, lastfg).commitAllowingStateLoss();
+                communityfg.getUserId(userId);
+                ft.replace(R.id.bottom_frame, communityfg).commitAllowingStateLoss();
                 //ft.commit();
                 break;
             case 3:

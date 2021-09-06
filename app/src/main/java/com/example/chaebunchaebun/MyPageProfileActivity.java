@@ -109,20 +109,17 @@ public class MyPageProfileActivity extends AppCompatActivity {
                     changeNickname.setBackgroundResource(R.drawable.profile_edittext);
                     nicknameLength.setText(getNickname.length() + "/10");
                     nicknameInvalid.setTextColor(Color.parseColor("#9A9792"));
-                    nicknameChangeBtn.setImageResource(R.drawable.group_811);
                     nicknameChangeBtn.setClickable(false);
                 } else {
                     if(getNickname.length() <= 10 && getNickname.length() > 0){
                         changeNickname.setBackgroundResource(R.drawable.profile_edittext_green);
                         nicknameLength.setText(getNickname.length() + "/10");
                         nicknameInvalid.setTextColor(Color.parseColor("#9A9792"));
-                        nicknameChangeBtn.setImageResource(R.drawable.group_812);
                         nicknameChangeBtn.setClickable(true);
                     } else {
                         changeNickname.setBackgroundResource(R.drawable.profile_edittext_red);
                         nicknameLength.setText(getNickname.length() + "/10");
                         nicknameInvalid.setTextColor(Color.parseColor("#BE1700"));
-                        nicknameChangeBtn.setImageResource(R.drawable.group_813);
                         nicknameChangeBtn.setClickable(false);
                     }
                 }
