@@ -14,13 +14,18 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
+
 public class SetNicknameActivity extends AppCompatActivity {
     ImageButton btn_next;
-    String nickname="";
     EditText set_nickname;
+    String nickname = "";
     TextView nickname_invaild;
 
-    String chaebun_nickname = "";
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.set_nickname);
@@ -35,37 +40,23 @@ public class SetNicknameActivity extends AppCompatActivity {
         String sex = intent.getStringExtra("sex");
         String age_range = intent.getStringExtra("age_range");
 
+
         btn_next.setClickable(false);
         set_nickname.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String getNickname = set_nickname.getText().toString();
+
                 if (getNickname.length() <= 10 && getNickname.length() > 0) {
                     set_nickname.setBackgroundResource(R.drawable.profile_edittext_green);
                     nickname_invaild.setTextColor(Color.rgb(154, 151, 146));
                     btn_next.setImageResource(R.drawable.nickname_signup_btn);
                     btn_next.setClickable(true);
-
-                    btn_next.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            nickname = set_nickname.getText().toString();
-
-                            Intent intent = new Intent(getApplicationContext(), SetLocationActivity.class);
-                            intent.putExtra("user_id", user_id);
-                            intent.putExtra("kakao_email", kakao_email);
-                            intent.putExtra("profile_img", profile_img);
-                            intent.putExtra("nickname", nickname);
-                            intent.putExtra("sex", sex);
-                            intent.putExtra("age_range", age_range);
-                            startActivity(intent);
-                        }
-                    });
+                    nickname = getNickname;
                 } else {
                     set_nickname.setBackgroundResource(R.drawable.profile_edittext_red);
                     nickname_invaild.setTextColor(Color.rgb(190, 23, 0));
@@ -80,6 +71,43 @@ public class SetNicknameActivity extends AppCompatActivity {
             }
         });
 
+        btn_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {String result = " ";
+                try {
+                    System.out.println("btn때 nickname: " + nickname);
+                    result = new GetTask("auth2/signin/kakao/" + nickname).execute().get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    int requestCode = jsonObject.getInt("code");
+                    System.out.println("requestCode: " + requestCode);
+                    if(requestCode == 200){
+                        Intent intent = new Intent(getApplicationContext(), SetLocationActivity.class);
+                        intent.putExtra("user_id", user_id);
+                        intent.putExtra("kakao_email", kakao_email);
+                        intent.putExtra("profile_img", profile_img);
+                        intent.putExtra("nickname", nickname);
+                        intent.putExtra("sex", sex);
+                        intent.putExtra("age_range", age_range);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(getApplicationContext(), "중복된 닉네임이 존재합니다!", Toast.LENGTH_SHORT);
+                        set_nickname.setBackgroundResource(R.drawable.profile_edittext_red);
+                        nickname_invaild.setTextColor(Color.rgb(190, 23, 0));
+                        btn_next.setImageResource(R.drawable.btn_signup_next);
+                        btn_next.setClickable(false);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
+
 }

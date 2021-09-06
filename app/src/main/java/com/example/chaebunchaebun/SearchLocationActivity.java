@@ -178,7 +178,6 @@ public class SearchLocationActivity extends AppCompatActivity {
                 gu = jsonArray.getJSONArray(i).get(2).toString();
                 dong = jsonArray.getJSONArray(i).get(3).toString();
 
-                System.out.println(city + gu + dong);
                 lc_list.add(city + " " + gu + " " + dong);
                 locationCode.add(Integer.parseInt(code));
             }

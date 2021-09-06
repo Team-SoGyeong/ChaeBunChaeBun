@@ -165,7 +165,10 @@ public class MyPageProfileActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle args = new Bundle();
+                args.putString("userId", userId);
                 LogoutDialogFragment e = LogoutDialogFragment.getInstance();
+                e.setArguments(args);
                 e.show(getSupportFragmentManager(), LogoutDialogFragment.TAG_EVENT_DIALOG);
             }
         });

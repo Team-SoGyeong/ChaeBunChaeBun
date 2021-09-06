@@ -184,13 +184,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        /*iconLike.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getActivity().startActivity(new Intent(getActivity(), HomeLikeActivity.class));
-            }
-        });*/
-
       writing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
