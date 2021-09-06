@@ -69,15 +69,20 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                         UserAccount kakaoAccount = result.getKakaoAccount();
                         if (kakaoAccount != null) {
                             // 이메일
-                            email = kakaoAccount.getEmail();
+                            if(kakaoAccount.getEmail() == null){
+                                email = "premium";
+                            } else {
+                                email = kakaoAccount.getEmail();
+                            }
+
                             if(kakaoAccount.getGender() == null){
-                                gender = null;
+                                gender = "etc";
                             } else {
                                 gender = kakaoAccount.getGender().getValue();
                             }
 
                             if(kakaoAccount.getAgeRange() == null){
-                                ageRange = null;
+                                ageRange = "etc";
                             } else {
                                 ageRange = kakaoAccount.getAgeRange().getValue();
                             }
@@ -87,7 +92,7 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                             kakao_age_range = ageRange;
 
                             Profile profile = kakaoAccount.getProfile();
-                            if (profile ==null){
+                            if (profile == null){
                                 Log.d("KAKAO_API", "onSuccess:profile null ");
                             }else{
                                 Log.d("KAKAO_API", "onSuccess:getProfileImageUrl "+profile.getProfileImageUrl());

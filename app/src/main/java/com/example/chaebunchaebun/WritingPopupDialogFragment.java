@@ -40,6 +40,7 @@ public class WritingPopupDialogFragment extends DialogFragment {
         ImageButton btn_modify = (ImageButton) checkDialog.findViewById(R.id.btn_modify);
 
         Bundle args = getArguments();
+        String userId = args.getString("userId");
         int categoryId = args.getInt("categoryId");
         String title = args.getString("inputTitle");
         String content = args.getString("inputContent");
@@ -101,7 +102,9 @@ public class WritingPopupDialogFragment extends DialogFragment {
                         String jsonString = jsonPostTransfer.toString();
                         System.out.println(jsonString);
                         postTask.execute("posts/common", jsonString);
-                        startActivity(new Intent(getActivity(), NavigationActivity.class));
+                        Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                        intent.putExtra("userId", userId);
+                        startActivity(intent);
                     }catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -134,7 +137,9 @@ public class WritingPopupDialogFragment extends DialogFragment {
                         String jsonString = jsonPostTransfer.toString();
                         System.out.println(jsonString);
                         postTask.execute("posts/etc", jsonString);
-                        startActivity(new Intent(getActivity(), NavigationActivity.class));
+                        Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                        intent.putExtra("userId", userId);
+                        startActivity(intent);
                     }catch (JSONException e) {
                         e.printStackTrace();
                     }

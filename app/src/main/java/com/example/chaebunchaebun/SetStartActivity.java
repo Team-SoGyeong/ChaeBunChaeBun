@@ -47,6 +47,8 @@ public class SetStartActivity  extends AppCompatActivity {
                     jsonCommentTransfer.put("sex", sex);
                     jsonCommentTransfer.put("age_range", age_range);
 
+                    System.out.println("결과: " + nickname + " " + location_seq + " " + profile_img + " " + kakao_email + " " + sex + " " + age_range);
+
                     String jsonString = jsonCommentTransfer.toString();
                     String response = postTask.execute("auth2/signin/kakao", jsonString).get();
 
@@ -67,7 +69,7 @@ public class SetStartActivity  extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                intent.putExtra("user_id", user_id);
+                intent.putExtra("userId", user_id);
                 startActivity(intent);
             }
         });

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class SelectCategoryActivity extends AppCompatActivity{
-    boolean flag = false;
+    boolean flag = true;
     int cateoryid = 0;
     ImageButton btn_onion, btn_garlic, btn_greenonion, btn_carrot, btn_mushroom, btn_greenvege, btn_cabbage, btn_radish, btn_potato, btn_sweetpotato, btn_etc, btn_next;
     String userId;
@@ -321,13 +321,13 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 System.out.println("flag: "+flag);
                 Intent intent;
                 if(flag == true){
-                    intent = new Intent(getApplicationContext(), WritingEtcChaebunActivity.class);
+                    intent = new Intent(getApplicationContext(), WritingChaebunActivity.class);
                     intent.putExtra("categoryId", cateoryid);
                     intent.putExtra("userId", userId);
                     startActivity(intent);
                 }
                 else{
-                    intent = new Intent(getApplicationContext(), WritingChaebunActivity.class);
+                    intent = new Intent(getApplicationContext(), WritingEtcChaebunActivity.class);
                     intent.putExtra("categoryId", cateoryid);
                     intent.putExtra("userId", userId);
                     startActivity(intent);

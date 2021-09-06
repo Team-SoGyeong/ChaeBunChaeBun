@@ -284,6 +284,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                     toast.show();
                 }else {
                     Bundle args = new Bundle();
+                    args.putString("userId", userId);
                     args.putInt("categoryId", categoryId);
                     args.putString("inputTitle", inputTitle.getText().toString());
                     args.putString("inputContent", inputContent.getText().toString());
