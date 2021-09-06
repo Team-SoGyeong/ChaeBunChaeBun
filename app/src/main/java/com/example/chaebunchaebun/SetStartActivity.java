@@ -8,19 +8,21 @@ import android.widget.ImageButton;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.concurrent.ExecutionException;
+
 public class SetStartActivity  extends AppCompatActivity {
     ImageButton btn_next;
-
+    int user_id;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.set_start);
         btn_next = (ImageButton) findViewById(R.id.btn_next);
 
         Intent intent = getIntent();
-        String user_id = intent.getStringExtra("user_id");
         String kakao_email = intent.getStringExtra("kakao_email");
         String profile_img = intent.getStringExtra("profile_img");
         String nickname = intent.getStringExtra("nickname");
@@ -46,13 +48,25 @@ public class SetStartActivity  extends AppCompatActivity {
                     jsonCommentTransfer.put("age_range", age_range);
 
                     String jsonString = jsonCommentTransfer.toString();
-                    postTask.execute("auth2/signin/kakao", jsonString);
+                    String response = postTask.execute("auth2/signin/kakao", jsonString).get();
+
+                    JSONObject jsonObject = new JSONObject(response);
+                    String data = jsonObject.getString("data");
+                    //data가 가진 값이 대괄호로 감싸여 있으니까 array
+                    JSONArray jsonArray = new JSONArray(data);
+                    for(int i = 0; i < jsonArray.length(); i++){
+                        JSONObject subJsonObject = jsonArray.getJSONObject(i);
+                        //subJsonObject는 data만 추출
+                        user_id = subJsonObject.getInt("user_id");
+                    }
                 }catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
                     e.printStackTrace();
                 }
 
-
-                //user_id를 홈에 넘김
                 intent.putExtra("user_id", user_id);
                 startActivity(intent);
             }
