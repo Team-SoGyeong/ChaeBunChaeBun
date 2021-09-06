@@ -28,6 +28,7 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
     String user_id = "";
     String kakao_gender = "";
     String kakao_age_range = "";
+    String email, gender, ageRange;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,12 +69,22 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                         UserAccount kakaoAccount = result.getKakaoAccount();
                         if (kakaoAccount != null) {
                             // 이메일
-                            String email = kakaoAccount.getEmail();
-                            String gender = kakaoAccount.getGender().getValue();
-                            String age_range = kakaoAccount.getAgeRange().getValue();
+                            email = kakaoAccount.getEmail();
+                            if(kakaoAccount.getGender() == null){
+                                gender = null;
+                            } else {
+                                gender = kakaoAccount.getGender().getValue();
+                            }
+
+                            if(kakaoAccount.getAgeRange() == null){
+                                ageRange = null;
+                            } else {
+                                ageRange = kakaoAccount.getAgeRange().getValue();
+                            }
+
                             kakao_email = email;
                             kakao_gender = gender;
-                            kakao_age_range = age_range;
+                            kakao_age_range = ageRange;
 
                             Profile profile = kakaoAccount.getProfile();
                             if (profile ==null){
