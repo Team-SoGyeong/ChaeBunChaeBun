@@ -1,7 +1,10 @@
 package com.example.chaebunchaebun;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -30,6 +33,8 @@ public class SetLocationActivity extends AppCompatActivity {
         String kakao_email = intent.getStringExtra("kakao_email");
         String profile_img = intent.getStringExtra("profile_img");
         String nickname = intent.getStringExtra("nickname");
+        String sex = intent.getStringExtra("sex");
+        String age_range = intent.getStringExtra("age_range");
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +44,6 @@ public class SetLocationActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SearchLocationActivity.class);
                 intent.putExtra("searchLocation", searchLocation);
                 startActivityForResult(intent, TAG_REQUEST_CODE);
-                //set_location 값 저장하기
             }
         });
 
@@ -58,19 +62,49 @@ public class SetLocationActivity extends AppCompatActivity {
             }
         });
 
-        btn_next.setOnClickListener(new View.OnClickListener() {
+        set_location.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SetStartActivity.class);
-                intent.putExtra("user_id", user_id);
-                intent.putExtra("kakao_email", kakao_email);
-                intent.putExtra("profile_img", profile_img);
-                intent.putExtra("nickname", nickname);
-                intent.putExtra("location", searchLocation);
-                intent.putExtra("locationCode", locationCode);
-                startActivity(intent);
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String getLocation = set_location.getText().toString();
+                if(getLocation.length() > 0){
+                    set_location.setBackgroundResource(R.drawable.profile_edittext_green);
+                    btn_next.setImageResource(R.drawable.nickname_signup_btn);
+                    btn_next.setClickable(true);
+
+                    btn_next.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getApplicationContext(), SetStartActivity.class);
+                            intent.putExtra("user_id", user_id);
+                            intent.putExtra("kakao_email", kakao_email);
+                            intent.putExtra("profile_img", profile_img);
+                            intent.putExtra("nickname", nickname);
+                            intent.putExtra("location", searchLocation);
+                            intent.putExtra("locationCode", locationCode);
+                            intent.putExtra("sex", sex);
+                            intent.putExtra("age_range", age_range);
+                            startActivity(intent);
+                        }
+                    });
+                } else {
+                    set_location.setBackgroundResource(R.drawable.profile_edittext);
+                    btn_next.setImageResource(R.drawable.btn_signup_next);
+                    btn_next.setClickable(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
+
+
     }
 
     @Override

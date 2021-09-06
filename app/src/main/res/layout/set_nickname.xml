@@ -34,11 +34,16 @@
         android:id="@+id/set_nickname"
         android:layout_width="match_parent"
         android:layout_height="36dp"
-        android:paddingLeft="10dp"
+        android:layout_marginTop="32dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/profile_edittext"/>
+        android:layout_gravity="center"
+        android:background="@drawable/profile_edittext"
+        android:fontFamily="@font/roboto_regular"
+        android:paddingLeft="9dp"
+        android:paddingTop="11dp"
+        android:paddingBottom="11dp"
+        android:textSize="12dp" />
     <TextView
         android:id="@+id/set_invaild"
         android:layout_width="match_parent"
@@ -46,10 +51,11 @@
         android:fontFamily="@font/roboto_bold"
         android:gravity="center_vertical"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="21dp"
+        android:layout_marginLeft="20dp"
         android:textColor="#9a9792"
         android:textSize="12sp"
         android:text="*특수문자, 이모티콘은 사용 불가합니다." />
+
     <ImageButton
         android:id="@+id/btn_next"
         android:layout_width="320dp"
