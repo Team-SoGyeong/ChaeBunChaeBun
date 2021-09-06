@@ -69,30 +69,21 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                         UserAccount kakaoAccount = result.getKakaoAccount();
                         if (kakaoAccount != null) {
                             // 이메일
-                            if(kakaoAccount.getEmail() == null){
-                                email = "premium";
-                            } else {
-                                email = kakaoAccount.getEmail();
-                            }
+                            if(kakaoAccount.getEmail() == null){ email = "premium"; }
+                            else { email = kakaoAccount.getEmail(); }
 
-                            if(kakaoAccount.getGender() == null){
-                                gender = "etc";
-                            } else {
-                                gender = kakaoAccount.getGender().getValue();
-                            }
+                            if(kakaoAccount.getGender() == null){ gender = "etc"; }
+                            else { gender = kakaoAccount.getGender().getValue(); }
 
-                            if(kakaoAccount.getAgeRange() == null){
-                                ageRange = "etc";
-                            } else {
-                                ageRange = kakaoAccount.getAgeRange().getValue();
-                            }
+                            if(kakaoAccount.getAgeRange() == null){ ageRange = "etc"; }
+                            else { ageRange = kakaoAccount.getAgeRange().getValue(); }
 
                             kakao_email = email;
                             kakao_gender = gender;
                             kakao_age_range = ageRange;
 
                             Profile profile = kakaoAccount.getProfile();
-                            if (profile == null){
+                            if (profile ==null){
                                 Log.d("KAKAO_API", "onSuccess:profile null ");
                             }else{
                                 Log.d("KAKAO_API", "onSuccess:getProfileImageUrl "+profile.getProfileImageUrl());
@@ -102,7 +93,6 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                                 setData(user_id, kakao_email, profile_img, kakao_gender, kakao_age_range);
                             }
                             if (email != null) {
-
                                 Log.d("KAKAO_API", "onSuccess:email "+email);
                             }
 
