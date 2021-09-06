@@ -21,11 +21,12 @@ public class CategoryListItem {
     private int postId = 0;
     private int userId = 0;
     private boolean isSame = false;
+    private int categoryId = 0;
 
     public CategoryListItem(String profile, String title, String nickname, String writingDate, String content,
                             String img1, String img2, String img3, String img4, String img5,
                             String buyingDate, String people, String price, String likeCount, String commentCount, int isAuth,
-                            int isWish, int postId, int userId, boolean isSame) {
+                            int isWish, int postId, int userId, boolean isSame, int categoryId) {
         this.profile = profile;
         this.title = title;
         this.nickname = nickname;
@@ -46,6 +47,7 @@ public class CategoryListItem {
         this.postId = postId;
         this.userId = userId;
         this.isSame = isSame;
+        this.categoryId = categoryId;
     }
 
     public  String getProfile() {
@@ -134,5 +136,9 @@ public class CategoryListItem {
 
     public void setLikeCount(String likeCount) {
         this.likeCount = likeCount;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
     }
 }

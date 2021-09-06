@@ -148,6 +148,7 @@ public class HomeFragment extends Fragment {
             public void onItemClick(int pos) {
                 Bundle categoryBundle = new Bundle();
                 categoryBundle.putInt("vegetable", pos);
+                categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 CategoryFragment categoryFragment = new CategoryFragment();
                 categoryFragment.setArguments(categoryBundle);
@@ -183,12 +184,12 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        iconLike.setOnClickListener(new View.OnClickListener() {
+        /*iconLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getActivity().startActivity(new Intent(getActivity(), HomeLikeActivity.class));
             }
-        });
+        });*/
 
       writing.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -213,13 +214,13 @@ public class HomeFragment extends Fragment {
           }
       });
 
-      iconNotice.setOnClickListener(new View.OnClickListener() {
+      /*iconNotice.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                QuestionCompleteDialogFragment e = QuestionCompleteDialogFragment.getInstance();
                e.show(getChildFragmentManager(), QuestionCompleteDialogFragment.TAG_EVENT_DIALOG);
            }
-       });
+       });*/
       
         // Inflate the layout for this fragment
         return homeView;

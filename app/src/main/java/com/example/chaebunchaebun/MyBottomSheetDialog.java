@@ -1,5 +1,6 @@
 package com.example.chaebunchaebun;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ public class MyBottomSheetDialog extends BottomSheetDialogFragment implements Vi
     private ImageButton delete;
 
     String userId, postId = null;
+    int categoryId = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class MyBottomSheetDialog extends BottomSheetDialogFragment implements Vi
         Bundle mArgs = getArguments();
         userId = mArgs.getString("userId");
         postId = mArgs.getString("postId");
+        categoryId = mArgs.getInt("categoryId");
 
         modify.setOnClickListener(this);
         delete.setOnClickListener(this);
@@ -42,6 +45,19 @@ public class MyBottomSheetDialog extends BottomSheetDialogFragment implements Vi
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.list_modal_modify:
+                if(categoryId < 11) {
+                    Intent intent = new Intent(getContext(), ChangeChaebunActivity.class);
+                    intent.putExtra("userId", userId);
+                    intent.putExtra("postId", postId);
+                    intent.putExtra("categoryId", categoryId);
+                    getActivity().startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getContext(), ChangeChaebunEtcActivity.class);
+                    intent.putExtra("userId", userId);
+                    intent.putExtra("postId", postId);
+                    intent.putExtra("categoryId", categoryId);
+                    getActivity().startActivity(intent);
+                }
                 Toast.makeText(getContext(),"수정",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.list_modal_delete:

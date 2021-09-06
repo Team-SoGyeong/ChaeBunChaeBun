@@ -44,33 +44,6 @@
         android:text="소분 멤버"
         android:textColor="#000000"
         android:textSize="14sp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="286dp"
-        android:layout_marginTop="98dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="원"
-        android:textColor="#000000"
-        android:textSize="12sp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="286dp"
-        android:layout_marginTop="137dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="명"
-        android:textColor="#000000"
-        android:textSize="12sp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="238dp"
-        android:layout_marginTop="182dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="원"
-        android:textColor="#000000"
-        android:textSize="12sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -98,7 +71,7 @@
     <!-- Edit -->
     <EditText
         android:id="@+id/input_amount"
-        android:layout_width="100dp"
+        android:layout_width="176dp"
         android:layout_height="29dp"
         android:layout_gravity="bottom"
         android:layout_marginLeft="100dp"
@@ -153,25 +126,5 @@
         android:gravity="center"
         android:textAlignment="center"
         android:textSize="12dp" />
-    <Spinner
-        android:id="@+id/amount_spinner1"
-        android:layout_width="match_parent"
-        android:layout_height="29dp"
-        android:layout_marginLeft="200dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="52dp"/>
-
-    <Spinner
-        android:id="@+id/amount_spinner2"
-        android:layout_width="match_parent"
-        android:layout_height="29dp"
-        android:layout_below="@+id/amount_spinner1"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="-29dp"
-        android:layout_marginRight="20dp"
-        android:fontFamily="@font/roboto_regular"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textSize="5dp" />
 
 </RelativeLayout>

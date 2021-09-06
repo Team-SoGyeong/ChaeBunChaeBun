@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:showIn="@layout/writing_chaebun_etc">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!-- View -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/etc_main_img"
+                android:layout_width="match_parent"
+                android:layout_height="222dp"
+                android:background="#ebebeb"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="17dp"
+                android:background="@drawable/main_picture"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/etc_sub_img1"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="#dad9d9"/>
+                <ImageButton
+                    android:id="@+id/etc_sub_img1_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/sub_picture"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/etc_sub_img2"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="#c6c5c5"/>
+                <ImageButton
+                    android:id="@+id/etc_sub_img2_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/sub_picture"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/etc_sub_img3"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="#a9a9a9"/>
+                <ImageButton
+                    android:id="@+id/etc_sub_img3_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/sub_picture"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/etc_sub_img4"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="#848484"/>
+                <ImageButton
+                    android:id="@+id/etc_sub_img4_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/sub_picture"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <!-- 영수증 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:text="영수증을 추가해 보세요!" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#999999"
+            android:textSize="10sp"
+            android:text="영수증을 추가하면 영수증 인증 마크를 드려요!" />
+        <ImageButton
+            android:id="@+id/add_receipt"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/add_receipt" />
+        <!-- 제목 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:text="채분할 채소를 적어 주세요" />
+        <EditText
+            android:id="@+id/input_vegetable"
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/signup_edittext"
+            android:textSize="14sp"
+            android:paddingLeft="9dp"
+            android:backgroundTint="#f4f6f2"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="브로콜리" />
+
+        <!-- 제목 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:text="제목을 적어 주세요" />
+        <EditText
+            android:id="@+id/input_title"
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/signup_edittext"
+            android:textSize="14sp"
+            android:paddingLeft="9dp"
+            android:backgroundTint="#f4f6f2"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="채분할 사람 모여라!" />
+
+        <!-- 소개글 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:text="채분에 대해 소개해 주세요" />
+        <EditText
+            android:id="@+id/input_content"
+            android:layout_width="match_parent"
+            android:layout_height="169dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_regular"
+            android:background="@drawable/signup_edittext"
+            android:textSize="14sp"
+            android:paddingLeft="9dp"
+            android:paddingTop="10dp"
+            android:backgroundTint="#f4f6f2"
+            android:gravity="top"
+            android:hint="우리 가족들이 먹을 거라 좋은 걸로 골랐어요~" />
+        <TextView
+            android:id="@+id/input_content_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_marginLeft="303dp"
+            android:layout_marginRight="19dp"
+            android:layout_marginTop="10dp"
+            android:paddingRight="2dp"
+            android:textAlignment="viewEnd"
+            android:textColor="#999999"
+            android:textSize="10sp"
+            android:text="(0/500)" />
+
+        <!-- 상세 정보 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:text="더 자세한 정보를 입력해 주세요" />
+        <include layout="@layout/change_chaebun_detail"/>
+
+        <!-- 연락 방법 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:text="원하는 연락 방법을 적어주세요" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#999999"
+            android:textSize="12sp"
+            android:text="참여하기를 누른 사용자만 받을 수 있는 연락망이에요!" />
+        <EditText
+            android:id="@+id/input_call"
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/roboto_regular"
+            android:background="@drawable/signup_edittext"
+            android:textSize="14sp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:backgroundTint="#f4f6f2"
+            android:gravity="top"
+            android:hint="소분을 위해 언제, 어느 시간대에 만날지 정하기 위함이니 제일 편한 연락망을 써주세요!\nex) 카카오톡 아이디, 오픈 카톡 링크, 인스타 아이디" />
+
+        <!-- 하단 버튼 -->
+        <ImageButton
+            android:id="@+id/btn_next"
+            android:layout_width="320dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/group_707" />
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="320dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/group_708" />
+    </LinearLayout>
+</ScrollView>

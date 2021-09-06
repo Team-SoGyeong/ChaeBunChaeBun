@@ -14,20 +14,53 @@ public class CategoryVPAdapter extends FragmentPagerAdapter {
     private ArrayList<Fragment> categorys;
     private ArrayList<String> categoryTabText = new ArrayList<String>();
 
-    public CategoryVPAdapter(FragmentManager fm) {
+    public CategoryVPAdapter(FragmentManager fm, String userId) {
         super(fm);
         categorys = new ArrayList<Fragment>();
-        categorys.add(new CategoryOnionFragment());
-        categorys.add(new CategoryGarlicFragment());
-        categorys.add(new CategoryGreenonionFragment());
-        categorys.add(new CategoryCarrotFragment());
-        categorys.add(new CategoryMushroomFragment());
-        categorys.add(new CategoryGreenvegeFragment());
-        categorys.add(new CategoryCabbageFragment());
-        categorys.add(new CategoryRadishFragment());
-        categorys.add(new CategoryPotatoFragment());
-        categorys.add(new CategorySweetpotatoFragment());
-        categorys.add(new CategoryOtherFragment());
+
+        CategoryOnionFragment categoryOnionFragment = new CategoryOnionFragment();
+        categoryOnionFragment.getUserId(userId);
+        categorys.add(categoryOnionFragment);
+
+        CategoryGarlicFragment categoryGarlicFragment = new CategoryGarlicFragment();
+        categoryGarlicFragment.getUserId(userId);
+        categorys.add(categoryGarlicFragment);
+
+        CategoryGreenonionFragment categoryGreenonionFragment = new CategoryGreenonionFragment();
+        categoryGreenonionFragment.getUserId(userId);
+        categorys.add(categoryGreenonionFragment);
+
+        CategoryCarrotFragment categoryCarrotFragment = new CategoryCarrotFragment();
+        categoryCarrotFragment.getUserId(userId);
+        categorys.add(categoryCarrotFragment);
+
+        CategoryMushroomFragment categoryMushroomFragment = new CategoryMushroomFragment();
+        categoryMushroomFragment.getUserId(userId);
+        categorys.add(categoryMushroomFragment);
+
+        CategoryGreenvegeFragment categoryGreenvegeFragment = new CategoryGreenvegeFragment();
+        categoryGreenvegeFragment.getUserId(userId);
+        categorys.add(categoryGreenvegeFragment);
+
+        CategoryCabbageFragment categoryCabbageFragment = new CategoryCabbageFragment();
+        categoryCabbageFragment.getUserId(userId);
+        categorys.add(categoryCabbageFragment);
+
+        CategoryRadishFragment categoryRadishFragment = new CategoryRadishFragment();
+        categoryRadishFragment.getUserId(userId);
+        categorys.add(categoryRadishFragment);
+
+        CategoryPotatoFragment categoryPotatoFragment = new CategoryPotatoFragment();
+        categoryPotatoFragment.getUserId(userId);
+        categorys.add(categoryPotatoFragment);
+
+        CategorySweetpotatoFragment categorySweetpotatoFragment = new CategorySweetpotatoFragment();
+        categorySweetpotatoFragment.getUserId(userId);
+        categorys.add(categorySweetpotatoFragment);
+
+        CategoryOtherFragment categoryOtherFragment = new CategoryOtherFragment();
+        categoryOtherFragment.getUserId(userId);
+        categorys.add(categoryOtherFragment);
 
         categoryTabText.add("양파");
         categoryTabText.add("마늘");
