@@ -170,15 +170,5 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-     /*
-        Intent intent = new Intent(getApplicationContext(), SetNicknameActivity.class);
-        intent.putExtra("user_id", user_id);
-        intent.putExtra("kakao_email", kakao_email);
-        intent.putExtra("profile_img", profile_img);
-        intent.putExtra("sex", gender);
-        intent.putExtra("age_range", age_range);
-        startActivity(intent);
-*/
-
     }
 }
