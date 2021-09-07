@@ -32,7 +32,6 @@ public class UnknownActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.foodbank1377.org/"));
                 startActivity(intent);
-
             }
         });
     }
