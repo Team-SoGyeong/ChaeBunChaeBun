@@ -78,6 +78,7 @@ public class MypageMyheartDetailFragment extends Fragment {
 
         vp = (ViewPager) myHeartDetail.findViewById(R.id.view_pager);
         tabLayout = (TabLayout) myHeartDetail.findViewById(R.id.tab_layout);
+        back = (ImageView) myHeartDetail.findViewById(R.id.id_back);
 
         userId = getArguments().getString("userId");
 

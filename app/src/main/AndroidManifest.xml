@@ -38,19 +38,18 @@
         <activity
             android:name=".NavigationActivity"
             android:label="하단 네비게이션">
+        </activity>
+        <activity
+            android:name=".HomeLikeActivity"
+            android:label="홈 찜 록록" />
+        <activity
+            android:name=".LoginActivity"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".HomeLikeActivity"
-            android:label="홈 찜 록록" />
-
-        <activity
-            android:name=".LoginActivity"
-            android:windowSoftInputMode="adjustResize">
         </activity>
         <activity
             android:name=".SearchActivity"
