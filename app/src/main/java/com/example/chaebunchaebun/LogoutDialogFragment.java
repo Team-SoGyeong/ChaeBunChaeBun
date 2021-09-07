@@ -71,7 +71,9 @@ public class LogoutDialogFragment extends DialogFragment {
                                     String jsonString = jsonCommentTransfer.toString();
                                     putTask.execute("auth2/signout/" + userId, jsonString);
                                     //로그인 화면으로 돌아가기
-                                    getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    getActivity().startActivity(intent);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
