@@ -5,11 +5,13 @@ import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 public class SelectCategoryActivity extends AppCompatActivity{
     boolean flag = true;
     int cateoryid = 0;
     ImageButton btn_onion, btn_garlic, btn_greenonion, btn_carrot, btn_mushroom, btn_greenvege, btn_cabbage, btn_radish, btn_potato, btn_sweetpotato, btn_etc, btn_next;
+    ImageView back;
     String userId;
 
     @Override
@@ -32,6 +34,7 @@ public class SelectCategoryActivity extends AppCompatActivity{
         btn_sweetpotato = (ImageButton) findViewById(R.id.btn_sweetpotato);
         btn_etc = (ImageButton) findViewById(R.id.btn_etc);
         btn_next = (ImageButton) findViewById(R.id.btn_next);
+        back = (ImageView) findViewById(R.id.id_back);
 
         btn_onion.setOnClickListener(new View.OnClickListener() {
             boolean select = true;
@@ -335,5 +338,11 @@ public class SelectCategoryActivity extends AppCompatActivity{
             }
         });
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 }

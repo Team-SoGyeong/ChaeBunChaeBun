@@ -6,9 +6,13 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,9 +24,19 @@ public class SetLocationActivity extends AppCompatActivity {
     String searchLocation = null;
     int locationCode = 0;
 
+    private TextView toastText;
+    private Toast toast;
+
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.set_location);
+        LayoutInflater inflater = getLayoutInflater();
+        View customToast = inflater.inflate(R.layout.custom_report_toast, (ViewGroup) findViewById(R.id.custom_toast_layout));
+
+        toastText = (TextView) customToast.findViewById(R.id.custom_toast_text);
+        toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(customToast);
 
         search = (ImageButton) findViewById(R.id.ic_search);
         btn_next = (ImageButton) findViewById(R.id.btn_next);
@@ -79,16 +93,21 @@ public class SetLocationActivity extends AppCompatActivity {
                     btn_next.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(getApplicationContext(), SetStartActivity.class);
-                            intent.putExtra("user_id", user_id);
-                            intent.putExtra("kakao_email", kakao_email);
-                            intent.putExtra("profile_img", profile_img);
-                            intent.putExtra("nickname", nickname);
-                            intent.putExtra("location", searchLocation);
-                            intent.putExtra("locationCode", locationCode);
-                            intent.putExtra("sex", sex);
-                            intent.putExtra("age_range", age_range);
-                            startActivity(intent);
+                            if(locationCode == 0) {
+                                toastText.setText("주소가 선택되지 않았어요!");
+                                toast.show();
+                            } else {
+                                Intent intent = new Intent(getApplicationContext(), SetStartActivity.class);
+                                intent.putExtra("user_id", user_id);
+                                intent.putExtra("kakao_email", kakao_email);
+                                intent.putExtra("profile_img", profile_img);
+                                intent.putExtra("nickname", nickname);
+                                intent.putExtra("location", searchLocation);
+                                intent.putExtra("locationCode", locationCode);
+                                intent.putExtra("sex", sex);
+                                intent.putExtra("age_range", age_range);
+                                startActivity(intent);
+                            }
                         }
                     });
                 } else {

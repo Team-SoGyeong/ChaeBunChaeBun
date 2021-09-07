@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -31,6 +32,7 @@ public class MypageMyheartDetailFragment extends Fragment {
     ViewPager vp;
     TabLayout tabLayout;
     Button btn;
+    ImageView back;
     String userId;
 
     public MypageMyheartDetailFragment() {
@@ -83,6 +85,13 @@ public class MypageMyheartDetailFragment extends Fragment {
         vp.setAdapter(adapter);
 
         tabLayout.setupWithViewPager(vp);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+            }
+        });
 
         return myHeartDetail;
     }
