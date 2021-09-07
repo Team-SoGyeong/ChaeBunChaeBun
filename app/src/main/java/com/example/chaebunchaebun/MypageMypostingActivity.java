@@ -16,6 +16,7 @@ public class MypageMypostingActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         userId = intent.getStringExtra("userId");
+        System.out.println("내가 쓴 글" + userId);
 
         Bundle myPostDetailBundle = new Bundle();
         myPostDetailBundle.putString("userId", userId);

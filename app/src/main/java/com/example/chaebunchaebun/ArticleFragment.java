@@ -339,6 +339,7 @@ public class ArticleFragment extends Fragment {
                     String jsonString = jsonCommentTransfer.toString();
                     postTask.execute("posts/comment", jsonString);
                     Bundle articleBundle = new Bundle();
+                    articleBundle.putString("userId", userId);
                     articleBundle.putString("postId", postId);
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     ArticleFragment articleFragment = new ArticleFragment();
@@ -402,7 +403,7 @@ public class ArticleFragment extends Fragment {
         String resultText = "[NULL]";
 
         try {
-            resultText = new GetTask("posts/" + this.postId + "/" + this.userId).execute().get();
+            resultText = new GetTask("mypage/mypost/" + this.postId + "/" + this.userId).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
