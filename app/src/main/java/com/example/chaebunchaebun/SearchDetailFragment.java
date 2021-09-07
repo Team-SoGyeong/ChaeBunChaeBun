@@ -139,6 +139,7 @@ public class SearchDetailFragment extends Fragment {
                     search_no_tv.setVisibility(View.GONE);
                     search_no_startbtn.setVisibility(View.GONE);
                     search_suggest.setVisibility(View.GONE);
+                    searchList.setVisibility(View.VISIBLE);
                     sLayoutManager = new LinearLayoutManager(getContext());
                     searchList.setLayoutManager(sLayoutManager);
                     searchListAdapter = new SearchListAdapter(searchListItems);
@@ -179,6 +180,7 @@ public class SearchDetailFragment extends Fragment {
                         search_no_tv.setVisibility(View.GONE);
                         search_no_startbtn.setVisibility(View.GONE);
                         search_suggest.setVisibility(View.GONE);
+                        searchList.setVisibility(View.VISIBLE);
                         sLayoutManager = new LinearLayoutManager(getContext());
                         searchList.setLayoutManager(sLayoutManager);
                         searchListAdapter = new SearchListAdapter(searchListItems);

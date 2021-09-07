@@ -41,7 +41,7 @@ public class NoMannerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent email = new Intent(Intent.ACTION_SEND);
                 email.setType("plain/text");
-                String[] address = {"email@address.com"};
+                String[] address = {"dragoncat84@naver.com"};
                 email.putExtra(Intent.EXTRA_EMAIL, address);
                 email.putExtra(Intent.EXTRA_SUBJECT, "[채분채분 문의하기]");
                 email.putExtra(Intent.EXTRA_TEXT, "문의할 내용을 적어주세요!");
