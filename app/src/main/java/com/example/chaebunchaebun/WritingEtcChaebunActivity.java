@@ -302,6 +302,7 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                     args.putString("img3", subImg2);
                     args.putString("img4", subImg3);
                     args.putString("img5", subImg4);
+                    args.putString("userId", userId);
                     WritingPopupDialogFragment e = WritingPopupDialogFragment.getInstance();
                     e.setArguments(args);
                     e.show(getSupportFragmentManager(), WritingPopupDialogFragment.TAG_EVENT_DIALOG);

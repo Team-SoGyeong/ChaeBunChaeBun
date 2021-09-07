@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class CommentDeleteDialogFragment extends DialogFragment {
@@ -53,10 +54,15 @@ public class CommentDeleteDialogFragment extends DialogFragment {
                 Bundle articleBundle = new Bundle();
                 articleBundle.putString("userId", userId);
                 articleBundle.putString("postId", postId);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.popBackStack();
                 FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 ArticleFragment articleFragment = new ArticleFragment();
                 articleFragment.setArguments(articleBundle);
+                articleFragment.setArguments(articleBundle);
                 articleTransaction.replace(R.id.bottom_frame, articleFragment);
+                articleTransaction.addToBackStack(null);
                 articleTransaction.commit();
             }
         });
