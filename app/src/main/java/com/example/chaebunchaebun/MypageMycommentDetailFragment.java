@@ -62,6 +62,8 @@ public class MypageMycommentDetailFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        userId = getArguments().getString("userId");
     }
 
     @Override
@@ -69,8 +71,6 @@ public class MypageMycommentDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View myCommentDetail = inflater.inflate(R.layout.fragment_mypage_mycomment_detail, container, false);
-
-        userId = getArguments().getString("userId");
 
         vp = (ViewPager) myCommentDetail.findViewById(R.id.view_pager);
         tabLayout = (TabLayout) myCommentDetail.findViewById(R.id.tab_layout);

@@ -141,6 +141,7 @@ public class MypageMypostingFragment extends Fragment {
                             String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
                             int categoryId = homeListAdapter.getItem(pos).getCategoryId();
                             Bundle articleBundle = new Bundle();
+                            articleBundle.putString("userId", userId);
                             articleBundle.putString("postId", postId);
                             articleBundle.putInt("categoryId", categoryId);
                             FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();

@@ -23,16 +23,17 @@ public class NavigationActivity extends AppCompatActivity {
     private MypageFragment myfg;
     private LikeListFragment likefg;
 
-    String userId = "1";
+    String userId = null;
 
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bottom_navigation);
         //user_id 받기
-        Intent intent = getIntent();
-        this.userId = intent.getStringExtra("userId");
-        System.out.println("home user_id: " + userId);
+//        Intent intent = getIntent();
+//        this.userId = intent.getStringExtra("userId");
+//        System.out.println("home user_id: " + userId);
+        userId = "49";
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

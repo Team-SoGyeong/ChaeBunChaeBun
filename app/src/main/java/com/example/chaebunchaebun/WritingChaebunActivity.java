@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -158,6 +159,9 @@ public class WritingChaebunActivity extends AppCompatActivity {
 
             }
         });
+
+        inputContent.setFilters(new InputFilter[]{new InputFilter.LengthFilter(500)});
+
         inputAmount.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

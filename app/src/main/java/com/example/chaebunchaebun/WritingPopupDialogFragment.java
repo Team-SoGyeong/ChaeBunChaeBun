@@ -83,7 +83,7 @@ public class WritingPopupDialogFragment extends DialogFragment {
                     JSONObject jsonPostTransfer = new JSONObject();
                     try {
                         jsonPostTransfer.put("amount", Integer.parseInt(amountString));
-                        jsonPostTransfer.put("author_id", 1);
+                        jsonPostTransfer.put("author_id", Integer.parseInt(userId));
                         jsonPostTransfer.put("buy_date", buyDate2);
                         jsonPostTransfer.put("category_id", categoryId);
                         jsonPostTransfer.put("contact", call);
@@ -150,9 +150,11 @@ public class WritingPopupDialogFragment extends DialogFragment {
         btn_modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                check_date.setEnabled(true);
-                check_member.setEnabled(true);
-                check_price.setEnabled(true);
+//                check_date.setEnabled(true);
+//                check_member.setEnabled(true);
+//                check_price.setEnabled(true);
+//                check_date.requestFocus();
+                dismiss();
             }
         });
 

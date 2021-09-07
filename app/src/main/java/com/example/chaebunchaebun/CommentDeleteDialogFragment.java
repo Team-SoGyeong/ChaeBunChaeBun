@@ -51,6 +51,7 @@ public class CommentDeleteDialogFragment extends DialogFragment {
                 DeleteTask deleteTask = new DeleteTask();
                 deleteTask.execute("posts/comment/" + commentId + "/" + userId, commentId, userId);
                 Bundle articleBundle = new Bundle();
+                articleBundle.putString("userId", userId);
                 articleBundle.putString("postId", postId);
                 FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 ArticleFragment articleFragment = new ArticleFragment();

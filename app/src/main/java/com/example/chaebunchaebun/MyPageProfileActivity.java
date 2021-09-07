@@ -11,6 +11,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +39,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.concurrent.ExecutionException;
+import java.util.regex.Pattern;
 import java.util.zip.Inflater;
 
 public class MyPageProfileActivity extends AppCompatActivity {
@@ -131,6 +134,17 @@ public class MyPageProfileActivity extends AppCompatActivity {
             }
         });
 
+        changeNickname.setFilters(new InputFilter[]{new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int i, int i1, Spanned spanned, int i2, int i3) {
+                Pattern ps = Pattern.compile("^[a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ\\u318D\\u119E\\u11A2\\u2022\\u2025a\\u00B7\\uFE55]");
+                if(source.equals("") || ps.matcher(source).matches()){
+                    return source;
+                }
+                return "";
+            }
+        }, new InputFilter.LengthFilter(10)});
+
         nicknameClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,8 +156,13 @@ public class MyPageProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 nickname = changeNickname.getText().toString();
-                int user = Integer.parseInt(userId);
-                setProfile(nickname, profileImg, user);
+                if(nickname.contains(" ")) {
+                    toastText.setText("특수문자(공백포함), 이모티콘은 사용 불가합니다.");
+                    toast.show();
+                } else {
+                    int user = Integer.parseInt(userId);
+                    setProfile(nickname, profileImg, user);
+                }
             }
         });
 
@@ -282,7 +301,6 @@ public class MyPageProfileActivity extends AppCompatActivity {
                 toast.show();
                 changeNickname.setBackgroundResource(R.drawable.profile_edittext_red);
                 nicknameInvalid.setTextColor(Color.parseColor("#BE1700"));
-                nicknameChangeBtn.setImageResource(R.drawable.group_813);
                 nicknameChangeBtn.setClickable(false);
             }
         }catch (JSONException e) {

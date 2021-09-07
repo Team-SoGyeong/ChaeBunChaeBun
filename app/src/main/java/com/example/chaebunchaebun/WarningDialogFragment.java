@@ -41,6 +41,7 @@ public class WarningDialogFragment extends DialogFragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectCategoryActivity.class);
                 intent.putExtra("userId", userId);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
                 dismiss();
             }
