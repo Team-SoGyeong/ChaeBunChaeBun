@@ -347,7 +347,11 @@ public class ArticleFragment extends Fragment {
                 if(status == 1) {
                     toastText.setText("완료된 글에는 댓글을 달 수 없어요");
                     toast.show();
+                } else if(articleComment.getText().toString().equals("")) {
+                    toastText.setText("내용이 작성되지 않았어요!");
+                    toast.show();
                 } else {
+                    System.out.println("댓글 내용" + articleComment.getText().toString());
                     PostTask postTask = new PostTask();
                     JSONObject jsonCommentTransfer = new JSONObject();
 

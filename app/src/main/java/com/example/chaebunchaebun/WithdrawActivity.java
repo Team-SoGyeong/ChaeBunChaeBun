@@ -18,9 +18,9 @@ public class WithdrawActivity extends AppCompatActivity {
     ImageButton withdraw;
 
     ImageButton check_little, check_unknown, check_no_manner, check_etc;
-    TextView text_little, text_unknown, text_no_manner, text_etc;
+    TextView text_little, text_unknown, text_no_manner, text_etc, service;
 
-    String userId;
+    String userId, nickname;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +28,7 @@ public class WithdrawActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         this.userId = intent.getStringExtra("userId");
+        this.nickname = intent.getStringExtra("nickname");
 
         back = (ImageView) findViewById(R.id.id_back);
         little = (LinearLayout) findViewById(R.id.little);
@@ -44,6 +45,9 @@ public class WithdrawActivity extends AppCompatActivity {
         text_no_manner = (TextView) findViewById(R.id.text_no_manner);
         check_etc = (ImageButton) findViewById(R.id.check_etc);
         text_etc = (TextView) findViewById(R.id.text_etc);
+        service = (TextView) findViewById(R.id.service);
+
+        service.setText(nickname + "님.. 탈퇴하시려구요?");
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
