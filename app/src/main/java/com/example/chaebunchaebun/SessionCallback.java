@@ -49,7 +49,7 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
 //        requestMe();
     }
 
-    // 로그인에 실패한 상태
+    // 로그인에 실패한 상태  
     @Override
     public void onSessionOpenFailed(KakaoException exception) {
         Log.e("SessionCallback :: ", "onSessionOpenFailed : " + exception.getMessage());
