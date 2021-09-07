@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.JsonObject;
 import com.kakao.auth.ISessionCallback;
 import com.kakao.network.ErrorResult;
 import com.kakao.usermgmt.UserManagement;
@@ -21,6 +22,12 @@ import com.kakao.usermgmt.response.model.Profile;
 import com.kakao.usermgmt.response.model.UserAccount;
 import com.kakao.util.OptionalBoolean;
 import com.kakao.util.exception.KakaoException;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
 
 public class SessionCallback extends AppCompatActivity implements ISessionCallback {
     String kakao_email = "";
@@ -119,6 +126,51 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                 });
     }
     public void setData(String user_id, String kakao_email, String profile_img, String gender, String age_range) {
+
+        //서버에서 이메일 보내고 로그인 이력 읽기
+        PostTask postTask = new PostTask();
+        JSONObject jsonCommentTransfer = new JSONObject();
+
+        try {
+            jsonCommentTransfer.put("login_type", "k");
+            jsonCommentTransfer.put("email", kakao_email);
+
+            String jsonString = jsonCommentTransfer.toString();
+            String response = postTask.execute("auth2/signin/kakao/checkLogin", jsonString).get();
+
+            JSONObject jsonObject = new JSONObject(response);
+            String data = jsonObject.getString("data");
+            //data가 가진 값이 대괄호로 감싸여 있으니까 array
+            JSONArray jsonArray = new JSONArray(data);
+            for(int i = 0; i < jsonArray.length(); i++) {
+                JSONObject subJsonObject = jsonArray.getJSONObject(i);
+                Boolean isLogin = subJsonObject.getBoolean("isLogin");
+                if(isLogin == true){
+                    String userId = String.valueOf(subJsonObject.getInt("userId"));
+                    System.out.println("로그인 이력이 있을 경우 user ID: " + userId);
+
+                    Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
+                    intent.putExtra("userId", userId);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(getApplicationContext(), SetNicknameActivity.class);
+                    intent.putExtra("user_id", user_id);
+                    intent.putExtra("kakao_email", kakao_email);
+                    intent.putExtra("profile_img", profile_img);
+                    intent.putExtra("sex", gender);
+                    intent.putExtra("age_range", age_range);
+                    startActivity(intent);
+                }
+            }
+        }catch (JSONException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+     /*
         Intent intent = new Intent(getApplicationContext(), SetNicknameActivity.class);
         intent.putExtra("user_id", user_id);
         intent.putExtra("kakao_email", kakao_email);
@@ -126,5 +178,7 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
         intent.putExtra("sex", gender);
         intent.putExtra("age_range", age_range);
         startActivity(intent);
+*/
+
     }
 }
