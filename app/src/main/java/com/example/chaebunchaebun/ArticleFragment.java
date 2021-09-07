@@ -360,10 +360,14 @@ public class ArticleFragment extends Fragment {
                         Bundle articleBundle = new Bundle();
                         articleBundle.putString("userId", userId);
                         articleBundle.putString("postId", postId);
+
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        fragmentManager.popBackStack();
                         FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                         ArticleFragment articleFragment = new ArticleFragment();
                         articleFragment.setArguments(articleBundle);
                         articleTransaction.replace(R.id.bottom_frame, articleFragment);
+                        articleTransaction.addToBackStack(null);
                         articleTransaction.commit();
                     }catch (JSONException e) {
                         e.printStackTrace();
