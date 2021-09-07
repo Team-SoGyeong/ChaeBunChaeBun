@@ -192,6 +192,7 @@ public class MyPageProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), WithdrawActivity.class);
                 intent.putExtra("userId", userId);
+                intent.putExtra("nickname", changeNickname.getText().toString());
                 startActivity(intent);
             }
         });

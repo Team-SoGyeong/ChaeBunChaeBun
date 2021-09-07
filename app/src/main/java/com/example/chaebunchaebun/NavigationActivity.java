@@ -2,7 +2,12 @@ package com.example.chaebunchaebun;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +27,10 @@ public class NavigationActivity extends AppCompatActivity {
     private CommunityFragment communityfg;
     private MypageFragment myfg;
     private LikeListFragment likefg;
+    private long backKeyPressedTime = 0;
+
+    private TextView toastText;
+    private Toast toast;
 
     String userId = null;
 
@@ -29,10 +38,18 @@ public class NavigationActivity extends AppCompatActivity {
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bottom_navigation);
+        LayoutInflater inflater = getLayoutInflater();
+        View customToast = inflater.inflate(R.layout.custom_report_toast, (ViewGroup) findViewById(R.id.custom_toast_layout));
+
         //user_id 받기
         Intent intent = getIntent();
         this.userId = intent.getStringExtra("userId");
         System.out.println("home user_id: " + userId);
+
+        toastText = (TextView) customToast.findViewById(R.id.custom_toast_text);
+        toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(customToast);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -87,6 +104,34 @@ public class NavigationActivity extends AppCompatActivity {
                 ft.replace(R.id.bottom_frame, myfg).commitAllowingStateLoss();
                 //ft.commit();
                 break;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+//        if(System.currentTimeMillis() > backKeyPressedTime + 2000){
+//            backKeyPressedTime = System.currentTimeMillis();
+//            toastText.setText("한 번 더 누르면 앱이 종료돼요!");
+//            toast.show();
+//        }
+//
+//        if(System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+//            //moveTaskToBack(true);
+//            finish();
+//            //android.os.Process.killProcess(android.os.Process.myPid());
+//        }
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - backKeyPressedTime;
+
+        if (0 <= intervalTime && 2000 >= intervalTime) {
+            moveTaskToBack(true);
+            finish();
+            android.os.Process.killProcess(android.os.Process.myPid());
+        } else {
+            backKeyPressedTime = tempTime;
+            toastText.setText("한 번 더 누르면 앱이 종료돼요!");
+            toast.show();
         }
     }
 }

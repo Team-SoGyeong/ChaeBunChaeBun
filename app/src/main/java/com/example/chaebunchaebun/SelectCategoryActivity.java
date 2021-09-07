@@ -333,13 +333,13 @@ public class SelectCategoryActivity extends AppCompatActivity{
             public void onClick(View v) {
                 System.out.println("flag: "+flag);
                 Intent intent;
-                if(flag == true){
+                if(flag == true && cateoryid != 0){
                     intent = new Intent(getApplicationContext(), WritingEtcChaebunActivity.class);
                     intent.putExtra("categoryId", cateoryid);
                     intent.putExtra("userId", userId);
                     startActivity(intent);
                 }
-                else{
+                else if(flag == false && cateoryid != 0){
                     intent = new Intent(getApplicationContext(), WritingChaebunActivity.class);
                     intent.putExtra("categoryId", cateoryid);
                     intent.putExtra("userId", userId);

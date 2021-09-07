@@ -149,7 +149,9 @@ public class SearchDetailFragment extends Fragment {
                         public void onItemClick(View view, int pos) {
                             String postId = String.valueOf(searchListAdapter.getItem(pos).getPostId());
                             int categoryId = searchListAdapter.getItem(pos).getCategoryId();
+                            System.out.println("리스트클릭" + postId);
                             Bundle articleBundle = new Bundle();
+                            articleBundle.putString("userId", userId);
                             articleBundle.putString("postId", postId);
                             articleBundle.putInt("categoryId", categoryId);
                             FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -191,6 +193,7 @@ public class SearchDetailFragment extends Fragment {
                                 int postId = searchListAdapter.getItem(pos).getPostId();
                                 int categoryId = searchListAdapter.getItem(pos).getCategoryId();
                                 Bundle articleBundle = new Bundle();
+                                articleBundle.putString("userId", userId);
                                 articleBundle.putString("postId", String.valueOf(postId));
                                 articleBundle.putInt("categoryId", categoryId);
                                 FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
