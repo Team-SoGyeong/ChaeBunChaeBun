@@ -116,7 +116,7 @@ public class WritingPopupDialogFragment extends DialogFragment {
                     JSONObject jsonPostTransfer = new JSONObject();
                     try {
                         jsonPostTransfer.put("amount", Integer.parseInt(amountString));
-                        jsonPostTransfer.put("author_id", 1);
+                        jsonPostTransfer.put("author_id", Integer.parseInt(userId));
                         jsonPostTransfer.put("buy_date", buyDate2);
                         jsonPostTransfer.put("category_id", categoryId);
                         jsonPostTransfer.put("contact", call);

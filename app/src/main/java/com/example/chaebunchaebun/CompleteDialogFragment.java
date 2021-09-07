@@ -48,6 +48,7 @@ public class CompleteDialogFragment extends DialogFragment {
                 putTask.execute("common/processed/" + postId + "/" + userId, postId, userId);
                 Intent intent = new Intent(getActivity(), NavigationActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("userId", userId);
                 getActivity().startActivity(intent);
                 getActivity().overridePendingTransition(0, 0);
             }
