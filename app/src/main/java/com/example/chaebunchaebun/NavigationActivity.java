@@ -30,10 +30,9 @@ public class NavigationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bottom_navigation);
         //user_id 받기
-//        Intent intent = getIntent();
-//        this.userId = intent.getStringExtra("userId");
-//        System.out.println("home user_id: " + userId);
-        userId = "49";
+        Intent intent = getIntent();
+        this.userId = intent.getStringExtra("userId");
+        System.out.println("home user_id: " + userId);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
