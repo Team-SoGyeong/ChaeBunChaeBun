@@ -173,12 +173,13 @@ public class MainWriteFragment extends Fragment {
                 String img = subJsonObject.getString("url");
                 String title = subJsonObject.getString("title");
                 String buyDate = subJsonObject.getString("buy_date");
-                String member = subJsonObject.getString("members");
+                int member = subJsonObject.getInt("members");
+                String members = String.valueOf(member) + "명";
                 String perPrice = subJsonObject.getString("per_price");
                 String writtenBy = subJsonObject.getString("witten_by");
                 int isAuth = subJsonObject.getInt("isAuth");
 
-                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId, categoryId));
+                homeListItems.add(new HomeListItem(img, title, buyDate, members, perPrice, writtenBy, isAuth, postId, userId, categoryId));
             }
         } catch (JSONException e) {
             e.printStackTrace();

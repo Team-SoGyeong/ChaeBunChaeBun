@@ -137,7 +137,7 @@ public class MyPageProfileActivity extends AppCompatActivity {
         changeNickname.setFilters(new InputFilter[]{new InputFilter() {
             @Override
             public CharSequence filter(CharSequence source, int i, int i1, Spanned spanned, int i2, int i3) {
-                Pattern ps = Pattern.compile("^[a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ\\u318D\\u119E\\u11A2\\u2022\\u2025a\\u00B7\\uFE55]");
+                Pattern ps = Pattern.compile("^[a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ\\u318D\\u119E\\u11A2\\u2022\\u2025a\\u00B7\\uFE55]+$");
                 if(source.equals("") || ps.matcher(source).matches()){
                     return source;
                 }
