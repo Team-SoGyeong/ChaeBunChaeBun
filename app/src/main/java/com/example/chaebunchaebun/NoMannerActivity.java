@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class NoMannerActivity extends AppCompatActivity {
     ImageView back;
     ImageButton report, inquire;
+    String userId = null;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,11 +22,18 @@ public class NoMannerActivity extends AppCompatActivity {
         report = (ImageButton) findViewById(R.id.btn_report);
         inquire = (ImageButton) findViewById(R.id.btn_inquire);
 
+        Intent intent = getIntent();
+        userId = intent.getStringExtra("userId");
+
+
         report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArticleReportDialogFragment e = ArticleReportDialogFragment.getInstance();
-                e.show(getSupportFragmentManager(), ArticleReportDialogFragment.TAG_EVENT_DIALOG);
+//                Bundle args = new Bundle();
+//                args.putString("userId", userId);
+//                ArticleReportDialogFragment e = ArticleReportDialogFragment.getInstance();
+//                e.setArguments(args);
+//                e.show(getSupportFragmentManager(), ArticleReportDialogFragment.TAG_EVENT_DIALOG);
             }
         });
         inquire.setOnClickListener(new View.OnClickListener() {

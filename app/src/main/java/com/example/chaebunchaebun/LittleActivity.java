@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LittleActivity extends AppCompatActivity {
     ImageView back;
     ImageButton writing, share;
+    String userId = null;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +21,9 @@ public class LittleActivity extends AppCompatActivity {
         back = (ImageView) findViewById(R.id.id_back);
         writing = (ImageButton) findViewById(R.id.btn_writing);
         share = (ImageButton) findViewById(R.id.btn_share);
+
+        Intent intent = getIntent();
+        userId = intent.getStringExtra("userId");
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,8 +35,11 @@ public class LittleActivity extends AppCompatActivity {
         writing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), WarningDialogFragment.class);
-                startActivity(intent);
+                Bundle args = new Bundle();
+                args.putString("userId", userId);
+                WarningDialogFragment e  = WarningDialogFragment.getInstance();
+                e.setArguments(args);
+                e.show(getSupportFragmentManager(), "writing");
             }
         });
     }

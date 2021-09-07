@@ -64,6 +64,7 @@ public class WithdrawActivity extends AppCompatActivity {
                 check_etc.setImageResource(R.drawable.checkbox_off);
                 text_etc.setTextColor(Color.parseColor("#999999"));
                 Intent intentLittle = new Intent(getApplicationContext(), LittleActivity.class);
+                intent.putExtra("userId", userId);
                 startActivity(intentLittle);
             }
         });
@@ -93,7 +94,8 @@ public class WithdrawActivity extends AppCompatActivity {
                 text_no_manner.setTextColor(Color.parseColor("#036635"));
                 check_etc.setImageResource(R.drawable.checkbox_off);
                 text_etc.setTextColor(Color.parseColor("#999999"));
-                Intent intentNoManner= new Intent(getApplicationContext(), NoMannerActivity.class);
+                Intent intentNoManner = new Intent(getApplicationContext(), NoMannerActivity.class);
+                intentNoManner.putExtra("userId", userId);
                 startActivity(intentNoManner);
             }
         });
@@ -109,6 +111,7 @@ public class WithdrawActivity extends AppCompatActivity {
                 check_etc.setImageResource(R.drawable.checkbox_on);
                 text_etc.setTextColor(Color.parseColor("#036635"));
                 Intent intent = new Intent(getApplicationContext(), EtcActivity.class);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
             }
         });

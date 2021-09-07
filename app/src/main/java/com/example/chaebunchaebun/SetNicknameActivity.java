@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -19,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
+import java.util.regex.Pattern;
 
 public class SetNicknameActivity extends AppCompatActivity {
     ImageButton btn_next;
@@ -70,6 +73,17 @@ public class SetNicknameActivity extends AppCompatActivity {
 
             }
         });
+
+        set_nickname.setFilters(new InputFilter[]{new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int i, int i1, Spanned spanned, int i2, int i3) {
+                Pattern ps = Pattern.compile("^[a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ\\u318D\\u119E\\u11A2\\u2022\\u2025a\\u00B7\\uFE55]");
+                if(source.equals("") || ps.matcher(source).matches()){
+                    return source;
+                }
+                return "";
+            }
+        }, new InputFilter.LengthFilter(10)});
 
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -190,40 +190,45 @@ public class ArticleFragment extends Fragment {
         articleLikebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(String.valueOf(userIdnum).equals(userId)){
-                    toastText.setText("본인의 글은 찜 할 수 없어요!");
+                if(status == 1) {
+                    toastText.setText("완료된 글은 찜 할 수 없어요!");
                     toast.show();
                 } else {
-                    PostTask myWishTask = new PostTask();
-                    try {
-                        String response = myWishTask.execute("common/wishlist/" + postId + " /" + userId, String.valueOf(postId), userId).get();
-                        JSONObject jsonObject = new JSONObject(response);
-                        int responseCode = jsonObject.getInt("code");
-                        if(responseCode == 200) {
-                            String data = jsonObject.getString("data");
-                            JSONArray jsonArray = new JSONArray(data);
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject subJsonObject = jsonArray.getJSONObject(i);
-                                int wishcount = subJsonObject.getInt("wish_cnts");
-                                int status = subJsonObject.getInt("status");
-                                articleWishcnt.setText(String.valueOf(wishcount));
-                                if (status == 0) {
-                                    articleLikebtn.setImageResource(R.drawable.type_filled_icon_favorite_gray);
-                                    toastText.setText("찜을 취소했어요!");
-                                    toast.show();
-                                } else {
-                                    articleLikebtn.setImageResource(R.drawable.type_filled_icon_favorite);
-                                    toastText.setText("찜 했어요!");
-                                    toast.show();
+                    if(String.valueOf(userIdnum).equals(userId)){
+                        toastText.setText("본인의 글은 찜 할 수 없어요!");
+                        toast.show();
+                    } else {
+                        PostTask myWishTask = new PostTask();
+                        try {
+                            String response = myWishTask.execute("common/wishlist/" + postId + " /" + userId, String.valueOf(postId), userId).get();
+                            JSONObject jsonObject = new JSONObject(response);
+                            int responseCode = jsonObject.getInt("code");
+                            if(responseCode == 200) {
+                                String data = jsonObject.getString("data");
+                                JSONArray jsonArray = new JSONArray(data);
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject subJsonObject = jsonArray.getJSONObject(i);
+                                    int wishcount = subJsonObject.getInt("wish_cnts");
+                                    int status = subJsonObject.getInt("status");
+                                    articleWishcnt.setText(String.valueOf(wishcount));
+                                    if (status == 0) {
+                                        articleLikebtn.setImageResource(R.drawable.type_filled_icon_favorite_gray);
+                                        toastText.setText("찜을 취소했어요!");
+                                        toast.show();
+                                    } else {
+                                        articleLikebtn.setImageResource(R.drawable.type_filled_icon_favorite);
+                                        toastText.setText("찜 했어요!");
+                                        toast.show();
+                                    }
                                 }
                             }
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
                 }
             }
@@ -232,21 +237,26 @@ public class ArticleFragment extends Fragment {
         articleModalbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (String.valueOf(userIdnum).equals(userId)) {
-                    Bundle args = new Bundle();
-                    args.putString("userId", userId);
-                    args.putString("postId", postId);
-                    args.putInt("categoryId", categoryId);
-                    MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
-                    myBottomSheetDialog.setArguments(args);
-                    myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                if(status == 1) {
+                    toastText.setText("완료된 글은 선택할 수 없어요");
+                    toast.show();
                 } else {
-                    Bundle args = new Bundle();
-                    args.putString("userId", userId);
-                    args.putString("postId", postId);
-                    BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
-                    bottomSheetDialog.setArguments(args);
-                    bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                    if (String.valueOf(userIdnum).equals(userId)) {
+                        Bundle args = new Bundle();
+                        args.putString("userId", userId);
+                        args.putString("postId", postId);
+                        args.putInt("categoryId", categoryId);
+                        MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
+                        myBottomSheetDialog.setArguments(args);
+                        myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                    } else {
+                        Bundle args = new Bundle();
+                        args.putString("userId", userId);
+                        args.putString("postId", postId);
+                        BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
+                        bottomSheetDialog.setArguments(args);
+                        bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                    }
                 }
             }
         });
@@ -258,24 +268,29 @@ public class ArticleFragment extends Fragment {
         commentRecyclerAdapter.setModalClickListener(new CommentRecyclerAdapter.OnModalClickListener() {
             @Override
             public void OnModlaClick(View view, int pos) {
-                String id = String.valueOf(commentRecyclerAdapter.getItem(pos).getUserId());
-                String commentId = String.valueOf(commentRecyclerAdapter.getItem(pos).getCommentId());
-                if (id.equals(userId)) {
-                    Bundle args = new Bundle();
-                    args.putString("userId", userId);
-                    args.putString("commentId", commentId);
-                    args.putString("postId", postId);
-                    MyCommentBottomSheetDialog myCommentBottomSheetDialog = MyCommentBottomSheetDialog.getInstance();
-                    myCommentBottomSheetDialog.setArguments(args);
-                    myCommentBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                if(status == 1) {
+                    toastText.setText("완료된 글의 댓글을 선택할 수 없어요");
+                    toast.show();
                 } else {
-                    Bundle reportArgs = new Bundle();
-                    reportArgs.putString("userId", userId);
-                    reportArgs.putString("commentId", commentId);
-                    reportArgs.putString("postId", postId);
-                    CommentBottomSheetDialog commentBottomSheetDialog = CommentBottomSheetDialog.getInstance();
-                    commentBottomSheetDialog.setArguments(reportArgs);
-                    commentBottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                    String id = String.valueOf(commentRecyclerAdapter.getItem(pos).getUserId());
+                    String commentId = String.valueOf(commentRecyclerAdapter.getItem(pos).getCommentId());
+                    if (id.equals(userId)) {
+                        Bundle args = new Bundle();
+                        args.putString("userId", userId);
+                        args.putString("commentId", commentId);
+                        args.putString("postId", postId);
+                        MyCommentBottomSheetDialog myCommentBottomSheetDialog = MyCommentBottomSheetDialog.getInstance();
+                        myCommentBottomSheetDialog.setArguments(args);
+                        myCommentBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                    } else {
+                        Bundle reportArgs = new Bundle();
+                        reportArgs.putString("userId", userId);
+                        reportArgs.putString("commentId", commentId);
+                        reportArgs.putString("postId", postId);
+                        CommentBottomSheetDialog commentBottomSheetDialog = CommentBottomSheetDialog.getInstance();
+                        commentBottomSheetDialog.setArguments(reportArgs);
+                        commentBottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                    }
                 }
             }
         });
@@ -329,25 +344,30 @@ public class ArticleFragment extends Fragment {
         articleCommentbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PostTask postTask = new PostTask();
-                JSONObject jsonCommentTransfer = new JSONObject();
+                if(status == 1) {
+                    toastText.setText("완료된 글에는 댓글을 달 수 없어요");
+                    toast.show();
+                } else {
+                    PostTask postTask = new PostTask();
+                    JSONObject jsonCommentTransfer = new JSONObject();
 
-                try {
-                    jsonCommentTransfer.put("cmts", articleComment.getText().toString());
-                    jsonCommentTransfer.put("post_id", Integer.parseInt(postId));
-                    jsonCommentTransfer.put("user_id", Integer.parseInt(userId));
-                    String jsonString = jsonCommentTransfer.toString();
-                    postTask.execute("posts/comment", jsonString);
-                    Bundle articleBundle = new Bundle();
-                    articleBundle.putString("userId", userId);
-                    articleBundle.putString("postId", postId);
-                    FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    ArticleFragment articleFragment = new ArticleFragment();
-                    articleFragment.setArguments(articleBundle);
-                    articleTransaction.replace(R.id.bottom_frame, articleFragment);
-                    articleTransaction.commit();
-                }catch (JSONException e) {
-                    e.printStackTrace();
+                    try {
+                        jsonCommentTransfer.put("cmts", articleComment.getText().toString());
+                        jsonCommentTransfer.put("post_id", Integer.parseInt(postId));
+                        jsonCommentTransfer.put("user_id", Integer.parseInt(userId));
+                        String jsonString = jsonCommentTransfer.toString();
+                        postTask.execute("posts/comment", jsonString);
+                        Bundle articleBundle = new Bundle();
+                        articleBundle.putString("userId", userId);
+                        articleBundle.putString("postId", postId);
+                        FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        ArticleFragment articleFragment = new ArticleFragment();
+                        articleFragment.setArguments(articleBundle);
+                        articleTransaction.replace(R.id.bottom_frame, articleFragment);
+                        articleTransaction.commit();
+                    }catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
