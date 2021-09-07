@@ -169,7 +169,7 @@ public class MainWriteFragment extends Fragment {
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
                 int categoryId = subJsonObject.getInt("category_id");
                 int postId = subJsonObject.getInt("post_id");
-                int userId = subJsonObject.getInt("wish_id");
+                int userId = Integer.parseInt(this.userId);
                 String img = subJsonObject.getString("url");
                 String title = subJsonObject.getString("title");
                 String buyDate = subJsonObject.getString("buy_date");
