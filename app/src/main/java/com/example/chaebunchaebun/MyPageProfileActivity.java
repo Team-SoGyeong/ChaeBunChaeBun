@@ -142,8 +142,13 @@ public class MyPageProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 nickname = changeNickname.getText().toString();
-                int user = Integer.parseInt(userId);
-                setProfile(nickname, profileImg, user);
+                if(nickname.contains(" ")) {
+                    toastText.setText("특수문자(공백포함), 이모티콘은 사용 불가합니다.");
+                    toast.show();
+                } else {
+                    int user = Integer.parseInt(userId);
+                    setProfile(nickname, profileImg, user);
+                }
             }
         });
 
