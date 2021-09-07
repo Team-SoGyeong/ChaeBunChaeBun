@@ -181,25 +181,25 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         holder.categoryListNickname.setText(categoryListItem.getNickname());
         holder.categoryListWritingDate.setText((categoryListItem.getWritingDate()));
         holder.categoryListContent.setText(categoryListItem.getContent());
-        if(categoryListItem.getImg2().isEmpty()){
+        if(categoryListItem.getImg2().isEmpty() || categoryListItem.getImg2().equals("null")){
             Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg1()).into(holder.categoryListImg1);
             holder.categoryListImg2.setVisibility(View.GONE);
             holder.categoryListImg3.setVisibility(View.GONE);
             holder.categoryListImg4.setVisibility(View.GONE);
             holder.categoryListImg5.setVisibility(View.GONE);
-        } else if(categoryListItem.getImg3().isEmpty()){
+        } else if(categoryListItem.getImg3().isEmpty() || categoryListItem.getImg3().equals("null")){
             Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg1()).into(holder.categoryListImg1);
             Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg2()).into(holder.categoryListImg2);
             holder.categoryListImg3.setVisibility(View.GONE);
             holder.categoryListImg4.setVisibility(View.GONE);
             holder.categoryListImg5.setVisibility(View.GONE);
-        } else if(categoryListItem.getImg4().isEmpty()){
+        } else if(categoryListItem.getImg4().isEmpty() || categoryListItem.getImg4().equals("null")){
             Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg1()).into(holder.categoryListImg1);
             Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg2()).into(holder.categoryListImg2);
             Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg3()).into(holder.categoryListImg3);
             holder.categoryListImg4.setVisibility(View.GONE);
             holder.categoryListImg5.setVisibility(View.GONE);
-        } else if(categoryListItem.getImg5().isEmpty()){
+        } else if(categoryListItem.getImg5().isEmpty() || categoryListItem.getImg5().equals("null")){
             Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg1()).into(holder.categoryListImg1);
             Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg2()).into(holder.categoryListImg2);
             Glide.with(holder.itemView.getContext()).load(categoryListItem.getImg3()).into(holder.categoryListImg3);
