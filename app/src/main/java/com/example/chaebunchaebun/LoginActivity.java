@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
         try{
             PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
             if(packageInfo == null) return null;
-            for(Signature signature: packageInfo.signatures){
+            for(Signature signature: packageInfo.signatures ){
                 try{
                     MessageDigest md = MessageDigest.getInstance("SHA");
                     md.update(signature.toByteArray());

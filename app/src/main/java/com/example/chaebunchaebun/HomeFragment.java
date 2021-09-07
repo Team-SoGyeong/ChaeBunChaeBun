@@ -235,7 +235,7 @@ public class HomeFragment extends Fragment {
         }
 
         try {
-            JSONObject jsonObject = new JSONObject(resultText);
+            JSONObject jsonObject = new   JSONObject(resultText);
             String data = jsonObject.getString("data");
             JSONArray jsonArray = new JSONArray(data);
             for(int i = 0; i < jsonArray.length(); i++){
