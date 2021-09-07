@@ -46,7 +46,7 @@ import static com.kakao.util.helper.Utility.getPackageInfo;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "사용자";
-    ImageView signIn, signUp, loginV1, set_invaild;
+    ImageView loginV1;
     private SessionCallback sessionCallback = new SessionCallback();
     Session session;
 
@@ -56,9 +56,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
         loginV1 = (ImageButton) findViewById(R.id.loginV1);
-//        signIn = (ImageView) findViewById(R.id.sign_in);
-//        signUp = (ImageView) findViewById(R.id.sign_up);
-//        set_invaild = (ImageView) findViewById(R.id.set_invaild);
 
         session = Session.getCurrentSession();
         session.addCallback(sessionCallback);
@@ -75,23 +72,6 @@ public class LoginActivity extends AppCompatActivity {
                 session.open(AuthType.KAKAO_LOGIN_ALL, LoginActivity.this);
             }
         });
-/*
-        signIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SetNicknameActivity.class);
-                startActivity(intent);
-            }
-        });
-*/
         AuthService.getInstance()
                 .requestAccessTokenInfo(new ApiResponseCallback<AccessTokenInfoResponse>() {
                     @Override

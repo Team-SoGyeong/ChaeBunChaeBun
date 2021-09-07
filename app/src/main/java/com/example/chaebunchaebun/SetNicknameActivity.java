@@ -84,9 +84,12 @@ public class SetNicknameActivity extends AppCompatActivity {
                 }
                 try {
                     JSONObject jsonObject = new JSONObject(result);
-                    int requestCode = jsonObject.getInt("code");
-                    System.out.println("requestCode: " + requestCode);
-                    if(requestCode == 200){
+                    String data = jsonObject.getString("data");
+                    JSONObject subJsonObject = new JSONObject(data);
+                    Boolean usable = subJsonObject.getBoolean("isUsable");
+
+                    System.out.println("Usable?: " + usable);
+                    if(usable == true){
                         Intent intent = new Intent(getApplicationContext(), SetLocationActivity.class);
                         intent.putExtra("user_id", user_id);
                         intent.putExtra("kakao_email", kakao_email);
@@ -96,7 +99,8 @@ public class SetNicknameActivity extends AppCompatActivity {
                         intent.putExtra("age_range", age_range);
                         startActivity(intent);
                     }else{
-                        Toast.makeText(getApplicationContext(), "중복된 닉네임이 존재합니다!", Toast.LENGTH_SHORT);
+                        Toast myToast = Toast.makeText(getApplicationContext(),"중복된 닉네임이 존재합니다!", Toast.LENGTH_SHORT);
+                        myToast.show();
                         set_nickname.setBackgroundResource(R.drawable.profile_edittext_red);
                         nickname_invaild.setTextColor(Color.rgb(190, 23, 0));
                         btn_next.setImageResource(R.drawable.btn_signup_next);
