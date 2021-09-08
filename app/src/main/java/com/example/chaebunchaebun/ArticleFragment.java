@@ -69,6 +69,7 @@ public class ArticleFragment extends Fragment {
     String postId = "";
     String userId = "";
     int categoryId = 0;
+    boolean isMypage, isMyposting, isMyComment, isMyHeart = false;
     String categoryNameString, title, nickname, content, buyDate, members,
             perPrice, writtenBy, profile, amount, totalPrice, contact;
     int isAuth, wishcount, userIdnum, status, isMyWish = 0;
@@ -105,6 +106,12 @@ public class ArticleFragment extends Fragment {
             this.postId = getArguments().getString("postId");
             this.userId = getArguments().getString("userId");
             this.categoryId = getArguments().getInt("categoryId");
+            this.isMypage = getArguments().getBoolean("isMyPage");
+            if(isMypage == true) {
+                this.isMyposting = getArguments().getBoolean("isMyPosting");
+                this.isMyComment = getArguments().getBoolean("isMyComment");
+                this.isMyHeart = getArguments().getBoolean("isMyHeart");
+            }
             getPostList();
             getCommentList();
         }
@@ -365,14 +372,43 @@ public class ArticleFragment extends Fragment {
                         articleBundle.putString("userId", userId);
                         articleBundle.putString("postId", postId);
 
-                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                        fragmentManager.popBackStack();
-                        FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        ArticleFragment articleFragment = new ArticleFragment();
-                        articleFragment.setArguments(articleBundle);
-                        articleTransaction.replace(R.id.bottom_frame, articleFragment);
-                        articleTransaction.addToBackStack(null);
-                        articleTransaction.commit();
+                        if(isMypage == true && isMyposting == true) {
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                            fragmentManager.popBackStack();
+                            FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            ArticleFragment articleFragment = new ArticleFragment();
+                            articleFragment.setArguments(articleBundle);
+                            articleTransaction.replace(R.id.mypage_posting_frame, articleFragment);
+                            articleTransaction.addToBackStack(null);
+                            articleTransaction.commit();
+                        } else if(isMypage == true && isMyComment == true){
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                            fragmentManager.popBackStack();
+                            FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            ArticleFragment articleFragment = new ArticleFragment();
+                            articleFragment.setArguments(articleBundle);
+                            articleTransaction.replace(R.id.mypage_comment_frame, articleFragment);
+                            articleTransaction.addToBackStack(null);
+                            articleTransaction.commit();
+                        } else if(isMypage == true && isMyHeart == true){
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                            fragmentManager.popBackStack();
+                            FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            ArticleFragment articleFragment = new ArticleFragment();
+                            articleFragment.setArguments(articleBundle);
+                            articleTransaction.replace(R.id.mypage_myheart_frame, articleFragment);
+                            articleTransaction.addToBackStack(null);
+                            articleTransaction.commit();
+                        } else {
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                            fragmentManager.popBackStack();
+                            FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            ArticleFragment articleFragment = new ArticleFragment();
+                            articleFragment.setArguments(articleBundle);
+                            articleTransaction.replace(R.id.bottom_frame, articleFragment);
+                            articleTransaction.addToBackStack(null);
+                            articleTransaction.commit();
+                        }
                     }catch (JSONException e) {
                         e.printStackTrace();
                     }

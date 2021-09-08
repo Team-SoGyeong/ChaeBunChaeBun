@@ -51,6 +51,8 @@ public class MypageMyHeartFragment extends Fragment {
     String state = "0";
     String platform = "0";
     String userId = "1";
+    boolean isMyWish, isMyPage, isMyHeart = true;
+    boolean isMyComment , isMyPosting = false;
 
     //spinner
     TextView textView;
@@ -132,10 +134,15 @@ public class MypageMyHeartFragment extends Fragment {
                             } else {
                                 String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
                                 int categoryId = homeListAdapter.getItem(pos).getCategoryId();
+                                isMyPage = true;
                                 Bundle articleBundle = new Bundle();
                                 articleBundle.putString("userId", userId);
                                 articleBundle.putString("postId", postId);
                                 articleBundle.putInt("categoryId", categoryId);
+                                articleBundle.putBoolean("isMyPage", isMyPage);
+                                articleBundle.putBoolean("isMyPosting", isMyPosting);
+                                articleBundle.putBoolean("isMyComment", isMyComment);
+                                articleBundle.putBoolean("isMyHeart", isMyHeart);
                                 FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                                 ArticleFragment articleFragment = new ArticleFragment();
                                 articleFragment.setArguments(articleBundle);
@@ -149,6 +156,7 @@ public class MypageMyHeartFragment extends Fragment {
                         @Override
                         public void OnModlaClick(View view, int pos) {
                             String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
+                            int categoryId = homeListAdapter.getItem(pos).getCategoryId();
                             if(state.equals("1")){
                                 toastText.setText("완료된 채분은 접근할 수 없어요!");
                                 toast.show();

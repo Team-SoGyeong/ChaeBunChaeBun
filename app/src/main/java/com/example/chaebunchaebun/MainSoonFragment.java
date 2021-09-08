@@ -44,6 +44,7 @@ public class MainSoonFragment extends Fragment {
     TextView mainSoonText;
     String userId = null;
     String locationCode = null;
+    boolean isMyPage = false;
 
     public MainSoonFragment() {
         // Required empty public constructor
@@ -155,6 +156,7 @@ public class MainSoonFragment extends Fragment {
                     articleBundle.putString("userId", userId);
                     articleBundle.putString("postId", postId);
                     articleBundle.putInt("categoryId", categoryId);
+                    articleBundle.putBoolean("isMyPage", isMyPage);
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     ArticleFragment articleFragment = new ArticleFragment();
                     articleFragment.setArguments(articleBundle);
