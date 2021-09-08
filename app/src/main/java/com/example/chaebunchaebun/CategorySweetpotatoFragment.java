@@ -46,6 +46,7 @@ public class CategorySweetpotatoFragment extends Fragment {
     TextView categoryNoList;
     String id = null;
     String category = "10";
+    boolean isMyPage = false;
 
     public CategorySweetpotatoFragment() {
         // Required empty public constructor
@@ -112,6 +113,7 @@ public class CategorySweetpotatoFragment extends Fragment {
                     articleBundle.putString("userId", id);
                     articleBundle.putString("postId", postId);
                     articleBundle.putInt("categoryId", categoryId);
+                    articleBundle.putBoolean("isMyPAge", isMyPage);
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     ArticleFragment articleFragment = new ArticleFragment();
                     articleFragment.setArguments(articleBundle);

@@ -46,6 +46,7 @@ public class CategoryGarlicFragment extends Fragment {
     TextView categoryNoList;
     String id = null;
     String category = "2";
+    boolean isMyPage = false;
 
     public CategoryGarlicFragment() {
         // Required empty public constructor
@@ -111,6 +112,7 @@ public class CategoryGarlicFragment extends Fragment {
                     articleBundle.putString("userId", id);
                     articleBundle.putString("postId", postId);
                     articleBundle.putInt("categoryId", categoryId);
+                    articleBundle.putBoolean("isMyPAge", isMyPage);
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     ArticleFragment articleFragment = new ArticleFragment();
                     articleFragment.setArguments(articleBundle);

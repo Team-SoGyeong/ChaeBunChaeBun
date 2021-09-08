@@ -47,6 +47,7 @@ public class CategoryCabbageFragment extends Fragment {
     ImageButton writing;
     String id = null;
     String category = "7";
+    boolean isMyPage = false;
 
     public CategoryCabbageFragment() {
         // Required empty public constructor
@@ -112,6 +113,7 @@ public class CategoryCabbageFragment extends Fragment {
                     articleBundle.putString("userId", id);
                     articleBundle.putString("postId", postId);
                     articleBundle.putInt("categoryId", categoryId);
+                    articleBundle.putBoolean("isMyPage", isMyPage);
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     ArticleFragment articleFragment = new ArticleFragment();
                     articleFragment.setArguments(articleBundle);

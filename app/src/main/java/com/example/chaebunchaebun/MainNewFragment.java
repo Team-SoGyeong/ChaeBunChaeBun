@@ -44,6 +44,7 @@ public class MainNewFragment extends Fragment {
     TextView main_new_text;
     String locationCode = "";
     String userId = "1";
+    boolean isMyPage = false;
 
     public MainNewFragment() {
         // Required empty public constructor
@@ -158,6 +159,7 @@ public class MainNewFragment extends Fragment {
                     articleBundle.putString("userId", userId);
                     articleBundle.putString("postId", postId);
                     articleBundle.putInt("categoryId", categoryId);
+                    articleBundle.putBoolean("isMyPage", isMyPage);
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     ArticleFragment articleFragment = new ArticleFragment();
                     articleFragment.setArguments(articleBundle);

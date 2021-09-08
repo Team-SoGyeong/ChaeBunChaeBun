@@ -49,6 +49,8 @@ public class MypageMypostingFragment extends Fragment {
     String state = "0";
     String platform = "0";
     String userId = null;
+    boolean isMyWish, isMyPage, isMyPosting = true;
+    boolean isMyComment , isMyHeart = false;
 
     private TextView toastText;
     private Toast toast;
@@ -140,10 +142,15 @@ public class MypageMypostingFragment extends Fragment {
                         public void onItemClick(View view, int pos) {
                             String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
                             int categoryId = homeListAdapter.getItem(pos).getCategoryId();
+                            isMyPage = true;
                             Bundle articleBundle = new Bundle();
                             articleBundle.putString("userId", userId);
                             articleBundle.putString("postId", postId);
                             articleBundle.putInt("categoryId", categoryId);
+                            articleBundle.putBoolean("isMyPage", isMyPage);
+                            articleBundle.putBoolean("isMyPosting", isMyPosting);
+                            articleBundle.putBoolean("isMyComment", isMyComment);
+                            articleBundle.putBoolean("isMyHeart", isMyHeart);
                             FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                             ArticleFragment articleFragment = new ArticleFragment();
                             articleFragment.setArguments(articleBundle);

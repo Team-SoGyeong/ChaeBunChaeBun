@@ -44,6 +44,7 @@ public class MainWriteFragment extends Fragment {
     String state = "0";
     String platform = "0";
     String userId = null;
+    boolean isMyPage = false;
 
     public MainWriteFragment() {
         // Required empty public constructor
@@ -118,9 +119,12 @@ public class MainWriteFragment extends Fragment {
                 @Override
                 public void onItemClick(View view, int pos) {
                     String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
+                    int categoryId = homeListAdapter.getItem(pos).getCategoryId();
                     Bundle articleBundle = new Bundle();
                     articleBundle.putString("userId", userId);
                     articleBundle.putString("postId", postId);
+                    articleBundle.putInt("categoryId", categoryId);
+                    articleBundle.putBoolean("isMyPage", isMyPage);
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     ArticleFragment articleFragment = new ArticleFragment();
                     articleFragment.setArguments(articleBundle);
