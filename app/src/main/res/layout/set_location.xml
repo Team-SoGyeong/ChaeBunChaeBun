@@ -5,32 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SetLocationActivity">
-    <ImageView
-        android:layout_width="51dp"
-        android:layout_height="10dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="49dp"
-        android:background="@drawable/btn_on_second" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_bold"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="45dp"
-        android:textColor="#036635"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="우리 동네를 설정해 보세요!" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
-        android:textColor="#000000"
+        android:layout_marginTop="80dp"
+        android:textColor="#6a951f"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:text="채분을 모집하고, 채분에 참여할 우리 동네를 \n버튼을 눌러 설정해 보세요!" />
+        android:text="우리 동네를 인증할게요!" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="19dp"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:text="채분채분은 아직 성북구에서만 이용 가능해요.\n성북구 주민들과 함께 이용하기 위해 인증은 \n꼭 필요해요!" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,21 +46,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:layout_marginLeft="13dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginTop="25dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/profile_edittext"
-                android:textColor="@color/black"
-                android:textSize="12sp"
                 android:fontFamily="@font/roboto_regular"
-                android:paddingBottom="6dp"
-                android:paddingTop="6dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="8dp"
+                android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:maxLines="1"
-                android:imeOptions="actionSearch"
-                />
-
+                android:paddingLeft="15dp"
+                android:paddingTop="6dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="6dp"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
             <ImageButton
                 android:id="@+id/ic_search"
                 android:layout_width="24dp"

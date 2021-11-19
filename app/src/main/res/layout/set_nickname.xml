@@ -5,31 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SetNicknameActivity">
-    <ImageView
-        android:layout_width="51dp"
-        android:layout_height="10dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="49dp"
-        android:background="@drawable/btn_on_first" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_bold"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="45dp"
-        android:textColor="#036635"
+        android:layout_marginTop="80dp"
+        android:textColor="#6a951f"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:text="안녕하세요! \n채분채분에 오신걸 환영해요!" />
+        android:text="어서오세요!\n신선한 채분을 위해 설정해 보세요" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_regular"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="23dp"
         android:textColor="#000000"
-        android:textSize="16sp"
-        android:text="이제 채분채분에서 사용할 닉네임을 정해보세요!" />
+        android:textSize="14sp"
+        android:text="채분채분에서 사용할 닉네임을 정해보세요" />
     <EditText
         android:id="@+id/set_nickname"
         android:layout_width="match_parent"
