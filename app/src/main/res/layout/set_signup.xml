@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MyPageProfileActivity">
+    android:layout_height="match_parent">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -21,13 +20,13 @@
                 android:id="@+id/id_back"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
+                android:layout_marginLeft="6dp"
                 android:layout_gravity="center"
                 android:src="@drawable/group_84" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_marginLeft="-44dp"
+                android:layout_marginLeft="-50dp"
                 android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
                 android:text="회원가입"
@@ -35,7 +34,6 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -45,11 +43,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:layout_marginRight="92dp"
             android:layout_marginTop="26dp"
             android:fontFamily="@font/roboto_bold"
-            android:text="채분채분에 오신걸 환영해요!\n환경을 향해 한 걸음 내딛고 있어요!"
+            android:text="채분채분에 오신 걸 환영해요! \n이메일로 간편하게 회원가입 해보세요"
             android:textColor="#000000"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/set_email"
@@ -58,20 +57,19 @@
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="48dp"
             android:background="@drawable/signup_edittext"
             android:textSize="12sp"
             android:padding="10dp"
             android:backgroundTint="#f4f6f2"
             android:hint="이메일을 입력하세요" />
-
         <ImageButton
             android:id="@+id/btn_certify"
             android:layout_width="320dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:background="@drawable/group_766" />
+            android:background="@drawable/btn_signup_certify" />
         <EditText
             android:visibility="gone"
             android:id="@+id/certifyNum"
@@ -80,7 +78,8 @@
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="4dp"
             android:background="@drawable/signup_edittext"
             android:textSize="12sp"
             android:padding="10dp"
@@ -88,21 +87,30 @@
             android:hint="인증 번호를 입력하세요" />
         <TextView
             android:visibility="gone"
-            android:id="@+id/certifyInfo"
+            android:id="@+id/certifyInfoWrong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="226dp"
+            android:layout_marginRight="133dp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="-15dp"
             android:fontFamily="@font/roboto_regular"
             android:text="인증번호가 다릅니다. 다시 입력해 주세요!"
-            android:textColor="#999999"
+            android:textColor="#be1700"
             android:textSize="12sp" />
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/certifyInfoCorrect"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="133dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="-15dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="인증되었습니다!"
+            android:textColor="#6a951f"
+            android:textSize="12sp" />
             <EditText
                 android:id="@+id/set_pw"
                 android:layout_width="match_parent"
@@ -132,6 +140,8 @@
                 android:hint="비밀번호 확인을 위해 한번 더 입력해주세요" />
 
             <TextView
+                android:id="@+id/certifyPW"
+                android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -141,8 +151,30 @@
                 android:text="비밀번호를 입력하세요"
                 android:textColor="#999999"
                 android:textSize="12sp" />
-        </LinearLayout>
-
+        <TextView
+            android:id="@+id/certifyPWWrong"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="226dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="입력하신 비밀번호와 다릅니다"
+            android:textColor="#be1700"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/certifyPWCorrect"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="226dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="비밀번호가 일치합니다!"
+            android:textColor="#6a951f"
+            android:textSize="12sp" />
         <ImageButton
             android:id="@+id/btn_next"
             android:layout_width="320dp"

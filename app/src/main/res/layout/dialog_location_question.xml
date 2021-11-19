@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="34dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="28dp"
+    android:background="@drawable/popup_radius">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="잠깐! 어디 살고 계시나요?"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto_bold"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="22dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:text="채분채분은 동네 이웃들과 채소를 소분하는 어플이에요. 여러분에게 좋은 서비스를 제공하기 위해 아직은 성북구 주민만 사용 가능해요. 하지만 다른 지역이 열리면 알림으로 알려드릴게요!"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        android:textAlignment="center"
+        android:fontFamily="@font/roboto_regular"/>
+    <ImageButton
+        android:id="@+id/btn_fin_now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/waitlocationbtn" />
+    <ImageButton
+        android:id="@+id/btn_donate"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/possiblelocationbtn" />
+</LinearLayout>
