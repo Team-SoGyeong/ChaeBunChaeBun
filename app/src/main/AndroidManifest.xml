@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.chaebunchaebun">
+    package="com.E2I3.chaebunchaebun">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".GlobalApplication"
+        android:name="com.E2I3.chaebunchaebun.GlobalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/chaebun_logo"
         android:label="@string/app_name"
@@ -30,20 +30,20 @@
 
 //원래코드
         <activity
-            android:name=".MypageMyHeartActivity"
+            android:name="com.E2I3.chaebunchaebun.MypageMyHeartActivity"
             android:exported="true" />
         <activity
-            android:name=".MypageMycommentActivity"
+            android:name="com.E2I3.chaebunchaebun.MypageMycommentActivity"
             android:exported="true" />
         <activity
-            android:name=".NavigationActivity"
+            android:name="com.E2I3.chaebunchaebun.NavigationActivity"
             android:label="하단 네비게이션">
         </activity>
         <activity
-            android:name=".HomeLikeActivity"
+            android:name="com.E2I3.chaebunchaebun.HomeLikeActivity"
             android:label="홈 찜 록록" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.E2I3.chaebunchaebun.LoginActivity"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,61 +52,61 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SearchActivity"
+            android:name="com.E2I3.chaebunchaebun.SearchActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".MyPageProfileActivity"
+            android:name="com.E2I3.chaebunchaebun.MyPageProfileActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".MyInfoActivity"
+            android:name="com.E2I3.chaebunchaebun.MyInfoActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".SetNicknameActivity"
+            android:name="com.E2I3.chaebunchaebun.SetNicknameActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".SetLocationActivity"
+            android:name="com.E2I3.chaebunchaebun.SetLocationActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".SearchLocationActivity"
+            android:name="com.E2I3.chaebunchaebun.SearchLocationActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".SetStartActivity"
+            android:name="com.E2I3.chaebunchaebun.SetStartActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".WithdrawActivity"
+            android:name="com.E2I3.chaebunchaebun.WithdrawActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".SelectCategoryActivity"
+            android:name="com.E2I3.chaebunchaebun.SelectCategoryActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".WritingChaebunActivity"
+            android:name="com.E2I3.chaebunchaebun.WritingChaebunActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".WritingEtcChaebunActivity"
+            android:name="com.E2I3.chaebunchaebun.WritingEtcChaebunActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".LittleActivity"
+            android:name="com.E2I3.chaebunchaebun.LittleActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".UnknownActivity"
+            android:name="com.E2I3.chaebunchaebun.UnknownActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".NoMannerActivity"
+            android:name="com.E2I3.chaebunchaebun.NoMannerActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".EtcActivity"
+            android:name="com.E2I3.chaebunchaebun.EtcActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".MypageMypostingActivity"
+            android:name="com.E2I3.chaebunchaebun.MypageMypostingActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".SessionCallback"
+            android:name="com.E2I3.chaebunchaebun.SessionCallback"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ChangeChaebunActivity"
+            android:name="com.E2I3.chaebunchaebun.ChangeChaebunActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ChangeChaebunEtcActivity"
+            android:name="com.E2I3.chaebunchaebun.ChangeChaebunEtcActivity"
             android:windowSoftInputMode="adjustResize" />
     </application>
 </manifest>

@@ -75,5 +75,5 @@
         android:layout_height="44dp"
         android:layout_gravity="center"
         android:layout_marginTop="360dp"
-        android:background="@drawable/btn_signup_next" />
+        android:background="@drawable/btn_next" />
 </LinearLayout>
