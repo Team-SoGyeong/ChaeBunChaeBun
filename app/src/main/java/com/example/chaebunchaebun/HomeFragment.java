@@ -60,7 +60,8 @@ public class HomeFragment extends Fragment {
     LinearLayout searchView, homeLocation;
     ImageView iconLike, iconNotice;
     TextView homeLocationText;
-    ImageButton writing;
+    ImageButton writing, btnOnion, btnGarlic, btnGreenOnion, btnCarrot, btnMushroom,
+        btnCabbage, btnRadish, btnPotato, btnSweetPotato, btnOther;
     int recyclerPosition = -1;
     String[] address = {"",};
     String userId = null;
@@ -111,7 +112,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         homeView = inflater.inflate(R.layout.fragment_home, container, false);
-        mRecyclerView = (RecyclerView) homeView.findViewById(R.id.recycler_view);
+        //mRecyclerView = (RecyclerView) homeView.findViewById(R.id.recycler_view);
         vp = homeView.findViewById(R.id.view_pager);
         tabLayout = homeView.findViewById(R.id.tab_layout);
         searchView = homeView.findViewById(R.id.view_search);
@@ -121,9 +122,170 @@ public class HomeFragment extends Fragment {
         writing = homeView.findViewById(R.id.btn_start);
         iconNotice = homeView.findViewById(R.id.ic_notice);
 
+        btnOnion = homeView.findViewById(R.id.btn_home_onion);
+        btnGarlic = homeView.findViewById(R.id.btn_home_garlic);
+        btnGreenOnion = homeView.findViewById(R.id.btn_home_greenonion);
+        btnCarrot = homeView.findViewById(R.id.btn_home_carrot);
+        btnMushroom = homeView.findViewById(R.id.btn_home_mushroom);
+        btnCabbage = homeView.findViewById(R.id.btn_home_cabbage);
+        btnRadish = homeView.findViewById(R.id.btn_home_radish);
+        btnPotato = homeView.findViewById(R.id.btn_home_potato);
+        btnSweetPotato = homeView.findViewById(R.id.btn_home_sweetpotato);
+        btnOther = homeView.findViewById(R.id.btn_home_other);
+
         homeLocationText.setText(address[address.length - 1]);
 
-        itemList = new ArrayList<MainRecyclerData>();
+        btnOnion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle categoryBundle = new Bundle();
+                categoryBundle.putInt("vegetable", 0);
+                categoryBundle.putString("userId", userId);
+                FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                CategoryFragment categoryFragment = new CategoryFragment();
+                categoryFragment.setArguments(categoryBundle);
+                categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
+                categoryTransaction.addToBackStack(null);
+                categoryTransaction.commit();
+            }
+        });
+
+        btnGarlic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle categoryBundle = new Bundle();
+                categoryBundle.putInt("vegetable", 1);
+                categoryBundle.putString("userId", userId);
+                FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                CategoryFragment categoryFragment = new CategoryFragment();
+                categoryFragment.setArguments(categoryBundle);
+                categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
+                categoryTransaction.addToBackStack(null);
+                categoryTransaction.commit();
+            }
+        });
+
+        btnGreenOnion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle categoryBundle = new Bundle();
+                categoryBundle.putInt("vegetable", 2);
+                categoryBundle.putString("userId", userId);
+                FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                CategoryFragment categoryFragment = new CategoryFragment();
+                categoryFragment.setArguments(categoryBundle);
+                categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
+                categoryTransaction.addToBackStack(null);
+                categoryTransaction.commit();
+            }
+        });
+
+        btnCarrot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle categoryBundle = new Bundle();
+                categoryBundle.putInt("vegetable", 3);
+                categoryBundle.putString("userId", userId);
+                FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                CategoryFragment categoryFragment = new CategoryFragment();
+                categoryFragment.setArguments(categoryBundle);
+                categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
+                categoryTransaction.addToBackStack(null);
+                categoryTransaction.commit();
+            }
+        });
+
+        btnMushroom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle categoryBundle = new Bundle();
+                categoryBundle.putInt("vegetable", 4);
+                categoryBundle.putString("userId", userId);
+                FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                CategoryFragment categoryFragment = new CategoryFragment();
+                categoryFragment.setArguments(categoryBundle);
+                categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
+                categoryTransaction.addToBackStack(null);
+                categoryTransaction.commit();
+            }
+        });
+
+        btnCabbage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle categoryBundle = new Bundle();
+                categoryBundle.putInt("vegetable", 5);
+                categoryBundle.putString("userId", userId);
+                FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                CategoryFragment categoryFragment = new CategoryFragment();
+                categoryFragment.setArguments(categoryBundle);
+                categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
+                categoryTransaction.addToBackStack(null);
+                categoryTransaction.commit();
+            }
+        });
+
+        btnRadish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle categoryBundle = new Bundle();
+                categoryBundle.putInt("vegetable", 6);
+                categoryBundle.putString("userId", userId);
+                FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                CategoryFragment categoryFragment = new CategoryFragment();
+                categoryFragment.setArguments(categoryBundle);
+                categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
+                categoryTransaction.addToBackStack(null);
+                categoryTransaction.commit();
+            }
+        });
+
+        btnPotato.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle categoryBundle = new Bundle();
+                categoryBundle.putInt("vegetable", 7);
+                categoryBundle.putString("userId", userId);
+                FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                CategoryFragment categoryFragment = new CategoryFragment();
+                categoryFragment.setArguments(categoryBundle);
+                categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
+                categoryTransaction.addToBackStack(null);
+                categoryTransaction.commit();
+            }
+        });
+
+        btnSweetPotato.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle categoryBundle = new Bundle();
+                categoryBundle.putInt("vegetable", 8);
+                categoryBundle.putString("userId", userId);
+                FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                CategoryFragment categoryFragment = new CategoryFragment();
+                categoryFragment.setArguments(categoryBundle);
+                categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
+                categoryTransaction.addToBackStack(null);
+                categoryTransaction.commit();
+            }
+        });
+
+        btnOther.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle categoryBundle = new Bundle();
+                categoryBundle.putInt("vegetable", 9);
+                categoryBundle.putString("userId", userId);
+                FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                CategoryFragment categoryFragment = new CategoryFragment();
+                categoryFragment.setArguments(categoryBundle);
+                categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
+                categoryTransaction.addToBackStack(null);
+                categoryTransaction.commit();
+            }
+        });
+
+        /*itemList = new ArrayList<MainRecyclerData>();
 
         itemList.add(new MainRecyclerData(R.drawable.home_onion));
         itemList.add(new MainRecyclerData(R.drawable.home_garlic));
@@ -156,7 +318,7 @@ public class HomeFragment extends Fragment {
                 categoryTransaction.addToBackStack(null);
                 categoryTransaction.commit();
             }
-        });
+        });*/
 
         MainVPAdapter adapter = new MainVPAdapter(getChildFragmentManager(), String.valueOf(locationCode), userId);
         vp.setAdapter(adapter);

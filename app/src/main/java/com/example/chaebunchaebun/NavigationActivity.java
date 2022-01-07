@@ -107,7 +107,7 @@ public class NavigationActivity extends AppCompatActivity {
         }
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         super.onBackPressed();
 //        if(System.currentTimeMillis() > backKeyPressedTime + 2000){
@@ -133,5 +133,5 @@ public class NavigationActivity extends AppCompatActivity {
             toastText.setText("한 번 더 누르면 앱이 종료돼요!");
             toast.show();
         }
-    }
+    }*/
 }
