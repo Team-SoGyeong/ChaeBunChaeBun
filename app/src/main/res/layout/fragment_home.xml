@@ -14,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="9dp"
+            android:layout_marginBottom="9dp"
             android:gravity="center"
             android:orientation="vertical">
             <LinearLayout
@@ -75,7 +76,7 @@
                     android:layout_height="24dp"
                     android:layout_marginRight="16dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/home_btn_notification" />
+                    android:src="@drawable/home_btn_notification_2" />
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -92,7 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginLeft="20dp">
                 <TextView
                     android:layout_width="wrap_content"
@@ -102,22 +103,35 @@
                     android:textSize="16sp"
                     android:textColor="#000000"
                     android:text="신선한 하루에요, "/>
-                <TextView
+                <LinearLayout
+                    android:id="@+id/btn_mypage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:textColor="#9fdfdf"
-                    android:text="분분"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:textColor="#000000"
-                    android:text=" 님"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tv_nickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="#9fdfdf"
+                        android:text="분분"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="#000000"
+                        android:text=" 님!"/>
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/home_btn_mypage"/>
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/view_search"
@@ -149,21 +163,22 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="12dp"
-                    android:src="@drawable/ic_search"
-                    app:tint="@color/black" />
+                    android:src="@drawable/search_btn_searchicon" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginLeft="30dp"
                 android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
                     <ImageButton
                         android:id="@+id/btn_home_onion"
                         android:layout_width="wrap_content"
@@ -210,12 +225,20 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/home_btn_mushroom"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
                     android:orientation="horizontal">
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
                     <ImageButton
                         android:id="@+id/btn_home_cabbage"
                         android:layout_width="wrap_content"
@@ -262,6 +285,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/home_btn_other"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
                 </LinearLayout>
             </LinearLayout>
             <!--<androidx.recyclerview.widget.RecyclerView
@@ -288,13 +315,65 @@
                 app:tabTextAppearance="@style/tab_text"
                 app:tabSelectedTextColor="@color/black"
                 app:tabBackground="@color/white"
-                app:tabIndicatorColor="#036635"
+                app:tabIndicatorColor="#6a951f"
                 app:tabIndicatorHeight="1dp">
             </com.google.android.material.tabs.TabLayout>
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="340dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#ebebeb">
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+                <ImageButton
+                    android:id="@+id/link_home_ask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/home_link_ask"/>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="14dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#999999"
+                    android:layout_gravity="center"/>
+                <ImageButton
+                    android:id="@+id/link_home_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/home_link_service"/>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="14dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#999999"
+                    android:layout_gravity="center"/>
+                <ImageButton
+                    android:id="@+id/link_home_personal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/home_link_personal"/>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -42,7 +42,7 @@ public class MainNewFragment extends Fragment {
 
     TextView main_new_text;
     String locationCode = "";
-    String userId = "1";
+    String userId = "";
     boolean isMyPage = false;
 
     public MainNewFragment() {
