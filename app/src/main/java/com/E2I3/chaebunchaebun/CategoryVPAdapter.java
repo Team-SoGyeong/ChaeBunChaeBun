@@ -35,9 +35,9 @@ public class CategoryVPAdapter extends FragmentPagerAdapter {
         categoryMushroomFragment.getUserId(userId);
         categorys.add(categoryMushroomFragment);
 
-        CategoryGreenvegeFragment categoryGreenvegeFragment = new CategoryGreenvegeFragment();
+        /*CategoryGreenvegeFragment categoryGreenvegeFragment = new CategoryGreenvegeFragment();
         categoryGreenvegeFragment.getUserId(userId);
-        categorys.add(categoryGreenvegeFragment);
+        categorys.add(categoryGreenvegeFragment);*/
 
         CategoryCabbageFragment categoryCabbageFragment = new CategoryCabbageFragment();
         categoryCabbageFragment.getUserId(userId);
@@ -64,7 +64,7 @@ public class CategoryVPAdapter extends FragmentPagerAdapter {
         categoryTabText.add("파");
         categoryTabText.add("당근");
         categoryTabText.add("버섯");
-        categoryTabText.add("쌈채소");
+        /*categoryTabText.add("쌈채소");*/
         categoryTabText.add("배추");
         categoryTabText.add("무");
         categoryTabText.add("감자");

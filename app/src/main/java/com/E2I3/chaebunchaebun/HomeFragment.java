@@ -1,6 +1,7 @@
 package com.E2I3.chaebunchaebun;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
@@ -61,7 +62,8 @@ public class HomeFragment extends Fragment {
     ImageView iconLike, iconNotice;
     TextView homeLocationText;
     ImageButton writing, btnOnion, btnGarlic, btnGreenOnion, btnCarrot, btnMushroom,
-        btnCabbage, btnRadish, btnPotato, btnSweetPotato, btnOther;
+        btnCabbage, btnRadish, btnPotato, btnSweetPotato, btnOther,
+        linkAsk, linkService, linkPersonal;
     int recyclerPosition = -1;
     String[] address = {"",};
     String userId = null;
@@ -112,6 +114,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         homeView = inflater.inflate(R.layout.fragment_home, container, false);
+
         //mRecyclerView = (RecyclerView) homeView.findViewById(R.id.recycler_view);
         vp = homeView.findViewById(R.id.view_pager);
         tabLayout = homeView.findViewById(R.id.tab_layout);
@@ -132,6 +135,10 @@ public class HomeFragment extends Fragment {
         btnPotato = homeView.findViewById(R.id.btn_home_potato);
         btnSweetPotato = homeView.findViewById(R.id.btn_home_sweetpotato);
         btnOther = homeView.findViewById(R.id.btn_home_other);
+
+        linkAsk = homeView.findViewById(R.id.link_home_ask);
+        linkService = homeView.findViewById(R.id.link_home_service);
+        linkPersonal = homeView.findViewById(R.id.link_home_personal);
 
         homeLocationText.setText(address[address.length - 1]);
 
@@ -369,6 +376,35 @@ public class HomeFragment extends Fragment {
           }
       });
 
+      linkAsk.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              Intent email = new Intent(Intent.ACTION_SEND);
+              email.setType("plain/text");
+              String[] address = {"dragoncat84@naver.com"};
+              email.putExtra(Intent.EXTRA_EMAIL, address);
+              email.putExtra(Intent.EXTRA_SUBJECT, "[채분채분 문의하기]");
+              email.putExtra(Intent.EXTRA_TEXT, "문의할 내용을 적어주세요!");
+              startActivity(email);
+          }
+      });
+
+      linkService.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://irradiated-mapusaurus-27a.notion.site/34a2eb86c548473b8ea1c9aaa5a72217"));
+              startActivity(intent);
+          }
+      });
+
+      linkPersonal.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://irradiated-mapusaurus-27a.notion.site/7535a823135d437da69575e15cc49467"));
+              startActivity(intent);
+          }
+      });
+
       /*iconNotice.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -381,9 +417,9 @@ public class HomeFragment extends Fragment {
         return homeView;
     }
 
-    public void getRecyclerPosition(int pos) {
+    /*public void getRecyclerPosition(int pos) {
         this.recyclerPosition = pos;
-    }
+    }*/
 
     public void getHome(){
         String resultText = "[NULL]";

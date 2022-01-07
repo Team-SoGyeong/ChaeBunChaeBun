@@ -51,7 +51,16 @@ public class NavigationActivity extends AppCompatActivity {
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(customToast);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        Bundle homeBundle = new Bundle();
+        //homeBundle.putString("userId", userId);
+        FragmentTransaction homeTransaction = getSupportFragmentManager().beginTransaction();
+        HomeFragment homeFragment = new HomeFragment();
+        homeFragment.getUserId(userId);
+        homeFragment.setArguments(homeBundle);
+        homeTransaction.replace(R.id.bottom_frame, homeFragment);
+        homeTransaction.commit();
+
+        /*bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
@@ -77,10 +86,10 @@ public class NavigationActivity extends AppCompatActivity {
         likefg = new LikeListFragment();
         communityfg = new CommunityFragment();
         myfg = new MypageFragment();
-        setFragment(0);
+        setFragment(0);*/
     }
 
-    private void setFragment(int n) {
+    /*private void setFragment(int n) {
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         switch (n) {
@@ -105,7 +114,7 @@ public class NavigationActivity extends AppCompatActivity {
                 //ft.commit();
                 break;
         }
-    }
+    }*/
 
     /*@Override
     public void onBackPressed() {
