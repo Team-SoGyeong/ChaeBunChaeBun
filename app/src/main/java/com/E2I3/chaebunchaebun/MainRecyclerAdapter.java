@@ -22,7 +22,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         this.mListener = listener ;
     }
 
-    public class ViewHolder  extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView imgView_item;
 
         public ViewHolder(@NonNull View itemView) {

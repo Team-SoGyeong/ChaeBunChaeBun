@@ -9,12 +9,11 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#036635">
+        android:background="#FFFFFF">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="9dp"
-            android:layout_marginBottom="20dp"
             android:gravity="center"
             android:orientation="vertical">
             <LinearLayout
@@ -32,7 +31,7 @@
                         android:layout_height="24dp"
                         android:layout_marginLeft="23dp"
                         android:layout_marginRight="1dp"
-                        android:src="@drawable/slice_4"
+                        android:src="@drawable/home_img_location"
                         android:scaleType="fitCenter"/>
                     <TextView
                         android:id="@+id/home_location_text"
@@ -42,7 +41,7 @@
                         android:fontFamily="@font/roboto_light"
                         android:textStyle="normal"
                         android:textSize="12sp"
-                        android:textColor="#ffffff"
+                        android:textColor="#000000"
                         android:text="지역"/>
                 </LinearLayout>
                 <View
@@ -54,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
                     android:gravity="center"
-                    android:textColor="#f0f4ed"
+                    android:textColor="#6a951f"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:text="채분채분" />
@@ -67,7 +66,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/slice_6"
+                    android:src="@drawable/home_btn_likepage"
                     android:scaleType="fitCenter"/>
 
                 <ImageView
@@ -76,39 +75,7 @@
                     android:layout_height="24dp"
                     android:layout_marginRight="16dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/slice_10" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/view_search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="#f4f6f2"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/roboto_regular"
-                    android:textColor="#999999"
-                    android:textSize="12sp"
-                    android:textStyle="normal"
-                    android:text="채분할 채소를 검색해 보세요!" />
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="12dp"
-                    android:src="@drawable/ic_search"/>
+                    android:src="@drawable/home_btn_notification" />
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -121,28 +88,194 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:text="신선한 하루에요, "/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="#9fdfdf"
+                    android:text="분분"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:text=" 님"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/view_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/green_box"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="#999999"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    android:text="소분하고 싶은 채소를 검색 해볼까요?" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/black" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:fontFamily="@font/roboto_bold"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:textColor="#000000"
-                android:text="신선한 채분을 둘러보세요"/>
-            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageButton
+                        android:id="@+id/btn_home_onion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/home_btn_onion"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                    <ImageButton
+                        android:id="@+id/btn_home_garlic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/home_btn_garlic"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                    <ImageButton
+                        android:id="@+id/btn_home_greenonion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/home_btn_greenonion"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                    <ImageButton
+                        android:id="@+id/btn_home_carrot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/home_btn_carrot"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                    <ImageButton
+                        android:id="@+id/btn_home_mushroom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/home_btn_mushroom"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:orientation="horizontal">
+                    <ImageButton
+                        android:id="@+id/btn_home_cabbage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/home_btn_cabbage"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                    <ImageButton
+                        android:id="@+id/btn_home_radish"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/home_btn_radish"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                    <ImageButton
+                        android:id="@+id/btn_home_potato"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/home_btn_potato"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                    <ImageButton
+                        android:id="@+id/btn_home_sweetpotato"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/home_btn_sweetpotato"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                    <ImageButton
+                        android:id="@+id/btn_home_other"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/home_btn_other"/>
+                </LinearLayout>
+            </LinearLayout>
+            <!--<androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp" />
+                android:layout_margin="15dp" />-->
             <ImageButton
                 android:id="@+id/btn_start"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/group_703"/>
+                android:background="@drawable/home_btn_start"/>
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
