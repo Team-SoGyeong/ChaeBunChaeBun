@@ -12,10 +12,10 @@ android {
         }
     }
     compileSdkVersion 31
-    buildToolsVersion "30.0.1"
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.chaebunchaebun"
+        applicationId "com.E2I3.chaebunchaebun"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
