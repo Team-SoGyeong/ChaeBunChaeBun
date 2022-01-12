@@ -140,7 +140,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/green_box"
+                android:background="@drawable/custom_home_search"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -298,10 +298,9 @@
                 android:layout_margin="15dp" />-->
             <ImageButton
                 android:id="@+id/btn_start"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:background="@drawable/home_btn_start"/>
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"

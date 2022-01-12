@@ -36,7 +36,7 @@
             android:id="@+id/money"
             android:layout_width="wrap_content"
             android:layout_height="24dp"
-            android:buttonTint="#036635"
+            android:buttonTint="#6a951f"
             android:text="광고성 글이에요"
             android:textColor="@drawable/selector_radio_nosee_text"
             android:textSize="14sp"
@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:layout_marginTop="26dp"
-            android:buttonTint="#036635"
+            android:buttonTint="#6a951f"
             android:text="부적절한 내용이 담겨 있어요"
             android:textColor="@drawable/selector_radio_nosee_text"
             android:textSize="14sp"
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:layout_marginTop="26dp"
-            android:buttonTint="#036635"
+            android:buttonTint="#6a951f"
             android:text="기타"
             android:textColor="@drawable/selector_radio_nosee_text"
             android:textSize="14sp"
@@ -91,13 +91,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/btn_delete_cancel" />
+            android:background="@drawable/articledialog_btn_cancel" />
         <ImageButton
             android:id="@+id/btn_report"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_gravity="center"
-            android:background="@drawable/btn_report" />
+            android:background="@drawable/articledialog_btn_report" />
     </LinearLayout>
 </LinearLayout>

@@ -8,8 +8,9 @@ public class SearchListItem {
     private int isAuth = 0;
     private int postId = 0;
     private int categoryId = 0;
+    private String writeDate = "";
 
-    public SearchListItem(String title, String date, String people, String price, int isAuth, int postId, int categoryId){
+    public SearchListItem(String title, String date, String people, String price, int isAuth, int postId, int categoryId, String writeDate){
         this.title = title;
         this.date = date;
         this.people = people;
@@ -17,6 +18,7 @@ public class SearchListItem {
         this.isAuth = isAuth;
         this.postId = postId;
         this.categoryId = categoryId;
+        this.writeDate = writeDate;
     }
 
     public String getTitle() {
@@ -45,5 +47,9 @@ public class SearchListItem {
 
     public int getCategoryId() {
         return categoryId;
+    }
+
+    public String getWriteDate() {
+        return writeDate;
     }
 }

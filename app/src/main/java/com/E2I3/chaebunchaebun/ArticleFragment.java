@@ -177,18 +177,18 @@ public class ArticleFragment extends Fragment {
             articleRecipt.setVisibility(View.VISIBLE);
         }
         if(status == 0) {
-            articleComplete.setImageResource(R.drawable.group_778);
+            articleComplete.setImageResource(R.drawable.article_btn_uncomplete);
         } else {
-            articleComplete.setImageResource(R.drawable.group_778_green);
+            articleComplete.setImageResource(R.drawable.article_btn_complete);
             articleComplete.setClickable(false);
             articleComment.setClickable(false);
             articleCommentbtn.setClickable(false);
             articleModalbtn.setClickable(false);
         }
         if(isMyWish == 0) {
-            articleLikebtn.setImageResource(R.drawable.type_filled_icon_favorite_gray);
+            articleLikebtn.setImageResource(R.drawable.article_btn_favorite_gray);
         } else {
-            articleLikebtn.setImageResource(R.drawable.type_filled_icon_favorite);
+            articleLikebtn.setImageResource(R.drawable.categorylist_btn_favorite_filled);
         }
         articleWishcnt.setText(String.valueOf(this.wishcount));
         Glide.with(getContext()).load(this.profile).into(articleProfile);

@@ -11,56 +11,51 @@
         android:orientation="horizontal">
         <ImageView
             android:id="@+id/comment_profileimg"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/custom_categorylist_profileimg"
-            android:scaleType="centerInside"
-            android:src="@drawable/home_green_onion"/>
-        <TextView
-            android:id="@+id/comment_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="6dp"
-            android:text="닉네임"
-            android:textSize="10sp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/roboto_bold"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/comment_content"
+            android:background="@drawable/locationdialog_img_mumu"
+            android:scaleType="centerInside"/>
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="내용"
-            android:textSize="10sp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/roboto_regular"
-            android:maxWidth="300dp"/>
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-        <ImageButton
-            android:id="@+id/comment_modalbtn"
-            android:layout_width="25dp"
-            android:layout_height="wrap_content"
-            android:scaleType="fitCenter"
-            android:background="@color/white"
-            android:src="@drawable/fix_delete_btn"/>
+            android:layout_marginLeft="17dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/comment_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="닉네임"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto_bold"/>
+            <TextView
+                android:id="@+id/comment_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="날짜 및 시간"
+                android:textSize="10sp"
+                android:textColor="#999999"
+                android:fontFamily="@font/roboto_regular"/>
+            <TextView
+                android:id="@+id/comment_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="10dp"
+                android:text="내용"
+                android:textSize="10sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto_regular"
+                android:maxWidth="300dp"/>
+            <!--<ImageButton
+                android:id="@+id/comment_modalbtn"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:background="@color/white"
+                android:src="@drawable/fix_delete_btn"/>-->
+        </LinearLayout>
     </LinearLayout>
-    <TextView
-        android:id="@+id/comment_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="날짜 및 시간"
-        android:textSize="10sp"
-        android:textColor="#999999"
-        android:fontFamily="@font/roboto_regular"/>
 </LinearLayout>

@@ -37,13 +37,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/btn_delete_cancel" />
+            android:background="@drawable/articledialog_btn_cancel" />
         <ImageButton
             android:id="@+id/btn_delete_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_gravity="center"
-            android:background="@drawable/btn_delete_ok" />
+            android:background="@drawable/articledialog_btn_agree" />
     </LinearLayout>
 </LinearLayout>

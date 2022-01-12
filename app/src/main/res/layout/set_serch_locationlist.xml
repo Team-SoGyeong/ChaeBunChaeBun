@@ -40,7 +40,7 @@
                 android:id="@+id/location_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:listSelector="@drawable/green_box"/>
+                android:listSelector="@drawable/custom_search_select"/>
         </LinearLayout>
     </ScrollView>
     <LinearLayout

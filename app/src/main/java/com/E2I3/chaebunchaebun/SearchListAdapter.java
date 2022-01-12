@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 
@@ -51,6 +53,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
         holder.search_list_date.setText(searchListItem.getDate());
         holder.search_list_people.setText(searchListItem.getPeople());
         holder.search_list_price.setText(searchListItem.getPrice());
+        holder.search_list_write_date.setText(searchListItem.getWriteDate());
         if(searchListItem.getIsAuth() == 0){
             holder.search_list_receipt.setVisibility(View.GONE);
         } else {
@@ -74,6 +77,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
         TextView search_list_people;
         TextView search_list_price;
         ImageView search_list_receipt;
+        TextView search_list_write_date;
         public ViewHolder(@NonNull View searchView) {
             super(searchView);
             search_list_top = (LinearLayout) searchView.findViewById(R.id.search_list_top);
@@ -82,6 +86,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
             search_list_people = (TextView) searchView.findViewById(R.id.search_list_people);
             search_list_price = (TextView) searchView.findViewById(R.id.search_list_price);
             search_list_receipt = (ImageView) searchView.findViewById(R.id.search_list_receipt);
+            search_list_write_date = (TextView) searchView.findViewById(R.id.search_list_postdate);
 
             search_list_top.setOnClickListener(new View.OnClickListener() {
                 @Override

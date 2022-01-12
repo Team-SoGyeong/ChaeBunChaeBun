@@ -54,7 +54,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         LinearLayout categoryListTop;
-        ImageView categoryListProfile;
+        //ImageView categoryListProfile;
         TextView categoryListTitle;
         TextView categoryListNickname;
         TextView categoryListWritingDate;
@@ -74,7 +74,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         ImageView categoryListLikeBtn;
         public ViewHolder(@NonNull @NotNull View categoryView) {
             super(categoryView);
-            categoryListProfile = (ImageView) categoryView.findViewById(R.id.categorylist_profile_img);
+            //categoryListProfile = (ImageView) categoryView.findViewById(R.id.categorylist_profile_img);
             categoryListTitle = (TextView) categoryView.findViewById(R.id.categorylist_title);
             categoryListNickname = (TextView) categoryView.findViewById(R.id.categorylist_nickname);
             categoryListWritingDate = (TextView) categoryView.findViewById(R.id.categorylist_writing_date);
@@ -131,14 +131,14 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
                                 if(data.getIsWish() == 0) {
                                     toastText.setText("찜 했어요!");
                                     toast.show();
-                                    categoryListLikeBtn.setImageResource(R.drawable.type_filled_icon_favorite);
+                                    categoryListLikeBtn.setImageResource(R.drawable.categorylist_btn_favorite_filled);
                                     int getLikeCount = Integer.parseInt(data.getLikeCount());
                                     categoryListLikeCount.setText(String.valueOf(getLikeCount + 1));
                                     likeClickListener.OnLikeClick(view, pos);
                                 } else if(data.getIsWish() == 1) {
                                     toastText.setText("찜을 취소했어요!");
                                     toast.show();
-                                    categoryListLikeBtn.setImageResource(R.drawable.type_filled_icon_favorite_border);
+                                    categoryListLikeBtn.setImageResource(R.drawable.categorylist_btn_favorite_unfilled);
                                     int getLikeCount = Integer.parseInt(data.getLikeCount());
                                     categoryListLikeCount.setText(String.valueOf(getLikeCount - 1));
                                     likeClickListener.OnLikeClick(view, pos);
@@ -176,7 +176,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
         CategoryListItem categoryListItem = categoryListItems.get(position);
 
-        Glide.with(holder.itemView.getContext()).load(categoryListItem.getProfile()).into(holder.categoryListProfile);
+        //Glide.with(holder.itemView.getContext()).load(categoryListItem.getProfile()).into(holder.categoryListProfile);
         holder.categoryListTitle.setText(categoryListItem.getTitle());
         holder.categoryListNickname.setText(categoryListItem.getNickname());
         holder.categoryListWritingDate.setText((categoryListItem.getWritingDate()));

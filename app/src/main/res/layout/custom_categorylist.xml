@@ -14,16 +14,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
-            <ImageView
+            <!--<ImageView
                 android:id="@+id/categorylist_profile_img"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:scaleType="fitCenter"
                 android:background="@drawable/custom_categorylist_profileimg"
-                android:src="@drawable/vegetables"/>
+                android:src="@drawable/vegetables"/>-->
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/categorylist_title"
@@ -37,15 +37,36 @@
                     android:maxWidth="200dp"
                     android:maxLines="1"
                     android:ellipsize="end"/>
-                <TextView
-                    android:id="@+id/categorylist_nickname"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="닉네임"
-                    android:textColor="@color/black"
-                    android:textSize="8sp"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/categorylist_nickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="닉네임"
+                        android:textColor="#999999"
+                        android:textSize="10sp"/>
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="#999999"/>
+                    <TextView
+                        android:id="@+id/categorylist_writing_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="19dp"
+                        android:gravity="center"
+                        android:text="작성 날짜"
+                        android:textColor="#999999"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="10sp" />
+                </LinearLayout>
             </LinearLayout>
             <View
                 android:layout_width="0dp"
@@ -56,19 +77,17 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center"
-                android:src="@drawable/type_filled_icon_verified"
+                android:src="@drawable/categorylist_img_verified"
                 android:layout_marginRight="8dp"/>
-
-            <TextView
-                android:id="@+id/categorylist_writing_date"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginRight="19dp"
-                android:gravity="center"
-                android:text="작성 날짜"
-                android:textColor="#999999"
-                android:fontFamily="@font/roboto_regular"
-                android:textSize="12sp" />
+            <ImageButton
+                android:id="@+id/category_list_modalbtn"
+                android:layout_width="29dp"
+                android:layout_height="32dp"
+                android:layout_marginRight="6dp"
+                android:scaleType="fitCenter"
+                android:padding="5dp"
+                android:src="@drawable/categorylist_btn_modal"
+                android:background="@color/white"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -109,19 +128,6 @@
                 android:layout_marginTop="11dp"
                 android:layout_marginLeft="7dp"
                 android:background="@drawable/custom_categorylist_contentimg"/>
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
-            <ImageButton
-                android:id="@+id/category_list_modalbtn"
-                android:layout_width="29dp"
-                android:layout_height="32dp"
-                android:layout_marginRight="6dp"
-                android:scaleType="fitCenter"
-                android:padding="5dp"
-                android:src="@drawable/fix_delete_btn"
-                android:background="@color/white"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -163,7 +169,7 @@
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
-                    android:background="#036635"/>
+                    android:background="#6a951f"/>
                 <TextView
                     android:id="@+id/categorylist_people"
                     android:layout_width="wrap_content"
@@ -178,7 +184,7 @@
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
-                    android:background="#036635"/>
+                    android:background="#6a951f"/>
                 <TextView
                     android:id="@+id/categorylist_price"
                     android:layout_width="wrap_content"
@@ -203,7 +209,7 @@
                     android:id="@+id/categorylist_likebtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/slice_6"
+                    android:src="@drawable/categorylist_btn_favorite_unfilled"
                     android:background="@color/white"/>
                 <TextView
                     android:id="@+id/categorylist_likecount"
@@ -214,13 +220,13 @@
                     android:text="0"
                     android:textSize="10sp"
                     android:fontFamily="@font/roboto_regular"
-                    android:textColor="#036635"/>
+                    android:textColor="#5a5a5a"/>
                 <ImageView
                     android:id="@+id/categorylist_commenticon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="13dp"
-                    android:src="@drawable/type_outlined_icon_comment_bank"/>
+                    android:src="@drawable/categorylist_img_comment"/>
                 <TextView
                     android:id="@+id/categorylist_commentcount"
                     android:layout_width="wrap_content"
@@ -230,7 +236,7 @@
                     android:text="0"
                     android:textSize="10sp"
                     android:fontFamily="@font/roboto_regular"
-                    android:textColor="#036635"/>
+                    android:textColor="#5a5a5a"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

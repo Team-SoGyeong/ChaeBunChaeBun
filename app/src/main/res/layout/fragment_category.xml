@@ -48,7 +48,7 @@
                         android:layout_height="16dp"
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="14dp"
-                        android:src="@drawable/group_624"/>
+                        android:src="@drawable/category_img_help"/>
                 </LinearLayout>
             </com.google.android.material.appbar.AppBarLayout>
             <FrameLayout
@@ -68,11 +68,12 @@
                         android:background="@color/white"
                         app:tabBackground="@color/white"
                         app:tabGravity="fill"
-                        app:tabIndicatorColor="#036635"
+                        app:tabIndicatorColor="#6a951f"
                         app:tabMode="scrollable"
                         app:tabSelectedTextColor="@color/black"
                         app:tabTextAppearance="@style/category_tab_text"
-                        app:tabTextColor="@color/black"></com.google.android.material.tabs.TabLayout>
+                        app:tabTextColor="@color/black">
+                    </com.google.android.material.tabs.TabLayout>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -94,7 +95,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/tooltip_1_content_help"/>
+                android:src="@drawable/category_img_tooltip"/>
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

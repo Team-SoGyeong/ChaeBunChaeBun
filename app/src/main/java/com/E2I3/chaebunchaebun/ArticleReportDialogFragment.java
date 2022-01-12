@@ -68,6 +68,8 @@ public class ArticleReportDialogFragment extends DialogFragment {
                 System.out.println(radioButton);
                 if(radioButton == etc) {
                     reason.setVisibility(View.VISIBLE);
+                } else {
+                    reason.setVisibility(View.GONE);
                 }
             }
         });

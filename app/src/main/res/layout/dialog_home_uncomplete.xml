@@ -32,12 +32,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="23dp"
-        android:background="@drawable/btn_fin_now" />
+        android:background="@drawable/homedialog_btn_nexttime" />
     <ImageButton
         android:id="@+id/btn_donate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
-        android:background="@drawable/btn_dona" />
+        android:background="@drawable/homedialog_btn_donate" />
 </LinearLayout>

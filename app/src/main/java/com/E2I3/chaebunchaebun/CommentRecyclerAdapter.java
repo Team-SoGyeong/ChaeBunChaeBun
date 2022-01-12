@@ -31,7 +31,7 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecycler
         TextView commentNickname;
         TextView commentContent;
         TextView commentTime;
-        ImageButton commentModalBtn;
+        //ImageButton commentModalBtn;
         public ViewHolder(View commentView) {
             super(commentView);
 
@@ -39,9 +39,9 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecycler
             commentNickname = (TextView) commentView.findViewById(R.id.comment_nickname);
             commentContent = (TextView) commentView.findViewById(R.id.comment_content);
             commentTime = (TextView) commentView.findViewById(R.id.comment_time);
-            commentModalBtn = (ImageButton) commentView.findViewById(R.id.comment_modalbtn);
+            //commentModalBtn = (ImageButton) commentView.findViewById(R.id.comment_modalbtn);
 
-            commentModalBtn.setOnClickListener(new View.OnClickListener() {
+            /*commentModalBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int pos = getAdapterPosition();
@@ -51,7 +51,7 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecycler
                         }
                     }
                 }
-            });
+            });*/
         }
     }
 
