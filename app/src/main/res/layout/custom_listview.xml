@@ -30,7 +30,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="13dp"
-            android:src="@drawable/type_filled_icon_verified"
+            android:src="@drawable/categorylist_img_verified"
             android:scaleType="fitCenter"/>
     </LinearLayout>
     <LinearLayout
@@ -71,6 +71,19 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
             android:text="가격"
+            android:textSize="12sp"
+            android:textColor="#999999"
+            android:textAlignment="center"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/search_list_postdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="날짜"
             android:textSize="12sp"
             android:textColor="#999999"
             android:textAlignment="center"/>

@@ -16,14 +16,14 @@
         android:id="@+id/list_modal_nomore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/nomore"
+        android:src="@drawable/categorylist_modalbtn_hide"
         android:background="@color/white"
         android:layout_marginTop="24dp"/>
     <ImageButton
         android:id="@+id/list_modal_report"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/report"
+        android:src="@drawable/categorylist_modalbtn_report"
         android:background="@color/white"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="45dp"/>

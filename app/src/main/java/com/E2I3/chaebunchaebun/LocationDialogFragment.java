@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,7 +27,7 @@ import java.util.concurrent.ExecutionException;
 public class LocationDialogFragment extends DialogFragment {
     public static final String TAG_EVENT_DIALOG = "dialog_event";
     EditText locationDialogEdt;
-    Button locationDialogChange;
+    ImageButton locationDialogChange, locationDialogfine;
     String userId = null;
 
     public LocationDialogFragment() {}
@@ -41,8 +42,8 @@ public class LocationDialogFragment extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View locationDialog = inflater.inflate(R.layout.dialog_home_location, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        Button locationDialogfine = (Button) locationDialog.findViewById(R.id.location_dialog_fine);
-        locationDialogChange = (Button) locationDialog.findViewById(R.id.location_dialog_change);
+        locationDialogfine = (ImageButton) locationDialog.findViewById(R.id.location_dialog_fine);
+        locationDialogChange = (ImageButton) locationDialog.findViewById(R.id.location_dialog_change);
         locationDialogEdt = (EditText) locationDialog.findViewById(R.id.location_dialog_edt);
 
         Bundle mArgs = getArguments();

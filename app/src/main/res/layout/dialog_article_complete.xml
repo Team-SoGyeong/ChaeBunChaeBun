@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/type_outlined_icon_done_outline"/>
+        android:src="@drawable/articledialog_img_complete"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/group_780"
+        android:src="@drawable/articledialog_btn_complete"
         android:background="@color/white"/>
     <ImageButton
         android:id="@+id/article_dialog_cancel"
@@ -45,6 +45,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/group_779"
+        android:src="@drawable/articledialog_btn_back"
         android:background="@color/white"/>
 </LinearLayout>

@@ -32,5 +32,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="35dp"
-        android:background="@drawable/yes_like" />
+        android:background="@drawable/homedialog_btn_yes" />
 </LinearLayout>

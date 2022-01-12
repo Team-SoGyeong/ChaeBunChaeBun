@@ -247,8 +247,9 @@ public class SearchDetailFragment extends Fragment {
                 int isAuth = subJsonObject.getInt("isAuth");
                 int postId = subJsonObject.getInt("post_id");
                 int categoryId = subJsonObject.getInt("category_id");
+                String witten = subJsonObject.getString("witten_by");
 
-                searchListItems.add(new SearchListItem(title, buyDate, people, price, isAuth, postId, categoryId));
+                searchListItems.add(new SearchListItem(title, buyDate, people, price, isAuth, postId, categoryId, witten));
             }
         } catch(JSONException e){
             e.printStackTrace();

@@ -82,7 +82,7 @@
             android:id="@+id/onion_newbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/do_button"
+            android:src="@drawable/category_btn_start"
             android:background="#00ffffff"/>
     </LinearLayout>
 </RelativeLayout>

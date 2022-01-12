@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -40,8 +41,8 @@ public class NoseeDialogFragment extends DialogFragment {
         View noseeDialog = inflater.inflate(R.layout.dialog_article_nosee, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        Button noseeDialogOk = (Button) noseeDialog.findViewById(R.id.location_dialog_ok);
-        Button noseeDialogCancel = (Button) noseeDialog.findViewById(R.id.location_dialog_cancel);
+        ImageButton noseeDialogOk = (ImageButton) noseeDialog.findViewById(R.id.nosee_dialog_ok);
+        ImageButton noseeDialogCancel = (ImageButton) noseeDialog.findViewById(R.id.nosee_dialog_cancel);
         RadioGroup noseeRadioGroup = (RadioGroup) noseeDialog.findViewById(R.id.nosee_radiogroup);
         RadioButton partici = (RadioButton) noseeDialog.findViewById(R.id.partici);
         RadioButton manySee = (RadioButton) noseeDialog.findViewById(R.id.many_see);
