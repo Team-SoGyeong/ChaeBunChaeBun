@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/baseLayout"
-    android:background="#ebebeb"
+    android:background="#FFFFFF"
     tools:context=".MypageMyHeartFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="41dp"
         android:orientation="vertical"
@@ -20,7 +20,7 @@
             android:layout_height="41dp"
             android:fontFamily="@font/roboto_medium"
             android:textSize="16sp" />
-    </LinearLayout>
+    </LinearLayout>-->
     <TextView
         android:id="@+id/mypage_heart_nolist"
         android:layout_width="match_parent"
