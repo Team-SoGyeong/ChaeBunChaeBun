@@ -33,7 +33,8 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#e5e5e5"/>
-    <com.google.android.material.tabs.TabLayout
+    <include layout="@layout/fragment_mypage_myheart"/>
+    <!--<com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,6 +51,6 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" />-->
 
 </LinearLayout>

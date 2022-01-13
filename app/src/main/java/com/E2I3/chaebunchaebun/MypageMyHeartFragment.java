@@ -65,9 +65,9 @@ public class MypageMyHeartFragment extends Fragment {
         return fragment;
     }
 
-    public void getUserId(String userId) {
+    /*public void getUserId(String userId) {
         this.userId = userId;
-    }
+    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -87,7 +87,7 @@ public class MypageMyHeartFragment extends Fragment {
         // Inflate the layout for this fragment
         View myPageHeart = inflater.inflate(R.layout.fragment_mypage_myheart, container, false);
 
-        View customToast = inflater.inflate(R.layout.custom_report_toast, (ViewGroup) myPageHeart.findViewById(R.id.custom_toast_layout));
+        /*View customToast = inflater.inflate(R.layout.custom_report_toast, (ViewGroup) myPageHeart.findViewById(R.id.custom_toast_layout));
 
         toastText = (TextView) customToast.findViewById(R.id.custom_toast_text);
         toast = new Toast(getContext());
@@ -175,12 +175,12 @@ public class MypageMyHeartFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
 
         return myPageHeart;
     }
 
-    public void getMyHeartList(String state) {
+    /*public void getMyHeartList(String state) {
         homeListItems.clear();
         String resultText = "[NULL]";
 
@@ -215,5 +215,5 @@ public class MypageMyHeartFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }

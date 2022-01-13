@@ -15,14 +15,14 @@ public class MyHeartVPAdapter extends FragmentPagerAdapter {
 
     public MyHeartVPAdapter(@NonNull @NotNull FragmentManager fm, String userId) {
         super(fm);
-        items = new ArrayList<Fragment>();
+        /*items = new ArrayList<Fragment>();
         MypageMyHeartFragment mypageMyHeartFragment = new MypageMyHeartFragment();
         mypageMyHeartFragment.getUserId(userId);
         items.add(mypageMyHeartFragment);
         items.add(new MyCommunityHeartFragment());
 
         itext.add("채분");
-        itext.add("커뮤니티");
+        itext.add("커뮤니티");*/
     }
 
     @NonNull

@@ -58,15 +58,16 @@ public class HomeFragment extends Fragment {
     ViewGroup viewGroup;
     ViewPager vp;
     TabLayout tabLayout;
-    LinearLayout searchView, homeLocation;
+    LinearLayout searchView, homeLocation, homeMypage;
     ImageView iconLike, iconNotice;
-    TextView homeLocationText;
+    TextView homeLocationText, homeNickname;
     ImageButton writing, btnOnion, btnGarlic, btnGreenOnion, btnCarrot, btnMushroom,
         btnCabbage, btnRadish, btnPotato, btnSweetPotato, btnOther,
         linkAsk, linkService, linkPersonal;
     int recyclerPosition = -1;
     String[] address = {"",};
     String userId = null;
+    String nickname = "";
     int locationCode = 0;
 
     public HomeFragment() {
@@ -124,6 +125,8 @@ public class HomeFragment extends Fragment {
         homeLocation = homeView.findViewById(R.id.home_location);
         writing = homeView.findViewById(R.id.btn_start);
         iconNotice = homeView.findViewById(R.id.ic_notice);
+        homeMypage = homeView.findViewById(R.id.btn_mypage);
+        homeNickname = homeView.findViewById(R.id.tv_nickname);
 
         btnOnion = homeView.findViewById(R.id.btn_home_onion);
         btnGarlic = homeView.findViewById(R.id.btn_home_garlic);
@@ -141,6 +144,25 @@ public class HomeFragment extends Fragment {
         linkPersonal = homeView.findViewById(R.id.link_home_personal);
 
         homeLocationText.setText(address[address.length - 1]);
+        homeNickname.setText(nickname);
+
+        iconLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MypageMyHeartActivity.class);
+                intent.putExtra("userId", userId);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        homeMypage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MypageMypostingActivity.class);
+                intent.putExtra("userId", userId);
+                getActivity().startActivity(intent);
+            }
+        });
 
         btnOnion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -439,11 +461,11 @@ public class HomeFragment extends Fragment {
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
                 String fullAddress = subJsonObject.getString("full_address");
+                nickname = subJsonObject.getString("nickname");
                 int userId = subJsonObject.getInt("user_id");
                 locationCode = subJsonObject.getInt("address_id");
 
                 address = fullAddress.split(" ");
-
             }
         } catch (JSONException e) {
             e.printStackTrace();

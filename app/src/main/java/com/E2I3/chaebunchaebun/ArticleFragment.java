@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,14 +62,16 @@ public class ArticleFragment extends Fragment {
     TextView categoryName, articleWishcnt, articleTitle, articleNickname, articleWritingDate,
             articleBuyingDate, articleTotal, articlePeople, articlePrice, articleContent, articleContact;
     EditText articleComment;
-    ImageButton articleCommentbtn;
-    LinearLayout articleReciptHelp;
+    ImageButton articleCommentbtn, articleCalculateBtn;
+    LinearLayout articleReciptHelp, articleAll;
+    RelativeLayout articleCalculateContent;
 
     int recyclerPosition = -1;
     String postId = "";
     String userId = "";
     int categoryId = 0;
     boolean isMypage, isMyposting, isMyComment, isMyHeart = false;
+    boolean calculateContent = false;
     String categoryNameString, title, nickname, content, buyDate, members,
             perPrice, writtenBy, profile, amount, totalPrice, contact;
     int isAuth, wishcount, userIdnum, status, isMyWish = 0;
@@ -124,6 +127,7 @@ public class ArticleFragment extends Fragment {
 
         View customToast = inflater.inflate(R.layout.custom_report_toast, (ViewGroup) articleView.findViewById(R.id.custom_toast_layout));
 
+        articleAll = (LinearLayout) articleView.findViewById(R.id.article_all);
         categoryName = (TextView) articleView.findViewById(R.id.article_category_name);
         articleWishcnt = (TextView) articleView.findViewById(R.id.article_wishcount);
         articleLikebtn = (ImageView) articleView.findViewById(R.id.article_wishicon);
@@ -132,12 +136,14 @@ public class ArticleFragment extends Fragment {
         articleWritingDate = (TextView) articleView.findViewById(R.id.article_writing_date);
         articleBuyingDate = (TextView) articleView.findViewById(R.id.article_buying_date);
         articleTotal = (TextView) articleView.findViewById(R.id.article_total);
-        articlePeople = (TextView) articleView.findViewById(R.id.article_people);
+        //articlePeople = (TextView) articleView.findViewById(R.id.article_people);
         articlePrice = (TextView) articleView.findViewById(R.id.article_price);
         articleContent = (TextView) articleView.findViewById(R.id.article_content);
         articleContact = (TextView) articleView.findViewById(R.id.article_contact);
         articleRecipt = (ImageView) articleView.findViewById(R.id.article_receipt);
         articleProfile = (ImageView) articleView.findViewById(R.id.article_proile_img);
+        articleCalculateBtn = (ImageButton) articleView.findViewById(R.id.article_calculate);
+        articleCalculateContent= (RelativeLayout) articleView.findViewById(R.id.article_calculate_content);
 
         aRecyclerView = (RecyclerView) articleView.findViewById(R.id.article_recycler_img);
         cRecyclerView = (RecyclerView) articleView.findViewById(R.id.article_comment_list);
@@ -167,9 +173,9 @@ public class ArticleFragment extends Fragment {
         articleContent.setText(this.content);
         articleContact.setText(this.contact);
         articleBuyingDate.setText(this.buyDate);
-        articleTotal.setText(this.amount + ", " + this.totalPrice);
-        articlePeople.setText(this.members);
-        articlePrice.setText(this.perPrice);
+        articleTotal.setText(this.amount);
+        //articlePeople.setText(this.members);
+        articlePrice.setText(this.totalPrice);
         articleWritingDate.setText(this.writtenBy);
         if(isAuth == 0){
             articleRecipt.setVisibility(View.GONE);
@@ -192,6 +198,7 @@ public class ArticleFragment extends Fragment {
         }
         articleWishcnt.setText(String.valueOf(this.wishcount));
         Glide.with(getContext()).load(this.profile).into(articleProfile);
+        articleCalculateContent.setVisibility(View.GONE);
 
         articleLikebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -218,11 +225,13 @@ public class ArticleFragment extends Fragment {
                                     int status = subJsonObject.getInt("status");
                                     articleWishcnt.setText(String.valueOf(wishcount));
                                     if (status == 0) {
-                                        articleLikebtn.setImageResource(R.drawable.type_filled_icon_favorite_gray);
+                                        articleLikebtn.setImageResource(R.drawable.article_btn_favorite_gray);
+                                        articleWishcnt.setTextColor(getResources().getColor(R.color.dark));
                                         toastText.setText("찜을 취소했어요!");
                                         toast.show();
                                     } else {
-                                        articleLikebtn.setImageResource(R.drawable.type_filled_icon_favorite);
+                                        articleLikebtn.setImageResource(R.drawable.categorylist_btn_favorite_filled);
+                                        articleWishcnt.setTextColor(getResources().getColor(R.color.heart));
                                         toastText.setText("찜 했어요!");
                                         toast.show();
                                     }
@@ -263,6 +272,26 @@ public class ArticleFragment extends Fragment {
                         bottomSheetDialog.setArguments(args);
                         bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
                     }
+                }
+            }
+        });
+
+        articleAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                articleCalculateContent.setVisibility(View.GONE);
+            }
+        });
+
+        articleCalculateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(calculateContent == false) {
+                    articleCalculateContent.setVisibility(View.VISIBLE);
+                    calculateContent = true;
+                } else {
+                    articleCalculateContent.setVisibility(View.GONE);
+                    calculateContent = false;
                 }
             }
         });
