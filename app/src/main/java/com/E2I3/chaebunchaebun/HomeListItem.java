@@ -11,9 +11,10 @@ public class HomeListItem {
     private int userId = 0;
     private int postId = 0;
     private int categoryId = 0;
+    private String content = "";
 
     public HomeListItem(String img, String title, String date, String people, String price,
-                        String writingDate, int isAuth, int postId, int userId, int categoryId){
+                        String writingDate, int isAuth, int postId, int userId, int categoryId, String content){
         this.img = img;
         this.title = title;
         this.date = date;
@@ -24,6 +25,7 @@ public class HomeListItem {
         this.postId = postId;
         this.userId = userId;
         this.categoryId = categoryId;
+        this.content = content;
     }
 
     public String getImg() {
@@ -64,5 +66,9 @@ public class HomeListItem {
 
     public int getCategoryId() {
         return categoryId;
+    }
+
+    public String getContent() {
+        return content;
     }
 }

@@ -155,6 +155,20 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        iconNotice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle categoryBundle = new Bundle();
+                categoryBundle.putString("userId", userId);
+                FragmentTransaction noticeTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                HomeNoticeFragment homeNoticeFragment = new HomeNoticeFragment();
+                homeNoticeFragment.setArguments(categoryBundle);
+                noticeTransaction.replace(R.id.bottom_frame, homeNoticeFragment);
+                noticeTransaction.addToBackStack(null);
+                noticeTransaction.commit();
+            }
+        });
+
         homeMypage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

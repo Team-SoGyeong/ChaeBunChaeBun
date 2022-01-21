@@ -84,24 +84,47 @@
         android:textSize="12sp" />
 
     <TextView
-        android:id="@+id/input_per_price"
+        android:id="@+id/article_input_per_price"
         android:layout_width="60dp"
         android:layout_height="29dp"
         android:layout_marginLeft="140dp"
         android:layout_marginTop="135dp"
-        android:gravity="center"
         android:background="@drawable/writing_box"
         android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="12sp"
-        android:textAlignment="center"/>
+        android:textSize="12sp" />
+    <TextView
+        android:id="@+id/article_amount_unit"
+        android:layout_width="match_parent"
+        android:layout_height="29dp"
+        android:layout_marginLeft="250dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:fontFamily="@font/roboto_bold"
+        android:text="단위"
+        android:textColor="#000000"
+        android:textSize="12sp"/>
+    <TextView
+        android:id="@+id/article_per_unit"
+        android:layout_width="match_parent"
+        android:layout_height="29dp"
+        android:layout_marginLeft="250dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="93dp"
+        android:gravity="center"
+        android:fontFamily="@font/roboto_bold"
+        android:text="단위"
+        android:textColor="#000000"
+        android:textSize="12sp"/>
 
     <!-- Edit -->
     <EditText
-        android:id="@+id/input_amount"
+        android:id="@+id/article_amount"
         android:layout_width="138dp"
         android:layout_height="29dp"
-        android:layout_gravity="bottom"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="15dp"
         android:background="#f4f6f2"
@@ -109,9 +132,10 @@
         android:fontFamily="@font/roboto_regular"
         android:inputType="number"
         android:paddingLeft="9dp"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:textAlignment="center"/>
     <EditText
-        android:id="@+id/input_getPrice"
+        android:id="@+id/article_getPrice"
         android:layout_width="176dp"
         android:layout_height="29dp"
         android:layout_marginLeft="100dp"
@@ -120,20 +144,19 @@
         android:fontFamily="@font/roboto_regular"
         android:paddingLeft="9dp"
         android:textSize="14sp"
+        android:textAlignment="center"
         android:inputType="number"
         android:digits="0123456789"/>
-
     <EditText
-        android:id="@+id/input_memberNum"
+        android:id="@+id/article_per"
         android:layout_width="138dp"
         android:layout_height="29dp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="93dp"
         android:background="#f4f6f2"
-        android:digits="0123456789"
         android:fontFamily="@font/roboto_regular"
-        android:inputType="number"
         android:paddingLeft="9dp"
+        android:textAlignment="center"
         android:textSize="14sp" />
     <!-- list -->
     <!--<Spinner
@@ -142,9 +165,8 @@
         android:layout_height="29dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="13dp"/>-->
-
-    <!--<Spinner
+        android:layout_marginTop="13dp"/>
+        <Spinner
         android:id="@+id/date_spinner2"
         android:layout_width="match_parent"
         android:layout_height="29dp"
@@ -155,7 +177,7 @@
         android:fontFamily="@font/roboto_regular"
         android:gravity="center"
         android:textAlignment="center"
-        android:textSize="12dp" />-->
+        android:textSize="12dp" />
     <Spinner
         android:id="@+id/amount_spinner1"
         android:layout_width="match_parent"
@@ -196,6 +218,6 @@
         android:fontFamily="@font/roboto_regular"
         android:gravity="center"
         android:textAlignment="center"
-        android:textSize="5dp" />
+        android:textSize="5dp" />-->
 
 </RelativeLayout>

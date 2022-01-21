@@ -50,10 +50,11 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
 
         holder.search_list_top.setTag(searchListItem.getPostId());
         holder.search_list_title.setText(searchListItem.getTitle());
-        holder.search_list_date.setText(searchListItem.getDate());
+       /* holder.search_list_date.setText(searchListItem.getDate());
         holder.search_list_people.setText(searchListItem.getPeople());
-        holder.search_list_price.setText(searchListItem.getPrice());
+        holder.search_list_price.setText(searchListItem.getPrice());*/
         holder.search_list_write_date.setText(searchListItem.getWriteDate());
+        holder.search_list_content.setText(searchListItem.getContent());
         if(searchListItem.getIsAuth() == 0){
             holder.search_list_receipt.setVisibility(View.GONE);
         } else {
@@ -78,13 +79,15 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
         TextView search_list_price;
         ImageView search_list_receipt;
         TextView search_list_write_date;
+        TextView search_list_content;
         public ViewHolder(@NonNull View searchView) {
             super(searchView);
             search_list_top = (LinearLayout) searchView.findViewById(R.id.search_list_top);
             search_list_title = (TextView) searchView.findViewById(R.id.search_list_title);
-            search_list_date = (TextView) searchView.findViewById(R.id.search_list_date);
+            /*search_list_date = (TextView) searchView.findViewById(R.id.search_list_date);
             search_list_people = (TextView) searchView.findViewById(R.id.search_list_people);
-            search_list_price = (TextView) searchView.findViewById(R.id.search_list_price);
+            search_list_price = (TextView) searchView.findViewById(R.id.search_list_price);*/
+            search_list_content = (TextView) searchView.findViewById(R.id.searchlist_content);
             search_list_receipt = (ImageView) searchView.findViewById(R.id.search_list_receipt);
             search_list_write_date = (TextView) searchView.findViewById(R.id.search_list_postdate);
 

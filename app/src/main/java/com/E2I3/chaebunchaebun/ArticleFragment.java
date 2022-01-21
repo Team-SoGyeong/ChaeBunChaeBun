@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,8 +62,9 @@ public class ArticleFragment extends Fragment {
     View articleView;
     ImageView articleBack, articleRecipt, articleComplete, articleProfile, articleModalbtn, articleLikebtn;
     TextView categoryName, articleWishcnt, articleTitle, articleNickname, articleWritingDate,
-            articleBuyingDate, articleTotal, articlePeople, articlePrice, articleContent, articleContact;
-    EditText articleComment;
+            articleBuyingDate, articleTotal, articlePeople, articlePrice, articleContent, articleContact,
+            articleAmountUnit, articleAmountPerUnit, articleInputPer;
+    EditText articleComment, articleAmount, articleTotalPrice, articlePer;
     ImageButton articleCommentbtn, articleCalculateBtn;
     LinearLayout articleReciptHelp, articleAll;
     RelativeLayout articleCalculateContent;
@@ -73,8 +76,8 @@ public class ArticleFragment extends Fragment {
     boolean isMypage, isMyposting, isMyComment, isMyHeart = false;
     boolean calculateContent = false;
     String categoryNameString, title, nickname, content, buyDate, members,
-            perPrice, writtenBy, profile, amount, totalPrice, contact;
-    int isAuth, wishcount, userIdnum, status, isMyWish = 0;
+            perPrice, writtenBy, profile, amount, totalPrice, contact, amountUnit, totalPriceNum;
+    int isAuth, wishcount, userIdnum, status, isMyWish = 0, amountNum;
 
     public ArticleFragment() {
         // Required empty public constructor
@@ -142,8 +145,15 @@ public class ArticleFragment extends Fragment {
         articleContact = (TextView) articleView.findViewById(R.id.article_contact);
         articleRecipt = (ImageView) articleView.findViewById(R.id.article_receipt);
         articleProfile = (ImageView) articleView.findViewById(R.id.article_proile_img);
+
         articleCalculateBtn = (ImageButton) articleView.findViewById(R.id.article_calculate);
         articleCalculateContent= (RelativeLayout) articleView.findViewById(R.id.article_calculate_content);
+        articleAmount = (EditText) articleView.findViewById(R.id.article_amount);
+        articleTotalPrice = (EditText) articleView.findViewById(R.id.article_getPrice);
+        articlePer = (EditText) articleView.findViewById(R.id.article_per);
+        articleAmountUnit = (TextView) articleView.findViewById(R.id.article_amount_unit);
+        articleAmountPerUnit = (TextView) articleView.findViewById(R.id.article_per_unit);
+        articleInputPer = (TextView) articleView.findViewById(R.id.article_input_per_price);
 
         aRecyclerView = (RecyclerView) articleView.findViewById(R.id.article_recycler_img);
         cRecyclerView = (RecyclerView) articleView.findViewById(R.id.article_comment_list);
@@ -177,11 +187,13 @@ public class ArticleFragment extends Fragment {
         //articlePeople.setText(this.members);
         articlePrice.setText(this.totalPrice);
         articleWritingDate.setText(this.writtenBy);
+
         if(isAuth == 0){
             articleRecipt.setVisibility(View.GONE);
         } else {
             articleRecipt.setVisibility(View.VISIBLE);
         }
+
         if(status == 0) {
             articleComplete.setImageResource(R.drawable.article_btn_uncomplete);
         } else {
@@ -191,13 +203,24 @@ public class ArticleFragment extends Fragment {
             articleCommentbtn.setClickable(false);
             articleModalbtn.setClickable(false);
         }
+
         if(isMyWish == 0) {
             articleLikebtn.setImageResource(R.drawable.article_btn_favorite_gray);
         } else {
             articleLikebtn.setImageResource(R.drawable.categorylist_btn_favorite_filled);
         }
+
         articleWishcnt.setText(String.valueOf(this.wishcount));
         Glide.with(getContext()).load(this.profile).into(articleProfile);
+
+        String amountStr = String.valueOf(this.amountNum);
+        articleAmount.setText(amountStr);
+        articleAmountUnit.setText(this.amountUnit);
+        articleAmountPerUnit.setText(this.amountUnit);
+        articleTotalPrice.setText(this.totalPriceNum);
+        articlePer.setText("0");
+        articleAmount.setEnabled(false);
+        articleTotalPrice.setEnabled(false);
         articleCalculateContent.setVisibility(View.GONE);
 
         articleLikebtn.setOnClickListener(new View.OnClickListener() {
@@ -288,6 +311,35 @@ public class ArticleFragment extends Fragment {
             public void onClick(View view) {
                 if(calculateContent == false) {
                     articleCalculateContent.setVisibility(View.VISIBLE);
+                    articlePer.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                            if(articlePer.getText().toString().equals("") || articlePer.getText().toString().equals(null)) {
+                                articlePer.setText("0");
+                            } else {
+                                double perAmount = Double.valueOf(articlePer.getText().toString());
+                                double totalPrice = Double.valueOf(articleTotalPrice.getText().toString());
+                                double amount = Double.valueOf(articleAmount.getText().toString());
+
+                                if(perAmount == 0 || perAmount < 0 || perAmount > amount) {
+                                    articleInputPer.setText("0");
+                                } else {
+                                    double calculate = Math.round((totalPrice / amount) * 100) / 100.0  * perAmount;
+                                    articleInputPer.setText(String.valueOf(calculate));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+
+                        }
+                    });
                     calculateContent = true;
                 } else {
                     articleCalculateContent.setVisibility(View.GONE);
@@ -495,7 +547,7 @@ public class ArticleFragment extends Fragment {
         String resultText = "[NULL]";
 
         try {
-            resultText = new GetTask("mypage/mypost/" + this.postId + "/" + this.userId).execute().get();
+            resultText = new GetTask("posts/" + this.postId + "/" + this.userId).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -523,7 +575,10 @@ public class ArticleFragment extends Fragment {
                     this.buyDate = subJsonObject2.getString("buy_date");
                     this.members = subJsonObject2.getString("headcounts");
                     this.amount = subJsonObject2.getString("amount");
+                    this.amountNum = subJsonObject2.getInt("amount_num");
+                    this.amountUnit = subJsonObject2.getString("amount_type");
                     this.totalPrice = subJsonObject2.getString("total_price");
+                    this.totalPriceNum = subJsonObject2.getString("total_price_num");
                     this.perPrice = subJsonObject2.getString("per_price");
                     this.writtenBy = subJsonObject2.getString("written_by");
                     this.isAuth = subJsonObject2.getInt("isAuth");
