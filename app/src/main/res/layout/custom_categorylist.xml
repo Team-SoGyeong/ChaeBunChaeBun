@@ -52,9 +52,10 @@
                         android:textSize="10sp"/>
                     <View
                         android:layout_width="1dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="10dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
+                        android:layout_gravity="center"
                         android:background="#999999"/>
                     <TextView
                         android:id="@+id/categorylist_writing_date"
