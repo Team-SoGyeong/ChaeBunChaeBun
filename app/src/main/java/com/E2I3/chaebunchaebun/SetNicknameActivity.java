@@ -39,6 +39,7 @@ public class SetNicknameActivity extends AppCompatActivity {
         String user_id = intent.getStringExtra("user_id");
         String kakao_email = intent.getStringExtra("kakao_email");
         String profile_img = intent.getStringExtra("profile_img");
+        String set_profileImage = intent.getStringExtra("set_profileImage");
         String sex = intent.getStringExtra("sex");
         String age_range = intent.getStringExtra("age_range");
 
@@ -86,7 +87,8 @@ public class SetNicknameActivity extends AppCompatActivity {
 
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {String result = " ";
+            public void onClick(View v) {
+                String result = " ";
                 try {
                     System.out.println("btn때 nickname: " + nickname);
                     result = new GetTask("auth2/signin/kakao/" + nickname).execute().get();
@@ -107,6 +109,7 @@ public class SetNicknameActivity extends AppCompatActivity {
                         intent.putExtra("user_id", user_id);
                         intent.putExtra("kakao_email", kakao_email);
                         intent.putExtra("profile_img", profile_img);
+                        intent.putExtra("set_profileImage", set_profileImage);
                         intent.putExtra("nickname", nickname);
                         intent.putExtra("sex", sex);
                         intent.putExtra("age_range", age_range);

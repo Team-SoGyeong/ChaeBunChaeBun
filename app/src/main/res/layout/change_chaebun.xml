@@ -248,7 +248,7 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_marginTop="35dp"
-            android:background="@drawable/group_707" />
+            android:background="@drawable/writing_btn_ok" />
         <ImageButton
             android:id="@+id/btn_back"
             android:layout_width="320dp"
@@ -256,6 +256,6 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/group_708" />
+            android:background="@drawable/writing_btn_back" />
     </LinearLayout>
 </ScrollView>

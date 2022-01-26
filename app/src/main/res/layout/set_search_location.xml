@@ -14,7 +14,7 @@
             android:layout_height="44dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="7dp"
-            android:src="@drawable/group_84"/>
+            android:src="@drawable/writing_btn_back"/>
         <EditText
             android:id="@+id/search_text"
             android:layout_width="match_parent"
@@ -66,28 +66,28 @@
             android:text="에 대한 검색결과에요."/>
     </LinearLayout>
 
-        <include layout="@layout/set_serch_locationlist"/>
-<!--
+    <include layout="@layout/set_serch_locationlist" />
+    <!--
 
-    <LinearLayout
-        android:id="@+id/jrv_scroll"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/jrv_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/jrv_search_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </ListView>
-        <ImageButton
-            android:id="@+id/select_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="27dp"
-            android:src="@drawable/btn_signup_next"
-            android:background="@color/white"/>
-    </LinearLayout>
-    -->
+            <ListView
+                android:id="@+id/jrv_search_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </ListView>
+            <ImageButton
+                android:id="@+id/select_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="27dp"
+                android:src="@drawable/btn_signup_next"
+                android:background="@color/white"/>
+        </LinearLayout>
+        -->
 </LinearLayout>

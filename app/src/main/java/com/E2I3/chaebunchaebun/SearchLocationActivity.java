@@ -47,7 +47,7 @@ public class SearchLocationActivity extends AppCompatActivity {
 
         back = (ImageView) findViewById(R.id.search_back);
         search = (EditText) findViewById(R.id.search_text);
-        select = (ImageButton) findViewById(R.id.location_okbtn);
+        select = (ImageButton) findViewById(R.id.btn_location_select);
 
         location = (TextView) findViewById(R.id.get_location);
         result = (LinearLayout) findViewById(R.id.search_result);
@@ -117,6 +117,7 @@ public class SearchLocationActivity extends AppCompatActivity {
                                     String[] address = data.split(" ");
                                     returnAddress = address[2];
                                     returnCode = locationCode.get(position);
+                                    select.setImageResource(R.drawable.searchlocation_btn_select);
                                 }
                             });
                         }

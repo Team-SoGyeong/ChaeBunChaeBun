@@ -1,16 +1,21 @@
 package com.E2I3.chaebunchaebun;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 public class SelectCategoryActivity extends AppCompatActivity{
     boolean flag = false;
     int cateoryid = 0;
-    ImageButton btn_onion, btn_garlic, btn_greenonion, btn_carrot, btn_mushroom, btn_greenvege, btn_cabbage, btn_radish, btn_potato, btn_sweetpotato, btn_etc, btn_next;
-    ImageView back;
+    static final String[] LIST_MENU = {"양파", "마늘", "파", "당근", "버섯", "배추", "무", "감자","고구마","다른 채소"} ;
+    ImageButton btn_next;
+    ImageView btn_back;
     String userId;
 
     @Override
@@ -20,309 +25,65 @@ public class SelectCategoryActivity extends AppCompatActivity{
 
         Intent intent = getIntent();
         userId = intent.getStringExtra("userId");
-
-        btn_onion = (ImageButton) findViewById(R.id.btn_onion);
-        btn_garlic = (ImageButton) findViewById(R.id.btn_garlic);
-        btn_greenonion = (ImageButton) findViewById(R.id.btn_greenonion);
-        btn_carrot = (ImageButton) findViewById(R.id.btn_carrot);
-        btn_mushroom = (ImageButton) findViewById(R.id.btn_mushroom);
-        btn_greenvege = (ImageButton) findViewById(R.id.btn_greenvege);
-        btn_cabbage = (ImageButton) findViewById(R.id.btn_cabbage);
-        btn_radish = (ImageButton) findViewById(R.id.btn_radish);
-        btn_potato = (ImageButton) findViewById(R.id.btn_potato);
-        btn_sweetpotato = (ImageButton) findViewById(R.id.btn_sweetpotato);
-        btn_etc = (ImageButton) findViewById(R.id.btn_etc);
+        btn_back = (ImageView) findViewById(R.id.btn_back);
         btn_next = (ImageButton) findViewById(R.id.btn_next);
-        back = (ImageView) findViewById(R.id.id_back);
 
-        btn_onion.setOnClickListener(new View.OnClickListener() {
-            boolean select = true;
-            @Override
-            public void onClick(View v) {
-                if(select == true){
-                    btn_onion.setImageResource(R.drawable.btn_select_onion);
-                    btn_garlic.setImageResource(R.drawable.btn_garlic);
-                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
-                    btn_carrot.setImageResource(R.drawable.btn_carrot);
-                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
-                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
-                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
-                    btn_radish.setImageResource(R.drawable.btn_radish);
-                    btn_potato.setImageResource(R.drawable.btn_potato);
-                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
-                    btn_etc.setImageResource(R.drawable.btn_etc);
-                    select = false;
-                    flag = false;
-                    cateoryid = 1;
-                }
-                else{
-                    btn_onion.setImageResource(R.drawable.btn_onion);
-                    select = true;
-                }
-            }
-        });
-        btn_garlic.setOnClickListener(new View.OnClickListener() {
-            boolean select = true;
-            @Override
-            public void onClick(View v) {
-                if(select == true){
-                    btn_onion.setImageResource(R.drawable.btn_onion);
-                    btn_garlic.setImageResource(R.drawable.btn_select_garlic);
-                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
-                    btn_carrot.setImageResource(R.drawable.btn_carrot);
-                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
-                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
-                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
-                    btn_radish.setImageResource(R.drawable.btn_radish);
-                    btn_potato.setImageResource(R.drawable.btn_potato);
-                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
-                    btn_etc.setImageResource(R.drawable.btn_etc);
-                    select = false;
-                    flag = false;
-                    cateoryid = 2;
-                }
-                else{
-                    btn_garlic.setImageResource(R.drawable.btn_garlic);
-                    select = true;
-                }
-            }
-        });
-        btn_greenonion.setOnClickListener(new View.OnClickListener() {
-            boolean select = true;
-            @Override
-            public void onClick(View v) {
-                if(select == true){
-                    btn_onion.setImageResource(R.drawable.btn_onion);
-                    btn_garlic.setImageResource(R.drawable.btn_garlic);
-                    btn_greenonion.setImageResource(R.drawable.btn_select_greenonion);
-                    btn_carrot.setImageResource(R.drawable.btn_carrot);
-                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
-                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
-                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
-                    btn_radish.setImageResource(R.drawable.btn_radish);
-                    btn_potato.setImageResource(R.drawable.btn_potato);
-                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
-                    btn_etc.setImageResource(R.drawable.btn_etc);
-                    select = false;
-                    flag = false;
-                    cateoryid = 3;
-                }
-                else{
-                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
-                    select = true;
-                }
-            }
-        });
-        btn_carrot.setOnClickListener(new View.OnClickListener() {
-            boolean select = true;
-            @Override
-            public void onClick(View v) {
-                if(select == true){
-                    btn_onion.setImageResource(R.drawable.btn_onion);
-                    btn_garlic.setImageResource(R.drawable.btn_garlic);
-                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
-                    btn_carrot.setImageResource(R.drawable.btn_select_carrot);
-                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
-                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
-                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
-                    btn_radish.setImageResource(R.drawable.btn_radish);
-                    btn_potato.setImageResource(R.drawable.btn_potato);
-                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
-                    btn_etc.setImageResource(R.drawable.btn_etc);
-                    select = false;
-                    flag = false;
-                    cateoryid = 4;
-                }
-                else{
-                    btn_carrot.setImageResource(R.drawable.btn_carrot);
-                    select = true;
-                }
-            }
-        });
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, LIST_MENU) ;
 
-        btn_mushroom.setOnClickListener(new View.OnClickListener() {
-            boolean select = true;
-            @Override
-            public void onClick(View v) {
-                if(select == true){
-                    btn_onion.setImageResource(R.drawable.btn_onion);
-                    btn_garlic.setImageResource(R.drawable.btn_garlic);
-                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
-                    btn_carrot.setImageResource(R.drawable.btn_carrot);
-                    btn_mushroom.setImageResource(R.drawable.btn_select_mushroom);
-                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
-                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
-                    btn_radish.setImageResource(R.drawable.btn_radish);
-                    btn_potato.setImageResource(R.drawable.btn_potato);
-                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
-                    btn_etc.setImageResource(R.drawable.btn_etc);
-                    select = false;
-                    flag = false;
-                    cateoryid = 5;
-                }
-                else{
-                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
-                    select = true;
-                }
-            }
-        });
-        btn_greenvege.setOnClickListener(new View.OnClickListener() {
-            boolean select = true;
-            @Override
-            public void onClick(View v) {
-                if(select == true){
-                    btn_onion.setImageResource(R.drawable.btn_onion);
-                    btn_garlic.setImageResource(R.drawable.btn_garlic);
-                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
-                    btn_carrot.setImageResource(R.drawable.btn_carrot);
-                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
-                    btn_greenvege.setImageResource(R.drawable.btn_select_greenvege);
-                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
-                    btn_radish.setImageResource(R.drawable.btn_radish);
-                    btn_potato.setImageResource(R.drawable.btn_potato);
-                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
-                    btn_etc.setImageResource(R.drawable.btn_etc);
-                    select = false;
-                    flag = false;
-                    cateoryid = 6;
-                }
-                else{
-                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
-                    select = true;
-                }
-            }
-        });
-        btn_cabbage.setOnClickListener(new View.OnClickListener() {
-            boolean select = true;
-            @Override
-            public void onClick(View v) {
-                if(select == true){
-                    btn_onion.setImageResource(R.drawable.btn_onion);
-                    btn_garlic.setImageResource(R.drawable.btn_garlic);
-                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
-                    btn_carrot.setImageResource(R.drawable.btn_carrot);
-                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
-                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
-                    btn_cabbage.setImageResource(R.drawable.btn_select_cabbage);
-                    btn_radish.setImageResource(R.drawable.btn_radish);
-                    btn_potato.setImageResource(R.drawable.btn_potato);
-                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
-                    btn_etc.setImageResource(R.drawable.btn_etc);
-                    select = false;
-                    flag = false;
-                    cateoryid = 7;
-                }
-                else{
-                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
-                    select = true;
-                }
-            }
-        });
-        btn_radish.setOnClickListener(new View.OnClickListener() {
-            boolean select = true;
-            @Override
-            public void onClick(View v) {
-                if(select == true){
-                    btn_onion.setImageResource(R.drawable.btn_onion);
-                    btn_garlic.setImageResource(R.drawable.btn_garlic);
-                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
-                    btn_carrot.setImageResource(R.drawable.btn_carrot);
-                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
-                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
-                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
-                    btn_radish.setImageResource(R.drawable.btn_select_radish);
-                    btn_potato.setImageResource(R.drawable.btn_potato);
-                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
-                    btn_etc.setImageResource(R.drawable.btn_etc);
-                    select = false;
-                    flag = false;
-                    cateoryid = 8;
-                }
-                else{
-                    btn_radish.setImageResource(R.drawable.btn_radish);
-                    select = true;
-                }
-            }
-        });
+        ListView listview = (ListView) findViewById(R.id.list_item) ;
+        listview.setAdapter(adapter) ;
 
-        btn_potato.setOnClickListener(new View.OnClickListener() {
-            boolean select = true;
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                if(select == true){
-                    btn_onion.setImageResource(R.drawable.btn_onion);
-                    btn_garlic.setImageResource(R.drawable.btn_garlic);
-                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
-                    btn_carrot.setImageResource(R.drawable.btn_carrot);
-                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
-                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
-                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
-                    btn_radish.setImageResource(R.drawable.btn_radish);
-                    btn_potato.setImageResource(R.drawable.btn_select_potato);
-                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
-                    btn_etc.setImageResource(R.drawable.btn_etc);
-                    select = false;
-                    flag = false;
-                    cateoryid = 9;
-                }
-                else{
-                    btn_potato.setImageResource(R.drawable.btn_potato);
-                    select = true;
-                }
-            }
-        });
-        btn_sweetpotato.setOnClickListener(new View.OnClickListener() {
-            boolean select = true;
-            @Override
-            public void onClick(View v) {
-                if(select == true){
-                    btn_onion.setImageResource(R.drawable.btn_onion);
-                    btn_garlic.setImageResource(R.drawable.btn_garlic);
-                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
-                    btn_carrot.setImageResource(R.drawable.btn_carrot);
-                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
-                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
-                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
-                    btn_radish.setImageResource(R.drawable.btn_radish);
-                    btn_potato.setImageResource(R.drawable.btn_potato);
-                    btn_sweetpotato.setImageResource(R.drawable.btn_select_sweetpotato);
-                    btn_etc.setImageResource(R.drawable.btn_etc);
-                    select = false;
-                    flag = false;
-                    cateoryid = 10;
-                }
-                else{
-                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
-                    select = true;
-                }
-            }
-        });
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                btn_next.setImageResource(R.drawable.writing_btn_next);
+                String strText = (String) adapterView.getItemAtPosition(i) ;
+                System.out.println("clickItem:" + strText);
 
+                switch (strText){
+                    case "양파":
+                        flag = false;
+                        cateoryid = 1;
+                        break;
+                    case "마늘":
+                        flag = false;
+                        cateoryid = 2;
+                        break;
+                    case "파":
+                        flag = false;
+                        cateoryid = 3;
+                        break;
+                    case "당근":
+                        flag = false;
+                        cateoryid = 4;
+                        break;
+                    case "버섯":
+                        flag = false;
+                        cateoryid = 5;
+                        break;
+                    case "배추":
+                        flag = false;
+                        cateoryid = 7;
+                        break;
+                    case "무":
+                        flag = false;
+                        cateoryid = 8;
+                        break;
+                    case "감자":
+                        flag = false;
+                        cateoryid = 9;
+                        break;
+                    case "고구마":
+                        flag = false;
+                        cateoryid = 10;
+                        break;
+                    case "다른 채소":
+                        flag = true;
+                        cateoryid = 11;
+                        break;
+                    default:
+                        break;
 
-        btn_etc.setOnClickListener(new View.OnClickListener() {
-            boolean select = true;
-            @Override
-            public void onClick(View v) {
-                if(select == true){
-                    btn_onion.setImageResource(R.drawable.btn_onion);
-                    btn_garlic.setImageResource(R.drawable.btn_garlic);
-                    btn_greenonion.setImageResource(R.drawable.btn_greenonion);
-                    btn_carrot.setImageResource(R.drawable.btn_carrot);
-                    btn_mushroom.setImageResource(R.drawable.btn_mushroom);
-                    btn_greenvege.setImageResource(R.drawable.btn_greenvege);
-                    btn_cabbage.setImageResource(R.drawable.btn_cabbage);
-                    btn_radish.setImageResource(R.drawable.btn_radish);
-                    btn_potato.setImageResource(R.drawable.btn_potato);
-                    btn_sweetpotato.setImageResource(R.drawable.btn_sweetpotato);
-                    btn_etc.setImageResource(R.drawable.btn_select_etc);
-                    select = false;
-                    flag = true;
-                    cateoryid = 11;
-                }
-                else{
-                    btn_etc.setImageResource(R.drawable.btn_etc);
-                    select = true;
-                    flag = false;
                 }
             }
         });
@@ -347,9 +108,9 @@ public class SelectCategoryActivity extends AppCompatActivity{
             }
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
+        btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 onBackPressed();
             }
         });
