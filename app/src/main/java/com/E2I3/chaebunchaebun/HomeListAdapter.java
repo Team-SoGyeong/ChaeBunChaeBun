@@ -42,26 +42,28 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView home_list_img;
         TextView home_list_title;
-        TextView home_list_date;
+        /*TextView home_list_date;
         TextView home_list_people;
-        TextView home_list_price;
+        TextView home_list_price;*/
         TextView home_list_writing_date;
         ImageButton home_list_modalbtn;
         ImageView home_list_isauth;
         TextView home_list_postId;
         TextView home_list_userId;
+        TextView home_list_content;
         public ViewHolder(@NonNull @NotNull View homeView) {
             super(homeView);
             home_list_img = (ImageView) homeView.findViewById(R.id.homelist_img);
             home_list_title = (TextView) homeView.findViewById(R.id.homelist_title);
-            home_list_date = (TextView) homeView.findViewById(R.id.homelist_date);
+            /*home_list_date = (TextView) homeView.findViewById(R.id.homelist_date);
             home_list_people = (TextView) homeView.findViewById(R.id.homelist_people);
-            home_list_price = (TextView) homeView.findViewById(R.id.homelist_price);
+            home_list_price = (TextView) homeView.findViewById(R.id.homelist_price);*/
             home_list_writing_date = (TextView) homeView.findViewById(R.id.homelist_writing_date);
             home_list_modalbtn = (ImageButton) homeView.findViewById(R.id.homelist_modalbtn);
             home_list_isauth = (ImageView) homeView.findViewById(R.id.homelist_isauth);
             home_list_postId = (TextView) homeView.findViewById(R.id.homelist_postId);
             home_list_userId = (TextView) homeView.findViewById(R.id.homelist_userId);
+            home_list_content = (TextView) homeView.findViewById(R.id.homelist_content);
 
             homeView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -114,10 +116,11 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
         holder.home_list_userId.setVisibility(View.GONE);
         Glide.with(holder.itemView.getContext()).load(homeListItem.getImg()).into(holder.home_list_img);
         holder.home_list_title.setText(homeListItem.getTitle());
-        holder.home_list_date.setText(homeListItem.getDate());
+        /*holder.home_list_date.setText(homeListItem.getDate());
         holder.home_list_people.setText(homeListItem.getPeople());
-        holder.home_list_price.setText(homeListItem.getPrice());
+        holder.home_list_price.setText(homeListItem.getPrice());*/
         holder.home_list_writing_date.setText(homeListItem.getWritingDate());
+        holder.home_list_content.setText(homeListItem.getContent());
         if(homeListItem.getIsAuth() == 0) {
             holder.home_list_isauth.setVisibility(View.GONE);
         } else {

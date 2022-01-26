@@ -69,7 +69,6 @@
                     android:layout_marginRight="10dp"
                     android:src="@drawable/home_btn_likepage"
                     android:scaleType="fitCenter"/>
-
                 <ImageView
                     android:id="@+id/ic_notice"
                     android:layout_width="wrap_content"

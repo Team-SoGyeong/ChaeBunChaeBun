@@ -224,9 +224,9 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         }
 
         if(categoryListItem.getIsWish() == 0) {
-            holder.categoryListLikeBtn.setImageResource(R.drawable.type_filled_icon_favorite_border);
+            holder.categoryListLikeBtn.setImageResource(R.drawable.categorylist_btn_favorite_unfilled);
         } else {
-            holder.categoryListLikeBtn.setImageResource(R.drawable.type_filled_icon_favorite);
+            holder.categoryListLikeBtn.setImageResource(R.drawable.categorylist_btn_favorite_filled);
         }
     }
 

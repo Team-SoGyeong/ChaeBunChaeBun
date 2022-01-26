@@ -139,6 +139,7 @@ public class SearchDetailFragment extends Fragment {
                     search_no_startbtn.setVisibility(View.GONE);
                     search_suggest.setVisibility(View.GONE);
                     searchList.setVisibility(View.VISIBLE);
+
                     sLayoutManager = new LinearLayoutManager(getContext());
                     searchList.setLayoutManager(sLayoutManager);
                     searchListAdapter = new SearchListAdapter(searchListItems);
@@ -248,8 +249,9 @@ public class SearchDetailFragment extends Fragment {
                 int postId = subJsonObject.getInt("post_id");
                 int categoryId = subJsonObject.getInt("category_id");
                 String witten = subJsonObject.getString("witten_by");
+                String content = subJsonObject.getString("contents");
 
-                searchListItems.add(new SearchListItem(title, buyDate, people, price, isAuth, postId, categoryId, witten));
+                searchListItems.add(new SearchListItem(title, buyDate, people, price, isAuth, postId, categoryId, witten, content));
             }
         } catch(JSONException e){
             e.printStackTrace();

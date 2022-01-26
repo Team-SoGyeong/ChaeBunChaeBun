@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/baseLayout"
-    android:background="#FFFFFF"
+    android:background="#f0f4ed"
     tools:context=".MypageMyHeartFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -28,8 +28,8 @@
         android:layout_marginTop="70dp"
         android:layout_gravity="center"
         android:gravity="center_horizontal"
-        android:text="찜한 채분이 없어요\n참여하고 싶은 채분을 탐색해 찜해 보세요!"
-        android:textColor="#656565"
+        android:text="이곳에서는 찜한 채분을 볼 수 있어요.\n내 마음에 꼭 드는 채분을 캐러 가보세요!"
+        android:textColor="#515151"
         android:fontFamily="@font/roboto_bold"/>
 
     <androidx.recyclerview.widget.RecyclerView

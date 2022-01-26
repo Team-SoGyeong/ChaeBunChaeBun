@@ -109,8 +109,9 @@ public class MainNewFragment extends Fragment {
                 String perPrice = subJsonObject.getString("per_price");
                 String writtenBy = subJsonObject.getString("witten_by");
                 int isAuth = subJsonObject.getInt("isAuth");
+                String content = subJsonObject.getString("contents");
 
-                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId, categoryId));
+                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId, categoryId, content));
             }
         } catch (JSONException e) {
             e.printStackTrace();
