@@ -50,10 +50,10 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true">
         <ImageButton
-            android:id="@+id/location_okbtn"
+            android:id="@+id/btn_location_select"
             android:layout_width="320dp"
             android:layout_height="44dp"
-            android:src="@drawable/select_btn"
+            android:src="@drawable/searchlocation_btn_select_none"
             android:background="#ffffffff"/>
     </LinearLayout>
 </RelativeLayout>

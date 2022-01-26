@@ -21,6 +21,7 @@ public class SetLocationActivity extends AppCompatActivity {
     ImageButton search, btn_next;
     EditText set_location;
     String searchLocation = null;
+    boolean flag = false;
     int locationCode = 0;
 
     private TextView toastText;
@@ -45,6 +46,7 @@ public class SetLocationActivity extends AppCompatActivity {
         String user_id = intent.getStringExtra("user_id");
         String kakao_email = intent.getStringExtra("kakao_email");
         String profile_img = intent.getStringExtra("profile_img");
+        String set_profileImage = intent.getStringExtra("set_profileImage");
         String nickname = intent.getStringExtra("nickname");
         String sex = intent.getStringExtra("sex");
         String age_range = intent.getStringExtra("age_range");
@@ -52,11 +54,17 @@ public class SetLocationActivity extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("시작");
-                searchLocation = set_location.getText().toString();
-                Intent intent = new Intent(getApplicationContext(), SearchLocationActivity.class);
-                intent.putExtra("searchLocation", searchLocation);
-                startActivityForResult(intent, TAG_REQUEST_CODE);
+                if(flag == false){
+                    System.out.println("다이얼로그 뜰 위치");
+                    flag = true;
+                }
+                else{
+                    System.out.println("시작");
+                    searchLocation = set_location.getText().toString();
+                    Intent intent = new Intent(getApplicationContext(), SearchLocationActivity.class);
+                    intent.putExtra("searchLocation", searchLocation);
+                    startActivityForResult(intent, TAG_REQUEST_CODE);
+                }
             }
         });
 
@@ -100,6 +108,7 @@ public class SetLocationActivity extends AppCompatActivity {
                                 intent.putExtra("user_id", user_id);
                                 intent.putExtra("kakao_email", kakao_email);
                                 intent.putExtra("profile_img", profile_img);
+                                intent.putExtra("set_profileImage", set_profileImage);
                                 intent.putExtra("nickname", nickname);
                                 intent.putExtra("location", searchLocation);
                                 intent.putExtra("locationCode", locationCode);

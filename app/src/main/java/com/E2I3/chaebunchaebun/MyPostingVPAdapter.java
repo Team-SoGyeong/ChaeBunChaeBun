@@ -22,7 +22,7 @@ public class MyPostingVPAdapter extends FragmentPagerAdapter {
         items.add(new MyCommunityPostingFragment());
 
         itext.add("채분");
-        itext.add("커뮤니티");
+        itext.add("댓글");
     }
 
     @NonNull
