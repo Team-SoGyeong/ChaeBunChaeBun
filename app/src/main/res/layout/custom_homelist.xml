@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:background="@drawable/custom_homelist_background">
     <ImageView
         android:id="@+id/homelist_img"
         android:layout_width="75dp"
