@@ -1,8 +1,10 @@
 package com.E2I3.chaebunchaebun;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,14 +41,16 @@ public class HomeNoticeFragment extends Fragment {
     private View homeNoticeView;
 
     private RecyclerView homeNoticeList;
-    private ArrayList<HomeListItem> homeListItems;
-    private HomeListAdapter homeListAdapter;
-    private LinearLayoutManager hLayoutManager;
+    private ArrayList<NoticeListItem> noticeListItems;
+    private NoticeListAdapter noticeListAdapter;
+    private LinearLayoutManager nLayoutManager;
 
     TextView homeNoticeNolist;
     ImageView homeNoticeBack;
 
     String userId = "";
+    String caseBy = "";
+    int noticeId = 0;
 
     public HomeNoticeFragment() {
         // Required empty public constructor
@@ -76,6 +81,10 @@ public class HomeNoticeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        noticeListItems = new ArrayList<NoticeListItem>();
+        this.userId = getArguments().getString("userId");
+        getMyNoticeList();
     }
 
     @Override
@@ -85,26 +94,80 @@ public class HomeNoticeFragment extends Fragment {
         homeNoticeView = inflater.inflate(R.layout.fragment_home_notice, container, false);
 
         homeNoticeBack = (ImageView) homeNoticeView.findViewById(R.id.home_notice_back);
-        homeNoticeList = homeNoticeView.findViewById(R.id.mypage_heart_list);
-        homeNoticeNolist = homeNoticeView.findViewById(R.id.mypage_heart_nolist);
+        homeNoticeList = homeNoticeView.findViewById(R.id.home_notice_list);
+        homeNoticeNolist = homeNoticeView.findViewById(R.id.home_notice_nolist);
 
-        /*if(homeListItems.isEmpty()) {
+        if(noticeListItems.isEmpty()) {
             homeNoticeNolist.setVisibility(View.VISIBLE);
             homeNoticeList.setVisibility(View.GONE);
         } else {
             homeNoticeNolist.setVisibility(View.GONE);
             homeNoticeList.setVisibility(View.VISIBLE);
+
+            nLayoutManager = new LinearLayoutManager(getContext());
+            homeNoticeList.setLayoutManager(nLayoutManager);
+            MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(40);
+            homeNoticeList.addItemDecoration(mainRecyclerDecoration);
+            /*homeNoticeList.setLayoutManager(new LinearLayoutManager(getContext()) {
+                @Override
+                public boolean canScrollHorizontally() {
+                    return false;
+                }
+
+                @Override
+                public boolean canScrollVertically() {
+                    return false;
+                }
+            });*/
+            noticeListAdapter = new NoticeListAdapter(noticeListItems);
+
+            homeNoticeList.setAdapter(noticeListAdapter);
+
+            noticeListAdapter.setOnItemClickListener(new NoticeListAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int pos) {
+                    PutTask locationPutTask = new PutTask();
+                    try {
+                        String response = locationPutTask.execute("common/notice/" + caseBy + "/" + noticeId, caseBy, String.valueOf(noticeId)).get();
+                        JSONObject jsonObject = new JSONObject(response);
+                        int responseCode = jsonObject.getInt("code");
+                        if(responseCode == 200){
+                            String postId = String.valueOf(noticeListAdapter.getItem(pos).getPostId());
+                            int categoryId = noticeListAdapter.getItem(pos).getCategoryId();
+                            Bundle articleBundle = new Bundle();
+                            articleBundle.putString("userId", userId);
+                            articleBundle.putString("postId", postId);
+                            articleBundle.putInt("categoryId", categoryId);
+                            articleBundle.putBoolean("isMyPage", false);
+                            FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            ArticleFragment articleFragment = new ArticleFragment();
+                            articleFragment.setArguments(articleBundle);
+                            articleTransaction.replace(R.id.bottom_frame, articleFragment);
+                            articleTransaction.addToBackStack(null);
+                            articleTransaction.commit();
+                        } else {
+                            Toast.makeText(getContext(),"잘 못 된 접근입니다.",Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
-*/
+
         return homeNoticeView;
     }
 
-    public void getMyNoticeList(String state) {
-        homeListItems.clear();
+    public void getMyNoticeList() {
+        noticeListItems.clear();
         String resultText = "[NULL]";
 
         try {
-            resultText = new GetTask("common/notice/" + userId).execute().get();
+            resultText = new GetTask("common/notice/" + this.userId).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -117,20 +180,19 @@ public class HomeNoticeFragment extends Fragment {
             JSONArray jsonArray = new JSONArray(data);
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
-                int categoryId = subJsonObject.getInt("category_id");
-                int postId = subJsonObject.getInt("post_id");
-                int userId = subJsonObject.getInt("wish_id");
-                String img = subJsonObject.getString("url");
+                noticeId = subJsonObject.getInt("notice_id");
+                caseBy = subJsonObject.getString("caseBy");
+                String nickname = subJsonObject.getString("nickname");
+                String img = subJsonObject.getString("img1");
                 String title = subJsonObject.getString("title");
-                String buyDate = subJsonObject.getString("buy_date");
-                int membersInt = subJsonObject.getInt("members");
-                String member = String.valueOf(membersInt) + "명";
-                String perPrice = subJsonObject.getString("per_price");
-                String writtenBy = subJsonObject.getString("written_by");
-                int isAuth = subJsonObject.getInt("isAuth");
                 String content = subJsonObject.getString("contents");
+                String writtenBy = subJsonObject.getString("dates");
+                int isAuth = subJsonObject.getInt("isAuth");
+                int postId = subJsonObject.getInt("post_id");
+                int categoryId = subJsonObject.getInt("category_id");
 
-                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId, categoryId, content));
+                noticeListItems.add(new NoticeListItem(caseBy, nickname, img, title, content, writtenBy,
+                        isAuth, postId, categoryId, this.userId));
             }
         } catch (JSONException e) {
             e.printStackTrace();
