@@ -6,9 +6,9 @@
     android:background="@drawable/popup_radius">
 
     <ImageView
-        android:id="@+id/warning"
+        android:id="@+id/warning_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/warning_popup"/>
-
+        android:background="@drawable/writing_btn_warning"
+        />
 </LinearLayout>

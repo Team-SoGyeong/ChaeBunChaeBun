@@ -57,7 +57,7 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.writing_chaebun_etc);
+        setContentView(R.layout.writing_chaebun_etc_frame);
 
         LayoutInflater inflater = getLayoutInflater();
         View customToast = inflater.inflate(R.layout.custom_report_toast, (ViewGroup) findViewById(R.id.custom_toast_layout));
@@ -77,10 +77,8 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
         inputContent = (EditText) findViewById(R.id.input_content);
         inputAmount = (EditText) findViewById(R.id.input_amount);
         inputGetPrice = (EditText) findViewById(R.id.input_getPrice);
-        inputMemberNum = (EditText) findViewById(R.id.input_memberNum);
         inputCall = (EditText) findViewById(R.id.input_call);
 
-        inputPerPrice = (TextView) findViewById(R.id.input_per_price);
         inputContentCount = (TextView) findViewById(R.id.input_content_count);
 
         etcMainImg = (ImageView) findViewById(R.id.etc_main_img);
@@ -194,36 +192,6 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
 
             }
         });
-        inputMemberNum.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                people = inputMemberNum.getText().toString();
-                isMember = true;
-//                if(isAmount == true && isPrice == true && isMember == true){
-//                    perPrice = ((Integer.parseInt(totalPrice) / Integer.parseInt(amount)) * (Integer.parseInt(amount) / Integer.parseInt(people)));
-//                    inputPerPrice.setText(String.valueOf(perPrice).toString());
-//                }
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if(inputMemberNum.getText().toString().equals("")){
-                    inputMemberNum.setText("0");
-                } else if(!inputMemberNum.getText().toString().equals("0")) {
-                    if(isAmount == true && isPrice == true && isMember == true){
-                        perPrice = ((Integer.parseInt(totalPrice) / Integer.parseInt(amount)) * (Integer.parseInt(amount) / Integer.parseInt(people)));
-                        inputPerPrice.setText(String.valueOf(perPrice).toString());
-                    }
-                }
-            }
-        });
-
         back = (ImageView) findViewById(R.id.id_back);
         writing = (ImageView) findViewById(R.id.btn_next);
         btn_back = (ImageView) findViewById(R.id.btn_back);
@@ -292,11 +260,9 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                     args.putString("inputContent", inputContent.getText().toString());
                     args.putString("inputAmount", inputAmount.getText().toString());
                     args.putString("inputGetPrice", inputGetPrice.getText().toString());
-                    args.putString("inputMemberNum", inputMemberNum.getText().toString());
                     args.putString("inputCall", inputCall.getText().toString());
                     args.putString("inputBuyDate", str);
                     args.putString("inputAmountStr", amount_str);
-                    args.putString("inputPerPrice", inputPerPrice.getText().toString());
                     args.putString("img1", mainImg);
                     args.putString("img2", subImg1);
                     args.putString("img3", subImg2);

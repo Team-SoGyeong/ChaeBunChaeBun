@@ -16,7 +16,7 @@
             android:layout_height="44dp"
             android:layout_marginLeft="6dp"
             android:layout_gravity="center"
-            android:src="@drawable/group_84"/>
+            android:src="@drawable/writing_btn_back"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -43,7 +43,7 @@
         app:tabTextAppearance="@style/tab_text"
         app:tabSelectedTextColor="@color/black"
         app:tabBackground="@color/white"
-        app:tabIndicatorColor="#036635"
+        app:tabIndicatorColor="#6a951f"
         app:tabIndicatorHeight="1dp">
     </com.google.android.material.tabs.TabLayout>
     <androidx.viewpager.widget.ViewPager

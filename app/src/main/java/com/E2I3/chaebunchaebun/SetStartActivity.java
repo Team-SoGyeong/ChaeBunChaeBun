@@ -25,11 +25,13 @@ public class SetStartActivity  extends AppCompatActivity {
         Intent intent = getIntent();
         String kakao_email = intent.getStringExtra("kakao_email");
         String profile_img = intent.getStringExtra("profile_img");
+        String set_profileImage = intent.getStringExtra("set_profileImage");
         String nickname = intent.getStringExtra("nickname");
         int location_seq = intent.getIntExtra("locationCode",0);
         String sex = intent.getStringExtra("sex");
         String age_range = intent.getStringExtra("age_range");
 
+        System.out.println("프로필 이미지: "+set_profileImage);
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,12 +45,12 @@ public class SetStartActivity  extends AppCompatActivity {
                     jsonCommentTransfer.put("nickname", nickname);
                     jsonCommentTransfer.put("address_seq", location_seq);
                     jsonCommentTransfer.put("profile", profile_img);
+//                    jsonCommentTransfer.put("set_image", set_profileImage);
                     jsonCommentTransfer.put("email", kakao_email);
                     jsonCommentTransfer.put("sex", sex);
                     jsonCommentTransfer.put("age_range", age_range);
 
                     System.out.println("결과: " + nickname + " " + location_seq + " " + profile_img + " " + kakao_email + " " + sex + " " + age_range);
-
                     String jsonString = jsonCommentTransfer.toString();
                     String response = postTask.execute("auth2/signin/kakao", jsonString).get();
 
