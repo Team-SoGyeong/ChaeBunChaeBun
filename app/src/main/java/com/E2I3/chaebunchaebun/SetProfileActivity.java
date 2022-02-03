@@ -42,30 +42,63 @@ public class SetProfileActivity extends AppCompatActivity {
         potato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                potato.setImageResource(R.drawable.setinfo_image_potato_select);
+                carrot.setImageResource(R.drawable.setinfo_image_carrot);
+                onion.setImageResource(R.drawable.setinfo_image_onion);
+                corn.setImageResource(R.drawable.setinfo_image_corn);
+                tomato.setImageResource(R.drawable.setinfo_image_tomato);
+                btn_next.setImageResource(R.drawable.setinfo_btn_next_ok);
                 set_profileImage = "potato";
             }
         });
         carrot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                potato.setImageResource(R.drawable.setinfo_image_potato);
+                carrot.setImageResource(R.drawable.setinfo_image_carrot_select);
+                onion.setImageResource(R.drawable.setinfo_image_onion);
+                corn.setImageResource(R.drawable.setinfo_image_corn);
+                tomato.setImageResource(R.drawable.setinfo_image_tomato);
+                btn_next.setImageResource(R.drawable.setinfo_btn_next_ok);
                 set_profileImage = "carrot";
             }
         });
         onion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                potato.setImageResource(R.drawable.setinfo_image_potato);
+                carrot.setImageResource(R.drawable.setinfo_image_carrot);
+                onion.setImageResource(R.drawable.setinfo_image_onion_select);
+                corn.setImageResource(R.drawable.setinfo_image_corn);
+                tomato.setImageResource(R.drawable.setinfo_image_tomato);
+                btn_next.setImageResource(R.drawable.setinfo_btn_next_ok);
                 set_profileImage = "onion";
             }
         });
         corn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                potato.setImageResource(R.drawable.setinfo_image_potato);
+                carrot.setImageResource(R.drawable.setinfo_image_carrot);
+                onion.setImageResource(R.drawable.setinfo_image_onion);
+                corn.setImageResource(R.drawable.setinfo_image_corn_select);
+                tomato.setImageResource(R.drawable.setinfo_image_tomato);
+                btn_next.setImageResource(R.drawable.setinfo_btn_next_ok);
                 set_profileImage = "corn";
             }
         });
         tomato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                potato.setImageResource(R.drawable.setinfo_image_potato);
+                carrot.setImageResource(R.drawable.setinfo_image_carrot);
+                onion.setImageResource(R.drawable.setinfo_image_onion);
+                corn.setImageResource(R.drawable.setinfo_image_corn);
+                tomato.setImageResource(R.drawable.setinfo_image_tomato_select);
+                btn_next.setImageResource(R.drawable.setinfo_btn_next_ok);
                 set_profileImage = "tomato";
             }
         });
@@ -73,11 +106,10 @@ public class SetProfileActivity extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String result = " ";
                 try {
-                    System.out.println("btn때 porfile: " + set_profileImage);
-                    result = new GetTask("auth2/signin/kakao/" + set_profileImage).execute().get();
+                        System.out.println("btn때 porfile: " + set_profileImage);
+                        result = new GetTask("auth2/signin/kakao/" + set_profileImage).execute().get();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {

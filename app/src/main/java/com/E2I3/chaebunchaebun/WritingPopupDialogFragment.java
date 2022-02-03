@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,11 +44,9 @@ public class WritingPopupDialogFragment extends DialogFragment {
         String content = args.getString("inputContent");
         String amountString = args.getString("inputAmount");
         String getPrice = args.getString("inputGetPrice");
-        String memberNum = args.getString("inputMemberNum");
         String call = args.getString("inputCall");
         String buyDate = args.getString("inputBuyDate");
         String amount_str = args.getString("inputAmountStr");
-        String perPrice = args.getString("inputPerPrice");
 
         String bill1 = null;
         String bill2 = null;
@@ -58,15 +57,17 @@ public class WritingPopupDialogFragment extends DialogFragment {
         String img5 = args.getString("img5");
 
         EditText check_date = (EditText) checkDialog.findViewById(R.id.check_date);
-        EditText check_member = (EditText) checkDialog.findViewById(R.id.check_member);
+        TextView check_amount_str = (TextView) checkDialog.findViewById(R.id.check_amount_str);
+        EditText check_amount = (EditText) checkDialog.findViewById(R.id.check_amount);
         EditText check_price = (EditText) checkDialog.findViewById(R.id.check_price);
 
         check_date.setText(buyDate);
-        check_member.setText(memberNum);
-        check_price.setText(perPrice);
+        check_amount.setText(amountString);
+        check_amount_str.setText(amount_str);
+        check_price.setText(getPrice);
 
         check_date.setEnabled(false);
-        check_member.setEnabled(false);
+        check_amount.setEnabled(false);
         check_price.setEnabled(false);
 
         btn_ok.setOnClickListener(new View.OnClickListener() {
@@ -74,8 +75,8 @@ public class WritingPopupDialogFragment extends DialogFragment {
             public void onClick(View v) {
                 if(categoryId < 11) {
                     String buyDate2 = check_date.getText().toString();
-                    String memberNum2 = check_member.getText().toString();
-                    String perPrice2 = check_price.getText().toString();
+                    String memberNum2 = "10000";
+                    String perPrice2 = "10000";
                     PostTask postTask = new PostTask();
                     JSONObject jsonPostTransfer = new JSONObject();
                     try {
@@ -107,8 +108,8 @@ public class WritingPopupDialogFragment extends DialogFragment {
                     }
                 } else {
                     String buyDate2 = check_date.getText().toString();
-                    String memberNum2 = check_member.getText().toString();
-                    String perPrice2 = check_price.getText().toString();
+                    String memberNum2 = "10000";
+                    String perPrice2 = "10000";
                     PostTask postTask = new PostTask();
                     JSONObject jsonPostTransfer = new JSONObject();
                     try {

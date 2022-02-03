@@ -61,6 +61,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="76dp"
-        android:background="@drawable/setinfo_btn_next"/>
+        android:background="@drawable/setinfo_btn_next_not"/>
 
 </LinearLayout>

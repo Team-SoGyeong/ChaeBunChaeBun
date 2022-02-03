@@ -123,6 +123,105 @@
             android:textColor="#999999"
             android:textSize="10sp"
             android:text="사진은 한장씩 첨부되며 총 5장 넣을 수 있어요!" />
+<!--
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RelativeLayout
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/etc_main_img"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/group_999" />
+                    <ImageView
+                        android:id="@+id/etc_main_img_delete"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginLeft="63dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/sub_picture"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp">
+
+                    <ImageView
+                        android:id="@+id/etc_sub_img1"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/group_999" />
+                    <ImageButton
+                        android:id="@+id/etc_sub_img1_delete"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginLeft="63dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/sub_picture" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp">
+
+                    <ImageView
+                        android:id="@+id/etc_sub_img2"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/group_999" />
+                    <ImageButton
+                        android:id="@+id/etc_sub_img2_delete"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginLeft="63dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/sub_picture"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp">
+
+                    <ImageView
+                        android:id="@+id/etc_sub_img3"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/group_999" />
+                    <ImageButton
+                        android:id="@+id/etc_sub_img3_delete"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginLeft="63dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/sub_picture"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp">
+                    <ImageView
+                        android:id="@+id/etc_sub_img4"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/group_999"/>
+                    <ImageButton
+                        android:id="@+id/etc_sub_img4_delete"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginLeft="63dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@drawable/sub_picture"/>
+                </RelativeLayout>
+            </LinearLayout>
+-->
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -135,99 +234,8 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:background="@drawable/writing_btn_picture" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-                    <ImageView
-                        android:id="@+id/etc_main_img"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:background="#ebebeb" />
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/sub_picture"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-                    <ImageView
-                        android:id="@+id/etc_sub_img1"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:background="#dad9d9"/>
 
-                    <ImageButton
-                        android:id="@+id/etc_sub_img1_delete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/sub_picture" />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-                    <ImageView
-                        android:id="@+id/etc_sub_img2"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:background="#c6c5c5"/>
-                    <ImageButton
-                        android:id="@+id/etc_sub_img2_delete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/sub_picture"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-                    <ImageView
-                        android:id="@+id/etc_sub_img3"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:background="#a9a9a9"/>
-                    <ImageButton
-                        android:id="@+id/etc_sub_img3_delete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/sub_picture"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-                    <ImageView
-                        android:id="@+id/etc_sub_img4"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:background="#848484"/>
-                    <ImageButton
-                        android:id="@+id/etc_sub_img4_delete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/sub_picture"/>
-                </RelativeLayout>
-            </LinearLayout>
+            <include layout="@layout/writing_chaebun_picture"/>
 
         </LinearLayout>
 
@@ -251,13 +259,52 @@
             android:textColor="#999999"
             android:textSize="10sp"
             android:text="영수증을 추가하면 영수증 인증 마크를 드려요!" />
-        <ImageButton
-            android:id="@+id/add_receipt"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="20dp"
+        <LinearLayout
             android:layout_marginTop="5dp"
-            android:background="@drawable/writing_btn_receipt" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/add_receipt"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/writing_btn_receipt" />
+            <RelativeLayout
+                android:layout_marginLeft="5dp"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/etc_main_bill_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/writing_image_picture_frame" />
+                <ImageView
+                    android:id="@+id/etc_main_bill_img_delete"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginLeft="63dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/sub_picture"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginLeft="5dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp">
+                <ImageView
+                    android:id="@+id/etc_sub_bill_img1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/writing_image_picture_frame" />
+                <ImageButton
+                    android:id="@+id/etc_sub_bill_img1_delete"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginLeft="63dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/sub_picture" />
+            </RelativeLayout>
+        </LinearLayout>
         <!-- 채소 입력 -->
         <TextView
             android:layout_width="wrap_content"
