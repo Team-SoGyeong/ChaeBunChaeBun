@@ -142,8 +142,23 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                  if(isLogin == true){
                     String userId = String.valueOf(subJsonObject.getInt("userId"));
                     System.out.println("로그인 이력이 있을 경우 user ID: " + userId);
+
+                     //홈으로 가기
+                     Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
+                     intent.putExtra("userId", userId);
+                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                     startActivity(intent);
 /*
                     //가입 세팅창 가기
+                     Intent intent = new Intent(getApplicationContext(), SetProfileActivity.class);
+                     intent.putExtra("user_id", user_id);
+                     intent.putExtra("kakao_email", kakao_email);
+                     intent.putExtra("profile_img", profile_img);
+                     intent.putExtra("sex", gender);
+                     intent.putExtra("age_range", age_range);
+                     startActivity(intent);
+
+                    //가입 세팅창 가기(다이얼로그 ver.)
                     Bundle args = new Bundle();
                     args.putString("user_id", user_id);
                     args.putString("kakao_email", kakao_email);
@@ -152,17 +167,11 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                     args.putString("age_range", age_range);
                     LocationQuestionDialogFragment e = LocationQuestionDialogFragment.getInstance();
                     e.setArguments(args);
-                    e.show(getSupportFragmentManager(), LocationQuestionDialogFragment.TAG_EVENT_DIALOG);*/
-
-                     //홈으로 가기
-                    Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
-                    intent.putExtra("userId", userId);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-
+                    e.show(getSupportFragmentManager(), LocationQuestionDialogFragment.TAG_EVENT_DIALOG);
+*/
                 }
                 else{
-                     Bundle args = new Bundle();
+/*                     Bundle args = new Bundle();
                      args.putString("user_id", user_id);
                      args.putString("kakao_email", kakao_email);
                      args.putString("profile_img", profile_img);
@@ -171,14 +180,14 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                      LocationQuestionDialogFragment e = LocationQuestionDialogFragment.getInstance();
                      e.setArguments(args);
                      e.show(getSupportFragmentManager(), LocationQuestionDialogFragment.TAG_EVENT_DIALOG);
-/*                    Intent intent = new Intent(getApplicationContext(), LocationQuestionDialogFragment.class);
+ */
+                    Intent intent = new Intent(getApplicationContext(), SetProfileActivity.class);
                     intent.putExtra("user_id", user_id);
                     intent.putExtra("kakao_email", kakao_email);
                     intent.putExtra("profile_img", profile_img);
                     intent.putExtra("sex", gender);
                     intent.putExtra("age_range", age_range);
                     startActivity(intent);
-                    */
                 }
             }
         }catch (JSONException e) {

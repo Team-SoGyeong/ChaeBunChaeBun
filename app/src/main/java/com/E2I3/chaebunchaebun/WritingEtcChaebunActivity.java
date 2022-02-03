@@ -248,8 +248,8 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                     toast.show();
                 } else if(inputTitle.getText().toString().isEmpty() || inputContent.getText().toString().isEmpty()
                         || inputAmount.getText().toString().isEmpty() || inputGetPrice.getText().toString().isEmpty()
-                        || inputMemberNum.getText().toString().isEmpty() || inputCall.getText().toString().isEmpty()
-                        || str.isEmpty() || amount_str.isEmpty() || inputPerPrice.getText().toString().isEmpty()) {
+                        || inputCall.getText().toString().isEmpty()
+                        || str.isEmpty() || amount_str.isEmpty()) {
                     toastText.setText("입력되지 않은 칸이 있어요!");
                     toast.show();
                 }else {

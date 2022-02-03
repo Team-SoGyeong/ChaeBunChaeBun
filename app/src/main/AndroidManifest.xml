@@ -29,6 +29,17 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.E2I3.chaebunchaebun.SplashActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/SplashTheme"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 //원래코드
         <activity
             android:name="com.E2I3.chaebunchaebun.MypageMyHeartActivity"
@@ -45,14 +56,7 @@
             android:label="홈 찜 록록" />
         <activity
             android:name="com.E2I3.chaebunchaebun.LoginActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name="com.E2I3.chaebunchaebun.SearchActivity"
             android:windowSoftInputMode="adjustResize" />
