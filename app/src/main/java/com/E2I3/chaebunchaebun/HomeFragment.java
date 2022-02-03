@@ -69,6 +69,7 @@ public class HomeFragment extends Fragment {
     String userId = null;
     String nickname = "";
     int locationCode = 0;
+    int isNew = 0;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -145,6 +146,12 @@ public class HomeFragment extends Fragment {
 
         homeLocationText.setText(address[address.length - 1]);
         homeNickname.setText(nickname);
+
+        if(isNew == 0) {
+            iconNotice.setImageResource(R.drawable.home_btn_notification_2);
+        } else {
+            iconNotice.setImageResource(R.drawable.home_btn_notification);
+        }
 
         iconLike.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -478,6 +485,7 @@ public class HomeFragment extends Fragment {
                 nickname = subJsonObject.getString("nickname");
                 int userId = subJsonObject.getInt("user_id");
                 locationCode = subJsonObject.getInt("address_id");
+                isNew = subJsonObject.getInt("isNew");
 
                 address = fullAddress.split(" ");
             }
