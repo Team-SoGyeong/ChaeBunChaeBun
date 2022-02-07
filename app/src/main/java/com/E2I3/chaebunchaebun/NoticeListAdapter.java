@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ public class NoticeListAdapter extends RecyclerView.Adapter<NoticeListAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout notice_list_top;
         ImageView notice_list_like;
         ImageView notice_list_comment;
         ImageView notice_list_img;
@@ -40,6 +42,7 @@ public class NoticeListAdapter extends RecyclerView.Adapter<NoticeListAdapter.Vi
         TextView notice_list_ment;
         public ViewHolder(@NonNull View noticeView) {
             super(noticeView);
+            notice_list_top = (LinearLayout) noticeView.findViewById(R.id.notice_list_top);
             notice_list_like = (ImageView) noticeView.findViewById(R.id.notice_list_like);
             notice_list_comment = (ImageView) noticeView.findViewById(R.id.notice_list_comment);
             notice_list_img = (ImageView) noticeView.findViewById(R.id.notice_list_img);
@@ -85,6 +88,11 @@ public class NoticeListAdapter extends RecyclerView.Adapter<NoticeListAdapter.Vi
         NoticeListItem noticeListItem = noticeListItems.get(position);
 
         holder.notice_list_nickname.setText(String.valueOf(noticeListItem.getNickname()));
+        if(noticeListItem.getIsClick() == "N") {
+            holder.notice_list_top.setBackgroundResource(R.drawable.custom_notice_noread);
+        } else {
+            holder.notice_list_top.setBackgroundResource(R.drawable.custom_homelist_background);
+        }
         if(noticeListItem.getCaseType() == "scrap"){
             holder.notice_list_ment.setText("좋아요를 눌렀어요!");
             holder.notice_list_like.setVisibility(View.VISIBLE);

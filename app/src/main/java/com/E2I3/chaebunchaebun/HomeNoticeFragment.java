@@ -190,9 +190,10 @@ public class HomeNoticeFragment extends Fragment {
                 int isAuth = subJsonObject.getInt("isAuth");
                 int postId = subJsonObject.getInt("post_id");
                 int categoryId = subJsonObject.getInt("category_id");
+                String isClick = subJsonObject.getString("isClick");
 
                 noticeListItems.add(new NoticeListItem(caseBy, nickname, img, title, content, writtenBy,
-                        isAuth, postId, categoryId, this.userId));
+                        isAuth, postId, categoryId, this.userId, isClick));
             }
         } catch (JSONException e) {
             e.printStackTrace();

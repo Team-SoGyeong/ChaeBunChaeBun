@@ -11,9 +11,10 @@ public class NoticeListItem {
     int postId = 0;
     int categoryId = 0;
     String userId;
+    String isClick = "";
 
     public NoticeListItem(String caseType, String nickname, String img, String title, String content, String date,
-                          int isAuth, int postId, int categoryId, String userId) {
+                          int isAuth, int postId, int categoryId, String userId, String isClick) {
         this.caseType = caseType;
         this.nickname = nickname;
         this.img = img;
@@ -24,6 +25,7 @@ public class NoticeListItem {
         this.postId = postId;
         this.categoryId = categoryId;
         this.userId = userId;
+        this.isClick = isClick;
     }
 
     public String getCaseType() {
@@ -64,5 +66,9 @@ public class NoticeListItem {
 
     public String getUserId() {
         return userId;
+    }
+
+    public String getIsClick() {
+        return isClick;
     }
 }

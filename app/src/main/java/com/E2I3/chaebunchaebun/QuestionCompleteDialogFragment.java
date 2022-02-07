@@ -43,7 +43,7 @@ public class QuestionCompleteDialogFragment extends DialogFragment {
         postId = mArgs.getInt("postId");
 
         completeNickname.setText("어서오세요, " + nickname + "님!");
-        completeTitle.setText("벌써 " + title + " 글이 올라간지 일주일이\n되었네요! 소분이 완료 되었으면 소분 완료\n버튼을 눌러 주세요!");
+        completeTitle.setText("벌써 \"" + title + "\" 글이 올라간지 일주일이\n되었네요! 소분이 완료 되었으면 소분 완료\n버튼을 눌러 주세요!");
 
         complete.setOnClickListener(new View.OnClickListener() {
             @Override
