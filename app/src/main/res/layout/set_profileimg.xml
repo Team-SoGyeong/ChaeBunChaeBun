@@ -19,23 +19,39 @@
         android:layout_gravity="center"
         android:layout_marginTop="47dp"
         android:orientation="horizontal">
-        <ImageView
-            android:id="@+id/potato"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/setinfo_image_potato"/>
-        <ImageView
-            android:id="@+id/carrot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="102dp"
+            android:layout_height="102dp"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/potato"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/setinfo_image_potato"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="102dp"
+            android:layout_height="102dp"
             android:layout_marginLeft="26dp"
-            android:background="@drawable/setinfo_image_carrot"/>
-        <ImageView
-            android:id="@+id/onion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/carrot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/setinfo_image_carrot"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="102dp"
+            android:layout_height="102dp"
             android:layout_marginLeft="26dp"
-            android:background="@drawable/setinfo_image_onion"/>
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/onion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/setinfo_image_onion"/>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"

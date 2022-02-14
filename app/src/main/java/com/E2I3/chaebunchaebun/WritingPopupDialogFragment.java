@@ -48,8 +48,8 @@ public class WritingPopupDialogFragment extends DialogFragment {
         String buyDate = args.getString("inputBuyDate");
         String amount_str = args.getString("inputAmountStr");
 
-        String bill1 = null;
-        String bill2 = null;
+        String bill1 = args.getString("bill1");
+        String bill2 = args.getString("bill2");
         String img1 = args.getString("img1");
         String img2 = args.getString("img2");
         String img3 = args.getString("img3");

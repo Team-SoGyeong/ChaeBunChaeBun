@@ -148,8 +148,9 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                      intent.putExtra("userId", userId);
                      intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                      startActivity(intent);
+
 /*
-                    //가입 세팅창 가기
+                     //가입 세팅창 가기
                      Intent intent = new Intent(getApplicationContext(), SetProfileActivity.class);
                      intent.putExtra("user_id", user_id);
                      intent.putExtra("kakao_email", kakao_email);
@@ -157,6 +158,8 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                      intent.putExtra("sex", gender);
                      intent.putExtra("age_range", age_range);
                      startActivity(intent);
+
+
 
                     //가입 세팅창 가기(다이얼로그 ver.)
                     Bundle args = new Bundle();
