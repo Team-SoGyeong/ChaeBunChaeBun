@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -40,9 +42,12 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
     private final int GET_GALLARY_SUB2_IMAGE = 202;
     private final int GET_GALLARY_SUB3_IMAGE = 203;
     private final int GET_GALLARY_SUB4_IMAGE = 204;
+    int pictureId = 0;
     private TextView toastText;
     private Toast toast;
 
+    HorizontalScrollView picture_view;
+    ImageButton add_picture;
     ImageView back, writing, btn_back, etcMainImg, etcSubImg1, etcSubImg2, etcSubImg3, etcSubImg4;
     TextView inputPerPrice,  inputContentCount;
     EditText inputVegetable, inputTitle, inputContent, inputAmount, inputGetPrice, inputMemberNum, inputCall;
@@ -81,13 +86,55 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
 
         inputContentCount = (TextView) findViewById(R.id.input_content_count);
 
+        add_picture = (ImageButton) findViewById(R.id.add_picture);
+        picture_view = (HorizontalScrollView) findViewById(R.id.picture_view);
         etcMainImg = (ImageView) findViewById(R.id.etc_main_img);
         etcSubImg1 = (ImageView) findViewById(R.id.etc_sub_img1);
         etcSubImg2 = (ImageView) findViewById(R.id.etc_sub_img2);
         etcSubImg3 = (ImageView) findViewById(R.id.etc_sub_img3);
         etcSubImg4 = (ImageView) findViewById(R.id.etc_sub_img4);
 
-        etcMainImg.setOnClickListener(new View.OnClickListener() {
+        add_picture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pictureId++;
+                picture_view.setVisibility(View.VISIBLE);
+                switch (pictureId){
+                    case 1:
+                        Intent mainImgIntent = new Intent(Intent.ACTION_PICK);
+                        mainImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(mainImgIntent, GET_GALLARY_MAIN_IMAGE);
+                        etcMainImg.setVisibility(View.VISIBLE);
+                        break;
+                    case 2:
+                        Intent subImg1Intent = new Intent(Intent.ACTION_PICK);
+                        subImg1Intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(subImg1Intent, GET_GALLARY_SUB1_IMAGE);
+                        etcSubImg1.setVisibility(View.VISIBLE);
+                        break;
+                    case 3:
+                        Intent subImg2Intent = new Intent(Intent.ACTION_PICK);
+                        subImg2Intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(subImg2Intent, GET_GALLARY_SUB2_IMAGE);
+                        etcSubImg2.setVisibility(View.VISIBLE);
+                        break;
+                    case 4:
+                        Intent subImg3Intent = new Intent(Intent.ACTION_PICK);
+                        subImg3Intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(subImg3Intent, GET_GALLARY_SUB3_IMAGE);
+                        etcSubImg3.setVisibility(View.VISIBLE);
+                        break;
+                    case 5:
+                        Intent subImg4Intent = new Intent(Intent.ACTION_PICK);
+                        subImg4Intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(subImg4Intent, GET_GALLARY_SUB4_IMAGE);
+                        etcSubImg4.setVisibility(View.VISIBLE);
+                        break;
+                }
+            }
+        });
+
+/*        etcMainImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent mainImgIntent = new Intent(Intent.ACTION_PICK);
@@ -95,7 +142,6 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                 startActivityForResult(mainImgIntent, GET_GALLARY_MAIN_IMAGE);
             }
         });
-
         etcSubImg1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,7 +150,6 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                 startActivityForResult(mainImgIntent, GET_GALLARY_SUB1_IMAGE);
             }
         });
-
         etcSubImg2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,7 +158,6 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                 startActivityForResult(mainImgIntent, GET_GALLARY_SUB2_IMAGE);
             }
         });
-
         etcSubImg3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,7 +166,6 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                 startActivityForResult(mainImgIntent, GET_GALLARY_SUB3_IMAGE);
             }
         });
-
         etcSubImg4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,7 +174,7 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                 startActivityForResult(mainImgIntent, GET_GALLARY_SUB4_IMAGE);
             }
         });
-
+* */
         inputContent.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -181,10 +224,6 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 totalPrice = inputGetPrice.getText().toString();
                 isPrice = true;
-//                if(isAmount == true && isPrice == true && isMember == true){
-//                    perPrice = ((Integer.parseInt(totalPrice) / Integer.parseInt(amount)) * (Integer.parseInt(amount) / Integer.parseInt(people)));
-//                    inputPerPrice.setText(String.valueOf(perPrice).toString());
-//                }
             }
 
             @Override
