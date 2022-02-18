@@ -3,6 +3,7 @@ package com.E2I3.chaebunchaebun;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Outline;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -12,10 +13,14 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,20 +45,27 @@ public class WritingChaebunActivity extends AppCompatActivity {
     private final int GET_GALLERY_SUB2_IMAGE = 202;
     private final int GET_GALLERY_SUB3_IMAGE = 203;
     private final int GET_GALLERY_SUB4_IMAGE = 204;
+    private final int GET_GALLERY_BILL1_IMAGE = 205;
+    private final int GET_GALLERY_BILL2_IMAGE = 206;
+    int pictureId = 0;
+    int billId = 0;
     private TextView toastText;
     private Toast toast;
 
-    ImageView back, writing, btn_back, writingMainImg, writingSubImg1, writingSubImg2, writingSubImg3, writingSubImg4;
-    TextView inputPerPrice,  inputContentCount;
-    EditText inputTitle, inputContent, inputAmount, inputGetPrice, inputMemberNum, inputCall;
+    HorizontalScrollView picture_view, bill_view;
+    LinearLayout mainImgFrame, subImgFrame1, subImgFrame2, subImgFrame3, subImgFrame4, billImgFrame1, billImgFrame2;
+    ImageButton add_picture, add_receipt;
+    ImageView back, writing, btn_back, writingMainImg, writingSubImg1, writingSubImg2, writingSubImg3, writingSubImg4, writingBillImg1, writingBillImg2;
+    TextView inputContentCount;
+    EditText inputTitle, inputContent, inputAmount, inputGetPrice, inputCall;
     Spinner date_spinner, amount_spinner;
     String date_arr[] = {"1일 전", "2일 전", "3일 전", "일주일 이내", "2주 이내"};
     String amount_arr[] ={"kg","g","개"};
     String str, amount_str, userId = null;
-    String amount, totalPrice, people = "1";
-    String mainImg, subImg1, subImg2, subImg3, subImg4 = null;
-    int categoryId, perPrice;
-    boolean isPrice, isMember, isAmount = false;
+    String amount = "1";
+    String mainImg, subImg1, subImg2, subImg3, subImg4, billImg1, billImg2 = null;
+    int categoryId;
+    boolean isAmount = false;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,58 +91,81 @@ public class WritingChaebunActivity extends AppCompatActivity {
         inputCall = (EditText) findViewById(R.id.input_call);
 
         inputContentCount = (TextView) findViewById(R.id.input_content_count);
-/*
-        writingMainImg = (ImageView) findViewById(R.id.writing_main_img);
-        writingSubImg1 = (ImageView) findViewById(R.id.writing_sub_img1);
-        writingSubImg2 = (ImageView) findViewById(R.id.writing_sub_img2);
-        writingSubImg3 = (ImageView) findViewById(R.id.writing_sub_img3);
-        writingSubImg4 = (ImageView) findViewById(R.id.writing_sub_img4);
 
-        writingMainImg.setOnClickListener(new View.OnClickListener() {
+        add_picture = (ImageButton) findViewById(R.id.add_picture);
+        add_receipt = (ImageButton) findViewById(R.id.add_receipt);
+        picture_view = (HorizontalScrollView) findViewById(R.id.picture_view);
+        bill_view = (HorizontalScrollView) findViewById(R.id.bill_view);
+        mainImgFrame = (LinearLayout) findViewById(R.id.main_img_frame);
+        subImgFrame1 = (LinearLayout) findViewById(R.id.sub_img1_frame);
+        subImgFrame2 = (LinearLayout) findViewById(R.id.sub_img2_frame);
+        subImgFrame3 = (LinearLayout) findViewById(R.id.sub_img3_frame);
+        subImgFrame4 = (LinearLayout) findViewById(R.id.sub_img4_frame);
+        billImgFrame1 = (LinearLayout) findViewById(R.id.bill_img1_frame);
+        billImgFrame2 = (LinearLayout) findViewById(R.id.bill_img2_frame);
+
+
+        writingMainImg = (ImageView) findViewById(R.id.etc_main_img);
+        writingSubImg1 = (ImageView) findViewById(R.id.etc_sub_img1);
+        writingSubImg2 = (ImageView) findViewById(R.id.etc_sub_img2);
+        writingSubImg3 = (ImageView) findViewById(R.id.etc_sub_img3);
+        writingSubImg4 = (ImageView) findViewById(R.id.etc_sub_img4);
+        writingBillImg1 = (ImageView) findViewById(R.id.etc_bill1_img);
+        writingBillImg2 = (ImageView) findViewById(R.id.etc_bill2_img);
+
+        add_picture.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent mainImgIntent = new Intent(Intent.ACTION_PICK);
-                mainImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                startActivityForResult(mainImgIntent, GET_GALLERY_MAIN_IMAGE);
+            public void onClick(View v) {
+                pictureId++;
+                picture_view.setVisibility(View.VISIBLE);
+                switch (pictureId){
+                    case 1:
+                        Intent mainImgIntent = new Intent(Intent.ACTION_PICK);
+                        mainImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(mainImgIntent, GET_GALLERY_MAIN_IMAGE);
+                        break;
+                    case 2:
+                        Intent subImg1Intent = new Intent(Intent.ACTION_PICK);
+                        subImg1Intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(subImg1Intent, GET_GALLERY_SUB1_IMAGE);
+                        break;
+                    case 3:
+                        Intent subImg2Intent = new Intent(Intent.ACTION_PICK);
+                        subImg2Intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(subImg2Intent, GET_GALLERY_SUB2_IMAGE);
+                        break;
+                    case 4:
+                        Intent subImg3Intent = new Intent(Intent.ACTION_PICK);
+                        subImg3Intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(subImg3Intent, GET_GALLERY_SUB3_IMAGE);
+                        break;
+                    case 5:
+                        Intent subImg4Intent = new Intent(Intent.ACTION_PICK);
+                        subImg4Intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(subImg4Intent, GET_GALLERY_SUB4_IMAGE);
+                        break;
+                }
             }
         });
-
-        writingSubImg1.setOnClickListener(new View.OnClickListener() {
+        add_receipt.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent mainImgIntent = new Intent(Intent.ACTION_PICK);
-                mainImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                startActivityForResult(mainImgIntent, GET_GALLERY_SUB1_IMAGE);
+            public void onClick(View v) {
+                billId++;
+                bill_view.setVisibility(View.VISIBLE);
+                switch (billId){
+                    case 1:
+                        Intent bill1ImgIntent = new Intent(Intent.ACTION_PICK);
+                        bill1ImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(bill1ImgIntent, GET_GALLERY_BILL1_IMAGE);
+                        break;
+                    case 2:
+                        Intent bill2ImgIntent = new Intent(Intent.ACTION_PICK);
+                        bill2ImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(bill2ImgIntent, GET_GALLERY_BILL2_IMAGE);
+                        break;
+                }
             }
         });
-
-        writingSubImg2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent mainImgIntent = new Intent(Intent.ACTION_PICK);
-                mainImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                startActivityForResult(mainImgIntent, GET_GALLERY_SUB2_IMAGE);
-            }
-        });
-
-        writingSubImg3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent mainImgIntent = new Intent(Intent.ACTION_PICK);
-                mainImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                startActivityForResult(mainImgIntent, GET_GALLERY_SUB3_IMAGE);
-            }
-        });
-
-        writingSubImg4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent mainImgIntent = new Intent(Intent.ACTION_PICK);
-                mainImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                startActivityForResult(mainImgIntent, GET_GALLERY_SUB4_IMAGE);
-            }
-        });
-*/
         inputContent.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -150,9 +185,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
 
             }
         });
-
         inputContent.setFilters(new InputFilter[]{new InputFilter.LengthFilter(500)});
-
         inputAmount.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -170,27 +203,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 isAmount = true;
             }
         });
-        inputGetPrice.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                totalPrice = inputGetPrice.getText().toString();
-                isPrice = false;
-//                if(isAmount == true && isPrice == true && isMember == true){
-//                    perPrice = ((Integer.parseInt(totalPrice) / Integer.parseInt(amount)) * (Integer.parseInt(amount) / Integer.parseInt(people)));
-//                    inputPerPrice.setText(String.valueOf(perPrice).toString());
-//                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                isPrice = true;
-            }
-        });
         back = (ImageView) findViewById(R.id.id_back);
         writing = (ImageView) findViewById(R.id.btn_next);
         btn_back = (ImageView) findViewById(R.id.btn_back);
@@ -246,9 +259,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                     toastText.setText("메인 이미지는 필수에요!");
                     toast.show();
                 } else if(inputTitle.getText().toString().isEmpty() || inputContent.getText().toString().isEmpty()
-                    || inputAmount.getText().toString().isEmpty() || inputGetPrice.getText().toString().isEmpty()
-                    || inputMemberNum.getText().toString().isEmpty() || inputCall.getText().toString().isEmpty()
-                    || str.isEmpty() || amount_str.isEmpty() || inputPerPrice.getText().toString().isEmpty()) {
+                    || inputAmount.getText().toString().isEmpty() || inputCall.getText().toString().isEmpty()
+                    || str.isEmpty() || amount_str.isEmpty()) {
                     toastText.setText("입력되지 않은 칸이 있어요!");
                     toast.show();
                 }else {
@@ -262,6 +274,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                     args.putString("inputCall", inputCall.getText().toString());
                     args.putString("inputBuyDate", str);
                     args.putString("inputAmountStr", amount_str);
+                    args.putString("bill1", billImg1);
+                    args.putString("bill2",billImg2);
                     args.putString("img1", mainImg);
                     args.putString("img2", subImg1);
                     args.putString("img3", subImg2);
@@ -290,6 +304,14 @@ public class WritingChaebunActivity extends AppCompatActivity {
             mainImg = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
             System.out.println("아이디:" + userId);
             System.out.println("이미지 경로: " + mainImg);
+            mainImgFrame.setVisibility(View.VISIBLE);
+            writingMainImg.setOutlineProvider(new ViewOutlineProvider() {
+                @Override
+                public void getOutline(View view, Outline outline) {
+                    outline.setRoundRect(0,0,view.getWidth(),view.getHeight(), 12);
+                }
+            });
+            writingMainImg.setClipToOutline(true);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, mainImg, userId).get();
@@ -308,6 +330,14 @@ public class WritingChaebunActivity extends AppCompatActivity {
             subImg1 = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
             System.out.println("아이디:" + userId);
             System.out.println("이미지 경로: " + mainImg);
+            subImgFrame1.setVisibility(View.VISIBLE);
+            writingSubImg1.setOutlineProvider(new ViewOutlineProvider() {
+                @Override
+                public void getOutline(View view, Outline outline) {
+                    outline.setRoundRect(0,0,view.getWidth(),view.getHeight(), 12);
+                }
+            });
+            writingSubImg1.setClipToOutline(true);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, subImg1, userId).get();
@@ -326,6 +356,14 @@ public class WritingChaebunActivity extends AppCompatActivity {
             subImg2 = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
             System.out.println("아이디:" + userId);
             System.out.println("이미지 경로: " + mainImg);
+            subImgFrame2.setVisibility(View.VISIBLE);
+            writingSubImg2.setOutlineProvider(new ViewOutlineProvider() {
+                @Override
+                public void getOutline(View view, Outline outline) {
+                    outline.setRoundRect(0,0,view.getWidth(),view.getHeight(), 12);
+                }
+            });
+            writingSubImg2.setClipToOutline(true);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, subImg2, userId).get();
@@ -344,6 +382,14 @@ public class WritingChaebunActivity extends AppCompatActivity {
             subImg3 = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
             System.out.println("아이디:" + userId);
             System.out.println("이미지 경로: " + mainImg);
+            subImgFrame3.setVisibility(View.VISIBLE);
+            writingSubImg3.setOutlineProvider(new ViewOutlineProvider() {
+                @Override
+                public void getOutline(View view, Outline outline) {
+                    outline.setRoundRect(0,0,view.getWidth(),view.getHeight(), 12);
+                }
+            });
+            writingSubImg3.setClipToOutline(true);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, subImg3, userId).get();
@@ -362,11 +408,71 @@ public class WritingChaebunActivity extends AppCompatActivity {
             subImg4 = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
             System.out.println("아이디:" + userId);
             System.out.println("이미지 경로: " + mainImg);
+            subImgFrame4.setVisibility(View.VISIBLE);
+            writingSubImg4.setOutlineProvider(new ViewOutlineProvider() {
+                @Override
+                public void getOutline(View view, Outline outline) {
+                    outline.setRoundRect(0,0,view.getWidth(),view.getHeight(), 12);
+                }
+            });
+            writingSubImg4.setClipToOutline(true);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, subImg4, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
                 this.subImg4 = jsonObject.getString("data");
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else if(requestCode == GET_GALLERY_BILL1_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+            Uri selectedMainImage = data.getData();
+            writingBillImg1.setImageURI(selectedMainImage);
+            billImg1 = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
+            System.out.println("아이디:" + userId);
+            System.out.println("이미지 경로: " + billImg1);
+            billImgFrame1.setVisibility(View.VISIBLE);
+            writingBillImg1.setOutlineProvider(new ViewOutlineProvider() {
+                @Override
+                public void getOutline(View view, Outline outline) {
+                    outline.setRoundRect(0,0,view.getWidth(),view.getHeight(), 12);
+                }
+            });
+            writingBillImg1.setClipToOutline(true);
+            ImageTask imageTask = new ImageTask();
+            try {
+                String response = imageTask.execute("image/upload/" + userId, billImg1, userId).get();
+                JSONObject jsonObject = new JSONObject(response);
+                this.billImg1 = jsonObject.getString("data");
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else if(requestCode == GET_GALLERY_BILL2_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+            Uri selectedMainImage = data.getData();
+            writingBillImg2.setImageURI(selectedMainImage);
+            billImg2 = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
+            System.out.println("아이디:" + userId);
+            System.out.println("이미지 경로: " + billImg2);
+            billImgFrame2.setVisibility(View.VISIBLE);
+            writingBillImg2.setOutlineProvider(new ViewOutlineProvider() {
+                @Override
+                public void getOutline(View view, Outline outline) {
+                    outline.setRoundRect(0,0,view.getWidth(),view.getHeight(), 12);
+                }
+            });
+            writingBillImg2.setClipToOutline(true);
+            ImageTask imageTask = new ImageTask();
+            try {
+                String response = imageTask.execute("image/upload/" + userId, billImg2, userId).get();
+                JSONObject jsonObject = new JSONObject(response);
+                this.billImg2 = jsonObject.getString("data");
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
