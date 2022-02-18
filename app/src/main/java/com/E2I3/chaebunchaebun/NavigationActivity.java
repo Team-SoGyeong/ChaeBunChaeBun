@@ -44,7 +44,6 @@ public class NavigationActivity extends AppCompatActivity {
         //user_id 받기
         Intent intent = getIntent();
         this.userId = intent.getStringExtra("userId");
-        this.userId = "60";
 
         toastText = (TextView) customToast.findViewById(R.id.custom_toast_text);
         toast = new Toast(getApplicationContext());

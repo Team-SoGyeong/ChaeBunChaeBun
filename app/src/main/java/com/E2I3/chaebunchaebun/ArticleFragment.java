@@ -320,7 +320,16 @@ public class ArticleFragment extends Fragment {
                         @Override
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                             if(articlePer.getText().toString().equals("") || articlePer.getText().toString().equals(null)) {
-                                articlePer.setText("0");
+                                double perAmount = 0;
+                                double totalPrice = Double.valueOf(articleTotalPrice.getText().toString());
+                                double amount = Double.valueOf(articleAmount.getText().toString());
+
+                                if(perAmount == 0 || perAmount < 0 || perAmount > amount) {
+                                    articleInputPer.setText("0");
+                                } else {
+                                    double calculate = Math.round((totalPrice / amount) * 100) / 100.0  * perAmount;
+                                    articleInputPer.setText(String.valueOf(calculate));
+                                }
                             } else {
                                 double perAmount = Double.valueOf(articlePer.getText().toString());
                                 double totalPrice = Double.valueOf(articleTotalPrice.getText().toString());

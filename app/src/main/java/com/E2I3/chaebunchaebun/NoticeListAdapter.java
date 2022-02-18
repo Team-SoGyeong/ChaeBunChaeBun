@@ -88,12 +88,12 @@ public class NoticeListAdapter extends RecyclerView.Adapter<NoticeListAdapter.Vi
         NoticeListItem noticeListItem = noticeListItems.get(position);
 
         holder.notice_list_nickname.setText(String.valueOf(noticeListItem.getNickname()));
-        if(noticeListItem.getIsClick() == "N") {
+        if(noticeListItem.getIsClick().equals("N")) {
             holder.notice_list_top.setBackgroundResource(R.drawable.custom_notice_noread);
         } else {
             holder.notice_list_top.setBackgroundResource(R.drawable.custom_homelist_background);
         }
-        if(noticeListItem.getCaseType() == "scrap"){
+        if(noticeListItem.getCaseType().equals("scrap")){
             holder.notice_list_ment.setText("좋아요를 눌렀어요!");
             holder.notice_list_like.setVisibility(View.VISIBLE);
             holder.notice_list_comment.setVisibility(View.GONE);
