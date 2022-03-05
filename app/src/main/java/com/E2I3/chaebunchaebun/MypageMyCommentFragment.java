@@ -225,6 +225,7 @@ public class MypageMyCommentFragment extends Fragment {
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
                 int categoryId = subJsonObject.getInt("category_id");
                 int postId = subJsonObject.getInt("post_id");
+                int userId = Integer.parseInt(this.userId);
                 String img = subJsonObject.getString("url");
                 String title = subJsonObject.getString("title");
                 String buyDate = subJsonObject.getString("buy_date");
@@ -235,7 +236,8 @@ public class MypageMyCommentFragment extends Fragment {
                 int isAuth = subJsonObject.getInt("isAuth");
                 String content = subJsonObject.getString("contents");
 
-                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, Integer.parseInt(userId), categoryId, content));
+                System.out.println("마이페이지 댓글 탭 userID: "+userId);
+                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId, categoryId, content));
             }
         } catch (JSONException e) {
             e.printStackTrace();

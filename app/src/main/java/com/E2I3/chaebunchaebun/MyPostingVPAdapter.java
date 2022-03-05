@@ -17,9 +17,11 @@ public class MyPostingVPAdapter extends FragmentPagerAdapter {
         super(fm);
         items = new ArrayList<Fragment>();
         MypageMypostingFragment mypageMypostingFragment = new MypageMypostingFragment();
+        MypageMyCommentFragment mypageMyCommentFragment = new MypageMyCommentFragment();
         mypageMypostingFragment.getUserId(userId);
+        mypageMyCommentFragment.getUserId(userId);
         items.add(mypageMypostingFragment);
-        items.add(new MyCommunityPostingFragment());
+        items.add(mypageMyCommentFragment);
 
         itext.add("채분");
         itext.add("댓글");

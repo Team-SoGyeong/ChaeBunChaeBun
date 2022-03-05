@@ -31,6 +31,6 @@
         android:layout_height="44dp"
         android:layout_gravity="center"
         android:layout_marginTop="381dp"
-        android:layout_marginBottom="47dp"
+        android:layout_marginBottom="95dp"
         android:background="@drawable/btn_set_start" />
 </LinearLayout>

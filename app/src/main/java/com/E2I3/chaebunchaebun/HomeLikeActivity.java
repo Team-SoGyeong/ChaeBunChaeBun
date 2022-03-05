@@ -31,7 +31,9 @@ public class HomeLikeActivity extends AppCompatActivity {
         homeLikeBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                System.out.println("뒤로가기");
+                onBackPressed();
+                overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
             }
         });
     }

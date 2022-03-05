@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -117,7 +118,10 @@ public class CategoryFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().remove(CategoryFragment.this).commit();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right).replace(R.id.category_layout, new CategoryFragment()).commit();
+                fragmentTransaction.remove(CategoryFragment.this).commit();
+                System.out.println("뒤로가기2");
                 fragmentManager.popBackStack();
             }
         });
