@@ -104,7 +104,6 @@ public class WritingChaebunActivity extends AppCompatActivity {
         billImgFrame1 = (LinearLayout) findViewById(R.id.bill_img1_frame);
         billImgFrame2 = (LinearLayout) findViewById(R.id.bill_img2_frame);
 
-
         writingMainImg = (ImageView) findViewById(R.id.etc_main_img);
         writingSubImg1 = (ImageView) findViewById(R.id.etc_sub_img1);
         writingSubImg2 = (ImageView) findViewById(R.id.etc_sub_img2);
@@ -166,6 +165,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 }
             }
         });
+
         inputContent.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -215,7 +215,6 @@ public class WritingChaebunActivity extends AppCompatActivity {
         ArrayAdapter<String> date_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, date_arr);
         date_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         date_spinner.setAdapter(date_adapter);
-
         date_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -231,7 +230,6 @@ public class WritingChaebunActivity extends AppCompatActivity {
         ArrayAdapter<String> amount_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, amount_arr);
         amount_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         amount_spinner.setAdapter(amount_adapter);
-
         amount_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -249,9 +247,9 @@ public class WritingChaebunActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+                overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
             }
         });
-
         writing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -291,6 +289,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+                overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
             }
         });
     }
@@ -312,6 +311,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 }
             });
             writingMainImg.setClipToOutline(true);
+            add_picture.setImageResource(R.drawable.writing_btn_picture1);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, mainImg, userId).get();
@@ -338,6 +338,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 }
             });
             writingSubImg1.setClipToOutline(true);
+            add_picture.setImageResource(R.drawable.writing_btn_picture2);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, subImg1, userId).get();
@@ -364,6 +365,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 }
             });
             writingSubImg2.setClipToOutline(true);
+            add_picture.setImageResource(R.drawable.writing_btn_picture3);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, subImg2, userId).get();
@@ -390,6 +392,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 }
             });
             writingSubImg3.setClipToOutline(true);
+            add_picture.setImageResource(R.drawable.writing_btn_picture4);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, subImg3, userId).get();
@@ -416,6 +419,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 }
             });
             writingSubImg4.setClipToOutline(true);
+            add_picture.setImageResource(R.drawable.writing_btn_picture5);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, subImg4, userId).get();
@@ -442,6 +446,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 }
             });
             writingBillImg1.setClipToOutline(true);
+            add_receipt.setImageResource(R.drawable.writing_btn_receipt1);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, billImg1, userId).get();
@@ -468,6 +473,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 }
             });
             writingBillImg2.setClipToOutline(true);
+            add_receipt.setImageResource(R.drawable.writing_btn_receipt2);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, billImg2, userId).get();

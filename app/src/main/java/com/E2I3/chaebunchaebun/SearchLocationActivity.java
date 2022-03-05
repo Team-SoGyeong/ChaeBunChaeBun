@@ -134,6 +134,7 @@ public class SearchLocationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+                overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
             }
         });
         select.setOnClickListener(new View.OnClickListener() {

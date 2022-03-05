@@ -31,7 +31,7 @@ public class MypageMycommentDetailFragment extends Fragment {
     ViewPager vp;
     TabLayout tabLayout;
     ImageView myCommentBack;
-    String userId = null;
+    String userId;
 
     public MypageMycommentDetailFragment() {
         // Required empty public constructor
@@ -62,8 +62,6 @@ public class MypageMycommentDetailFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-        userId = getArguments().getString("userId");
     }
 
     @Override
@@ -76,6 +74,8 @@ public class MypageMycommentDetailFragment extends Fragment {
         tabLayout = (TabLayout) myCommentDetail.findViewById(R.id.tab_layout);
         myCommentBack = (ImageView) myCommentDetail.findViewById(R.id.id_back);
 
+        userId = getArguments().getString("userId");
+
         MyCommentVPAdapter adapter = new MyCommentVPAdapter(getChildFragmentManager(), userId);
         vp.setAdapter(adapter);
 
@@ -85,6 +85,8 @@ public class MypageMycommentDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getActivity().finish();
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+
             }
         });
 

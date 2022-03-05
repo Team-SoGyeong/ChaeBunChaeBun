@@ -103,6 +103,7 @@ public class WritingPopupDialogFragment extends DialogFragment {
                         Intent intent = new Intent(getActivity(), NavigationActivity.class);
                         intent.putExtra("userId", userId);
                         startActivity(intent);
+                        getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                     }catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -138,6 +139,7 @@ public class WritingPopupDialogFragment extends DialogFragment {
                         Intent intent = new Intent(getActivity(), NavigationActivity.class);
                         intent.putExtra("userId", userId);
                         startActivity(intent);
+                        getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                     }catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -148,10 +150,6 @@ public class WritingPopupDialogFragment extends DialogFragment {
         btn_modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                check_date.setEnabled(true);
-//                check_member.setEnabled(true);
-//                check_price.setEnabled(true);
-//                check_date.requestFocus();
                 dismiss();
             }
         });

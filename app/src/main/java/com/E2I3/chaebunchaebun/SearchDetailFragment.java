@@ -226,6 +226,7 @@ public class SearchDetailFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getActivity().finish();
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
             }
         });
 

@@ -114,6 +114,7 @@ public class SetNicknameActivity extends AppCompatActivity {
                         intent.putExtra("sex", sex);
                         intent.putExtra("age_range", age_range);
                         startActivity(intent);
+                        overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                     }else{
                         Toast myToast = Toast.makeText(getApplicationContext(),"중복된 닉네임이 존재합니다!", Toast.LENGTH_SHORT);
                         myToast.show();

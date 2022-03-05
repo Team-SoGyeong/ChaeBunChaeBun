@@ -395,7 +395,9 @@ public class ArticleFragment extends Fragment {
         articleBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println("뒤로가기 애니메이션");
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
                 fragmentManager.beginTransaction().remove(ArticleFragment.this).commit();
                 fragmentManager.popBackStack();
             }

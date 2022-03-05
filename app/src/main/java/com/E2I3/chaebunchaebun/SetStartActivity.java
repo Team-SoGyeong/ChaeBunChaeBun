@@ -73,6 +73,7 @@ public class SetStartActivity  extends AppCompatActivity {
 
                 intent.putExtra("userId", user_id);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
         });
     }

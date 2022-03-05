@@ -159,6 +159,7 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), MypageMyHeartActivity.class);
                 intent.putExtra("userId", userId);
                 getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_left);
             }
         });
 
@@ -182,6 +183,7 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), MypageMypostingActivity.class);
                 intent.putExtra("userId", userId);
                 getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
         });
 
@@ -192,6 +194,8 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 0);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
                 categoryFragment.setArguments(categoryBundle);
                 categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
@@ -207,6 +211,8 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 1);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
                 categoryFragment.setArguments(categoryBundle);
                 categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
@@ -222,6 +228,8 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 2);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
                 categoryFragment.setArguments(categoryBundle);
                 categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
@@ -237,6 +245,8 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 3);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
                 categoryFragment.setArguments(categoryBundle);
                 categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
@@ -252,6 +262,8 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 4);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
                 categoryFragment.setArguments(categoryBundle);
                 categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
@@ -267,6 +279,8 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 5);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
                 categoryFragment.setArguments(categoryBundle);
                 categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
@@ -282,6 +296,8 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 6);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
                 categoryFragment.setArguments(categoryBundle);
                 categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
@@ -297,6 +313,8 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 7);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
                 categoryFragment.setArguments(categoryBundle);
                 categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
@@ -312,6 +330,8 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 8);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
                 categoryFragment.setArguments(categoryBundle);
                 categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
@@ -327,6 +347,9 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 9);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+
                 CategoryFragment categoryFragment = new CategoryFragment();
                 categoryFragment.setArguments(categoryBundle);
                 categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
@@ -393,6 +416,7 @@ public class HomeFragment extends Fragment {
                 intent.putExtra("locationCode", locationCode);
                 intent.putExtra("userId", userId);
                 getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
         });
 
@@ -429,6 +453,7 @@ public class HomeFragment extends Fragment {
               email.putExtra(Intent.EXTRA_SUBJECT, "[채분채분 문의하기]");
               email.putExtra(Intent.EXTRA_TEXT, "문의할 내용을 적어주세요!");
               startActivity(email);
+              getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
           }
       });
 
@@ -437,6 +462,7 @@ public class HomeFragment extends Fragment {
           public void onClick(View view) {
               Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://irradiated-mapusaurus-27a.notion.site/34a2eb86c548473b8ea1c9aaa5a72217"));
               startActivity(intent);
+              getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
           }
       });
 
@@ -445,6 +471,7 @@ public class HomeFragment extends Fragment {
           public void onClick(View view) {
               Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://irradiated-mapusaurus-27a.notion.site/7535a823135d437da69575e15cc49467"));
               startActivity(intent);
+              getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
           }
       });
 

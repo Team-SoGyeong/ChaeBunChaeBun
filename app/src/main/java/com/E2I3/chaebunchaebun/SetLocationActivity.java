@@ -115,6 +115,7 @@ public class SetLocationActivity extends AppCompatActivity {
                                 intent.putExtra("sex", sex);
                                 intent.putExtra("age_range", age_range);
                                 startActivity(intent);
+                                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                             }
                         }
                     });

@@ -1,7 +1,6 @@
 package com.E2I3.chaebunchaebun;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -98,12 +97,14 @@ public class SelectCategoryActivity extends AppCompatActivity{
                     intent.putExtra("categoryId", cateoryid);
                     intent.putExtra("userId", userId);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 }
                 else if(flag == false && cateoryid != 0){
                     intent = new Intent(getApplicationContext(), WritingChaebunActivity.class);
                     intent.putExtra("categoryId", cateoryid);
                     intent.putExtra("userId", userId);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 }
             }
         });
@@ -112,6 +113,7 @@ public class SelectCategoryActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 onBackPressed();
+                overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
             }
         });
     }
