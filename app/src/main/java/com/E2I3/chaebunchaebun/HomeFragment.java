@@ -194,7 +194,7 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 0);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
 //                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
@@ -212,7 +212,7 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 1);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
 //                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
@@ -230,7 +230,7 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 2);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
 //                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
@@ -248,7 +248,7 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 3);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
 //                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
@@ -266,7 +266,7 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 4);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
 //                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
@@ -284,7 +284,7 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 5);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
 //                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
@@ -302,7 +302,7 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 6);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
 //                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
@@ -320,7 +320,7 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 7);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
 //                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
@@ -338,7 +338,7 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 8);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
 //                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
@@ -356,7 +356,7 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putInt("vegetable", 9);
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+                categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
 //                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 CategoryFragment categoryFragment = new CategoryFragment();
