@@ -59,6 +59,7 @@ public class LocationDialogFragment extends DialogFragment {
                     Intent intent = new Intent(getContext(), SearchLocationActivity.class);
                     intent.putExtra("searchLocation", change);
                     startActivityForResult(intent, 1111);
+                    getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                     return true;
                 }
                 return false;
@@ -68,8 +69,7 @@ public class LocationDialogFragment extends DialogFragment {
         locationDialogfine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dismiss();
-            }
+                dismiss();}
         });
         setCancelable(false);
 

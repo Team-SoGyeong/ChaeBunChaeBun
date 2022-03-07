@@ -197,6 +197,8 @@ public class SearchDetailFragment extends Fragment {
                                 articleBundle.putString("postId", String.valueOf(postId));
                                 articleBundle.putInt("categoryId", categoryId);
                                 FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                articleTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+
                                 ArticleFragment articleFragment = new ArticleFragment();
                                 articleFragment.setArguments(articleBundle);
                                 articleTransaction.replace(R.id.search_frame, articleFragment);

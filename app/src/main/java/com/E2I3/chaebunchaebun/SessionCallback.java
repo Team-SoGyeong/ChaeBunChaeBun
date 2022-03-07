@@ -120,7 +120,6 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                 });
     }
     public void setData(String user_id, String kakao_email, String profile_img, String gender, String age_range) {
-
         //서버에서 이메일 보내고 로그인 이력 읽기
         PostTask postTask = new PostTask();
         JSONObject jsonCommentTransfer = new JSONObject();
@@ -142,7 +141,7 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                  if(isLogin == true){
                     String userId = String.valueOf(subJsonObject.getInt("userId"));
                     System.out.println("로그인 이력이 있을 경우 user ID: " + userId);
-                        
+
                      //홈으로 가기
                      Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
                      intent.putExtra("userId", userId);
@@ -160,30 +159,9 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                      intent.putExtra("age_range", age_range);
                      startActivity(intent);
                      overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
-
-                    //가입 세팅창 가기(다이얼로그 ver.)
-                    Bundle args = new Bundle();
-                    args.putString("user_id", user_id);
-                    args.putString("kakao_email", kakao_email);
-                    args.putString("profile_img", profile_img);
-                    args.putString("sex", gender);
-                    args.putString("age_range", age_range);
-                    LocationQuestionDialogFragment e = LocationQuestionDialogFragment.getInstance();
-                    e.setArguments(args);
-                    e.show(getSupportFragmentManager(), LocationQuestionDialogFragment.TAG_EVENT_DIALOG);
-*/
+ */
                 }
                 else{
-/*                     Bundle args = new Bundle();
-                     args.putString("user_id", user_id);
-                     args.putString("kakao_email", kakao_email);
-                     args.putString("profile_img", profile_img);
-                     args.putString("sex", gender);
-                     args.putString("age_range", age_range);
-                     LocationQuestionDialogFragment e = LocationQuestionDialogFragment.getInstance();
-                     e.setArguments(args);
-                     e.show(getSupportFragmentManager(), LocationQuestionDialogFragment.TAG_EVENT_DIALOG);
- */
                     Intent intent = new Intent(getApplicationContext(), SetProfileActivity.class);
                     intent.putExtra("user_id", user_id);
                     intent.putExtra("kakao_email", kakao_email);

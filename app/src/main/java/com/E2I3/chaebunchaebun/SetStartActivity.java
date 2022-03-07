@@ -45,7 +45,6 @@ public class SetStartActivity  extends AppCompatActivity {
                     jsonCommentTransfer.put("nickname", nickname);
                     jsonCommentTransfer.put("address_seq", location_seq);
                     jsonCommentTransfer.put("profile", profile_img);
-//                    jsonCommentTransfer.put("set_image", set_profileImage);
                     jsonCommentTransfer.put("email", kakao_email);
                     jsonCommentTransfer.put("sex", sex);
                     jsonCommentTransfer.put("age_range", age_range);
