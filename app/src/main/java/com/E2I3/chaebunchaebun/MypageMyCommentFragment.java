@@ -118,6 +118,9 @@ public class MypageMyCommentFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+        MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(40);
+        mypageCommentList.addItemDecoration(mainRecyclerDecoration);
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -133,8 +136,8 @@ public class MypageMyCommentFragment extends Fragment {
 
                     hLayoutManager = new LinearLayoutManager(getContext());
                     mypageCommentList.setLayoutManager(hLayoutManager);
-                    MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(40);
-                    mypageCommentList.addItemDecoration(mainRecyclerDecoration);
+//                    MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(40);
+//                    mypageCommentList.addItemDecoration(mainRecyclerDecoration);
                     homeListAdapter = new HomeListAdapter(homeListItems);
                     homeListAdapter.setOnItemClickListener(new HomeListAdapter.OnItemClickListener() {
                         @Override
@@ -155,6 +158,8 @@ public class MypageMyCommentFragment extends Fragment {
                                 articleBundle.putBoolean("isMyComment", isMyComment);
                                 articleBundle.putBoolean("isMyHeart", isMyHeart);
                                 FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                articleTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+
                                 ArticleFragment articleFragment = new ArticleFragment();
                                 articleFragment.setArguments(articleBundle);
                                 articleTransaction.replace(R.id.mypage_posting_frame, articleFragment);

@@ -36,6 +36,7 @@ public class SetNicknameActivity extends AppCompatActivity {
         btn_next = (ImageButton) findViewById(R.id.btn_next);
 
         Intent intent = getIntent();
+        Long kakao_id = intent.getLongExtra("kakao_id",0);
         String user_id = intent.getStringExtra("user_id");
         String kakao_email = intent.getStringExtra("kakao_email");
         String profile_img = intent.getStringExtra("profile_img");
@@ -106,6 +107,7 @@ public class SetNicknameActivity extends AppCompatActivity {
                     System.out.println("Usable?: " + usable);
                     if(usable == true){
                         Intent intent = new Intent(getApplicationContext(), SetLocationActivity.class);
+                        intent.putExtra("kakao_id", kakao_id);
                         intent.putExtra("user_id", user_id);
                         intent.putExtra("kakao_email", kakao_email);
                         intent.putExtra("profile_img", profile_img);

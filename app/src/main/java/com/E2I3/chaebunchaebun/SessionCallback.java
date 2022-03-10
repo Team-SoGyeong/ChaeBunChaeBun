@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import java.util.concurrent.ExecutionException;
 
 public class SessionCallback extends AppCompatActivity implements ISessionCallback {
+    Long kakao_id;
     String kakao_email = "";
     String profile_img = "";
     String user_id = "";
@@ -66,6 +67,7 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                     @Override
                     public void onSuccess(MeV2Response result) {
                         Log.i("KAKAO_API", "사용자 아이디: " + result.getId());
+                        kakao_id = result.getId();
                         user_id = String.valueOf(result.getId());
                         UserAccount kakaoAccount = result.getKakaoAccount();
                         if (kakaoAccount != null) {
@@ -91,7 +93,7 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                                 Log.d("KAKAO_API", "onSuccess:getNickname "+profile.getNickname());
                                 profile_img = profile.getProfileImageUrl();
 
-                                setData(user_id, kakao_email, profile_img, kakao_gender, kakao_age_range);
+                                setData(kakao_id, user_id, kakao_email, profile_img, kakao_gender, kakao_age_range);
                             }
                             if (email != null) {
                                 Log.d("KAKAO_API", "onSuccess:email "+email);
@@ -119,15 +121,14 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                     }
                 });
     }
-    public void setData(String user_id, String kakao_email, String profile_img, String gender, String age_range) {
-
+    public void setData(Long kakao_id, String user_id, String kakao_email, String profile_img, String gender, String age_range) {
         //서버에서 이메일 보내고 로그인 이력 읽기
         PostTask postTask = new PostTask();
         JSONObject jsonCommentTransfer = new JSONObject();
 
         try {
             jsonCommentTransfer.put("login_type", "k");
-            jsonCommentTransfer.put("email", kakao_email);
+            jsonCommentTransfer.put("kakao_id", kakao_id);
 
             String jsonString = jsonCommentTransfer.toString();
             String response = postTask.execute("auth2/signin/kakao/checkLogin", jsonString).get();
@@ -142,7 +143,7 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                  if(isLogin == true){
                     String userId = String.valueOf(subJsonObject.getInt("userId"));
                     System.out.println("로그인 이력이 있을 경우 user ID: " + userId);
-                        
+
                      //홈으로 가기
                      Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
                      intent.putExtra("userId", userId);
@@ -153,6 +154,7 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
 /*
 //가입 세팅창 가기
                      Intent intent = new Intent(getApplicationContext(), SetProfileActivity.class);
+                     intent.putExtra("kakao_id", kakao_id);
                      intent.putExtra("user_id", user_id);
                      intent.putExtra("kakao_email", kakao_email);
                      intent.putExtra("profile_img", profile_img);
@@ -160,31 +162,11 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                      intent.putExtra("age_range", age_range);
                      startActivity(intent);
                      overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
-
-                    //가입 세팅창 가기(다이얼로그 ver.)
-                    Bundle args = new Bundle();
-                    args.putString("user_id", user_id);
-                    args.putString("kakao_email", kakao_email);
-                    args.putString("profile_img", profile_img);
-                    args.putString("sex", gender);
-                    args.putString("age_range", age_range);
-                    LocationQuestionDialogFragment e = LocationQuestionDialogFragment.getInstance();
-                    e.setArguments(args);
-                    e.show(getSupportFragmentManager(), LocationQuestionDialogFragment.TAG_EVENT_DIALOG);
-*/
+ */
                 }
                 else{
-/*                     Bundle args = new Bundle();
-                     args.putString("user_id", user_id);
-                     args.putString("kakao_email", kakao_email);
-                     args.putString("profile_img", profile_img);
-                     args.putString("sex", gender);
-                     args.putString("age_range", age_range);
-                     LocationQuestionDialogFragment e = LocationQuestionDialogFragment.getInstance();
-                     e.setArguments(args);
-                     e.show(getSupportFragmentManager(), LocationQuestionDialogFragment.TAG_EVENT_DIALOG);
- */
                     Intent intent = new Intent(getApplicationContext(), SetProfileActivity.class);
+                    intent.putExtra("kakao_id", kakao_id);
                     intent.putExtra("user_id", user_id);
                     intent.putExtra("kakao_email", kakao_email);
                     intent.putExtra("profile_img", profile_img);

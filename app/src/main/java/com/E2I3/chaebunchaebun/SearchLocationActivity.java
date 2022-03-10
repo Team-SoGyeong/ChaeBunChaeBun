@@ -146,6 +146,7 @@ public class SearchLocationActivity extends AppCompatActivity {
                     intent.putExtra("code", returnCode);
                     setResult(RESULT_OK, intent);
                     finish();
+                    overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
                 }
             }
         });
