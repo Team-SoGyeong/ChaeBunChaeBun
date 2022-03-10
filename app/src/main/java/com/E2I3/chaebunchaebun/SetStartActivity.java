@@ -37,6 +37,7 @@ public class SetStartActivity  extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
+
                 //sever에 포스트
                 PostTask postTask = new PostTask();
                 JSONObject jsonCommentTransfer = new JSONObject();
@@ -47,11 +48,11 @@ public class SetStartActivity  extends AppCompatActivity {
                     jsonCommentTransfer.put("address_seq", location_seq);
                     jsonCommentTransfer.put("profile", profile_img);
                     jsonCommentTransfer.put("email", kakao_email);
-                    intent.putExtra("kakao_id", kakao_id);
+                    jsonCommentTransfer.put("kakao_id", kakao_id);
                     jsonCommentTransfer.put("sex", sex);
                     jsonCommentTransfer.put("age_range", age_range);
 
-                    System.out.println("결과: " + nickname + " " + location_seq + " " + profile_img + " " + kakao_email + " " + sex + " " + age_range);
+                    System.out.println("결과: " + nickname + " " + location_seq + " " + kakao_id + " " + profile_img + " " + kakao_email + " " + sex + " " + age_range);
                     String jsonString = jsonCommentTransfer.toString();
                     String response = postTask.execute("auth2/signin/kakao", jsonString).get();
 
@@ -73,6 +74,7 @@ public class SetStartActivity  extends AppCompatActivity {
                 }
 
                 intent.putExtra("userId", user_id);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |  Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }

@@ -44,7 +44,6 @@ public class SetNicknameActivity extends AppCompatActivity {
         String sex = intent.getStringExtra("sex");
         String age_range = intent.getStringExtra("age_range");
 
-
         btn_next.setClickable(false);
         set_nickname.addTextChangedListener(new TextWatcher() {
             @Override
