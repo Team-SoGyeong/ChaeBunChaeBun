@@ -23,6 +23,7 @@ public class SetStartActivity  extends AppCompatActivity {
         btn_next = (ImageButton) findViewById(R.id.btn_next);
 
         Intent intent = getIntent();
+        Long kakao_id = intent.getLongExtra("kakao_id",0);
         String kakao_email = intent.getStringExtra("kakao_email");
         String profile_img = intent.getStringExtra("profile_img");
         String set_profileImage = intent.getStringExtra("set_profileImage");
@@ -46,6 +47,7 @@ public class SetStartActivity  extends AppCompatActivity {
                     jsonCommentTransfer.put("address_seq", location_seq);
                     jsonCommentTransfer.put("profile", profile_img);
                     jsonCommentTransfer.put("email", kakao_email);
+                    intent.putExtra("kakao_id", kakao_id);
                     jsonCommentTransfer.put("sex", sex);
                     jsonCommentTransfer.put("age_range", age_range);
 
