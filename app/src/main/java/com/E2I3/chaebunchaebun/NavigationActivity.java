@@ -54,10 +54,11 @@ public class NavigationActivity extends AppCompatActivity {
         Bundle homeBundle = new Bundle();
         //homeBundle.putString("userId", userId);
         FragmentTransaction homeTransaction = getSupportFragmentManager().beginTransaction();
+        homeTransaction.setCustomAnimations(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
         HomeFragment homeFragment = new HomeFragment();
         homeFragment.getUserId(userId);
         homeFragment.setArguments(homeBundle);
-        homeTransaction.replace(R.id.bottom_frame, homeFragment);
+        homeTransaction.add(R.id.bottom_frame, homeFragment);
         homeTransaction.commit();
 
         /*bottomNavigationView = findViewById(R.id.bottom_navigation);
