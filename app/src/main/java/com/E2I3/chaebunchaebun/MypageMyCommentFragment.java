@@ -162,7 +162,7 @@ public class MypageMyCommentFragment extends Fragment {
 
                                 ArticleFragment articleFragment = new ArticleFragment();
                                 articleFragment.setArguments(articleBundle);
-                                articleTransaction.replace(R.id.mypage_comment_frame, articleFragment);
+                                articleTransaction.replace(R.id.mypage_posting_frame, articleFragment);
                                 articleTransaction.addToBackStack(null);
                                 articleTransaction.commit();
                             }

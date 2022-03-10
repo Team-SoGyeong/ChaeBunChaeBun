@@ -98,6 +98,18 @@ public class HomeNoticeFragment extends Fragment {
         homeNoticeList = homeNoticeView.findViewById(R.id.home_notice_list);
         homeNoticeNolist = homeNoticeView.findViewById(R.id.home_notice_nolist);
 
+        homeNoticeBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("뒤로가기");
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+                fragmentTransaction.remove(HomeNoticeFragment.this).commit();
+                fragmentManager.popBackStack();
+            }
+        });
+
         if(noticeListItems.isEmpty()) {
             homeNoticeNolist.setVisibility(View.VISIBLE);
             homeNoticeList.setVisibility(View.GONE);
@@ -156,17 +168,6 @@ public class HomeNoticeFragment extends Fragment {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }
-            });
-            homeNoticeBack.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    System.out.println("뒤로가기");
-                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.setCustomAnimations(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
-                    fragmentTransaction.remove(HomeNoticeFragment.this).commit();
-                    fragmentManager.popBackStack();
                 }
             });
         }

@@ -82,40 +82,9 @@ public class MainSoonFragment extends Fragment {
         }
 
         homeListItems = new ArrayList<HomeListItem>();
-        String resultText = "[NULL]";
+        homeListItems.clear();
 
-        try {
-            resultText = new GetTask("home/deadline/" + this.locationCode + "/" + userId).execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            JSONObject jsonObject = new JSONObject(resultText);
-            String data = jsonObject.getString("data");
-            JSONArray jsonArray = new JSONArray(data);
-            for(int i = 0; i < jsonArray.length(); i++){
-                JSONObject subJsonObject = jsonArray.getJSONObject(i);
-                int categoryId = subJsonObject.getInt("category_id");
-                int postId = subJsonObject.getInt("post_id");
-                int userId = Integer.parseInt(this.userId);
-                String img = subJsonObject.getString("url");
-                String title = subJsonObject.getString("title");
-                String buyDate = subJsonObject.getString("buy_date");
-                int member = subJsonObject.getInt("members");
-                String memberString = String.valueOf(member) + "명";
-                String perPrice = subJsonObject.getString("per_price");
-                String writtenBy = subJsonObject.getString("witten_by");
-                int isAuth = subJsonObject.getInt("isAuth");
-                String content = subJsonObject.getString("contents");
-
-                homeListItems.add(new HomeListItem(img, title, buyDate, memberString, perPrice, writtenBy, isAuth, postId, userId, categoryId, content));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        getSoon();
     }
 
     @Override
@@ -196,5 +165,42 @@ public class MainSoonFragment extends Fragment {
         }
 
         return mainSoonView;
+    }
+
+    public void getSoon() {
+        String resultText = "[NULL]";
+
+        try {
+            resultText = new GetTask("home/deadline/" + this.locationCode + "/" + userId).execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            JSONObject jsonObject = new JSONObject(resultText);
+            String data = jsonObject.getString("data");
+            JSONArray jsonArray = new JSONArray(data);
+            for(int i = 0; i < jsonArray.length(); i++){
+                JSONObject subJsonObject = jsonArray.getJSONObject(i);
+                int categoryId = subJsonObject.getInt("category_id");
+                int postId = subJsonObject.getInt("post_id");
+                int userId = Integer.parseInt(this.userId);
+                String img = subJsonObject.getString("url");
+                String title = subJsonObject.getString("title");
+                String buyDate = subJsonObject.getString("buy_date");
+                int member = subJsonObject.getInt("members");
+                String memberString = String.valueOf(member) + "명";
+                String perPrice = subJsonObject.getString("per_price");
+                String writtenBy = subJsonObject.getString("witten_by");
+                int isAuth = subJsonObject.getInt("isAuth");
+                String content = subJsonObject.getString("contents");
+
+                homeListItems.add(new HomeListItem(img, title, buyDate, memberString, perPrice, writtenBy, isAuth, postId, userId, categoryId, content));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

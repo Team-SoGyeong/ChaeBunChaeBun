@@ -13,8 +13,8 @@
             android:id="@+id/comment_profileimg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/locationdialog_img_mumu"
             android:scaleType="centerInside"/>
+            <!--android:background="@drawable/locationdialog_img_mumu"-->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

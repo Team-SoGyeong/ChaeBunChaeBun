@@ -241,8 +241,8 @@ public class CategoryPotatoFragment extends Fragment {
                     img5 = subJsonObject3.getString("img5");
 
                     String buyDate = subJsonObject2.getString("buy_date");
-                    String member = subJsonObject2.getString("headcounts");
-                    String perPrice = subJsonObject2.getString("per_price");
+                    String member = subJsonObject2.getString("total_amount");
+                    String perPrice = subJsonObject2.getString("total_price");
                     int myWishInt = subJsonObject2.getInt("wish_cnts");
                     String myWish = String.valueOf(myWishInt);
                     int commentInt = subJsonObject2.getInt("comment_cnts");
