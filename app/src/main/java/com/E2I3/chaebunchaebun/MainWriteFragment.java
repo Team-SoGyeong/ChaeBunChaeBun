@@ -81,6 +81,8 @@ public class MainWriteFragment extends Fragment {
         }
 
         homeListItems = new ArrayList<HomeListItem>();
+        homeListItems.clear();
+
         getMyPostingList();
     }
 

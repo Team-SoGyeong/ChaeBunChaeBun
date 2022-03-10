@@ -43,7 +43,10 @@ public class UncompleteFinDialogFragment extends DialogFragment {
             public void onClick(View view) {
                 PutTask completeTask = new PutTask();
                 completeTask.execute("common/processed/" + String.valueOf(postId) + "/" + userId, String.valueOf(postId), userId);
-                getActivity().startActivity(new Intent(getActivity(), NavigationActivity.class));
+                Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                intent.putExtra("userId", userId);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(0, 0);
             }
         });
         setCancelable(false);
