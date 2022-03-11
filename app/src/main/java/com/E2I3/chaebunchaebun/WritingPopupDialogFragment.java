@@ -100,11 +100,14 @@ public class WritingPopupDialogFragment extends DialogFragment {
                         String jsonString = jsonPostTransfer.toString();
                         System.out.println(jsonString);
                         postTask.execute("posts/common", jsonString);
-                        Intent intent = new Intent(getActivity(), NavigationActivity.class);
-                        intent.putExtra("userId", userId);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                        getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+
+
+                        Bundle args = new Bundle();
+                        args.putString("userId", userId);
+                        WritingReceiptPopupDialogFragment e = WritingReceiptPopupDialogFragment.getInstance();
+                        e.setArguments(args);
+                        e.show(getChildFragmentManager(), WritingReceiptPopupDialogFragment.TAG_EVENT_DIALOG);
+                        onStop();
                     }catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -137,11 +140,13 @@ public class WritingPopupDialogFragment extends DialogFragment {
                         String jsonString = jsonPostTransfer.toString();
                         System.out.println(jsonString);
                         postTask.execute("posts/etc", jsonString);
-                        Intent intent = new Intent(getActivity(), NavigationActivity.class);
-                        intent.putExtra("userId", userId);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                        getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+
+                        Bundle args = new Bundle();
+                        args.putString("userId", userId);
+                        WritingReceiptPopupDialogFragment e = WritingReceiptPopupDialogFragment.getInstance();
+                        e.setArguments(args);
+                        e.show(getChildFragmentManager(), WritingReceiptPopupDialogFragment.TAG_EVENT_DIALOG);
+                        onStop();
                     }catch (JSONException e) {
                         e.printStackTrace();
                     }

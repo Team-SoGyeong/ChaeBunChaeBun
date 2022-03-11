@@ -87,6 +87,7 @@ public class SearchLocationActivity extends AppCompatActivity {
                     String[] address = data.split(" ");
                     returnAddress = address[2];
                     returnCode = locationCode.get(position);
+                    select.setImageResource(R.drawable.searchlocation_btn_select);
                 }
             });
         }
@@ -96,6 +97,7 @@ public class SearchLocationActivity extends AppCompatActivity {
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
                 if ((keyCode == KeyEvent.KEYCODE_ENTER)) {
                     String change = search.getText().toString();
+                    select.setImageResource(R.drawable.searchlocation_btn_select_none);
                     if (change != null) {
                         setLocationList(change);
                         if (lc_list.isEmpty()) {
