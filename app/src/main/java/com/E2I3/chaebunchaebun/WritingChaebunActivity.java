@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Outline;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -55,7 +56,9 @@ public class WritingChaebunActivity extends AppCompatActivity {
     HorizontalScrollView picture_view, bill_view;
     LinearLayout mainImgFrame, subImgFrame1, subImgFrame2, subImgFrame3, subImgFrame4, billImgFrame1, billImgFrame2;
     ImageButton add_picture, add_receipt;
-    ImageView back, writing, btn_back, writingMainImg, writingSubImg1, writingSubImg2, writingSubImg3, writingSubImg4, writingBillImg1, writingBillImg2;
+    ImageView back, writing, btn_back, writingMainImg, writingSubImg1, writingSubImg2,
+            writingSubImg3, writingSubImg4, writingBillImg1, writingBillImg2, mainImgDelete, subImg1Delete, subImg2Delete,
+            subImg3Delete, subImg4Delete, billImg1Delete, billImg2Delete;
     TextView inputContentCount;
     EditText inputTitle, inputContent, inputAmount, inputGetPrice, inputCall;
     Spinner date_spinner, amount_spinner;
@@ -65,6 +68,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
     String amount = "1";
     String mainImg, subImg1, subImg2, subImg3, subImg4, billImg1, billImg2 = null;
     int categoryId;
+    int locationCode = 0;
     boolean isAmount = false;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,6 +86,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
         Intent intent = getIntent();
         categoryId = intent.getIntExtra("categoryId", 0);
         userId = intent.getStringExtra("userId");
+        locationCode = intent.getIntExtra("locationCode",0);
         System.out.println("아이디:" + userId);
 
         inputTitle = (EditText) findViewById(R.id.input_title);
@@ -103,6 +108,14 @@ public class WritingChaebunActivity extends AppCompatActivity {
         subImgFrame4 = (LinearLayout) findViewById(R.id.sub_img4_frame);
         billImgFrame1 = (LinearLayout) findViewById(R.id.bill_img1_frame);
         billImgFrame2 = (LinearLayout) findViewById(R.id.bill_img2_frame);
+
+        mainImgDelete = (ImageView) findViewById(R.id.etc_main_img_delete);
+        subImg1Delete = (ImageView) findViewById(R.id.etc_sub_img1_delete);
+        subImg2Delete = (ImageView) findViewById(R.id.etc_sub_img2_delete);
+        subImg3Delete = (ImageView) findViewById(R.id.etc_sub_img3_delete);
+        subImg4Delete = (ImageView) findViewById(R.id.etc_sub_img4_delete);
+        billImg1Delete = (ImageView) findViewById(R.id.etc_bill1_img_delete);
+        billImg2Delete = (ImageView) findViewById(R.id.etc_bill2_img_delete);
 
         writingMainImg = (ImageView) findViewById(R.id.etc_main_img);
         writingSubImg1 = (ImageView) findViewById(R.id.etc_sub_img1);
@@ -161,6 +174,33 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         Intent bill2ImgIntent = new Intent(Intent.ACTION_PICK);
                         bill2ImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
                         startActivityForResult(bill2ImgIntent, GET_GALLERY_BILL2_IMAGE);
+                        break;
+                }
+            }
+        });
+
+        //사진 삭제 버튼
+        mainImgDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pictureId--;
+                mainImgFrame.setVisibility(View.GONE);
+                mainImgDelete.setVisibility(View.GONE);
+                switch(pictureId){
+                    case 0:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture);
+                        break;
+                    case 1:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture1);
+                        break;
+                    case 2:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture2);
+                        break;
+                    case 3:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture3);
+                        break;
+                    case 4:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture4);
                         break;
                 }
             }
@@ -279,6 +319,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                     args.putString("img3", subImg2);
                     args.putString("img4", subImg3);
                     args.putString("img5", subImg4);
+                    args.putInt("locationCode", locationCode);
                     WritingPopupDialogFragment e = WritingPopupDialogFragment.getInstance();
                     e.setArguments(args);
                     e.show(getSupportFragmentManager(), WritingPopupDialogFragment.TAG_EVENT_DIALOG);
@@ -295,6 +336,12 @@ public class WritingChaebunActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+
+    }
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == GET_GALLERY_MAIN_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
@@ -304,6 +351,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
             System.out.println("아이디:" + userId);
             System.out.println("이미지 경로: " + mainImg);
             mainImgFrame.setVisibility(View.VISIBLE);
+            mainImgDelete.setVisibility(View.VISIBLE);
             writingMainImg.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
@@ -331,6 +379,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
             System.out.println("아이디:" + userId);
             System.out.println("이미지 경로: " + mainImg);
             subImgFrame1.setVisibility(View.VISIBLE);
+            subImg1Delete.setVisibility(View.VISIBLE);
             writingSubImg1.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
@@ -358,6 +407,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
             System.out.println("아이디:" + userId);
             System.out.println("이미지 경로: " + mainImg);
             subImgFrame2.setVisibility(View.VISIBLE);
+            subImg2Delete.setVisibility(View.VISIBLE);
             writingSubImg2.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
@@ -385,6 +435,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
             System.out.println("아이디:" + userId);
             System.out.println("이미지 경로: " + mainImg);
             subImgFrame3.setVisibility(View.VISIBLE);
+            subImg3Delete.setVisibility(View.VISIBLE);
             writingSubImg3.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
@@ -412,6 +463,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
             System.out.println("아이디:" + userId);
             System.out.println("이미지 경로: " + mainImg);
             subImgFrame4.setVisibility(View.VISIBLE);
+            subImg4Delete.setVisibility(View.VISIBLE);
             writingSubImg4.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
@@ -439,6 +491,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
             System.out.println("아이디:" + userId);
             System.out.println("이미지 경로: " + billImg1);
             billImgFrame1.setVisibility(View.VISIBLE);
+            billImg1Delete.setVisibility(View.VISIBLE);
             writingBillImg1.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
@@ -466,6 +519,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
             System.out.println("아이디:" + userId);
             System.out.println("이미지 경로: " + billImg2);
             billImgFrame2.setVisibility(View.VISIBLE);
+            billImg2Delete.setVisibility(View.VISIBLE);
             writingBillImg2.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {

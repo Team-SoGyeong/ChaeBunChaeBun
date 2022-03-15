@@ -584,7 +584,8 @@ public class ArticleFragment extends Fragment {
                     this.nickname = subJsonObject2.getString("nickname");
                     this.content = subJsonObject2.getString("contents");
                     this.buyDate = subJsonObject2.getString("buy_date");
-                    this.members = subJsonObject2.getString("headcounts");
+//                    this.members = subJsonObject2.getString("headcounts");
+                    this.members = subJsonObject2.getString("post_addr");
                     this.amount = subJsonObject2.getString("amount");
                     this.amountNum = subJsonObject2.getInt("amount_num");
                     this.amountUnit = subJsonObject2.getString("amount_type");

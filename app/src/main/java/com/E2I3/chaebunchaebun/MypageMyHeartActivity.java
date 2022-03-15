@@ -25,4 +25,11 @@ public class MypageMyHeartActivity extends AppCompatActivity {
         myPostingTransaction.replace(R.id.mypage_myheart_frame, mypageMyheartDetailFragment);
         myPostingTransaction.commit();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+
+    }
 }

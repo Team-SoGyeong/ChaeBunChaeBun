@@ -40,6 +40,7 @@ public class WritingPopupDialogFragment extends DialogFragment {
         Bundle args = getArguments();
         String userId = args.getString("userId");
         int categoryId = args.getInt("categoryId");
+        int locationCode = args.getInt("locationCode");
         String title = args.getString("inputTitle");
         String content = args.getString("inputContent");
         String amountString = args.getString("inputAmount");
@@ -86,7 +87,7 @@ public class WritingPopupDialogFragment extends DialogFragment {
                         jsonPostTransfer.put("category_id", categoryId);
                         jsonPostTransfer.put("contact", call);
                         jsonPostTransfer.put("contents", content);
-                        jsonPostTransfer.put("headcount", Integer.parseInt(memberNum2));
+                        jsonPostTransfer.put("post_addr", Long.valueOf(locationCode));
 
                         String imgString = "{\"bill1\": \"" + bill1 + "\", \"bill2\": \"" + bill2 + "\", \"img1\": \"" + img1 + "\"," +
                                 " \"img2\": \"" + img2 + "\", \"img3\": \"" + img3 + "\", \"img4\": \"" + img4 + "\", \"img4\": \"" + img4 + "\", \"img5\": \"" + img5 + "\"}";
@@ -126,7 +127,7 @@ public class WritingPopupDialogFragment extends DialogFragment {
                         jsonPostTransfer.put("contents", content);
                         String ect_name = args.getString("inputVegetable");
                         jsonPostTransfer.put("ect_name", ect_name);
-                        jsonPostTransfer.put("headcount", Integer.parseInt(memberNum2));
+                        jsonPostTransfer.put("post_addr", locationCode);
 
                         String imgString = "{\"bill1\": \"" + bill1 + "\", \"bill2\": \"" + bill2 + "\", \"img1\": \"" + img1 + "\"," +
                                 " \"img2\": \"" + img2 + "\", \"img3\": \"" + img3 + "\", \"img4\": \"" + img4 + "\", \"img4\": \"" + img4 + "\", \"img5\": \"" + img5 + "\"}";

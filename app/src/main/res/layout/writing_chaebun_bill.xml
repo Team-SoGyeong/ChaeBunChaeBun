@@ -58,9 +58,9 @@
                 android:layout_height="80dp"
                 android:scaleType="centerCrop"/>
             </LinearLayout>
-            <ImageButton
+            <ImageView
                 android:visibility="invisible"
-                android:id="@+id/etc_bill2_delete"
+                android:id="@+id/etc_bill2_img_delete"
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:layout_marginLeft="63dp"

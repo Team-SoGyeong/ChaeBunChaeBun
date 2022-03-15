@@ -427,6 +427,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Bundle args = new Bundle();
                 args.putString("userId", userId);
+                args.putInt("locationCode", locationCode);
                 WarningDialogFragment e = WarningDialogFragment.getInstance();
                 e.setArguments(args);
                 e.show(getChildFragmentManager(), WarningDialogFragment.TAG_EVENT_DIALOG);

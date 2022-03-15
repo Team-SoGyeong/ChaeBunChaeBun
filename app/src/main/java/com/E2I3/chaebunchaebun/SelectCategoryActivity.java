@@ -16,6 +16,7 @@ public class SelectCategoryActivity extends AppCompatActivity{
     ImageButton btn_next;
     ImageView btn_back;
     String userId;
+    int locationCode = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,7 @@ public class SelectCategoryActivity extends AppCompatActivity{
 
         Intent intent = getIntent();
         userId = intent.getStringExtra("userId");
+        locationCode = intent.getIntExtra("locationCode",0);
         btn_back = (ImageView) findViewById(R.id.btn_back);
         btn_next = (ImageButton) findViewById(R.id.btn_next);
 
@@ -96,6 +98,7 @@ public class SelectCategoryActivity extends AppCompatActivity{
                     intent = new Intent(getApplicationContext(), WritingEtcChaebunActivity.class);
                     intent.putExtra("categoryId", cateoryid);
                     intent.putExtra("userId", userId);
+                    intent.putExtra("locationCode",locationCode);
                     startActivity(intent);
                     overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 }
@@ -103,6 +106,7 @@ public class SelectCategoryActivity extends AppCompatActivity{
                     intent = new Intent(getApplicationContext(), WritingChaebunActivity.class);
                     intent.putExtra("categoryId", cateoryid);
                     intent.putExtra("userId", userId);
+                    intent.putExtra("locationCode",locationCode);
                     startActivity(intent);
                     overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 }
@@ -116,5 +120,11 @@ public class SelectCategoryActivity extends AppCompatActivity{
                 overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+
     }
 }

@@ -218,6 +218,7 @@ public class SearchDetailFragment extends Fragment {
             public void onClick(View view) {
                 Bundle args = new Bundle();
                 args.putString("userId", userId);
+                args.putInt("locationCode", locationcode);
                 WarningDialogFragment e = WarningDialogFragment.getInstance();
                 e.setArguments(args);
                 e.show(getChildFragmentManager(), WarningDialogFragment.TAG_EVENT_DIALOG);
@@ -246,7 +247,8 @@ public class SearchDetailFragment extends Fragment {
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
                 String title = subJsonObject.getString("title");
                 String buyDate = subJsonObject.getString("buy_date");
-                String people = subJsonObject.getString("members");
+//                String people = subJsonObject.getString("members");
+                String people = subJsonObject.getString("post_addr");
                 String price = subJsonObject.getString("per_price");
                 int isAuth = subJsonObject.getInt("isAuth");
                 int postId = subJsonObject.getInt("post_id");

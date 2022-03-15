@@ -65,6 +65,7 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
     String amount, totalPrice, people = "1";
     String mainImg, subImg1, subImg2, subImg3, subImg4, billImg1, billImg2 = null;
     int categoryId;
+    int locationCode = 0;
     boolean isAmount = false;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,6 +83,7 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
         Intent intent = getIntent();
         categoryId = intent.getIntExtra("categoryId", 0);
         userId = intent.getStringExtra("userId");
+        locationCode = intent.getIntExtra("locationCode",0);
         System.out.println("아이디:" + userId);
 
         inputVegetable = (EditText) findViewById(R.id.input_vegetable);
@@ -311,6 +313,7 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                     args.putString("img4", subImg3);
                     args.putString("img5", subImg4);
                     args.putString("userId", userId);
+                    args.putInt("locationCode", locationCode);
                     WritingPopupDialogFragment e = WritingPopupDialogFragment.getInstance();
                     e.setArguments(args);
                     e.show(getSupportFragmentManager(), WritingPopupDialogFragment.TAG_EVENT_DIALOG);

@@ -216,8 +216,10 @@ public class MypageMypostingFragment extends Fragment {
                 String img = subJsonObject.getString("url");
                 String title = subJsonObject.getString("title");
                 String buyDate = subJsonObject.getString("buy_date");
-                int membersInt = subJsonObject.getInt("members");
+/*                int membersInt = subJsonObject.getInt("members");
                 String member = String.valueOf(membersInt) + "명";
+ */
+                String member = subJsonObject.getString("post_addr");
                 String perPrice = subJsonObject.getString("per_price");
                 String writtenBy = subJsonObject.getString("witten_by");
                 int isAuth = subJsonObject.getInt("isAuth");
