@@ -3,7 +3,7 @@ package com.E2I3.chaebunchaebun;
 public class SearchListItem {
     private String title = "";
     private String date = "";
-    private String people = "";
+    private long locationCode = 0;
     private String price = "";
     private int isAuth = 0;
     private int postId = 0;
@@ -11,10 +11,10 @@ public class SearchListItem {
     private String writeDate = "";
     private String content = "";
 
-    public SearchListItem(String title, String date, String people, String price, int isAuth, int postId, int categoryId, String writeDate, String content){
+    public SearchListItem(String title, String date, long locationCode, String price, int isAuth, int postId, int categoryId, String writeDate, String content){
         this.title = title;
         this.date = date;
-        this.people = people;
+        this.locationCode = locationCode;
         this.price = price;
         this.isAuth = isAuth;
         this.postId = postId;
@@ -31,8 +31,8 @@ public class SearchListItem {
         return date;
     }
 
-    public String getPeople() {
-        return people;
+    public long getLocationCode() {
+        return locationCode;
     }
 
     public String getPrice() {
