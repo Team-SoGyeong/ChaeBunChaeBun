@@ -45,6 +45,7 @@ public class CategoryPotatoFragment extends Fragment {
     String id = null;
     String category = "9";
     boolean isMyPage = false;
+    long locationCode = 0;
 
     public CategoryPotatoFragment() {
         // Required empty public constructor
@@ -70,6 +71,10 @@ public class CategoryPotatoFragment extends Fragment {
 
     public void getUserId(String userId){
         this.id = userId;
+    }
+
+    public void getLocationCode(long locationCode) {
+        this.locationCode = locationCode;
     }
 
     @Override

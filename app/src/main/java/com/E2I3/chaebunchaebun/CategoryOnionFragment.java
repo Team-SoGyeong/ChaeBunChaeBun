@@ -46,6 +46,7 @@ public class CategoryOnionFragment extends Fragment{
     String id = null;
     String category = "1";
     boolean isMyPage = false;
+    long locationCode = 0;
 
     public CategoryOnionFragment() {
         // Required empty public constructor
@@ -71,6 +72,10 @@ public class CategoryOnionFragment extends Fragment{
 
     public void getUserId(String userId){
         this.id = userId;
+    }
+
+    public void getLocationCode(long locationCode) {
+        this.locationCode = locationCode;
     }
 
     @Override

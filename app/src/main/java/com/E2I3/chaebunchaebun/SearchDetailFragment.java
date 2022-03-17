@@ -53,7 +53,7 @@ public class SearchDetailFragment extends Fragment {
     ImageView search_back;
     TextView search_no_tv, search_suggest;
     ImageButton search_no_startbtn;
-    int locationcode = 0;
+    long locationCode = 0;
     String userId = null;
 
     public SearchDetailFragment() {
@@ -106,7 +106,7 @@ public class SearchDetailFragment extends Fragment {
 
         searchListItems = new ArrayList<SearchListItem>();
 
-        locationcode = getArguments().getInt("locationCode");
+        locationCode = getArguments().getLong("locationCode");
         userId = getArguments().getString("userId");
 
         //search_suggest.setVisibility(View.GONE);
@@ -128,7 +128,7 @@ public class SearchDetailFragment extends Fragment {
                 String recommend = main_list.get(position);
                 search_text.setText(recommend);
                 search_list.setVisibility(View.GONE);
-                setSearchList(recommend, locationcode);
+                setSearchList(recommend, locationCode);
                 if(searchListItems.isEmpty()){
                     search_no_tv.setVisibility(View.VISIBLE);
                     search_no_startbtn.setVisibility(View.VISIBLE);
@@ -172,7 +172,7 @@ public class SearchDetailFragment extends Fragment {
                 if(keyCode == KeyEvent.KEYCODE_ENTER) {
                     search_list.setVisibility(View.GONE);
                     String searchText = search_text.getText().toString();
-                    setSearchList(searchText, locationcode);
+                    setSearchList(searchText, locationCode);
                     if(searchListItems.isEmpty()){
                         search_no_tv.setVisibility(View.VISIBLE);
                         search_no_startbtn.setVisibility(View.VISIBLE);
@@ -218,7 +218,6 @@ public class SearchDetailFragment extends Fragment {
             public void onClick(View view) {
                 Bundle args = new Bundle();
                 args.putString("userId", userId);
-                args.putInt("locationCode", locationcode);
                 WarningDialogFragment e = WarningDialogFragment.getInstance();
                 e.setArguments(args);
                 e.show(getChildFragmentManager(), WarningDialogFragment.TAG_EVENT_DIALOG);
@@ -236,7 +235,7 @@ public class SearchDetailFragment extends Fragment {
         return searchPost;
     }
 
-    public void setSearchList(String searchText, int locationcode) {
+    public void setSearchList(String searchText, long locationcode) {
         PostTask searchLocationTask = new PostTask();
         searchListItems.clear();
         try {
@@ -247,8 +246,7 @@ public class SearchDetailFragment extends Fragment {
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
                 String title = subJsonObject.getString("title");
                 String buyDate = subJsonObject.getString("buy_date");
-//                String people = subJsonObject.getString("members");
-                String people = subJsonObject.getString("post_addr");
+                long locationCode = subJsonObject.getLong("post_addr");
                 String price = subJsonObject.getString("per_price");
                 int isAuth = subJsonObject.getInt("isAuth");
                 int postId = subJsonObject.getInt("post_id");
@@ -256,7 +254,7 @@ public class SearchDetailFragment extends Fragment {
                 String witten = subJsonObject.getString("witten_by");
                 String content = subJsonObject.getString("contents");
 
-                searchListItems.add(new SearchListItem(title, buyDate, people, price, isAuth, postId, categoryId, witten, content));
+                searchListItems.add(new SearchListItem(title, buyDate, locationCode, price, isAuth, postId, categoryId, witten, content));
             }
         } catch(JSONException e){
             e.printStackTrace();

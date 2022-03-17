@@ -68,7 +68,7 @@ public class HomeFragment extends Fragment {
     String[] address = {"",};
     String userId = null;
     String nickname = "";
-    int locationCode = 0;
+    long locationCode = 0;
     int isNew = 0;
 
     public HomeFragment() {
@@ -195,6 +195,7 @@ public class HomeFragment extends Fragment {
                 Bundle categoryBundle = new Bundle();
                 categoryBundle.putInt("vegetable", 0);
                 categoryBundle.putString("userId", userId);
+                categoryBundle.putLong("locationCode", locationCode);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
@@ -212,6 +213,7 @@ public class HomeFragment extends Fragment {
                 Bundle categoryBundle = new Bundle();
                 categoryBundle.putInt("vegetable", 1);
                 categoryBundle.putString("userId", userId);
+                categoryBundle.putLong("locationCode", locationCode);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
@@ -229,6 +231,7 @@ public class HomeFragment extends Fragment {
                 Bundle categoryBundle = new Bundle();
                 categoryBundle.putInt("vegetable", 2);
                 categoryBundle.putString("userId", userId);
+                categoryBundle.putLong("locationCode", locationCode);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
@@ -246,6 +249,7 @@ public class HomeFragment extends Fragment {
                 Bundle categoryBundle = new Bundle();
                 categoryBundle.putInt("vegetable", 3);
                 categoryBundle.putString("userId", userId);
+                categoryBundle.putLong("locationCode", locationCode);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
@@ -263,6 +267,7 @@ public class HomeFragment extends Fragment {
                 Bundle categoryBundle = new Bundle();
                 categoryBundle.putInt("vegetable", 4);
                 categoryBundle.putString("userId", userId);
+                categoryBundle.putLong("locationCode", locationCode);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
@@ -280,6 +285,7 @@ public class HomeFragment extends Fragment {
                 Bundle categoryBundle = new Bundle();
                 categoryBundle.putInt("vegetable", 5);
                 categoryBundle.putString("userId", userId);
+                categoryBundle.putLong("locationCode", locationCode);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
@@ -297,6 +303,7 @@ public class HomeFragment extends Fragment {
                 Bundle categoryBundle = new Bundle();
                 categoryBundle.putInt("vegetable", 6);
                 categoryBundle.putString("userId", userId);
+                categoryBundle.putLong("locationCode", locationCode);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
@@ -314,6 +321,7 @@ public class HomeFragment extends Fragment {
                 Bundle categoryBundle = new Bundle();
                 categoryBundle.putInt("vegetable", 7);
                 categoryBundle.putString("userId", userId);
+                categoryBundle.putLong("locationCode", locationCode);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
@@ -331,6 +339,7 @@ public class HomeFragment extends Fragment {
                 Bundle categoryBundle = new Bundle();
                 categoryBundle.putInt("vegetable", 8);
                 categoryBundle.putString("userId", userId);
+                categoryBundle.putLong("locationCode", locationCode);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
@@ -348,6 +357,7 @@ public class HomeFragment extends Fragment {
                 Bundle categoryBundle = new Bundle();
                 categoryBundle.putInt("vegetable", 9);
                 categoryBundle.putString("userId", userId);
+                categoryBundle.putLong("locationCode", locationCode);
                 FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 categoryTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 
