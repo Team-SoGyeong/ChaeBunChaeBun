@@ -49,13 +49,20 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/roboto_regular"
                 android:maxWidth="300dp"/>
-            <!--<ImageButton
-                android:id="@+id/comment_modalbtn"
-                android:layout_width="25dp"
-                android:layout_height="wrap_content"
-                android:scaleType="fitCenter"
-                android:background="@color/white"
-                android:src="@drawable/fix_delete_btn"/>-->
         </LinearLayout>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <ImageButton
+            android:id="@+id/comment_modal_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingBottom="15dp"
+            android:paddingRight="15dp"
+            android:scaleType="fitCenter"
+            android:background="@color/white"
+            android:src="@drawable/article_btn_commentmodal"/>
     </LinearLayout>
 </LinearLayout>

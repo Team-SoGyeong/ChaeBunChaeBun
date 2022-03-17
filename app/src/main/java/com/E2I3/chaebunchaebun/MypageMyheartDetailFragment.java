@@ -45,8 +45,8 @@ public class MypageMyheartDetailFragment extends Fragment {
     private String mParam2;
 
     private RecyclerView mypageHeartList;
-    private ArrayList<HomeListItem> homeListItems;
-    private HomeListAdapter homeListAdapter;
+    private ArrayList<LikeListItem> likeListItems;
+    private LikeListAdapter likeListAdapter;
     private LinearLayoutManager hLayoutManager;
 
     private TextView toastText;
@@ -99,7 +99,7 @@ public class MypageMyheartDetailFragment extends Fragment {
         }
 
         userId = getArguments().getString("userId");
-        homeListItems = new ArrayList<HomeListItem>();
+        likeListItems = new ArrayList<LikeListItem>();
         getMyHeartList(state);
     }
 
@@ -149,7 +149,7 @@ public class MypageMyheartDetailFragment extends Fragment {
             }
         });*/
 
-        if(homeListItems.isEmpty()) {
+        if(likeListItems.isEmpty()) {
             mypageHeartNolist.setVisibility(View.VISIBLE);
             mypageHeartList.setVisibility(View.GONE);
         } else {
@@ -158,18 +158,18 @@ public class MypageMyheartDetailFragment extends Fragment {
 
             hLayoutManager = new LinearLayoutManager(getContext());
             mypageHeartList.setLayoutManager(hLayoutManager);
-            MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(1);
+            MainRecyclerDecoration mainRecyclerDecoration = new MainRecyclerDecoration(40);
             mypageHeartList.addItemDecoration(mainRecyclerDecoration);
-            homeListAdapter = new HomeListAdapter(homeListItems);
-            homeListAdapter.setOnItemClickListener(new HomeListAdapter.OnItemClickListener() {
+            likeListAdapter = new LikeListAdapter(likeListItems);
+            likeListAdapter.setOnItemClickListener(new LikeListAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(View view, int pos) {
                     if(state.equals("1")){
                         toastText.setText("완료된 채분은 접근할 수 없어요!");
                         toast.show();
                     } else {
-                        String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
-                        int categoryId = homeListAdapter.getItem(pos).getCategoryId();
+                        String postId = String.valueOf(likeListAdapter.getItem(pos).getPostId());
+                        int categoryId = likeListAdapter.getItem(pos).getCategoryId();
                         isMyPage = true;
                         Bundle articleBundle = new Bundle();
                         articleBundle.putString("userId", userId);
@@ -188,7 +188,8 @@ public class MypageMyheartDetailFragment extends Fragment {
                     }
                 }
             });
-            homeListAdapter.setModalClickListener(new HomeListAdapter.OnModalClickListener() {
+
+            /*likeListAdapter.setModalClickListener(new HomeListAdapter.OnModalClickListener() {
                 @Override
                 public void OnModlaClick(View view, int pos) {
                     String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
@@ -205,8 +206,8 @@ public class MypageMyheartDetailFragment extends Fragment {
                         bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
                     }
                 }
-            });
-            mypageHeartList.setAdapter(homeListAdapter);
+            });*/
+            mypageHeartList.setAdapter(likeListAdapter);
         }
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -221,7 +222,7 @@ public class MypageMyheartDetailFragment extends Fragment {
     }
 
     public void getMyHeartList(String state) {
-        homeListItems.clear();
+        likeListItems.clear();
         String resultText = "[NULL]";
 
         try {
@@ -251,7 +252,7 @@ public class MypageMyheartDetailFragment extends Fragment {
                 int isAuth = subJsonObject.getInt("isAuth");
                 String content = subJsonObject.getString("contents");
 
-                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId, categoryId, content));
+                likeListItems.add(new LikeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId, categoryId, content));
             }
         } catch (JSONException e) {
             e.printStackTrace();

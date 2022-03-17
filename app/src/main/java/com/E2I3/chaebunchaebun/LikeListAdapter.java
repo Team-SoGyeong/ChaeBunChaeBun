@@ -22,6 +22,10 @@ public class LikeListAdapter extends RecyclerView.Adapter<LikeListAdapter.ViewHo
 
     private LikeListAdapter.OnItemClickListener mListener = null;
 
+    public LikeListAdapter(ArrayList<LikeListItem> likeContent) {
+        this.likeListItems = likeContent;
+    }
+
     public interface OnItemClickListener {
         void onItemClick(View view, int pos);
     }
@@ -64,11 +68,6 @@ public class LikeListAdapter extends RecyclerView.Adapter<LikeListAdapter.ViewHo
         }
     }
 
-    @Override
-    public int getItemCount() {
-        return 0;
-    }
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView like_list_img;
         TextView like_list_title;
@@ -107,5 +106,18 @@ public class LikeListAdapter extends RecyclerView.Adapter<LikeListAdapter.ViewHo
                 }
             });
         }
+    }
+
+    public long getItemId(int i) {
+        return i;
+    }
+
+    @Override
+    public int getItemCount() {
+        return likeListItems.size();
+    }
+
+    public LikeListItem getItem(int position){
+        return likeListItems.get(position);
     }
 }
