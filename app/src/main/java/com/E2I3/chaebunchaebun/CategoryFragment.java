@@ -40,6 +40,7 @@ public class CategoryFragment extends Fragment{
     TextView category_name;
 
     String userId;
+    long locationCode;
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -84,8 +85,9 @@ public class CategoryFragment extends Fragment{
 
         contenthelp.setVisibility(View.GONE);
         userId = getArguments().getString("userId");
+        locationCode = getArguments().getLong("locationCode");
 
-        CategoryVPAdapter categoryVPAdapter = new CategoryVPAdapter(getChildFragmentManager(), userId);
+        CategoryVPAdapter categoryVPAdapter = new CategoryVPAdapter(getChildFragmentManager(), userId, locationCode);
         categoryvp.setAdapter(categoryVPAdapter);
 
         categoryTabLayout = category.findViewById(R.id.tab_category);

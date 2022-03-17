@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 public class SearchActivity extends AppCompatActivity {
-    int locationcode = 0;
+    long locationCode = 0;
     String userId;
 
     @Override
@@ -16,11 +16,11 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.search_page);
 
         Intent intent = getIntent();
-        locationcode = intent.getIntExtra("locationCode", 0);
+        locationCode = intent.getLongExtra("locationCode", 0);
         userId = intent.getStringExtra("userId");
 
         Bundle myPostDetailBundle = new Bundle();
-        myPostDetailBundle.putInt("locationCode", locationcode);
+        myPostDetailBundle.putLong("locationCode", locationCode);
         myPostDetailBundle.putString("userId", userId);
         FragmentTransaction searchPostTransaction = getSupportFragmentManager().beginTransaction();
         SearchDetailFragment searchDetailFragment = new SearchDetailFragment();

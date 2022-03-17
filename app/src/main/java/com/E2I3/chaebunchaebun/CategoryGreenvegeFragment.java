@@ -45,6 +45,7 @@ public class CategoryGreenvegeFragment extends Fragment {
     String id = null;
     String category = "6";
     boolean isMyPage = false;
+    long locationCode = 0;
 
     public CategoryGreenvegeFragment() {
         // Required empty public constructor
@@ -70,6 +71,10 @@ public class CategoryGreenvegeFragment extends Fragment {
 
     public void getUserId(String userId){
         this.id = userId;
+    }
+
+    public void getLocationCode(long locationCode) {
+        this.locationCode = locationCode;
     }
 
     @Override

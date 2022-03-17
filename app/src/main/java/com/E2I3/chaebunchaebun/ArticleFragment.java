@@ -75,9 +75,10 @@ public class ArticleFragment extends Fragment {
     int categoryId = 0;
     boolean isMypage, isMyposting, isMyComment, isMyHeart = false;
     boolean calculateContent = false;
-    String categoryNameString, title, nickname, content, buyDate, members,
-            perPrice, writtenBy, profile, amount, totalPrice, contact, amountUnit, totalPriceNum;
+    String categoryNameString, title, nickname, content, buyDate, perPrice, writtenBy,
+            profile, amount, totalPrice, contact, amountUnit, totalPriceNum;
     int isAuth, wishcount, userIdnum, status, isMyWish = 0, amountNum;
+    long locationCode = 0;
 
     public ArticleFragment() {
         // Required empty public constructor
@@ -584,7 +585,7 @@ public class ArticleFragment extends Fragment {
                     this.nickname = subJsonObject2.getString("nickname");
                     this.content = subJsonObject2.getString("contents");
                     this.buyDate = subJsonObject2.getString("buy_date");
-                    this.members = subJsonObject2.getString("headcounts");
+                    this.locationCode = subJsonObject2.getLong("post_addr");
                     this.amount = subJsonObject2.getString("amount");
                     this.amountNum = subJsonObject2.getInt("amount_num");
                     this.amountUnit = subJsonObject2.getString("amount_type");
