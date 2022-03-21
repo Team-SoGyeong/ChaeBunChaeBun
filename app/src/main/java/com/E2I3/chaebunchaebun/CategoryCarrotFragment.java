@@ -45,7 +45,9 @@ public class CategoryCarrotFragment extends Fragment {
     String id = null;
     String category = "4";
     boolean isMyPage = false;
-    long locationCode = 0;
+    int locationCode = 0;
+
+//    int lc = 0;
 
     public CategoryCarrotFragment() {
         // Required empty public constructor
@@ -72,8 +74,9 @@ public class CategoryCarrotFragment extends Fragment {
     public void getUserId(String userId){
         this.id = userId;
     }
+//    public void getLocationCode(int locationCode){ this.lc = locationCode;}
 
-    public void getLocationCode(long locationCode) {
+    public void getLocationCode(int locationCode) {
         this.locationCode = locationCode;
     }
 
@@ -191,6 +194,7 @@ public class CategoryCarrotFragment extends Fragment {
             public void onClick(View v) {
                 Bundle args = new Bundle();
                 args.putString("userId", id);
+                args.putInt("locationCode", locationCode);
                 WarningDialogFragment e = WarningDialogFragment.getInstance();
                 e.setArguments(args);
                 e.show(getChildFragmentManager(), WarningDialogFragment.TAG_EVENT_DIALOG);
