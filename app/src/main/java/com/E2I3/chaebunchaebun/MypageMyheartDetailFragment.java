@@ -169,7 +169,6 @@ public class MypageMyheartDetailFragment extends Fragment {
                     } else {
                         String postId = String.valueOf(likeListAdapter.getItem(pos).getPostId());
                         int categoryId = likeListAdapter.getItem(pos).getCategoryId();
-                        isMyPage = true;
                         Bundle articleBundle = new Bundle();
                         articleBundle.putString("userId", userId);
                         articleBundle.putString("postId", postId);
