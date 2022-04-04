@@ -244,6 +244,7 @@ public class MypageMyheartDetailFragment extends Fragment {
                 String buyDate = subJsonObject.getString("buy_date");
                 int membersInt = 0;
                 String member = String.valueOf(membersInt) + "명";
+                String member = subJsonObject.getString("post_addr");
                 String perPrice = subJsonObject.getString("per_price");
                 String writtenBy = subJsonObject.getString("written_by");
                 int isAuth = subJsonObject.getInt("isAuth");

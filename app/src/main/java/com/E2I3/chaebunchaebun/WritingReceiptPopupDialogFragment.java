@@ -42,7 +42,7 @@ public class WritingReceiptPopupDialogFragment extends DialogFragment {
                 intent.putExtra("userId", userId);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                getActivity().overridePendingTransition(0, 0);
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);;
             }
         });
 

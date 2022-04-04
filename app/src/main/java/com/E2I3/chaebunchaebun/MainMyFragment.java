@@ -177,14 +177,18 @@ public class MainMyFragment extends Fragment {
                 String img = subJsonObject.getString("url");
                 String title = subJsonObject.getString("title");
                 String buyDate = subJsonObject.getString("buy_date");
-                int member = subJsonObject.getInt("members");
-                String members = String.valueOf(member) + "명";
+/*                int member = subJsonObject.getInt("members");
+                String members = String.valueOf(member) + "명";*/
+                String member = subJsonObject.getString("post_addr");
                 String perPrice = subJsonObject.getString("per_price");
                 String writtenBy = subJsonObject.getString("witten_by");
                 int isAuth = subJsonObject.getInt("isAuth");
                 String content = subJsonObject.getString("contents");
 
-                homeListItems.add(new HomeListItem(img, title, buyDate, members, perPrice, writtenBy, isAuth, postId, userId, categoryId, content));
+//                homeListItems.add(new HomeListItem(img, title, buyDate, members, perPrice, writtenBy, isAuth, postId, userId, categoryId, content));
+
+                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId, categoryId, content));
+
             }
         } catch (JSONException e) {
             e.printStackTrace();

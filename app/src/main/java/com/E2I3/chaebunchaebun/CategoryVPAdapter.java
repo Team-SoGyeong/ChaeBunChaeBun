@@ -11,7 +11,7 @@ public class CategoryVPAdapter extends FragmentPagerAdapter {
     private ArrayList<Fragment> categorys;
     private ArrayList<String> categoryTabText = new ArrayList<String>();
 
-    public CategoryVPAdapter(FragmentManager fm, String userId, Long locationCode) {
+    public CategoryVPAdapter(FragmentManager fm, String userId, int locationCode) {
         super(fm);
         categorys = new ArrayList<Fragment>();
 

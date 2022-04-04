@@ -230,14 +230,16 @@ public class MypageMyCommentFragment extends Fragment {
                 String img = subJsonObject.getString("url");
                 String title = subJsonObject.getString("title");
                 String buyDate = subJsonObject.getString("buy_date");
-                int membersInt = subJsonObject.getInt("members");
-                String member = String.valueOf(membersInt) + "명";
+/*                int membersInt = subJsonObject.getInt("members");
+                String member = String.valueOf(membersInt) + "명";*/
+                String member = subJsonObject.getString("post_addr");
                 String perPrice = subJsonObject.getString("per_price");
                 String writtenBy = subJsonObject.getString("written_by");
                 int isAuth = subJsonObject.getInt("isAuth");
                 String content = subJsonObject.getString("contents");
 
                 System.out.println("마이페이지 댓글 탭 userID: "+userId);
+//                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId, categoryId, content));
                 homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId, categoryId, content));
             }
         } catch (JSONException e) {
