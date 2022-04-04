@@ -43,7 +43,7 @@ public class MainMyFragment extends Fragment {
     TextView mainMytext;
     String locationCode = "";
     String userId = "1";
-    boolean isMyPage = false;
+    boolean isBottom = true;
 
     public MainMyFragment() {
         // Required empty public constructor
@@ -125,7 +125,7 @@ public class MainMyFragment extends Fragment {
                     articleBundle.putString("userId", userId);
                     articleBundle.putString("postId", postId);
                     articleBundle.putInt("categoryId", categoryId);
-                    articleBundle.putBoolean("isMyPage", isMyPage);
+                    articleBundle.putBoolean("isBottom", isBottom);
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     articleTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 

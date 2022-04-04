@@ -32,10 +32,10 @@ import java.util.concurrent.ExecutionException;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ArticleFragment#newInstance} factory method to
+ * Use the {@link ArticleEtcFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ArticleFragment extends Fragment {
+public class ArticleEtcFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,7 +59,7 @@ public class ArticleFragment extends Fragment {
     private CommentRecyclerAdapter commentRecyclerAdapter;
     private LinearLayoutManager cLayoutManager;
 
-    View articleView;
+    View articleEtcView;
     ImageView articleBack, articleRecipt, articleComplete, articleProfile, articleModalbtn, articleLikebtn;
     TextView categoryName, articleWishcnt, articleTitle, articleNickname, articleWritingDate,
             articleBuyingDate, articleTotal, articlePeople, articlePrice, articleContent, articleContact,
@@ -73,14 +73,14 @@ public class ArticleFragment extends Fragment {
     String postId = "";
     String userId = "";
     int categoryId = 0;
-    boolean isBottom = false;
+    boolean isMyPage = false;
     boolean calculateContent = false;
     String categoryNameString, title, nickname, content, buyDate, perPrice, writtenBy,
             profile, amount, totalPrice, contact, amountUnit, totalPriceNum;
     int isAuth, wishcount, userIdnum, status, isMyWish = 0, amountNum;
     long locationCode = 0;
 
-    public ArticleFragment() {
+    public ArticleEtcFragment() {
         // Required empty public constructor
     }
 
@@ -90,11 +90,11 @@ public class ArticleFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ArticleFragment.
+     * @return A new instance of fragment ArticleEtcFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ArticleFragment newInstance(String param1, String param2) {
-        ArticleFragment fragment = new ArticleFragment();
+    public static ArticleEtcFragment newInstance(String param1, String param2) {
+        ArticleEtcFragment fragment = new ArticleEtcFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -108,60 +108,60 @@ public class ArticleFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
-            this.postId = getArguments().getString("postId");
-            this.userId = getArguments().getString("userId");
-            this.categoryId = getArguments().getInt("categoryId");
-            this.isBottom = getArguments().getBoolean("isBottom");
-
-            getPostList();
-            getCommentList();
         }
+
+        this.postId = getArguments().getString("postId");
+        this.userId = getArguments().getString("userId");
+        this.categoryId = getArguments().getInt("categoryId");
+        this.isMyPage = getArguments().getBoolean("isMyPage");
+
+        getPostList();
+        getCommentList();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        articleView = inflater.inflate(R.layout.fragment_article, container, false);
+        articleEtcView = inflater.inflate(R.layout.fragment_article_etc, container, false);
 
-        View customToast = inflater.inflate(R.layout.custom_report_toast, (ViewGroup) articleView.findViewById(R.id.custom_toast_layout));
+        View customToast = inflater.inflate(R.layout.custom_report_toast, (ViewGroup) articleEtcView.findViewById(R.id.custom_toast_layout));
 
-        articleAll = (LinearLayout) articleView.findViewById(R.id.article_all);
-        categoryName = (TextView) articleView.findViewById(R.id.article_category_name);
-        articleWishcnt = (TextView) articleView.findViewById(R.id.article_wishcount);
-        articleLikebtn = (ImageView) articleView.findViewById(R.id.article_wishicon);
-        articleTitle = (TextView) articleView.findViewById(R.id.article_title);
-        articleNickname = (TextView) articleView.findViewById(R.id.article_nickname);
-        articleWritingDate = (TextView) articleView.findViewById(R.id.article_writing_date);
-        articleBuyingDate = (TextView) articleView.findViewById(R.id.article_buying_date);
-        articleTotal = (TextView) articleView.findViewById(R.id.article_total);
-        //articlePeople = (TextView) articleView.findViewById(R.id.article_people);
-        articlePrice = (TextView) articleView.findViewById(R.id.article_price);
-        articleContent = (TextView) articleView.findViewById(R.id.article_content);
-        articleContact = (TextView) articleView.findViewById(R.id.article_contact);
-        articleRecipt = (ImageView) articleView.findViewById(R.id.article_receipt);
-        articleProfile = (ImageView) articleView.findViewById(R.id.article_proile_img);
+        articleAll = (LinearLayout) articleEtcView.findViewById(R.id.article_etc_all);
+        categoryName = (TextView) articleEtcView.findViewById(R.id.article_etc_category_name);
+        articleWishcnt = (TextView) articleEtcView.findViewById(R.id.article_etc_wishcount);
+        articleLikebtn = (ImageView) articleEtcView.findViewById(R.id.article_etc_wishicon);
+        articleTitle = (TextView) articleEtcView.findViewById(R.id.article_etc_title);
+        articleNickname = (TextView) articleEtcView.findViewById(R.id.article_etc_nickname);
+        articleWritingDate = (TextView) articleEtcView.findViewById(R.id.article_etc_writing_date);
+        articleBuyingDate = (TextView) articleEtcView.findViewById(R.id.article_etc_buying_date);
+        articleTotal = (TextView) articleEtcView.findViewById(R.id.article_etc_total);
+        //articlePeople = (TextView) articleEtcView.findViewById(R.id.article_people);
+        articlePrice = (TextView) articleEtcView.findViewById(R.id.article_etc_price);
+        articleContent = (TextView) articleEtcView.findViewById(R.id.article_etc_content);
+        articleContact = (TextView) articleEtcView.findViewById(R.id.article_etc_contact);
+        articleRecipt = (ImageView) articleEtcView.findViewById(R.id.article_etc_receipt);
+        articleProfile = (ImageView) articleEtcView.findViewById(R.id.article_etc_proile_img);
 
-        articleCalculateBtn = (ImageButton) articleView.findViewById(R.id.article_calculate);
-        articleCalculateContent= (RelativeLayout) articleView.findViewById(R.id.article_calculate_content);
-        articleAmount = (EditText) articleView.findViewById(R.id.article_amount);
-        articleTotalPrice = (EditText) articleView.findViewById(R.id.article_getPrice);
-        articlePer = (EditText) articleView.findViewById(R.id.article_per);
-        articleAmountUnit = (TextView) articleView.findViewById(R.id.article_amount_unit);
-        articleAmountPerUnit = (TextView) articleView.findViewById(R.id.article_per_unit);
-        articleInputPer = (TextView) articleView.findViewById(R.id.article_input_per_price);
+        articleCalculateBtn = (ImageButton) articleEtcView.findViewById(R.id.article_etc_calculate);
+        articleCalculateContent= (RelativeLayout) articleEtcView.findViewById(R.id.article_calculate_content);
+        articleAmount = (EditText) articleEtcView.findViewById(R.id.article_amount);
+        articleTotalPrice = (EditText) articleEtcView.findViewById(R.id.article_getPrice);
+        articlePer = (EditText) articleEtcView.findViewById(R.id.article_per);
+        articleAmountUnit = (TextView) articleEtcView.findViewById(R.id.article_amount_unit);
+        articleAmountPerUnit = (TextView) articleEtcView.findViewById(R.id.article_per_unit);
+        articleInputPer = (TextView) articleEtcView.findViewById(R.id.article_input_per_price);
 
-        aRecyclerView = (RecyclerView) articleView.findViewById(R.id.article_recycler_img);
-        cRecyclerView = (RecyclerView) articleView.findViewById(R.id.article_comment_list);
+        aRecyclerView = (RecyclerView) articleEtcView.findViewById(R.id.article_etc_recycler_img);
+        cRecyclerView = (RecyclerView) articleEtcView.findViewById(R.id.article_comment_list);
 
-        articleComment = (EditText) articleView.findViewById(R.id.article_comment);
-        articleCommentbtn = (ImageButton) articleView.findViewById(R.id.article_comment_btn);
-        articleBack = (ImageView) articleView.findViewById(R.id.article_back);
-        articleComplete = (ImageView) articleView.findViewById(R.id.ic_complete);
-        articleReciptHelp = (LinearLayout) articleView.findViewById(R.id.article_receipt_help);
+        articleComment = (EditText) articleEtcView.findViewById(R.id.article_etc_comment);
+        articleCommentbtn = (ImageButton) articleEtcView.findViewById(R.id.article_etc_comment_btn);
+        articleBack = (ImageView) articleEtcView.findViewById(R.id.article_etc_back);
+        articleComplete = (ImageView) articleEtcView.findViewById(R.id.ic_etc_complete);
+        articleReciptHelp = (LinearLayout) articleEtcView.findViewById(R.id.article_etc_receipt_help);
         articleReciptHelp.setVisibility(View.GONE);
-        articleModalbtn = (ImageView) articleView.findViewById(R.id.article_modalbtn);
+        articleModalbtn = (ImageView) articleEtcView.findViewById(R.id.article_etc_modalbtn);
 
         toastText = (TextView) customToast.findViewById(R.id.custom_toast_text);
         toast = new Toast(getContext());
@@ -395,7 +395,7 @@ public class ArticleFragment extends Fragment {
                 System.out.println("뒤로가기 애니메이션");
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 getActivity().overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
-                fragmentManager.beginTransaction().remove(ArticleFragment.this).commit();
+                fragmentManager.beginTransaction().remove(ArticleEtcFragment.this).commit();
                 fragmentManager.popBackStack();
             }
         });
@@ -460,22 +460,24 @@ public class ArticleFragment extends Fragment {
                         articleBundle.putString("userId", userId);
                         articleBundle.putString("postId", postId);
 
-                        if(isBottom == true) {
+                        if(isMyPage == true) {
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             fragmentManager.popBackStack();
                             FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                            ArticleFragment articleFragment = new ArticleFragment();
-                            articleFragment.setArguments(articleBundle);
-                            articleTransaction.replace(R.id.bottom_frame, articleFragment);
+
+                            ArticleEtcFragment articleEtcFragment = new ArticleEtcFragment();
+                            articleEtcFragment.setArguments(articleBundle);
+                            articleTransaction.replace(R.id.mypage_posting_frame, articleEtcFragment);
                             articleTransaction.addToBackStack(null);
                             articleTransaction.commit();
                         } else {
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             fragmentManager.popBackStack();
                             FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                            ArticleFragment articleFragment = new ArticleFragment();
-                            articleFragment.setArguments(articleBundle);
-                            articleTransaction.replace(R.id.search_frame, articleFragment);
+
+                            ArticleEtcFragment articleEtcFragment = new ArticleEtcFragment();
+                            articleEtcFragment.setArguments(articleBundle);
+                            articleTransaction.replace(R.id.mypage_myheart_frame, articleEtcFragment);
                             articleTransaction.addToBackStack(null);
                             articleTransaction.commit();
                         }
@@ -486,7 +488,7 @@ public class ArticleFragment extends Fragment {
             }
         });
 
-        return articleView;
+        return articleEtcView;
     }
 
     public void getCommentList() {

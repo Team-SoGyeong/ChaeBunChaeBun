@@ -52,6 +52,7 @@ public class HomeNoticeFragment extends Fragment {
     String userId = "";
     String caseBy = "";
     int noticeId = 0;
+    boolean isBottom = true;
 
     public HomeNoticeFragment() {
         // Required empty public constructor
@@ -151,7 +152,7 @@ public class HomeNoticeFragment extends Fragment {
                             articleBundle.putString("userId", userId);
                             articleBundle.putString("postId", postId);
                             articleBundle.putInt("categoryId", categoryId);
-                            articleBundle.putBoolean("isMyPage", false);
+                            articleBundle.putBoolean("isBottom", isBottom);
                             FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                             ArticleFragment articleFragment = new ArticleFragment();
                             articleFragment.setArguments(articleBundle);
