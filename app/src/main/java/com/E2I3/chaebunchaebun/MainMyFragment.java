@@ -183,7 +183,10 @@ public class MainMyFragment extends Fragment {
                 int isAuth = subJsonObject.getInt("isAuth");
                 String content = subJsonObject.getString("contents");
 
+//                homeListItems.add(new HomeListItem(img, title, buyDate, members, perPrice, writtenBy, isAuth, postId, userId, categoryId, content));
+
                 homeListItems.add(new HomeListItem(img, title, buyDate, members, perPrice, writtenBy, isAuth, postId, userId, categoryId, content));
+
             }
         } catch (JSONException e) {
             e.printStackTrace();

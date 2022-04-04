@@ -53,7 +53,7 @@ public class SearchDetailFragment extends Fragment {
     ImageView search_back;
     TextView search_no_tv, search_suggest;
     ImageButton search_no_startbtn;
-    long locationCode = 0;
+    int locationCode = 0;
     String userId = null;
     boolean isBottom = false;
 
@@ -107,7 +107,7 @@ public class SearchDetailFragment extends Fragment {
 
         searchListItems = new ArrayList<SearchListItem>();
 
-        locationCode = getArguments().getLong("locationCode");
+        locationCode = getArguments().getInt("locationCode");
         userId = getArguments().getString("userId");
 
         //search_suggest.setVisibility(View.GONE);
@@ -220,6 +220,7 @@ public class SearchDetailFragment extends Fragment {
             public void onClick(View view) {
                 Bundle args = new Bundle();
                 args.putString("userId", userId);
+                args.putInt("locationCode", locationCode);
                 WarningDialogFragment e = WarningDialogFragment.getInstance();
                 e.setArguments(args);
                 e.show(getChildFragmentManager(), WarningDialogFragment.TAG_EVENT_DIALOG);
