@@ -55,7 +55,8 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
     HorizontalScrollView picture_view, bill_view;
     LinearLayout mainImgFrame, subImgFrame1, subImgFrame2, subImgFrame3, subImgFrame4, billImgFrame1, billImgFrame2;
     ImageButton add_picture, add_receipt;
-    ImageView back, writing, btn_back, etcMainImg, etcSubImg1, etcSubImg2, etcSubImg3, etcSubImg4, writingBillImg1, writingBillImg2;
+    ImageView back, writing, btn_back, etcMainImg, etcSubImg1, etcSubImg2, etcSubImg3, etcSubImg4, writingBillImg1, writingBillImg2, mainImgDelete, subImg1Delete, subImg2Delete,
+            subImg3Delete, subImg4Delete, billImg1Delete, billImg2Delete;
     TextView inputContentCount;
     EditText inputVegetable, inputTitle, inputContent, inputAmount, inputGetPrice, inputCall;
     Spinner date_spinner, amount_spinner;
@@ -64,6 +65,8 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
     String str, amount_str, userId = null;
     String amount, totalPrice, people = "1";
     String mainImg, subImg1, subImg2, subImg3, subImg4, billImg1, billImg2 = null;
+    Uri selectedMainImage, selectedSub1Image, selectedSub2Image, selectedSub3Image, selectedSub4Image, selectedBill1Image, selectedBill2Image;
+
     int categoryId;
     int locationCode = 0;
     boolean isAmount = false;
@@ -175,6 +178,216 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //사진 삭제 버튼
+        mainImgDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pictureId--;
+                switch(pictureId){
+                    case 0:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture);
+                        selectedMainImage = null;
+                        mainImgFrame.setVisibility(View.GONE);
+                        mainImgDelete.setVisibility(View.GONE);
+                        break;
+                    case 1:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture1);
+                        selectedMainImage = selectedSub1Image;
+                        selectedSub1Image = null;
+                        etcMainImg.setImageURI(selectedMainImage);
+                        subImgFrame1.setVisibility(View.GONE);
+                        subImg1Delete.setVisibility(View.GONE);
+                        break;
+                    case 2:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture2);
+                        selectedMainImage = selectedSub1Image;
+                        selectedSub1Image = selectedSub2Image;
+                        selectedSub2Image = null;
+                        etcMainImg.setImageURI(selectedMainImage);
+                        etcSubImg1.setImageURI(selectedSub1Image);
+                        subImgFrame2.setVisibility(View.GONE);
+                        subImg2Delete.setVisibility(View.GONE);
+                        break;
+                    case 3:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture3);
+                        selectedMainImage = selectedSub1Image;
+                        selectedSub1Image = selectedSub2Image;
+                        selectedSub2Image = selectedSub3Image;
+                        etcMainImg.setImageURI(selectedMainImage);
+                        etcSubImg1.setImageURI(selectedSub1Image);
+                        etcSubImg2.setImageURI(selectedSub2Image);
+                        selectedSub3Image = null;
+                        subImgFrame3.setVisibility(View.GONE);
+                        subImg3Delete.setVisibility(View.GONE);
+                        break;
+                    case 4:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture4);
+                        selectedMainImage = selectedSub1Image;
+                        selectedSub1Image = selectedSub2Image;
+                        selectedSub2Image = selectedSub3Image;
+                        selectedSub3Image = selectedSub4Image;
+                        selectedSub4Image = null;
+                        etcMainImg.setImageURI(selectedMainImage);
+                        etcSubImg1.setImageURI(selectedSub1Image);
+                        etcSubImg2.setImageURI(selectedSub2Image);
+                        etcSubImg3.setImageURI(selectedSub3Image);
+                        subImgFrame4.setVisibility(View.GONE);
+                        subImg4Delete.setVisibility(View.GONE);
+                        break;
+                }
+            }
+        });
+        subImg1Delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pictureId--;
+                switch(pictureId){
+                    case 1:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture1);
+                        selectedSub1Image = null;
+                        subImgFrame1.setVisibility(View.GONE);
+                        subImg1Delete.setVisibility(View.GONE);
+                        break;
+                    case 2:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture2);
+                        selectedSub1Image = selectedSub2Image;
+                        selectedSub2Image = null;
+                        etcSubImg1.setImageURI(selectedSub1Image);
+                        subImgFrame2.setVisibility(View.GONE);
+                        subImg2Delete.setVisibility(View.GONE);
+                        break;
+                    case 3:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture3);
+                        selectedSub1Image = selectedSub2Image;
+                        selectedSub2Image = selectedSub3Image;
+                        selectedSub3Image = null;
+                        etcSubImg1.setImageURI(selectedSub1Image);
+                        etcSubImg2.setImageURI(selectedSub2Image);
+                        subImgFrame3.setVisibility(View.GONE);
+                        subImg3Delete.setVisibility(View.GONE);
+                        break;
+                    case 4:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture4);
+                        selectedSub1Image = selectedSub2Image;
+                        selectedSub2Image = selectedSub3Image;
+                        selectedSub3Image = selectedSub4Image;
+                        selectedSub4Image = null;
+                        etcSubImg1.setImageURI(selectedSub1Image);
+                        etcSubImg2.setImageURI(selectedSub2Image);
+                        etcSubImg3.setImageURI(selectedSub3Image);
+                        subImgFrame4.setVisibility(View.GONE);
+                        subImg4Delete.setVisibility(View.GONE);
+                        break;
+                }
+            }
+        });
+        subImg2Delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pictureId--;
+                switch(pictureId){
+                    case 2:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture2);
+                        selectedSub2Image = null;
+                        subImgFrame2.setVisibility(View.GONE);
+                        subImg2Delete.setVisibility(View.GONE);
+                        break;
+                    case 3:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture3);
+                        selectedSub2Image = selectedSub3Image;
+                        selectedSub3Image = null;
+                        etcSubImg2.setImageURI(selectedSub2Image);
+                        subImgFrame3.setVisibility(View.GONE);
+                        subImg3Delete.setVisibility(View.GONE);
+                        break;
+                    case 4:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture4);
+                        selectedSub2Image = selectedSub3Image;
+                        selectedSub3Image = selectedSub4Image;
+                        selectedSub4Image = null;
+                        etcSubImg2.setImageURI(selectedSub2Image);
+                        etcSubImg3.setImageURI(selectedSub3Image);
+                        subImgFrame4.setVisibility(View.GONE);
+                        subImg4Delete.setVisibility(View.GONE);
+                        break;
+                }
+            }
+        });
+        subImg3Delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pictureId--;
+                switch(pictureId){
+                    case 3:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture3);
+                        selectedSub3Image = null;
+                        subImgFrame3.setVisibility(View.GONE);
+                        subImg3Delete.setVisibility(View.GONE);
+                        break;
+                    case 4:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture4);
+                        selectedSub3Image = selectedSub4Image;
+                        selectedSub4Image = null;
+                        etcSubImg3.setImageURI(selectedSub3Image);
+                        subImgFrame4.setVisibility(View.GONE);
+                        subImg4Delete.setVisibility(View.GONE);
+                        break;
+                }
+            }
+        });
+        subImg4Delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pictureId--;
+                switch(pictureId){
+                    case 4:
+                        add_picture.setImageResource(R.drawable.writing_btn_picture4);
+                        selectedSub4Image = null;
+                        subImgFrame4.setVisibility(View.GONE);
+                        subImg4Delete.setVisibility(View.GONE);
+                        break;
+                }
+            }
+        });
+
+        billImg1Delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                billId--;
+                switch(billId){
+                    case 0:
+                        add_receipt.setImageResource(R.drawable.writing_btn_receipt);
+                        selectedBill1Image = null;
+                        billImgFrame1.setVisibility(View.GONE);
+                        billImg1Delete.setVisibility(View.GONE);
+                        break;
+                    case 1:
+                        add_receipt.setImageResource(R.drawable.writing_btn_receipt1);
+                        selectedBill1Image = selectedBill2Image;
+                        selectedBill2Image = null;
+                        writingBillImg1.setImageURI(selectedBill1Image);
+                        billImgFrame2.setVisibility(View.GONE);
+                        billImg2Delete.setVisibility(View.GONE);
+                        break;
+                }
+            }
+        });
+        billImg2Delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                billId--;
+                switch(billId){
+                    case 1:
+                        add_receipt.setImageResource(R.drawable.writing_btn_receipt1);
+                        selectedBill2Image = null;
+                        billImgFrame2.setVisibility(View.GONE);
+                        billImg2Delete.setVisibility(View.GONE);
+                        break;
+                }
+            }
+        });
+
         inputContent.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -331,10 +544,16 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+
+    }
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == GET_GALLARY_MAIN_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri selectedMainImage = data.getData();
+            selectedMainImage = data.getData();
             etcMainImg.setImageURI(selectedMainImage);
             mainImg = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
             System.out.println("아이디:" + userId);
@@ -360,10 +579,11 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if(requestCode == GET_GALLARY_SUB1_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
-            Uri selectedMainImage = data.getData();
-            etcSubImg1.setImageURI(selectedMainImage);
-            subImg1 = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
+        }
+        else if(requestCode == GET_GALLARY_SUB1_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+            selectedSub1Image = data.getData();
+            etcSubImg1.setImageURI(selectedSub1Image);
+            subImg1 = createCopyAndReturnRealPath(getApplicationContext(), selectedSub1Image);
             System.out.println("아이디:" + userId);
             System.out.println("이미지 경로: " + mainImg);
             subImgFrame1.setVisibility(View.VISIBLE);
@@ -387,10 +607,11 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if(requestCode == GET_GALLARY_SUB2_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
-            Uri selectedMainImage = data.getData();
-            etcSubImg2.setImageURI(selectedMainImage);
-            subImg2 = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
+        }
+        else if(requestCode == GET_GALLARY_SUB2_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+            selectedSub2Image = data.getData();
+            etcSubImg2.setImageURI(selectedSub2Image);
+            subImg2 = createCopyAndReturnRealPath(getApplicationContext(), selectedSub2Image);
             System.out.println("아이디:" + userId);
             System.out.println("이미지 경로: " + mainImg);
             subImgFrame2.setVisibility(View.VISIBLE);
@@ -414,10 +635,11 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if(requestCode == GET_GALLARY_SUB3_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
-            Uri selectedMainImage = data.getData();
-            etcSubImg3.setImageURI(selectedMainImage);
-            subImg3 = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
+        }
+        else if(requestCode == GET_GALLARY_SUB3_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+            selectedSub3Image = data.getData();
+            etcSubImg3.setImageURI(selectedSub3Image);
+            subImg3 = createCopyAndReturnRealPath(getApplicationContext(), selectedSub3Image);
             System.out.println("아이디:" + userId);
             System.out.println("이미지 경로: " + mainImg);
             subImgFrame3.setVisibility(View.VISIBLE);
@@ -441,10 +663,11 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if(requestCode == GET_GALLARY_SUB4_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
-            Uri selectedMainImage = data.getData();
-            etcSubImg4.setImageURI(selectedMainImage);
-            subImg4 = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
+        }
+        else if(requestCode == GET_GALLARY_SUB4_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+            selectedSub4Image = data.getData();
+            etcSubImg4.setImageURI(selectedSub4Image);
+            subImg4 = createCopyAndReturnRealPath(getApplicationContext(), selectedSub4Image);
             System.out.println("아이디:" + userId);
             System.out.println("이미지 경로: " + mainImg);
             subImgFrame4.setVisibility(View.VISIBLE);
@@ -468,10 +691,11 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if(requestCode == GET_GALLERY_BILL1_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
-            Uri selectedMainImage = data.getData();
-            writingBillImg1.setImageURI(selectedMainImage);
-            billImg1 = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
+        }
+        else if(requestCode == GET_GALLERY_BILL1_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+            selectedBill1Image = data.getData();
+            writingBillImg1.setImageURI(selectedBill1Image);
+            billImg1 = createCopyAndReturnRealPath(getApplicationContext(), selectedBill1Image);
             System.out.println("아이디:" + userId);
             System.out.println("이미지 경로: " + billImg1);
             billImgFrame1.setVisibility(View.VISIBLE);
@@ -495,10 +719,11 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if(requestCode == GET_GALLERY_BILL2_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
-            Uri selectedMainImage = data.getData();
-            writingBillImg2.setImageURI(selectedMainImage);
-            billImg2 = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
+        }
+        else if(requestCode == GET_GALLERY_BILL2_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+            selectedBill2Image = data.getData();
+            writingBillImg2.setImageURI(selectedBill2Image);
+            billImg2 = createCopyAndReturnRealPath(getApplicationContext(), selectedBill2Image);
             System.out.println("아이디:" + userId);
             System.out.println("이미지 경로: " + billImg2);
             billImgFrame2.setVisibility(View.VISIBLE);

@@ -44,7 +44,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:background="@drawable/writing_btn_picture" />
-
+<!--            <include layout="@layout/fragment_writing_picture_frame"/> -->
             <include layout="@layout/writing_chaebun_picture"/>
 
         </LinearLayout>
