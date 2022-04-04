@@ -190,6 +190,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                     case 0:
                         add_picture.setImageResource(R.drawable.writing_btn_picture);
                         selectedMainImage = null;
+                        mainImg = null;
                         mainImgFrame.setVisibility(View.GONE);
                         mainImgDelete.setVisibility(View.GONE);
                         break;
@@ -197,6 +198,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         add_picture.setImageResource(R.drawable.writing_btn_picture1);
                         selectedMainImage = selectedSub1Image;
                         selectedSub1Image = null;
+                        mainImg = subImg1;
+                        subImg1 = null;
                         writingMainImg.setImageURI(selectedMainImage);
                         subImgFrame1.setVisibility(View.GONE);
                         subImg1Delete.setVisibility(View.GONE);
@@ -206,6 +209,9 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         selectedMainImage = selectedSub1Image;
                         selectedSub1Image = selectedSub2Image;
                         selectedSub2Image = null;
+                        mainImg = subImg1;
+                        subImg1 = subImg2;
+                        subImg2 = null;
                         writingMainImg.setImageURI(selectedMainImage);
                         writingSubImg1.setImageURI(selectedSub1Image);
                         subImgFrame2.setVisibility(View.GONE);
@@ -220,6 +226,10 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         writingSubImg1.setImageURI(selectedSub1Image);
                         writingSubImg2.setImageURI(selectedSub2Image);
                         selectedSub3Image = null;
+                        mainImg = subImg1;
+                        subImg1 = subImg2;
+                        subImg2 = subImg3;
+                        subImg3 = null;
                         subImgFrame3.setVisibility(View.GONE);
                         subImg3Delete.setVisibility(View.GONE);
                         break;
@@ -230,6 +240,11 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = selectedSub4Image;
                         selectedSub4Image = null;
+                        mainImg = subImg1;
+                        subImg1 = subImg2;
+                        subImg2 = subImg3;
+                        subImg3 = subImg4;
+                        subImg4 = null;
                         writingMainImg.setImageURI(selectedMainImage);
                         writingSubImg1.setImageURI(selectedSub1Image);
                         writingSubImg2.setImageURI(selectedSub2Image);
@@ -248,6 +263,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                     case 1:
                         add_picture.setImageResource(R.drawable.writing_btn_picture1);
                         selectedSub1Image = null;
+                        subImg1 = null;
                         subImgFrame1.setVisibility(View.GONE);
                         subImg1Delete.setVisibility(View.GONE);
                         break;
@@ -255,6 +271,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         add_picture.setImageResource(R.drawable.writing_btn_picture2);
                         selectedSub1Image = selectedSub2Image;
                         selectedSub2Image = null;
+                        subImg1 = subImg2;
+                        subImg2 = null;
                         writingSubImg1.setImageURI(selectedSub1Image);
                         subImgFrame2.setVisibility(View.GONE);
                         subImg2Delete.setVisibility(View.GONE);
@@ -264,6 +282,9 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         selectedSub1Image = selectedSub2Image;
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = null;
+                        subImg1 = subImg2;
+                        subImg2 = subImg3;
+                        subImg3 = null;
                         writingSubImg1.setImageURI(selectedSub1Image);
                         writingSubImg2.setImageURI(selectedSub2Image);
                         subImgFrame3.setVisibility(View.GONE);
@@ -275,6 +296,10 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = selectedSub4Image;
                         selectedSub4Image = null;
+                        subImg1 = subImg2;
+                        subImg2 = subImg3;
+                        subImg3 = subImg4;
+                        subImg4 = null;
                         writingSubImg1.setImageURI(selectedSub1Image);
                         writingSubImg2.setImageURI(selectedSub2Image);
                         writingSubImg3.setImageURI(selectedSub3Image);
@@ -292,6 +317,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                     case 2:
                         add_picture.setImageResource(R.drawable.writing_btn_picture2);
                         selectedSub2Image = null;
+                        subImg2 = null;
                         subImgFrame2.setVisibility(View.GONE);
                         subImg2Delete.setVisibility(View.GONE);
                         break;
@@ -299,6 +325,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         add_picture.setImageResource(R.drawable.writing_btn_picture3);
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = null;
+                        subImg2 = subImg3;
+                        subImg3 = null;
                         writingSubImg2.setImageURI(selectedSub2Image);
                         subImgFrame3.setVisibility(View.GONE);
                         subImg3Delete.setVisibility(View.GONE);
@@ -308,6 +336,9 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = selectedSub4Image;
                         selectedSub4Image = null;
+                        subImg2 = subImg3;
+                        subImg3 = subImg4;
+                        subImg4 = null;
                         writingSubImg2.setImageURI(selectedSub2Image);
                         writingSubImg3.setImageURI(selectedSub3Image);
                         subImgFrame4.setVisibility(View.GONE);
@@ -324,6 +355,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                     case 3:
                         add_picture.setImageResource(R.drawable.writing_btn_picture3);
                         selectedSub3Image = null;
+                        subImg3 = null;
                         subImgFrame3.setVisibility(View.GONE);
                         subImg3Delete.setVisibility(View.GONE);
                         break;
@@ -331,6 +363,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         add_picture.setImageResource(R.drawable.writing_btn_picture4);
                         selectedSub3Image = selectedSub4Image;
                         selectedSub4Image = null;
+                        subImg3 = subImg4;
+                        subImg4 = null;
                         writingSubImg3.setImageURI(selectedSub3Image);
                         subImgFrame4.setVisibility(View.GONE);
                         subImg4Delete.setVisibility(View.GONE);
@@ -346,6 +380,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                     case 4:
                         add_picture.setImageResource(R.drawable.writing_btn_picture4);
                         selectedSub4Image = null;
+                        subImg4 = null;
                         subImgFrame4.setVisibility(View.GONE);
                         subImg4Delete.setVisibility(View.GONE);
                         break;
@@ -361,6 +396,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                     case 0:
                         add_receipt.setImageResource(R.drawable.writing_btn_receipt);
                         selectedBill1Image = null;
+                        billImg1 = null;
                         billImgFrame1.setVisibility(View.GONE);
                         billImg1Delete.setVisibility(View.GONE);
                         break;
@@ -368,6 +404,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         add_receipt.setImageResource(R.drawable.writing_btn_receipt1);
                         selectedBill1Image = selectedBill2Image;
                         selectedBill2Image = null;
+                        billImg1 = billImg2;
+                        billImg2 = null;
                         writingBillImg1.setImageURI(selectedBill1Image);
                         billImgFrame2.setVisibility(View.GONE);
                         billImg2Delete.setVisibility(View.GONE);
@@ -383,6 +421,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                     case 1:
                         add_receipt.setImageResource(R.drawable.writing_btn_receipt1);
                         selectedBill2Image = null;
+                        billImg2 = null;
                         billImgFrame2.setVisibility(View.GONE);
                         billImg2Delete.setVisibility(View.GONE);
                         break;
