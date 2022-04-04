@@ -48,8 +48,7 @@ public class MypageMypostingFragment extends Fragment {
     String state = "0";
     String platform = "0";
     String userId = null;
-    boolean isMyWish, isMyPage, isMyPosting = true;
-    boolean isMyComment , isMyHeart = false;
+    boolean isMyPage = true;
 
     private TextView toastText;
     private Toast toast;
@@ -145,21 +144,17 @@ public class MypageMypostingFragment extends Fragment {
                             } else {
                                 String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
                                 int categoryId = homeListAdapter.getItem(pos).getCategoryId();
-                                isMyPage = true;
                                 Bundle articleBundle = new Bundle();
                                 articleBundle.putString("userId", userId);
                                 articleBundle.putString("postId", postId);
                                 articleBundle.putInt("categoryId", categoryId);
                                 articleBundle.putBoolean("isMyPage", isMyPage);
-                                articleBundle.putBoolean("isMyPosting", isMyPosting);
-                                articleBundle.putBoolean("isMyComment", isMyComment);
-                                articleBundle.putBoolean("isMyHeart", isMyHeart);
                                 FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                                 articleTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
                                 
-                                ArticleFragment articleFragment = new ArticleFragment();
-                                articleFragment.setArguments(articleBundle);
-                                articleTransaction.replace(R.id.mypage_posting_frame, articleFragment);
+                                ArticleEtcFragment articleEtcFragment = new ArticleEtcFragment();
+                                articleEtcFragment.setArguments(articleBundle);
+                                articleTransaction.replace(R.id.mypage_posting_frame, articleEtcFragment);
                                 articleTransaction.addToBackStack(null);
                                 articleTransaction.commit();
                             }

@@ -55,6 +55,7 @@ public class SearchDetailFragment extends Fragment {
     ImageButton search_no_startbtn;
     long locationCode = 0;
     String userId = null;
+    boolean isBottom = false;
 
     public SearchDetailFragment() {
         // Required empty public constructor
@@ -154,6 +155,7 @@ public class SearchDetailFragment extends Fragment {
                             articleBundle.putString("userId", userId);
                             articleBundle.putString("postId", postId);
                             articleBundle.putInt("categoryId", categoryId);
+                            articleBundle.putBoolean("isBottom", isBottom);
                             FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                             ArticleFragment articleFragment = new ArticleFragment();
                             articleFragment.setArguments(articleBundle);

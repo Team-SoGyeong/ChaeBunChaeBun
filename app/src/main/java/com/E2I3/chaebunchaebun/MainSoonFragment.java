@@ -44,7 +44,7 @@ public class MainSoonFragment extends Fragment {
     TextView mainSoonText;
     String userId = null;
     String locationCode = null;
-    boolean isMyPage = false;
+    boolean isBottom = true;
 
     public MainSoonFragment() {
         // Required empty public constructor
@@ -126,7 +126,7 @@ public class MainSoonFragment extends Fragment {
                     articleBundle.putString("userId", userId);
                     articleBundle.putString("postId", postId);
                     articleBundle.putInt("categoryId", categoryId);
-                    articleBundle.putBoolean("isMyPage", isMyPage);
+                    articleBundle.putBoolean("isBottom", isBottom);
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     articleTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
 

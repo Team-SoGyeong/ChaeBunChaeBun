@@ -44,7 +44,7 @@ public class CategoryCarrotFragment extends Fragment {
     TextView categoryNoList;
     String id = null;
     String category = "4";
-    boolean isMyPage = false;
+    boolean isBottom = true;
     long locationCode = 0;
 
     public CategoryCarrotFragment() {
@@ -117,7 +117,7 @@ public class CategoryCarrotFragment extends Fragment {
                     articleBundle.putString("userId", id);
                     articleBundle.putString("postId", postId);
                     articleBundle.putInt("categoryId", categoryId);
-                    articleBundle.putBoolean("isMyPAge", isMyPage);
+                    articleBundle.putBoolean("isBottom", isBottom);
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     ArticleFragment articleFragment = new ArticleFragment();
                     articleFragment.setArguments(articleBundle);

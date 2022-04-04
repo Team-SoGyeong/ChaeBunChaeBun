@@ -57,8 +57,7 @@ public class MypageMyheartDetailFragment extends Fragment {
     String state = "0";
     String platform = "0";
     String userId = "";
-    boolean isMyWish, isMyPage, isMyHeart = true;
-    boolean isMyComment , isMyPosting = false;
+    boolean isMyPage = false;
 
     ViewPager vp;
     TabLayout tabLayout;
@@ -176,13 +175,11 @@ public class MypageMyheartDetailFragment extends Fragment {
                         articleBundle.putString("postId", postId);
                         articleBundle.putInt("categoryId", categoryId);
                         articleBundle.putBoolean("isMyPage", isMyPage);
-                        articleBundle.putBoolean("isMyPosting", isMyPosting);
-                        articleBundle.putBoolean("isMyComment", isMyComment);
-                        articleBundle.putBoolean("isMyHeart", isMyHeart);
                         FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        ArticleFragment articleFragment = new ArticleFragment();
-                        articleFragment.setArguments(articleBundle);
-                        articleTransaction.replace(R.id.mypage_myheart_frame, articleFragment);
+
+                        ArticleEtcFragment articleEtcFragment = new ArticleEtcFragment();
+                        articleEtcFragment.setArguments(articleBundle);
+                        articleTransaction.replace(R.id.mypage_myheart_frame, articleEtcFragment);
                         articleTransaction.addToBackStack(null);
                         articleTransaction.commit();
                     }
@@ -245,7 +242,7 @@ public class MypageMyheartDetailFragment extends Fragment {
                 String img = subJsonObject.getString("url");
                 String title = subJsonObject.getString("title");
                 String buyDate = subJsonObject.getString("buy_date");
-                int membersInt = subJsonObject.getInt("members");
+                int membersInt = 0;
                 String member = String.valueOf(membersInt) + "명";
                 String perPrice = subJsonObject.getString("per_price");
                 String writtenBy = subJsonObject.getString("written_by");
