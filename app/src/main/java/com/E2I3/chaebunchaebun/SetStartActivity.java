@@ -46,13 +46,13 @@ public class SetStartActivity  extends AppCompatActivity {
                     jsonCommentTransfer.put("login_type", "k");
                     jsonCommentTransfer.put("nickname", nickname);
                     jsonCommentTransfer.put("address_seq", location_seq);
-                    jsonCommentTransfer.put("profile", profile_img);
+                    jsonCommentTransfer.put("set_image", set_profileImage);
                     jsonCommentTransfer.put("email", kakao_email);
                     jsonCommentTransfer.put("kakao_id", kakao_id);
                     jsonCommentTransfer.put("sex", sex);
                     jsonCommentTransfer.put("age_range", age_range);
 
-                    System.out.println("결과: " + nickname + " " + location_seq + " " + kakao_id + " " + profile_img + " " + kakao_email + " " + sex + " " + age_range);
+                    System.out.println("결과: " + nickname + " " + location_seq + " " + kakao_id + " " + set_profileImage + " " + kakao_email + " " + sex + " " + age_range);
                     String jsonString = jsonCommentTransfer.toString();
                     String response = postTask.execute("auth2/signin/kakao", jsonString).get();
 

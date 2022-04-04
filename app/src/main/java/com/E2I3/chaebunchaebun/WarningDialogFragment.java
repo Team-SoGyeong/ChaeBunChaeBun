@@ -17,6 +17,7 @@ public class WarningDialogFragment extends DialogFragment {
     public static final String TAG_EVENT_DIALOG = "dialog_event";
 
     String userId = null;
+    int locationCode = 0;
 
     public WarningDialogFragment() {}
     public static WarningDialogFragment getInstance() {
@@ -35,13 +36,15 @@ public class WarningDialogFragment extends DialogFragment {
 
         Bundle mArgs = getArguments();
         userId = mArgs.getString("userId");
+        locationCode = mArgs.getInt("locationCode");
 
         warning.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectCategoryActivity.class);
                 intent.putExtra("userId", userId);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                intent.putExtra("locationCode", locationCode);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 dismiss();

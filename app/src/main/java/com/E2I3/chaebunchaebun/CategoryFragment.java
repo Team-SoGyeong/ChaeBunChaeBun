@@ -40,7 +40,7 @@ public class CategoryFragment extends Fragment{
     TextView category_name;
 
     String userId;
-    long locationCode;
+    int locationCode;
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -85,7 +85,7 @@ public class CategoryFragment extends Fragment{
 
         contenthelp.setVisibility(View.GONE);
         userId = getArguments().getString("userId");
-        locationCode = getArguments().getLong("locationCode");
+        locationCode = getArguments().getInt("locationCode");
 
         CategoryVPAdapter categoryVPAdapter = new CategoryVPAdapter(getChildFragmentManager(), userId, locationCode);
         categoryvp.setAdapter(categoryVPAdapter);

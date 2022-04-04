@@ -25,4 +25,11 @@ public class MypageMycommentActivity extends AppCompatActivity {
         myCommentTransaction.replace(R.id.mypage_comment_frame, myCommentDetailFragment);
         myCommentTransaction.commit();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+
+    }
 }
