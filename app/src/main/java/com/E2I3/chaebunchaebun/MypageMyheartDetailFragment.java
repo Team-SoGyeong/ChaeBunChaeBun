@@ -169,7 +169,6 @@ public class MypageMyheartDetailFragment extends Fragment {
                     } else {
                         String postId = String.valueOf(likeListAdapter.getItem(pos).getPostId());
                         int categoryId = likeListAdapter.getItem(pos).getCategoryId();
-                        isMyPage = true;
                         Bundle articleBundle = new Bundle();
                         articleBundle.putString("userId", userId);
                         articleBundle.putString("postId", postId);
@@ -242,8 +241,8 @@ public class MypageMyheartDetailFragment extends Fragment {
                 String img = subJsonObject.getString("url");
                 String title = subJsonObject.getString("title");
                 String buyDate = subJsonObject.getString("buy_date");
-                int membersInt = 0;
-                String member = String.valueOf(membersInt) + "명";
+                /*int membersInt = 0;
+                String member = String.valueOf(membersInt) + "명";*/
                 String member = subJsonObject.getString("post_addr");
                 String perPrice = subJsonObject.getString("per_price");
                 String writtenBy = subJsonObject.getString("written_by");

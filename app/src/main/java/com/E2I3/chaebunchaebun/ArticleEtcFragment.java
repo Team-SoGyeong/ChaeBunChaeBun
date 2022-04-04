@@ -115,6 +115,8 @@ public class ArticleEtcFragment extends Fragment {
         this.categoryId = getArguments().getInt("categoryId");
         this.isMyPage = getArguments().getBoolean("isMyPage");
 
+        System.out.println(isMyPage);
+
         getPostList();
         getCommentList();
     }
