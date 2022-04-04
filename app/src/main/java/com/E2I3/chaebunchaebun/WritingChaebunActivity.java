@@ -158,21 +158,19 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         startActivityForResult(subImg4Intent, GET_GALLERY_SUB4_IMAGE);
                         break;
                 }
-                pictureId++;
             }
         });
         add_receipt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                billId++;
                 bill_view.setVisibility(View.VISIBLE);
                 switch (billId){
-                    case 1:
+                    case 0:
                         Intent bill1ImgIntent = new Intent(Intent.ACTION_PICK);
                         bill1ImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
                         startActivityForResult(bill1ImgIntent, GET_GALLERY_BILL1_IMAGE);
                         break;
-                    case 2:
+                    case 1:
                         Intent bill2ImgIntent = new Intent(Intent.ACTION_PICK);
                         bill2ImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
                         startActivityForResult(bill2ImgIntent, GET_GALLERY_BILL2_IMAGE);
@@ -590,6 +588,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 String response = imageTask.execute("image/upload/" + userId, mainImg, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
                 this.mainImg = jsonObject.getString("data");
+                pictureId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -597,7 +596,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if(requestCode == GET_GALLERY_SUB1_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+        }
+        else if(requestCode == GET_GALLERY_SUB1_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
             selectedSub1Image = data.getData();
             writingSubImg1.setImageURI(selectedSub1Image);
             subImg1 = createCopyAndReturnRealPath(getApplicationContext(), selectedSub1Image);
@@ -618,6 +618,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 String response = imageTask.execute("image/upload/" + userId, subImg1, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
                 this.subImg1 = jsonObject.getString("data");
+                pictureId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -625,7 +626,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if(requestCode == GET_GALLERY_SUB2_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+        }
+        else if(requestCode == GET_GALLERY_SUB2_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
             selectedSub2Image = data.getData();
             writingSubImg2.setImageURI(selectedSub2Image);
             subImg2 = createCopyAndReturnRealPath(getApplicationContext(), selectedSub2Image);
@@ -646,6 +648,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 String response = imageTask.execute("image/upload/" + userId, subImg2, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
                 this.subImg2 = jsonObject.getString("data");
+                pictureId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -653,7 +656,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if(requestCode == GET_GALLERY_SUB3_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+        }
+        else if(requestCode == GET_GALLERY_SUB3_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
             selectedSub3Image = data.getData();
             writingSubImg3.setImageURI(selectedSub3Image);
             subImg3 = createCopyAndReturnRealPath(getApplicationContext(), selectedSub3Image);
@@ -674,6 +678,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 String response = imageTask.execute("image/upload/" + userId, subImg3, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
                 this.subImg3 = jsonObject.getString("data");
+                pictureId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -681,7 +686,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if(requestCode == GET_GALLERY_SUB4_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+        }
+        else if(requestCode == GET_GALLERY_SUB4_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
             selectedSub4Image = data.getData();
             writingSubImg4.setImageURI(selectedSub4Image);
             subImg4 = createCopyAndReturnRealPath(getApplicationContext(), selectedSub4Image);
@@ -702,6 +708,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 String response = imageTask.execute("image/upload/" + userId, subImg4, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
                 this.subImg4 = jsonObject.getString("data");
+                pictureId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -709,7 +716,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if(requestCode == GET_GALLERY_BILL1_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+        }
+        else if(requestCode == GET_GALLERY_BILL1_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
             selectedBill1Image = data.getData();
             writingBillImg1.setImageURI(selectedBill1Image);
             billImg1 = createCopyAndReturnRealPath(getApplicationContext(), selectedBill1Image);
@@ -730,6 +738,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 String response = imageTask.execute("image/upload/" + userId, billImg1, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
                 this.billImg1 = jsonObject.getString("data");
+                billId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -737,7 +746,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if(requestCode == GET_GALLERY_BILL2_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
+        }
+        else if(requestCode == GET_GALLERY_BILL2_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
             selectedBill2Image = data.getData();
             writingBillImg2.setImageURI(selectedBill2Image);
             billImg2 = createCopyAndReturnRealPath(getApplicationContext(), selectedBill2Image);
@@ -758,6 +768,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 String response = imageTask.execute("image/upload/" + userId, billImg2, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
                 this.billImg2 = jsonObject.getString("data");
+                billId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {

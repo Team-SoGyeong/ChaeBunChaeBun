@@ -162,22 +162,20 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                         etcSubImg4.setVisibility(View.VISIBLE);
                         break;
                 }
-                pictureId++;
             }
         });
 
         add_receipt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                billId++;
                 bill_view.setVisibility(View.VISIBLE);
                 switch (billId){
-                    case 1:
+                    case 0:
                         Intent bill1ImgIntent = new Intent(Intent.ACTION_PICK);
                         bill1ImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
                         startActivityForResult(bill1ImgIntent, GET_GALLERY_BILL1_IMAGE);
                         break;
-                    case 2:
+                    case 1:
                         Intent bill2ImgIntent = new Intent(Intent.ACTION_PICK);
                         bill2ImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
                         startActivityForResult(bill2ImgIntent, GET_GALLERY_BILL2_IMAGE);
@@ -619,6 +617,7 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                 String response = imageTask.execute("image/upload/" + userId, mainImg, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
                 this.mainImg = jsonObject.getString("data");
+                pictureId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -648,6 +647,7 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                 String response = imageTask.execute("image/upload/" + userId, subImg1, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
                 this.subImg1 = jsonObject.getString("data");
+                pictureId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -677,6 +677,7 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                 String response = imageTask.execute("image/upload/" + userId, subImg2, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
                 this.subImg2 = jsonObject.getString("data");
+                pictureId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -706,6 +707,7 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                 String response = imageTask.execute("image/upload/" + userId, subImg3, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
                 this.subImg3 = jsonObject.getString("data");
+                pictureId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -735,6 +737,7 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                 String response = imageTask.execute("image/upload/" + userId, subImg4, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
                 this.subImg4 = jsonObject.getString("data");
+                pictureId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -764,6 +767,7 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                 String response = imageTask.execute("image/upload/" + userId, billImg1, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
                 this.billImg1 = jsonObject.getString("data");
+                billId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -793,6 +797,7 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                 String response = imageTask.execute("image/upload/" + userId, billImg2, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
                 this.billImg2 = jsonObject.getString("data");
+                billId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
