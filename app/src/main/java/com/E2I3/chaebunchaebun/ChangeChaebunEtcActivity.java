@@ -185,7 +185,7 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                     inputTitle.setText(subJsonObject2.getString("title"));
                     inputContent.setText(subJsonObject2.getString("contents"));
                     date_arr[0] = subJsonObject2.getString("buy_date");
-                    inputMemberNum.setText(subJsonObject2.getString("headcounts"));
+                    inputMemberNum.setText(subJsonObject2.getString("post_addr"));
                     inputAmount.setText(subJsonObject2.getString("amount"));
                     inputGetPrice.setText(subJsonObject2.getString("total_price"));
                     inputPerPrice.setText(subJsonObject2.getString("per_price"));

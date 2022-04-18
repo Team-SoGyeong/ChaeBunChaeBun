@@ -28,6 +28,7 @@
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/change_chaebun_etc.xml" value="0.12708333333333333" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/change_chaebun_frame.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_article_calculate.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_categorylist.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_comment_modalbtn.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_commentlist.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_homelist.xml" value="0.25364583333333335" />
@@ -93,7 +94,9 @@
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun_detail.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun_etc.xml" value="0.13072916666666667" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun_etc_detail.xml" value="0.13072916666666667" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun_etc_frame.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun_frame.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun_picture.xml" value="0.25364583333333335" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/drawable/category_warning_box.xml" value="0.2552083333333333" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/drawable/chaebun_logo_background.xml" value="0.18020833333333333" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/drawable/custom_article_calculate_box.xml" value="0.19635416666666666" />
