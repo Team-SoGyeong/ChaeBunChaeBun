@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    tools:showIn="@layout/writing_chaebun_etc_frame">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,7 +51,7 @@
             </LinearLayout>
         </LinearLayout>
         <!-- 영수증 -->
-        <TextView
+        <!--<TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_bold"
@@ -84,7 +83,7 @@
                 android:layout_height="80dp"
                 android:background="@drawable/writing_btn_receipt" />
             <include layout="@layout/writing_chaebun_bill"/>
-        </LinearLayout>
+        </LinearLayout>-->
         <!-- 제목 -->
         <TextView
             android:layout_width="wrap_content"
