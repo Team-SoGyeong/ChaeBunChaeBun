@@ -48,8 +48,6 @@ public class WritingChaebunActivity extends AppCompatActivity {
     private final int GET_GALLERY_SUB4_IMAGE = 204;
     private final int GET_GALLERY_BILL1_IMAGE = 205;
     private final int GET_GALLERY_BILL2_IMAGE = 206;
-    int pictureId = 0;
-    int billId = 0;
     private TextView toastText;
     private Toast toast;
 
@@ -71,6 +69,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
     Uri selectedMainImage, selectedSub1Image, selectedSub2Image, selectedSub3Image, selectedSub4Image, selectedBill1Image, selectedBill2Image;
     int categoryId;
     int locationCode = 0;
+    int pictureId = 0;
+    int billId = 0;
     boolean isAmount = false;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -548,6 +548,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 }
             }
         });
+
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

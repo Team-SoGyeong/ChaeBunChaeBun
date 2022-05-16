@@ -26,18 +26,27 @@ import org.json.JSONObject;
 import java.util.concurrent.ExecutionException;
 
 public class ChangeChaebunEtcActivity extends AppCompatActivity {
+    private final int GET_GALLERY_MAIN_IMAGE = 200;
+    private final int GET_GALLERY_SUB1_IMAGE = 201;
+    private final int GET_GALLERY_SUB2_IMAGE = 202;
+    private final int GET_GALLERY_SUB3_IMAGE = 203;
+    private final int GET_GALLERY_SUB4_IMAGE = 204;
+    private final int GET_GALLERY_BILL1_IMAGE = 205;
+    private final int GET_GALLERY_BILL2_IMAGE = 206;
     private TextView toastText;
     private Toast toast;
 
     ImageView back, writing, btn_back, etcMainImg, etcSubImg1, etcSubImg2, etcSubImg3, etcSubImg4;
     TextView inputPerPrice,  inputContentCount;
     EditText inputVegetable, inputTitle, inputContent, inputAmount, inputGetPrice, inputMemberNum, inputCall;
+
     Spinner date_spinner;
     String date_arr[] = new String[1];
     String amount_arr[] ={"kg","g","개"};
     String str, amount_str, userId, postId = null;
     String amount, totalPrice, people = "1";
     String mainImg, subImg1, subImg2, subImg3, subImg4 = null;
+
     int categoryId, perPrice;
     boolean isPrice, isMember, isAmount = false;
 
@@ -65,10 +74,10 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
         inputContent = (EditText) findViewById(R.id.input_content);
         inputAmount = (EditText) findViewById(R.id.input_amount);
         inputGetPrice = (EditText) findViewById(R.id.input_getPrice);
-        inputMemberNum = (EditText) findViewById(R.id.input_memberNum);
+        /*inputMemberNum = (EditText) findViewById(R.id.input_memberNum);*/
         inputCall = (EditText) findViewById(R.id.input_call);
 
-        inputPerPrice = (TextView) findViewById(R.id.input_per_price);
+        /*inputPerPrice = (TextView) findViewById(R.id.input_per_price);*/
         inputContentCount = (TextView) findViewById(R.id.input_content_count);
 
         etcMainImg = (ImageView) findViewById(R.id.etc_main_img);
@@ -93,11 +102,11 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
         inputAmount.setFocusable(false);
         inputGetPrice.setClickable(false);
         inputGetPrice.setFocusable(false);
-        inputMemberNum.setClickable(false);
+        /*inputMemberNum.setClickable(false);
         inputMemberNum.setFocusable(false);
 
         inputPerPrice.setClickable(false);
-        inputPerPrice.setFocusable(false);
+        inputPerPrice.setFocusable(false);*/
 
         etcMainImg.setClickable(false);
         etcSubImg1.setClickable(false);
@@ -185,10 +194,10 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                     inputTitle.setText(subJsonObject2.getString("title"));
                     inputContent.setText(subJsonObject2.getString("contents"));
                     date_arr[0] = subJsonObject2.getString("buy_date");
-                    inputMemberNum.setText(subJsonObject2.getString("post_addr"));
+                    /*inputMemberNum.setText(subJsonObject2.getString("post_addr"));*/
                     inputAmount.setText(subJsonObject2.getString("amount"));
                     inputGetPrice.setText(subJsonObject2.getString("total_price"));
-                    inputPerPrice.setText(subJsonObject2.getString("per_price"));
+                    /*inputPerPrice.setText(subJsonObject2.getString("per_price"));*/
                     inputCall.setText(subJsonObject2.getString("contact"));
 
                     String img1 = null;

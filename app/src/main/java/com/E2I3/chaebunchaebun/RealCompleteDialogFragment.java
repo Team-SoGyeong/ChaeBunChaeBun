@@ -47,6 +47,7 @@ public class RealCompleteDialogFragment extends DialogFragment {
                 completeTask.execute("common/processed/" + String.valueOf(postId) + "/" + userId, String.valueOf(postId), userId);
                 Intent intent = new Intent(getActivity(), NavigationActivity.class);
                 intent.putExtra("userId", userId);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 getActivity().startActivity(intent);
                 getActivity().overridePendingTransition(0, 0);
             }

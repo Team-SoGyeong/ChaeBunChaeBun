@@ -51,11 +51,11 @@
                 android:padding="1dp"
                 android:background="@drawable/custom_writing_picture_box"
                 android:orientation="horizontal">
-            <ImageView
-                android:id="@+id/etc_sub_img1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"/>
+                <ImageView
+                    android:id="@+id/etc_sub_img1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"/>
             </LinearLayout>
             <ImageButton
                 android:visibility="invisible"
