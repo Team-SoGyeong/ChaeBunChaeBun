@@ -12,7 +12,7 @@
         android:layout_width="131dp"
         android:layout_height="131dp"
         android:layout_gravity="center"
-        android:layout_marginTop="198dp"
+        android:layout_marginTop="@dimen/auto_logo_top"
         android:background="@drawable/logo"/>
     <TextView
         android:layout_width="wrap_content"
@@ -38,11 +38,11 @@
         android:layout_width="320dp"
         android:layout_height="44dp"
         android:background="@drawable/login_btn_kakao"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="@dimen/auto_login_top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.734" />
+        app:layout_constraintVertical_bias="0.734"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
