@@ -47,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
             if (Session.getCurrentSession().checkAndImplicitOpen()) {
                 Log.d(TAG, "onClick: 로그인 세션살아있음");
                 // 카카오 로그인 시도 (창이 안뜬다.)
+                String k = getKeyHash();
+                System.out.println(k);
                 Intent intent = new Intent(getApplicationContext(), SessionCallback.class);
                 startActivity(intent);
             } else {
