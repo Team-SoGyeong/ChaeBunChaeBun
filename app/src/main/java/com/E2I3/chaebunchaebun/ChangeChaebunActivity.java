@@ -63,15 +63,15 @@ public class ChangeChaebunActivity extends AppCompatActivity {
     Spinner date_spinner;
     String date_arr[] = new String[1];
     String amount_arr[] ={"kg","g","개"};
-    String str, amount_str, userId, postId = null;
-    String amount, totalPrice, people = "1";
+    String amount_str, userId, postId = null;
     String title, content, amountString, getPrice, call, buyDate,
             bill1, bill2, img1, img2, img3, img4, img5;
 
     Uri selectedMainImage, selectedSub1Image, selectedSub2Image, selectedSub3Image, selectedSub4Image, selectedBill1Image, selectedBill2Image;
-    int categoryId, perPrice;
+    int categoryId, totalPrice, amountNum;
     int pictureId = 0;
     int billId = 0;
+    Long postAddr;
     boolean isPrice, isMember, isAmount = false;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -104,7 +104,7 @@ public class ChangeChaebunActivity extends AppCompatActivity {
         inputContentCount = (TextView) findViewById(R.id.input_content_count);
 
         add_picture = (ImageButton) findViewById(R.id.change_add_img);
-        add_receipt = (ImageButton) findViewById(R.id.add_receipt);
+        /*add_receipt = (ImageButton) findViewById(R.id.add_receipt);*/
         picture_view = (HorizontalScrollView) findViewById(R.id.picture_view);
         bill_view = (HorizontalScrollView) findViewById(R.id.bill_view);
         mainImgFrame = (LinearLayout) findViewById(R.id.main_img_frame);
@@ -486,7 +486,7 @@ public class ChangeChaebunActivity extends AppCompatActivity {
                 JSONObject jsonChangeTransfer = new JSONObject();
 
                 try {
-                    jsonChangeTransfer.put("amount", Integer.parseInt(amountString));
+                    jsonChangeTransfer.put("amount", amountNum);
                     jsonChangeTransfer.put("author_id", Integer.parseInt(userId));
                     jsonChangeTransfer.put("buy_date", buyDate);
                     jsonChangeTransfer.put("category_id", categoryId);
@@ -497,9 +497,10 @@ public class ChangeChaebunActivity extends AppCompatActivity {
                             " \"img2\": \"" + img2 + "\", \"img3\": \"" + img3 + "\", \"img4\": \"" + img4 + "\", \"img4\": \"" + img4 + "\", \"img5\": \"" + img5 + "\"}";
                     JSONObject imgs = new JSONObject(imgString);
                     jsonChangeTransfer.put("imgs", imgs);
-                    /*jsonChangeTransfer.put("per_price", Integer.parseInt(getPrice));*/
+                    jsonChangeTransfer.put("per_price", postAddr);
+                    jsonChangeTransfer.put("post_id", postId);
                     jsonChangeTransfer.put("title", title);
-                    jsonChangeTransfer.put("total_price", Integer.parseInt(getPrice));
+                    jsonChangeTransfer.put("total_price", totalPrice);
                     jsonChangeTransfer.put("unit", amount_str);
 
                     /*jsonCommentTransfer.put("author_id", Integer.parseInt(userId));
@@ -568,11 +569,14 @@ public class ChangeChaebunActivity extends AppCompatActivity {
                     inputContent.setText(content);
                     buyDate = subJsonObject2.getString("buy_date");
                     date_arr[0] = subJsonObject2.getString("buy_date");
-                    /*inputMemberNum.setText(subJsonObject2.getString("post_addr"));*/
+                    /*inputMemberNum.setText();*/
+                    postAddr = subJsonObject2.getLong("post_addr");
                     amountString = subJsonObject2.getString("amount");
                     inputAmount.setText(amountString);
+                    amountNum = subJsonObject2.getInt("amount_num");
                     getPrice = subJsonObject2.getString("total_price");
                     inputGetPrice.setText(getPrice);
+                    totalPrice = subJsonObject2.getInt("total_price_num");
                     /*inputPerPrice.setText(subJsonObject2.getString("per_price"));*/
                     call = subJsonObject2.getString("contact");
                     inputCall.setText(call);
