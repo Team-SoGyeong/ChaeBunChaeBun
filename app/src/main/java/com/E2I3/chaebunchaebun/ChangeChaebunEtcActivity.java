@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,10 +63,10 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
 
     Spinner date_spinner;
     String date_arr[] = new String[1];
-    String amount_arr[] ={"kg","g","개"};
+    String delete_arr[];
     String str, amount_str, userId, postId = null;
     String title, content, amountString, getPrice, call, buyDate,
-            bill1, bill2, img1, img2, img3, img4, img5;
+            bill1, bill2, img1, img2, img3, img4, img5, amountType;
 
     Uri selectedMainImage, selectedSub1Image, selectedSub2Image, selectedSub3Image, selectedSub4Image, selectedBill1Image, selectedBill2Image;
     int categoryId, totalPrice, amountNum;
@@ -144,6 +145,8 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
 
         getPostList();
 
+        inputVegetable.setClickable(false);
+        inputVegetable.setFocusable(false);
         inputAmount.setClickable(false);
         inputAmount.setFocusable(false);
         inputGetPrice.setClickable(false);
@@ -159,6 +162,9 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
         ArrayAdapter<String> date_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, date_arr);
         date_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         date_spinner.setAdapter(date_adapter);
+
+        String input = inputContent.getText().toString();
+        inputContentCount.setText("(" + input.length() + "/500)");
 
         if(img2.isEmpty() || img2 == null || img2.equals("null")){
             mainImgFrame.setVisibility(View.VISIBLE);
@@ -245,6 +251,8 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                     case 0:
                         add_picture.setImageResource(R.drawable.writing_btn_picture);
                         /*selectedMainImage = null;*/
+                        delete_arr = img1.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         img1 = null;
                         mainImgFrame.setVisibility(View.GONE);
                         mainImgDelete.setVisibility(View.GONE);
@@ -253,6 +261,8 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                         add_picture.setImageResource(R.drawable.writing_btn_picture1);
                         /*selectedMainImage = selectedSub1Image;
                         selectedSub1Image = null;*/
+                        delete_arr = img1.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         img1 = img2;
                         img2 = null;
                         Glide.with(getApplicationContext()).load(img1).into(writingMainImg);
@@ -265,6 +275,8 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                         /*selectedMainImage = selectedSub1Image;
                         selectedSub1Image = selectedSub2Image;
                         selectedSub2Image = null;*/
+                        delete_arr = img1.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         img1 = img2;
                         img2 = img3;
                         img3 = null;
@@ -281,6 +293,8 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                         selectedSub1Image = selectedSub2Image;
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = null;*/
+                        delete_arr = img1.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         img1 = img2;
                         img2 = img3;
                         img3 = img4;
@@ -301,6 +315,8 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = selectedSub4Image;
                         selectedSub4Image = null;*/
+                        delete_arr = img1.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         img1 = img2;
                         img2 = img3;
                         img3 = img4;
@@ -329,6 +345,8 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                     case 1:
                         add_picture.setImageResource(R.drawable.writing_btn_picture1);
                         /*selectedSub1Image = null;*/
+                        delete_arr = img2.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         img2 = null;
                         subImgFrame1.setVisibility(View.GONE);
                         subImg1Delete.setVisibility(View.GONE);
@@ -337,6 +355,8 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                         add_picture.setImageResource(R.drawable.writing_btn_picture2);
                         /*selectedSub1Image = selectedSub2Image;
                         selectedSub2Image = null;*/
+                        delete_arr = img2.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         img2 = img3;
                         img3 = null;
                         Glide.with(getApplicationContext()).load(img2).into(writingSubImg1);
@@ -349,6 +369,8 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                         /*selectedSub1Image = selectedSub2Image;
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = null;*/
+                        delete_arr = img2.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         img2 = img3;
                         img3 = img4;
                         img4 = null;
@@ -365,6 +387,8 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = selectedSub4Image;
                         selectedSub4Image = null;*/
+                        delete_arr = img2.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         img2 = img3;
                         img3 = img4;
                         img4 = img5;
@@ -390,6 +414,8 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                     case 2:
                         add_picture.setImageResource(R.drawable.writing_btn_picture2);
                         /*selectedSub2Image = null;*/
+                        delete_arr = img3.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         img3 = null;
                         subImgFrame2.setVisibility(View.GONE);
                         subImg2Delete.setVisibility(View.GONE);
@@ -398,6 +424,8 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                         add_picture.setImageResource(R.drawable.writing_btn_picture3);
                         /*selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = null;*/
+                        delete_arr = img3.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         img3 = img4;
                         img4 = null;
                         Glide.with(getApplicationContext()).load(img3).into(writingSubImg2);
@@ -410,6 +438,8 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                         /*selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = selectedSub4Image;
                         selectedSub4Image = null;*/
+                        delete_arr = img3.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         img3 = img4;
                         img4 = img5;
                         img5 = null;
@@ -432,6 +462,8 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                     case 3:
                         add_picture.setImageResource(R.drawable.writing_btn_picture3);
                         /*selectedSub3Image = null;*/
+                        delete_arr = img4.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         img4 = null;
                         subImgFrame3.setVisibility(View.GONE);
                         subImg3Delete.setVisibility(View.GONE);
@@ -440,6 +472,8 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                         add_picture.setImageResource(R.drawable.writing_btn_picture4);
                         /*selectedSub3Image = selectedSub4Image;
                         selectedSub4Image = null;*/
+                        delete_arr = img4.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         img4 = img5;
                         img5 = null;
                         Glide.with(getApplicationContext()).load(img4).into(writingSubImg3);
@@ -459,6 +493,8 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                     case 4:
                         add_picture.setImageResource(R.drawable.writing_btn_picture4);
                         /*selectedSub4Image = null;*/
+                        delete_arr = img5.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         img5 = null;
                         subImgFrame4.setVisibility(View.GONE);
                         subImg4Delete.setVisibility(View.GONE);
@@ -490,26 +526,38 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
         writing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PutTask putTask = new PutTask();
-                JSONObject jsonChangeTransfer = new JSONObject();
+                call = inputCall.getText().toString();
+                content = inputContent.getText().toString();
+                title = inputTitle.getText().toString();
 
-                try {
-                    jsonChangeTransfer.put("amount", amountNum);
-                    jsonChangeTransfer.put("author_id", Integer.parseInt(userId));
-                    jsonChangeTransfer.put("buy_date", buyDate);
-                    jsonChangeTransfer.put("category_id", categoryId);
-                    jsonChangeTransfer.put("contact", call);
-                    jsonChangeTransfer.put("contents", content);
+                if(img1 == null || img1.equals(null)) {
+                    toastText.setText("메인 이미지는 필수에요!");
+                    toast.show();
+                } else if(inputTitle.getText().toString().isEmpty() || inputContent.getText().toString().isEmpty()
+                        || inputCall.getText().toString().isEmpty()) {
+                    toastText.setText("입력되지 않은 칸이 있어요!");
+                    toast.show();
+                }else {
+                    PutTask putTask = new PutTask();
+                    JSONObject jsonChangeTransfer = new JSONObject();
 
-                    String imgString = "{\"bill1\": \"" + bill1 + "\", \"bill2\": \"" + bill2 + "\", \"img1\": \"" + img1 + "\"," +
-                            " \"img2\": \"" + img2 + "\", \"img3\": \"" + img3 + "\", \"img4\": \"" + img4 + "\", \"img4\": \"" + img4 + "\", \"img5\": \"" + img5 + "\"}";
-                    JSONObject imgs = new JSONObject(imgString);
-                    jsonChangeTransfer.put("imgs", imgs);
-                    jsonChangeTransfer.put("per_price", postAddr);
-                    jsonChangeTransfer.put("post_id", postId);
-                    jsonChangeTransfer.put("title", title);
-                    jsonChangeTransfer.put("total_price", totalPrice);
-                    jsonChangeTransfer.put("unit", amount_str);
+                    try {
+                        jsonChangeTransfer.put("amount", amountNum);
+                        jsonChangeTransfer.put("author_id", Integer.parseInt(userId));
+                        jsonChangeTransfer.put("buy_date", buyDate);
+                        jsonChangeTransfer.put("category_id", categoryId);
+                        jsonChangeTransfer.put("contact", call);
+                        jsonChangeTransfer.put("contents", content);
+
+                        String imgString = "{\"bill1\": \"" + bill1 + "\", \"bill2\": \"" + bill2 + "\", \"img1\": \"" + img1 + "\"," +
+                                " \"img2\": \"" + img2 + "\", \"img3\": \"" + img3 + "\", \"img4\": \"" + img4 + "\", \"img4\": \"" + img4 + "\", \"img5\": \"" + img5 + "\"}";
+                        JSONObject imgs = new JSONObject(imgString);
+                        jsonChangeTransfer.put("imgs", imgs);
+                        jsonChangeTransfer.put("per_price", postAddr);
+                        jsonChangeTransfer.put("post_id", Integer.parseInt(postId));
+                        jsonChangeTransfer.put("title", title);
+                        jsonChangeTransfer.put("total_price", totalPrice);
+                        jsonChangeTransfer.put("unit", amountType);
 
                     /*jsonCommentTransfer.put("author_id", Integer.parseInt(userId));
                     jsonCommentTransfer.put("category_id", categoryId);
@@ -517,38 +565,40 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                     jsonCommentTransfer.put("contents", inputContent.getText().toString());
                     jsonCommentTransfer.put("post_id", Integer.parseInt(postId));*/
 
-                    String jsonString = jsonChangeTransfer.toString();
+                        String jsonString = jsonChangeTransfer.toString();
 
-                    String resultText = "[NULL]";
+                        String resultText = "[NULL]";
 
-                    try {
-                        resultText = putTask.execute("posts/", jsonString).get();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    }
-
-                    try {
-                        JSONObject jsonObject = new JSONObject(resultText);
-                        boolean success = jsonObject.getBoolean("success");
-                        if(success == true) {
-                            toastText.setText("수정되었어요!");
-                            toast.show();
-                            Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            intent.putExtra("userId", userId);
-                            startActivity(intent);
-                            overridePendingTransition(0, 0);
-                        } else {
-                            toastText.setText("수정에 실패하였습니다!");
-                            toast.show();
+                        try {
+                            resultText = putTask.execute("posts/", jsonString).get();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
                         }
-                    } catch (JSONException e) {
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(resultText);
+                            boolean success = jsonObject.getBoolean("success");
+                            if(success == true) {
+                                toastText.setText("수정되었어요!");
+                                toast.show();
+                                Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                intent.putExtra("userId", userId);
+                                startActivity(intent);
+                                overridePendingTransition(0, 0);
+                            } else {
+                                Log.i("jsonString: ", jsonString);
+                                toastText.setText("수정에 실패하셨습니다.");
+                                toast.show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }catch (JSONException e) {
-                    e.printStackTrace();
                 }
             }
         });
@@ -595,11 +645,13 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
 
                     inputTitle.setText(subJsonObject2.getString("title"));
                     inputContent.setText(subJsonObject2.getString("contents"));
-                    date_arr[0] = subJsonObject2.getString("buy_date");
+                    buyDate = subJsonObject2.getString("buy_date");
+                    date_arr[0] = buyDate;
                     /*inputMemberNum.setText();*/
                     postAddr = subJsonObject2.getLong("post_addr");
                     inputAmount.setText(subJsonObject2.getString("amount"));
                     amountNum = subJsonObject2.getInt("amount_num");
+                    amountType = subJsonObject2.getString("amount_type");
                     inputGetPrice.setText(subJsonObject2.getString("total_price"));
                     totalPrice = subJsonObject2.getInt("total_price_num");
                     /*inputPerPrice.setText(subJsonObject2.getString("per_price"));*/
@@ -644,6 +696,19 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                 }
             }
         } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteImg(String filename) {
+        PostTask deleteImgTask = new PostTask();
+        String response = null;
+        try {
+            response = deleteImgTask.execute("image/delete/" + userId +"/" + filename, filename).get();
+            Log.i("receiveMsg: ", response);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
