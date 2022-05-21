@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
     Spinner date_spinner, amount_spinner;
     String date_arr[] = {"1일 전", "2일 전", "3일 전", "일주일 이내", "2주 이내"};
     String amount_arr[] ={"kg","g","개"};
+    String delete_arr[];
     String str, amount_str, userId = null;
     String amount = "1";
     String mainImg, subImg1, subImg2, subImg3, subImg4, billImg1, billImg2 = null;
@@ -188,6 +190,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                     case 0:
                         add_picture.setImageResource(R.drawable.writing_btn_picture);
                         selectedMainImage = null;
+                        delete_arr = mainImg.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         mainImg = null;
                         mainImgFrame.setVisibility(View.GONE);
                         mainImgDelete.setVisibility(View.GONE);
@@ -196,6 +200,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         add_picture.setImageResource(R.drawable.writing_btn_picture1);
                         selectedMainImage = selectedSub1Image;
                         selectedSub1Image = null;
+                        delete_arr = mainImg.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         mainImg = subImg1;
                         subImg1 = null;
                         writingMainImg.setImageURI(selectedMainImage);
@@ -207,6 +213,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         selectedMainImage = selectedSub1Image;
                         selectedSub1Image = selectedSub2Image;
                         selectedSub2Image = null;
+                        delete_arr = mainImg.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         mainImg = subImg1;
                         subImg1 = subImg2;
                         subImg2 = null;
@@ -220,14 +228,16 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         selectedMainImage = selectedSub1Image;
                         selectedSub1Image = selectedSub2Image;
                         selectedSub2Image = selectedSub3Image;
-                        writingMainImg.setImageURI(selectedMainImage);
-                        writingSubImg1.setImageURI(selectedSub1Image);
-                        writingSubImg2.setImageURI(selectedSub2Image);
                         selectedSub3Image = null;
+                        delete_arr = mainImg.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         mainImg = subImg1;
                         subImg1 = subImg2;
                         subImg2 = subImg3;
                         subImg3 = null;
+                        writingMainImg.setImageURI(selectedMainImage);
+                        writingSubImg1.setImageURI(selectedSub1Image);
+                        writingSubImg2.setImageURI(selectedSub2Image);
                         subImgFrame3.setVisibility(View.GONE);
                         subImg3Delete.setVisibility(View.GONE);
                         break;
@@ -238,6 +248,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = selectedSub4Image;
                         selectedSub4Image = null;
+                        delete_arr = mainImg.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         mainImg = subImg1;
                         subImg1 = subImg2;
                         subImg2 = subImg3;
@@ -261,6 +273,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                     case 1:
                         add_picture.setImageResource(R.drawable.writing_btn_picture1);
                         selectedSub1Image = null;
+                        delete_arr = subImg1.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         subImg1 = null;
                         subImgFrame1.setVisibility(View.GONE);
                         subImg1Delete.setVisibility(View.GONE);
@@ -269,6 +283,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         add_picture.setImageResource(R.drawable.writing_btn_picture2);
                         selectedSub1Image = selectedSub2Image;
                         selectedSub2Image = null;
+                        delete_arr = subImg1.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         subImg1 = subImg2;
                         subImg2 = null;
                         writingSubImg1.setImageURI(selectedSub1Image);
@@ -280,6 +296,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         selectedSub1Image = selectedSub2Image;
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = null;
+                        delete_arr = subImg1.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         subImg1 = subImg2;
                         subImg2 = subImg3;
                         subImg3 = null;
@@ -294,6 +312,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = selectedSub4Image;
                         selectedSub4Image = null;
+                        delete_arr = subImg1.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         subImg1 = subImg2;
                         subImg2 = subImg3;
                         subImg3 = subImg4;
@@ -315,6 +335,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                     case 2:
                         add_picture.setImageResource(R.drawable.writing_btn_picture2);
                         selectedSub2Image = null;
+                        delete_arr = subImg2.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         subImg2 = null;
                         subImgFrame2.setVisibility(View.GONE);
                         subImg2Delete.setVisibility(View.GONE);
@@ -323,6 +345,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         add_picture.setImageResource(R.drawable.writing_btn_picture3);
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = null;
+                        delete_arr = subImg2.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         subImg2 = subImg3;
                         subImg3 = null;
                         writingSubImg2.setImageURI(selectedSub2Image);
@@ -334,6 +358,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = selectedSub4Image;
                         selectedSub4Image = null;
+                        delete_arr = subImg2.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         subImg2 = subImg3;
                         subImg3 = subImg4;
                         subImg4 = null;
@@ -353,6 +379,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                     case 3:
                         add_picture.setImageResource(R.drawable.writing_btn_picture3);
                         selectedSub3Image = null;
+                        delete_arr = subImg3.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         subImg3 = null;
                         subImgFrame3.setVisibility(View.GONE);
                         subImg3Delete.setVisibility(View.GONE);
@@ -361,6 +389,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         add_picture.setImageResource(R.drawable.writing_btn_picture4);
                         selectedSub3Image = selectedSub4Image;
                         selectedSub4Image = null;
+                        delete_arr = subImg3.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         subImg3 = subImg4;
                         subImg4 = null;
                         writingSubImg3.setImageURI(selectedSub3Image);
@@ -378,6 +408,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                     case 4:
                         add_picture.setImageResource(R.drawable.writing_btn_picture4);
                         selectedSub4Image = null;
+                        delete_arr = subImg4.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         subImg4 = null;
                         subImgFrame4.setVisibility(View.GONE);
                         subImg4Delete.setVisibility(View.GONE);
@@ -394,6 +426,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                     case 0:
                         add_receipt.setImageResource(R.drawable.writing_btn_receipt);
                         selectedBill1Image = null;
+                        delete_arr = billImg1.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         billImg1 = null;
                         billImgFrame1.setVisibility(View.GONE);
                         billImg1Delete.setVisibility(View.GONE);
@@ -402,6 +436,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                         add_receipt.setImageResource(R.drawable.writing_btn_receipt1);
                         selectedBill1Image = selectedBill2Image;
                         selectedBill2Image = null;
+                        delete_arr = billImg1.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         billImg1 = billImg2;
                         billImg2 = null;
                         writingBillImg1.setImageURI(selectedBill1Image);
@@ -419,6 +455,8 @@ public class WritingChaebunActivity extends AppCompatActivity {
                     case 1:
                         add_receipt.setImageResource(R.drawable.writing_btn_receipt1);
                         selectedBill2Image = null;
+                        delete_arr = billImg2.split("/");
+                        deleteImg(delete_arr[delete_arr.length - 1]);
                         billImg2 = null;
                         billImgFrame2.setVisibility(View.GONE);
                         billImg2Delete.setVisibility(View.GONE);
@@ -556,6 +594,19 @@ public class WritingChaebunActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
             }
         });
+    }
+
+    public void deleteImg(String filename) {
+        PostTask deleteImgTask = new PostTask();
+        String response = null;
+        try {
+            response = deleteImgTask.execute("image/delete/" + userId +"/" + filename, filename).get();
+            Log.i("receiveMsg: ", response);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

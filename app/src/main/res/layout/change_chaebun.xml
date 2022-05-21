@@ -128,19 +128,28 @@
             android:backgroundTint="#f4f6f2"
             android:gravity="top"
             android:hint="우리 가족들이 먹을 거라 좋은 걸로 골랐어요~" />
-        <TextView
-            android:id="@+id/input_content_count"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_regular"
-            android:layout_marginLeft="303dp"
-            android:layout_marginRight="19dp"
-            android:layout_marginTop="10dp"
-            android:paddingRight="2dp"
-            android:textAlignment="viewEnd"
-            android:textColor="#999999"
-            android:textSize="10sp"
-            android:text="(0/500)" />
+            android:orientation="horizontal"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp">
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/input_content_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginTop="10dp"
+                android:paddingRight="2dp"
+                android:textAlignment="viewEnd"
+                android:textColor="#999999"
+                android:textSize="10sp"
+                android:text="(0/500)" />
+        </LinearLayout>
 
         <!-- 상세 정보 -->
         <TextView

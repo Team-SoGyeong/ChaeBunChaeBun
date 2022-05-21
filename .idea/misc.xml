@@ -25,7 +25,6 @@
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/change_chaebun.xml" value="0.264" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/change_chaebun_detail.xml" value="0.2" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/change_chaebun_ect_detail.xml" value="0.16" />
-
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/change_chaebun_etc.xml" value="0.12708333333333333" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/change_chaebun_frame.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_article_calculate.xml" value="0.25364583333333335" />
@@ -92,6 +91,7 @@
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/set_start.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/writing_category.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun_bill.xml" value="0.24947916666666667" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun_detail.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun_etc.xml" value="0.13072916666666667" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun_etc_detail.xml" value="0.13072916666666667" />
@@ -211,7 +211,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
