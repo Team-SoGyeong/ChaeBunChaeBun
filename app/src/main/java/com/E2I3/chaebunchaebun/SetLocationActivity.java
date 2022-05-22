@@ -18,8 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SetLocationActivity extends AppCompatActivity {
     private static final int TAG_REQUEST_CODE = 1001;
-    ImageButton search, btn_next;
-    EditText set_location;
+    ImageButton btn_next;
+    EditText set_location, search;
     String searchLocation = null;
     boolean flag = false;
     int locationCode = 0;
@@ -38,7 +38,7 @@ public class SetLocationActivity extends AppCompatActivity {
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(customToast);
 
-        search = (ImageButton) findViewById(R.id.ic_search);
+        search = (EditText) findViewById(R.id.set_location);
         btn_next = (ImageButton) findViewById(R.id.btn_next);
         set_location = (EditText) findViewById(R.id.set_location);
 

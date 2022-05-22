@@ -68,6 +68,7 @@
     </LinearLayout>
 
     <include layout="@layout/set_serch_locationlist" />
+
     <!--
 
         <LinearLayout
