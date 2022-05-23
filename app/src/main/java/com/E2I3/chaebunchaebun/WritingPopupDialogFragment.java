@@ -139,6 +139,7 @@ public class WritingPopupDialogFragment extends DialogFragment {
                         jsonPostTransfer.put("unit", amount_str);
 
                         String jsonString = jsonPostTransfer.toString();
+                        Log.i("jsonString", jsonString);
                         postTask.execute("posts/etc", jsonString);
 
                         Bundle args = new Bundle();
