@@ -54,7 +54,7 @@
             android:layout_marginLeft="16dp"
             android:text="돈암동"
             android:textSize="14sp"
-            android:textColor="#036635"
+            android:textColor="@color/olive"
             android:fontFamily="@font/roboto_regular"/>
         <TextView
             android:layout_width="match_parent"
