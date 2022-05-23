@@ -48,6 +48,7 @@ public class MypageMyCommentFragment extends Fragment {
     String state = "0";
     String platform = "0";
     String userId = null;
+    int authorId = 0;
     boolean isMyPage = true;
 
     private TextView toastText;
@@ -167,8 +168,7 @@ public class MypageMyCommentFragment extends Fragment {
                     homeListAdapter.setModalClickListener(new HomeListAdapter.OnModalClickListener() {
                         @Override
                         public void OnModlaClick(View view, int pos) {
-                            String id = String.valueOf(homeListAdapter.getItem(pos).getUserId());
-                            System.out.println("글:" + id);
+                            String id  = String.valueOf(authorId);
                             String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
                             int categoryId = homeListAdapter.getItem(pos).getCategoryId();
                             if(state.equals("1")){
@@ -226,6 +226,7 @@ public class MypageMyCommentFragment extends Fragment {
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
                 int categoryId = subJsonObject.getInt("category_id");
                 int postId = subJsonObject.getInt("post_id");
+                authorId = subJsonObject.getInt("author_id");
                 int userId = Integer.parseInt(this.userId);
                 String img = subJsonObject.getString("url");
                 String title = subJsonObject.getString("title");
@@ -238,7 +239,6 @@ public class MypageMyCommentFragment extends Fragment {
                 int isAuth = subJsonObject.getInt("isAuth");
                 String content = subJsonObject.getString("contents");
 
-                System.out.println("마이페이지 댓글 탭 userID: "+userId);
 //                homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId, categoryId, content));
                 homeListItems.add(new HomeListItem(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId, categoryId, content));
             }

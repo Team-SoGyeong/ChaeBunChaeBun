@@ -598,15 +598,7 @@ public class WritingChaebunActivity extends AppCompatActivity {
 
     public void deleteImg(String filename) {
         PostTask deleteImgTask = new PostTask();
-        String response = null;
-        try {
-            response = deleteImgTask.execute("image/delete/" + userId +"/" + filename, filename).get();
-            Log.i("receiveMsg: ", response);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        deleteImgTask.execute("image/delete/" + userId +"/" + filename, filename);
     }
 
     @Override

@@ -138,6 +138,42 @@ public class ChangeChaebunActivity extends AppCompatActivity {
 
         date_spinner = (Spinner) findViewById(R.id.date_spinner2);
 
+        writingMainImg.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setRoundRect(0,0,view.getWidth(),view.getHeight(), 12);
+            }
+        });
+        writingMainImg.setClipToOutline(true);
+        writingSubImg1.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setRoundRect(0,0,view.getWidth(),view.getHeight(), 12);
+            }
+        });
+        writingSubImg1.setClipToOutline(true);
+        writingSubImg2.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setRoundRect(0,0,view.getWidth(),view.getHeight(), 12);
+            }
+        });
+        writingSubImg2.setClipToOutline(true);
+        writingSubImg3.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setRoundRect(0,0,view.getWidth(),view.getHeight(), 12);
+            }
+        });
+        writingSubImg3.setClipToOutline(true);
+        writingSubImg4.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setRoundRect(0,0,view.getWidth(),view.getHeight(), 12);
+            }
+        });
+        writingSubImg4.setClipToOutline(true);
+
         getPostList();
 
         inputAmount.setClickable(false);
@@ -578,11 +614,8 @@ public class ChangeChaebunActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 overridePendingTransition(0, 0);
                             } else {
-                                Log.i("jsonString: ", jsonString);
-                                toastText.setText(jsonString);
-                                toast.show();
-/*                            toastText.setText("수정에 실패하였습니다!");
-                            toast.show();*/
+                            toastText.setText("수정에 실패하였습니다!");
+                            toast.show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -697,15 +730,7 @@ public class ChangeChaebunActivity extends AppCompatActivity {
 
     public void deleteImg(String filename) {
         PostTask deleteImgTask = new PostTask();
-        String response = null;
-        try {
-            response = deleteImgTask.execute("image/delete/" + userId +"/" + filename, filename).get();
-            Log.i("receiveMsg: ", response);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        deleteImgTask.execute("image/delete/" + userId +"/" + filename, filename);
     }
 
     @Override

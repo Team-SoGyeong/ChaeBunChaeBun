@@ -163,15 +163,20 @@ public class MypageMypostingFragment extends Fragment {
                     homeListAdapter.setModalClickListener(new HomeListAdapter.OnModalClickListener() {
                         @Override
                         public void OnModlaClick(View view, int pos) {
-                            String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
-                            int categoryId = homeListAdapter.getItem(pos).getCategoryId();
-                            Bundle args = new Bundle();
-                            args.putString("userId", userId);
-                            args.putString("postId", postId);
-                            args.putInt("categoryId", categoryId);
-                            MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
-                            myBottomSheetDialog.setArguments(args);
-                            myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                            if(state.equals("1")){
+                                toastText.setText("완료된 채분은 접근할 수 없어요!");
+                                toast.show();
+                            } else {
+                                String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
+                                int categoryId = homeListAdapter.getItem(pos).getCategoryId();
+                                Bundle args = new Bundle();
+                                args.putString("userId", userId);
+                                args.putString("postId", postId);
+                                args.putInt("categoryId", categoryId);
+                                MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
+                                myBottomSheetDialog.setArguments(args);
+                                myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                            }
                         }
                     });
                     mypagePostingList.setAdapter(homeListAdapter);

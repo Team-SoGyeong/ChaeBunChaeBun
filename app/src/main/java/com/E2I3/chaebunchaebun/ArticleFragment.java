@@ -459,6 +459,8 @@ public class ArticleFragment extends Fragment {
                         Bundle articleBundle = new Bundle();
                         articleBundle.putString("userId", userId);
                         articleBundle.putString("postId", postId);
+                        articleBundle.putInt("categoryId", categoryId);
+                        articleBundle.putBoolean("isBottom", isBottom);
 
                         if(isBottom == true) {
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

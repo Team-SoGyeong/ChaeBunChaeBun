@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,7 @@ public class WritingPopupDialogFragment extends DialogFragment {
         String call = args.getString("inputCall");
         String buyDate = args.getString("inputBuyDate");
         String amount_str = args.getString("inputAmountStr");
+        String ect_name = args.getString("inputVegetable");
 
         String bill1 = args.getString("bill1");
         String bill2 = args.getString("bill2");
@@ -102,7 +104,6 @@ public class WritingPopupDialogFragment extends DialogFragment {
                         System.out.println(jsonString);
                         postTask.execute("posts/common", jsonString);
 
-
                         Bundle args = new Bundle();
                         args.putString("userId", userId);
                         WritingReceiptPopupDialogFragment e = WritingReceiptPopupDialogFragment.getInstance();
@@ -125,7 +126,6 @@ public class WritingPopupDialogFragment extends DialogFragment {
                         jsonPostTransfer.put("category_id", categoryId);
                         jsonPostTransfer.put("contact", call);
                         jsonPostTransfer.put("contents", content);
-                        String ect_name = args.getString("inputVegetable");
                         jsonPostTransfer.put("ect_name", ect_name);
                         jsonPostTransfer.put("post_addr", locationCode);
 
@@ -139,7 +139,6 @@ public class WritingPopupDialogFragment extends DialogFragment {
                         jsonPostTransfer.put("unit", amount_str);
 
                         String jsonString = jsonPostTransfer.toString();
-                        System.out.println(jsonString);
                         postTask.execute("posts/etc", jsonString);
 
                         Bundle args = new Bundle();
