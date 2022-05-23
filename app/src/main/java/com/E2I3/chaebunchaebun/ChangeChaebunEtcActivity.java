@@ -143,6 +143,42 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
 
         date_spinner = (Spinner) findViewById(R.id.date_spinner2);
 
+        writingMainImg.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setRoundRect(0,0,view.getWidth(),view.getHeight(), 12);
+            }
+        });
+        writingMainImg.setClipToOutline(true);
+        writingSubImg1.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setRoundRect(0,0,view.getWidth(),view.getHeight(), 12);
+            }
+        });
+        writingSubImg1.setClipToOutline(true);
+        writingSubImg2.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setRoundRect(0,0,view.getWidth(),view.getHeight(), 12);
+            }
+        });
+        writingSubImg2.setClipToOutline(true);
+        writingSubImg3.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setRoundRect(0,0,view.getWidth(),view.getHeight(), 12);
+            }
+        });
+        writingSubImg3.setClipToOutline(true);
+        writingSubImg4.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setRoundRect(0,0,view.getWidth(),view.getHeight(), 12);
+            }
+        });
+        writingSubImg4.setClipToOutline(true);
+
         getPostList();
 
         inputVegetable.setClickable(false);
@@ -589,7 +625,6 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 overridePendingTransition(0, 0);
                             } else {
-                                Log.i("jsonString: ", jsonString);
                                 toastText.setText("수정에 실패하셨습니다.");
                                 toast.show();
                             }
@@ -672,25 +707,25 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                         pictureId = 1;
                     } else if(img3.isEmpty() || img3 == null || img3.equals("null")){
                         Glide.with(getApplicationContext()).load(img1).into(etcMainImg);
-                        Glide.with(getApplicationContext()).load(img1).into(etcSubImg1);
+                        Glide.with(getApplicationContext()).load(img2).into(etcSubImg1);
                         pictureId = 2;
                     } else if(img4.isEmpty() || img4 == null || img4.equals("null")){
                         Glide.with(getApplicationContext()).load(img1).into(etcMainImg);
-                        Glide.with(getApplicationContext()).load(img1).into(etcSubImg1);
-                        Glide.with(getApplicationContext()).load(img1).into(etcSubImg2);
+                        Glide.with(getApplicationContext()).load(img2).into(etcSubImg1);
+                        Glide.with(getApplicationContext()).load(img3).into(etcSubImg2);
                         pictureId = 3;
                     } else if(img5.isEmpty() || img5 == null || img5.equals("null")){
                         Glide.with(getApplicationContext()).load(img1).into(etcMainImg);
-                        Glide.with(getApplicationContext()).load(img1).into(etcSubImg1);
-                        Glide.with(getApplicationContext()).load(img1).into(etcSubImg2);
-                        Glide.with(getApplicationContext()).load(img1).into(etcSubImg3);
+                        Glide.with(getApplicationContext()).load(img2).into(etcSubImg1);
+                        Glide.with(getApplicationContext()).load(img3).into(etcSubImg2);
+                        Glide.with(getApplicationContext()).load(img4).into(etcSubImg3);
                         pictureId = 4;
                     } else {
                         Glide.with(getApplicationContext()).load(img1).into(etcMainImg);
-                        Glide.with(getApplicationContext()).load(img1).into(etcSubImg1);
-                        Glide.with(getApplicationContext()).load(img1).into(etcSubImg2);
-                        Glide.with(getApplicationContext()).load(img1).into(etcSubImg3);
-                        Glide.with(getApplicationContext()).load(img1).into(etcSubImg4);
+                        Glide.with(getApplicationContext()).load(img2).into(etcSubImg1);
+                        Glide.with(getApplicationContext()).load(img3).into(etcSubImg2);
+                        Glide.with(getApplicationContext()).load(img4).into(etcSubImg3);
+                        Glide.with(getApplicationContext()).load(img5).into(etcSubImg4);
                         pictureId = 5;
                     }
                 }
@@ -702,15 +737,7 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
 
     public void deleteImg(String filename) {
         PostTask deleteImgTask = new PostTask();
-        String response = null;
-        try {
-            response = deleteImgTask.execute("image/delete/" + userId +"/" + filename, filename).get();
-            Log.i("receiveMsg: ", response);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        deleteImgTask.execute("image/delete/" + userId +"/" + filename, filename);
     }
 
     @Override
