@@ -47,7 +47,7 @@
             android:gravity="center_horizontal"
             android:text="채분채분은 이웃들과의 소통을 중시해요.\n더욱 원활히 소통할 수 있도록 이곳에서\n여러 소식을 전달해 드릴게요!"
             android:textColor="#515151"
-            android:fontFamily="@font/roboto_bold"/>
+            android:fontFamily="@font/roboto_regular"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_notice_list"
             android:layout_width="match_parent"

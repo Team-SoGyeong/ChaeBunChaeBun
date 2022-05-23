@@ -144,6 +144,13 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                     String userId = String.valueOf(subJsonObject.getInt("userId"));
                     System.out.println("로그인 이력이 있을 경우 user ID: " + userId);
 
+//홈으로 가기
+                     Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
+                     intent.putExtra("userId", userId);
+                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                     startActivity(intent);
+                     overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+/*
 //가입 세팅창 가기
                      Intent intent = new Intent(getApplicationContext(), SetProfileActivity.class);
                      intent.putExtra("kakao_id", kakao_id);
@@ -154,15 +161,8 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                      intent.putExtra("age_range", age_range);
                      startActivity(intent);
                      overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
-/*
 
-//홈으로 가기
-                     Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
-                     intent.putExtra("userId", userId);
-                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                     startActivity(intent);
-                     overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
- */
+*/
                 }
                 else{
                     Intent intent = new Intent(getApplicationContext(), SetProfileActivity.class);
