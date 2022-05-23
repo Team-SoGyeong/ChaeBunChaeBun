@@ -60,7 +60,7 @@
             android:layout_marginTop="12dp"
             android:textSize="10sp"
             android:textAlignment="center"
-            android:textColor="#000000"
+            android:textColor="#999999"
             android:text="여러분에게 좋은 서비스를 제공하기 위해 아직은\n성북구 주민만 사용 가능해요."/>
     </LinearLayout>
     <LinearLayout

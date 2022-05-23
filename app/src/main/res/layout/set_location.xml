@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_bold"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="104dp"
             android:textColor="#6a951f"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -26,7 +26,7 @@
             android:fontFamily="@font/roboto_regular"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="40dp"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="10dp"
             android:textColor="#000000"
             android:textSize="16sp"
             android:text="채분채분은 아직 성북구에서만 이용 가능해요.\n성북구 주민들과 함께 이용하기 위해 인증은 \n꼭 필요해요!" />
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <TextView
+<!--            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto_bold"
@@ -43,13 +43,13 @@
                 android:textColor="#000000"
                 android:textSize="12sp"
                 android:text="현재 위치" />
-
+-->
             <EditText
                 android:id="@+id/set_location"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
-                android:layout_marginLeft="13dp"
-                android:layout_marginTop="31dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="29dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/profile_edittext"
                 android:drawableRight="@drawable/search_btn_searchicon"
@@ -57,7 +57,7 @@
                 android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:maxLines="1"
-                android:paddingLeft="15dp"
+                android:paddingLeft="10dp"
                 android:paddingTop="6dp"
                 android:paddingRight="8dp"
                 android:paddingBottom="6dp"
@@ -70,8 +70,8 @@
             android:layout_width="320dp"
             android:layout_height="44dp"
             android:layout_gravity="center"
-            android:layout_marginTop="331dp"
-            android:background="@drawable/btn_next" />
+            android:layout_marginTop="73dp"
+            android:background="@drawable/signup_btn_end_gray" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="0dp"

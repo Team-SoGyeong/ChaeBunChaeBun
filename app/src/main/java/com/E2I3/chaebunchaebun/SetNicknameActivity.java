@@ -55,13 +55,13 @@ public class SetNicknameActivity extends AppCompatActivity {
                 String getNickname = set_nickname.getText().toString();
 
                 if (getNickname.length() <= 10 && getNickname.length() > 0) {
-                    set_nickname.setBackgroundResource(R.drawable.profile_edittext_green);
+                    set_nickname.setBackgroundResource(R.drawable.custom_signup_edittext_green);
                     nickname_invaild.setTextColor(Color.rgb(154, 151, 146));
                     btn_next.setImageResource(R.drawable.btn_signup_next);
                     btn_next.setClickable(true);
                     nickname = getNickname;
                 } else {
-                    set_nickname.setBackgroundResource(R.drawable.profile_edittext_red);
+                    set_nickname.setBackgroundResource(R.drawable.custom_signup_edittext_red);
                     nickname_invaild.setTextColor(Color.rgb(190, 23, 0));
                     btn_next.setImageResource(R.drawable.btn_next);
                     btn_next.setClickable(false);

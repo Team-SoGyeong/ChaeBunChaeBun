@@ -19,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SetLocationActivity extends AppCompatActivity {
     private static final int TAG_REQUEST_CODE = 1001;
     ImageButton btn_next;
-    EditText set_location, search;
+    EditText set_location, search   ;
     String searchLocation = null;
     boolean flag = false;
     int locationCode = 0;
@@ -95,7 +95,7 @@ public class SetLocationActivity extends AppCompatActivity {
                 String getLocation = set_location.getText().toString();
                 if(getLocation.length() > 0){
                     set_location.setBackgroundResource(R.drawable.profile_edittext_green);
-                    btn_next.setImageResource(R.drawable.btn_signup_next);
+                    btn_next.setImageResource(R.drawable.signup_btn_end_green);
                     btn_next.setClickable(true);
 
                     btn_next.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +123,7 @@ public class SetLocationActivity extends AppCompatActivity {
                     });
                 } else {
                     set_location.setBackgroundResource(R.drawable.profile_edittext);
-                    btn_next.setImageResource(R.drawable.btn_next);
+                    btn_next.setImageResource(R.drawable.signup_btn_end_gray);
                     btn_next.setClickable(false);
                 }
             }
