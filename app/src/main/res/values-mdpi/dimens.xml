@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="auto_left"></dimen>
-    <dimen name="auto_logo_top">10dp</dimen>
-    <dimen name="auto_login_top">10dp</dimen>
-</resources>

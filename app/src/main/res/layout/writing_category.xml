@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".SelectCategoryActivity">
 
     <LinearLayout
@@ -49,19 +50,27 @@
             android:textColor="#000000"
             android:textSize="16sp"
             android:text="채분할 채소의 종류를 선택해 주세요" />
-        <ListView
-            android:id="@+id/list_item"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:listSelector="@drawable/custom_search_select"/>
-        <ImageButton
-            android:id="@+id/btn_next"
-            android:layout_width="320dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="35dp"
-            android:background="@drawable/writing_btn_waitnext" />
-    </LinearLayout>
+    <ListView
+        android:id="@+id/list_item"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="1"
+        android:listSelector="@drawable/custom_search_select"/>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp">
+            <ImageButton
+                android:id="@+id/btn_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/writing_btn_waitnext" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

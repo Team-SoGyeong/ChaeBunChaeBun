@@ -29,7 +29,7 @@
         android:gravity="center_horizontal"
         android:text="아직 내가 쓴 댓글이 없어요\n댓글을 남겨 채분에 참여해보세요!"
         android:textColor="#656565"
-        android:fontFamily="@font/roboto_bold"/>
+        android:fontFamily="@font/roboto_regular"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mypage_comment_list"
         android:layout_width="match_parent"
