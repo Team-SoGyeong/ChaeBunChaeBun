@@ -150,6 +150,7 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                      intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                      startActivity(intent);
                      overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+
 /*
 //가입 세팅창 가기
                      Intent intent = new Intent(getApplicationContext(), SetProfileActivity.class);
