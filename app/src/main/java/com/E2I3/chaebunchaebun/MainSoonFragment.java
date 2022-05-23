@@ -44,6 +44,7 @@ public class MainSoonFragment extends Fragment {
     TextView mainSoonText;
     String userId = null;
     String locationCode = null;
+    int authorId = 0;
     boolean isBottom = true;
 
     public MainSoonFragment() {
@@ -140,7 +141,7 @@ public class MainSoonFragment extends Fragment {
             homeListAdapter.setModalClickListener(new HomeListAdapter.OnModalClickListener() {
                 @Override
                 public void OnModlaClick(View view, int pos) {
-                    String id = String.valueOf(homeListAdapter.getItem(pos).getUserId());
+                    String id = String.valueOf(authorId);
                     String postId = String.valueOf(homeListAdapter.getItem(pos).getPostId());
                     int categoryId = homeListAdapter.getItem(pos).getCategoryId();
                     if (id.equals(userId)) {
@@ -187,6 +188,7 @@ public class MainSoonFragment extends Fragment {
                 int categoryId = subJsonObject.getInt("category_id");
                 int postId = subJsonObject.getInt("post_id");
                 int userId = Integer.parseInt(this.userId);
+                authorId = subJsonObject.getInt("author_id");
                 String img = subJsonObject.getString("url");
                 String title = subJsonObject.getString("title");
                 String buyDate = subJsonObject.getString("buy_date");
