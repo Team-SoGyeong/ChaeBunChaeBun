@@ -590,28 +590,52 @@ public class WritingEtcChaebunActivity extends AppCompatActivity {
                     toastText.setText("입력되지 않은 칸이 있어요!");
                     toast.show();
                 }else {
-                    Bundle args = new Bundle();
-                    args.putString("inputVegetable", inputVegetable.getText().toString());
-                    args.putInt("categoryId", categoryId);
-                    args.putString("inputTitle", inputTitle.getText().toString());
-                    args.putString("inputContent", inputContent.getText().toString());
-                    args.putString("inputAmount", inputAmount.getText().toString());
-                    args.putString("inputGetPrice", inputGetPrice.getText().toString());
-                    args.putString("inputCall", inputCall.getText().toString());
-                    args.putString("inputBuyDate", str);
-                    args.putString("inputAmountStr", amount_str);
-                    args.putString("bill1", billImg1);
-                    args.putString("bill2",billImg2);
-                    args.putString("img1", mainImg);
-                    args.putString("img2", subImg1);
-                    args.putString("img3", subImg2);
-                    args.putString("img4", subImg3);
-                    args.putString("img5", subImg4);
-                    args.putString("userId", userId);
-                    args.putInt("locationCode", locationCode);
-                    WritingPopupDialogFragment e = WritingPopupDialogFragment.getInstance();
-                    e.setArguments(args);
-                    e.show(getSupportFragmentManager(), WritingPopupDialogFragment.TAG_EVENT_DIALOG);
+                    if(categoryId < 11) {
+                        Bundle args = new Bundle();
+                        args.putInt("categoryId", categoryId);
+                        args.putString("inputTitle", inputTitle.getText().toString());
+                        args.putString("inputContent", inputContent.getText().toString());
+                        args.putString("inputAmount", inputAmount.getText().toString());
+                        args.putString("inputGetPrice", inputGetPrice.getText().toString());
+                        args.putString("inputCall", inputCall.getText().toString());
+                        args.putString("inputBuyDate", str);
+                        args.putString("inputAmountStr", amount_str);
+                        args.putString("bill1", billImg1);
+                        args.putString("bill2",billImg2);
+                        args.putString("img1", mainImg);
+                        args.putString("img2", subImg1);
+                        args.putString("img3", subImg2);
+                        args.putString("img4", subImg3);
+                        args.putString("img5", subImg4);
+                        args.putString("userId", userId);
+                        args.putInt("locationCode", locationCode);
+                        WritingPopupDialogFragment e = WritingPopupDialogFragment.getInstance();
+                        e.setArguments(args);
+                        e.show(getSupportFragmentManager(), WritingPopupDialogFragment.TAG_EVENT_DIALOG);
+                    } else {
+                        Bundle args = new Bundle();
+                        args.putString("inputVegetable", inputVegetable.getText().toString());
+                        args.putInt("categoryId", categoryId);
+                        args.putString("inputTitle", inputTitle.getText().toString());
+                        args.putString("inputContent", inputContent.getText().toString());
+                        args.putString("inputAmount", inputAmount.getText().toString());
+                        args.putString("inputGetPrice", inputGetPrice.getText().toString());
+                        args.putString("inputCall", inputCall.getText().toString());
+                        args.putString("inputBuyDate", str);
+                        args.putString("inputAmountStr", amount_str);
+                        args.putString("bill1", billImg1);
+                        args.putString("bill2",billImg2);
+                        args.putString("img1", mainImg);
+                        args.putString("img2", subImg1);
+                        args.putString("img3", subImg2);
+                        args.putString("img4", subImg3);
+                        args.putString("img5", subImg4);
+                        args.putString("userId", userId);
+                        args.putInt("locationCode", locationCode);
+                        WritingEctPopupDialogFragment e = WritingEctPopupDialogFragment.getInstance();
+                        e.setArguments(args);
+                        e.show(getSupportFragmentManager(), WritingEctPopupDialogFragment.TAG_EVENT_DIALOG);
+                    }
                 }
             }
         });

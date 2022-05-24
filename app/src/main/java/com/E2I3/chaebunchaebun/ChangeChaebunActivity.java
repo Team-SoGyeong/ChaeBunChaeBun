@@ -176,10 +176,8 @@ public class ChangeChaebunActivity extends AppCompatActivity {
 
         getPostList();
 
-        inputAmount.setClickable(false);
-        inputAmount.setFocusable(false);
-        inputGetPrice.setClickable(false);
-        inputGetPrice.setFocusable(false);
+        inputAmount.setEnabled(false);
+        inputGetPrice.setEnabled(false);
         /*inputMemberNum.setClickable(false);
         inputMemberNum.setFocusable(false);*/
 

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="20dp"
+    android:background="@drawable/popup_radius"
+    tools:context=".WritingEctPopupDialogFragment">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:text="이렇게 채분을 진행할게요!" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:text="채소 종류" />
+        <EditText
+            android:id="@+id/check_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:background="@drawable/rectangle_604"
+            android:text="채소 종류" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:text="구매 날짜" />
+        <EditText
+            android:id="@+id/check_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:background="@drawable/rectangle_604"
+            android:text="구매 날짜" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:text="총 구매양" />
+        <EditText
+            android:id="@+id/check_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:background="@drawable/rectangle_605"
+            android:text="5" />
+        <TextView
+            android:id="@+id/check_amount_str"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:text="kg" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:text="구매 가격" />
+        <EditText
+            android:id="@+id/check_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:background="@drawable/rectangle_605"
+            android:text="500" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:text="원" />
+    </LinearLayout>
+    <ImageButton
+        android:id="@+id/btn_ok"
+        android:layout_width="210dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:background="@drawable/writing_btn_okpopup" />
+    <ImageButton
+        android:id="@+id/btn_modify"
+        android:layout_width="210dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:background="@drawable/writing_btn_modify" />
+</LinearLayout>
