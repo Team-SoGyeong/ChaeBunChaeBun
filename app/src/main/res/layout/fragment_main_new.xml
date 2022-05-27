@@ -15,7 +15,10 @@
         android:layout_gravity="center"
         android:gravity="center_horizontal"
         android:text="아직 최신 채분이 없어요\n직접 채분을 시작해 신선함을 나눠 보세요!"
-        android:textColor="#656565" />
+        android:textColor="#656565"
+        android:textSize="14sp"
+        android:fontFamily="@font/notosanskr_bold"
+        android:includeFontPadding="false"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_new_list"
         android:layout_width="match_parent"

@@ -174,7 +174,6 @@ public class ArticleFragment extends Fragment {
         articleRecyclerAdapter = new ArticleRecyclerAdapter(articleItemList);
         aRecyclerView.setAdapter(articleRecyclerAdapter);
 
-        categoryName.setText(this.categoryNameString);
         articleTitle.setText(this.title);
         articleNickname.setText(this.nickname);
         articleContent.setText(this.content);
@@ -184,6 +183,12 @@ public class ArticleFragment extends Fragment {
         //articlePeople.setText(this.members);
         articlePrice.setText(this.totalPrice);
         articleWritingDate.setText(this.writtenBy);
+
+        if(categoryId < 11) {
+            categoryName.setText(this.categoryNameString);
+        } else {
+            categoryName.setText("기타");
+        }
 
         if(isAuth == 0){
             articleRecipt.setVisibility(View.GONE);
@@ -317,25 +322,25 @@ public class ArticleFragment extends Fragment {
                         @Override
                         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                             if(articlePer.getText().toString().equals("") || articlePer.getText().toString().equals(null)) {
-                                double perAmount = 0;
-                                double totalPrice = Double.valueOf(articleTotalPrice.getText().toString());
-                                double amount = Double.valueOf(articleAmount.getText().toString());
+                                int perAmount = 0;
+                                int totalPrice = Integer.valueOf(articleTotalPrice.getText().toString());
+                                int amount = Integer.valueOf(articleAmount.getText().toString());
 
                                 if(perAmount == 0 || perAmount < 0 || perAmount > amount) {
                                     articleInputPer.setText("0");
                                 } else {
-                                    double calculate = Math.round((totalPrice / amount) * 100) / 100.0  * perAmount;
+                                    int calculate = (totalPrice / amount) * perAmount;
                                     articleInputPer.setText(String.valueOf(calculate));
                                 }
                             } else {
-                                double perAmount = Double.valueOf(articlePer.getText().toString());
-                                double totalPrice = Double.valueOf(articleTotalPrice.getText().toString());
-                                double amount = Double.valueOf(articleAmount.getText().toString());
+                                int perAmount = Integer.valueOf(articlePer.getText().toString());
+                                int totalPrice = Integer.valueOf(articleTotalPrice.getText().toString());
+                                int amount = Integer.valueOf(articleAmount.getText().toString());
 
                                 if(perAmount == 0 || perAmount < 0 || perAmount > amount) {
                                     articleInputPer.setText("0");
                                 } else {
-                                    double calculate = Math.round((totalPrice / amount) * 100) / 100.0  * perAmount;
+                                    int calculate = (totalPrice / amount) * perAmount;
                                     articleInputPer.setText(String.valueOf(calculate));
                                 }
                             }

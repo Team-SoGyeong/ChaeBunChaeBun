@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
-        <item name="android:fontFamily">@font/roboto_bold</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/notosanskr_regular</item>
+        <item name="android:textSize">10sp</item>
     </style>
     <style name="category_tab_text" parent="android:style/TextAppearance.Widget.TabWidget">
-        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:fontFamily">@font/notosanskr_regular</item>
         <item name="android:textSize">16sp</item>
+    </style>
+    <style name="my_tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/notosanskr_bold</item>
+        <item name="android:textSize">12sp</item>
     </style>
     <style name="CustomBottomSheetDialog" parent="@style/ThemeOverlay.MaterialComponents.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/CustomBottomSheet</item>

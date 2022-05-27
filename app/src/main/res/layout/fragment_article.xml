@@ -27,7 +27,8 @@
                 android:layout_height="24dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/roboto_regular"
+                android:fontFamily="@font/notosanskr_regular"
+                android:includeFontPadding="false"
                 android:textStyle="normal"
                 android:textSize="20sp"
                 android:textColor="@color/black"
@@ -64,7 +65,7 @@
                     android:textColor="#999999"
                     android:textSize="10sp"
                     android:textAlignment="center"
-                    android:fontFamily="@font/roboto_bold"
+                    android:fontFamily="@font/notosanskr_bold"
                     android:includeFontPadding="false"/>
             </LinearLayout>
         </LinearLayout>
@@ -113,7 +114,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="1dp"
-                                android:fontFamily="@font/roboto_bold"
+                                android:fontFamily="@font/notosanskr_bold"
                                 android:includeFontPadding="false"
                                 android:text="제목"
                                 android:textColor="@color/black"
@@ -123,7 +124,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:fontFamily="@font/roboto_regular"
+                                android:fontFamily="@font/notosanskr_regular"
                                 android:includeFontPadding="false"
                                 android:text="닉네임"
                                 android:textColor="@color/black"
@@ -146,7 +147,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:layout_marginRight="11dp"
-                            android:fontFamily="@font/roboto_regular"
+                            android:fontFamily="@font/notosanskr_regular"
                             android:includeFontPadding="false"
                             android:text="00/00"
                             android:textAlignment="center"
@@ -201,7 +202,7 @@
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
                                 android:textSize="12sp"
-                                android:fontFamily="@font/roboto_bold"
+                                android:fontFamily="@font/notosanskr_bold"
                                 android:includeFontPadding="false"/>
                         </LinearLayout>
                         <View
@@ -227,7 +228,7 @@
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
                                 android:textSize="12sp"
-                                android:fontFamily="@font/roboto_bold"
+                                android:fontFamily="@font/notosanskr_bold"
                                 android:includeFontPadding="false"/>
                         </LinearLayout>
                         <!--<View
@@ -279,7 +280,7 @@
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
                                 android:textSize="12sp"
-                                android:fontFamily="@font/roboto_bold"
+                                android:fontFamily="@font/notosanskr_bold"
                                 android:includeFontPadding="false"/>
                         </LinearLayout>
                     </LinearLayout>
@@ -293,7 +294,8 @@
                         android:text="내용"
                         android:textColor="@color/black"
                         android:textSize="12sp"
-                        android:fontFamily="@font/roboto_regular"/>
+                        android:fontFamily="@font/notosanskr_regular"
+                        android:includeFontPadding="false"/>
                     <TextView
                         android:id="@+id/article_contact_guide"
                         android:layout_width="match_parent"
@@ -303,7 +305,8 @@
                         android:text="이렇게 연락해 주세요!"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        android:fontFamily="@font/roboto_bold"/>
+                        android:fontFamily="@font/notosanskr_bold"
+                        android:includeFontPadding="false"/>
                     <TextView
                         android:id="@+id/article_contact"
                         android:layout_width="match_parent"
@@ -314,7 +317,8 @@
                         android:text="연락방법"
                         android:textColor="@color/black"
                         android:textSize="12sp"
-                        android:fontFamily="@font/roboto_regular"
+                        android:fontFamily="@font/notosanskr_regular"
+                        android:includeFontPadding="false"
                         android:linksClickable="true"
                         android:autoLink="web"/>
                     <ImageButton
@@ -370,7 +374,7 @@
                         android:textColor="#999999"
                         android:textSize="12sp"
                         android:textAlignment="textStart"
-                        android:fontFamily="@font/roboto_regular"
+                        android:fontFamily="@font/notosanskr_regular"
                         android:includeFontPadding="false"/>
                     <ImageButton
                         android:id="@+id/article_comment_btn"
@@ -391,7 +395,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/category_img_tooltip"/>
+                android:src="@drawable/article_img_receipt_tooltip"/>
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

@@ -15,11 +15,13 @@
         android:text="이 댓글을 신고하는 이유를 알려주세요!"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:fontFamily="@font/roboto_bold"/>
+        android:fontFamily="@font/notosanskr_bold"
+        android:includeFontPadding="false"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/notosanskr_regular"
+        android:includeFontPadding="false"
         android:textAlignment="center"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
@@ -40,7 +42,8 @@
             android:text="광고성 글이에요"
             android:textColor="@drawable/selector_radio_nosee_text"
             android:textSize="14sp"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/notosanskr_bold"
+            android:includeFontPadding="false"
             android:paddingLeft="10dp"/>
         <RadioButton
             android:id="@+id/comment_no_match"
@@ -51,7 +54,8 @@
             android:text="부적절한 내용이 담겨 있어요"
             android:textColor="@drawable/selector_radio_nosee_text"
             android:textSize="14sp"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/notosanskr_bold"
+            android:includeFontPadding="false"
             android:paddingLeft="10dp"/>
         <RadioButton
             android:id="@+id/comment_etc"
@@ -62,7 +66,8 @@
             android:text="기타"
             android:textColor="@drawable/selector_radio_nosee_text"
             android:textSize="14sp"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/notosanskr_bold"
+            android:includeFontPadding="false"
             android:paddingLeft="10dp"/>
     </RadioGroup>
     <EditText
@@ -72,7 +77,8 @@
         android:layout_height="140dp"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/roboto_regular"
+        android:fontFamily="@font/notosanskr_regular"
+        android:includeFontPadding="false"
         android:background="@drawable/signup_edittext"
         android:textSize="14sp"
         android:paddingLeft="9dp"

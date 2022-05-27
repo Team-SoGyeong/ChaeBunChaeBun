@@ -18,7 +18,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_bold"
+                android:fontFamily="@font/notosanskr_bold"
+                android:includeFontPadding="false"
                 android:layout_marginLeft="21dp"
                 android:layout_marginTop="15dp"
                 android:textColor="#000000"
@@ -27,7 +28,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_bold"
+                android:fontFamily="@font/notosanskr_bold"
+                android:includeFontPadding="false"
                 android:layout_marginLeft="21dp"
                 android:layout_marginTop="3dp"
                 android:textColor="#999999"
@@ -88,7 +90,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/notosanskr_bold"
+            android:includeFontPadding="false"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:textColor="#000000"
@@ -105,14 +108,16 @@
             android:textSize="14sp"
             android:paddingLeft="9dp"
             android:backgroundTint="#f4f6f2"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"
             android:hint="브로콜리" />
 
         <!-- 제목 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/notosanskr_bold"
+            android:includeFontPadding="false"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:textColor="#000000"
@@ -129,14 +134,16 @@
             android:textSize="14sp"
             android:paddingLeft="9dp"
             android:backgroundTint="#f4f6f2"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"
             android:hint="채분할 사람 모여라!" />
 
         <!-- 소개글 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/notosanskr_bold"
+            android:includeFontPadding="false"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:textColor="#000000"
@@ -149,7 +156,8 @@
             android:layout_marginLeft="19dp"
             android:layout_marginRight="19dp"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"
             android:background="@drawable/signup_edittext"
             android:textSize="14sp"
             android:paddingLeft="9dp"
@@ -171,7 +179,8 @@
                 android:id="@+id/input_content_count"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_regular"
+                android:fontFamily="@font/notosanskr_regular"
+                android:includeFontPadding="false"
                 android:layout_marginTop="10dp"
                 android:paddingRight="2dp"
                 android:textAlignment="viewEnd"
@@ -184,7 +193,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/notosanskr_bold"
+            android:includeFontPadding="false"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:textColor="#000000"
@@ -196,7 +206,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/notosanskr_bold"
+            android:includeFontPadding="false"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
             android:textColor="#000000"
@@ -205,7 +216,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:textColor="#999999"
@@ -218,7 +230,8 @@
             android:layout_marginLeft="19dp"
             android:layout_marginRight="19dp"
             android:layout_marginTop="12dp"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"
             android:background="@drawable/signup_edittext"
             android:textSize="14sp"
             android:paddingLeft="10dp"

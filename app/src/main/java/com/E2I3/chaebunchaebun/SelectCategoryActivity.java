@@ -29,16 +29,16 @@ public class SelectCategoryActivity extends AppCompatActivity{
         btn_back = (ImageView) findViewById(R.id.btn_back);
         btn_next = (ImageButton) findViewById(R.id.btn_next);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, LIST_MENU) ;
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.custom_listview_layout, LIST_MENU);
 
-        ListView listview = (ListView) findViewById(R.id.list_item) ;
-        listview.setAdapter(adapter) ;
+        ListView listview = (ListView) findViewById(R.id.list_item);
+        listview.setAdapter(adapter);
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 btn_next.setImageResource(R.drawable.writing_btn_next);
-                String strText = (String) adapterView.getItemAtPosition(i) ;
+                String strText = (String) adapterView.getItemAtPosition(i);
                 System.out.println("clickItem:" + strText);
 
                 switch (strText){

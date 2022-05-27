@@ -20,12 +20,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/notosanskr_bold"
+            android:includeFontPadding="false"
             android:gravity="center"
             android:layout_marginLeft="-44dp"
             android:textColor="#000000"
             android:textSize="16sp"
-            android:textStyle="bold"
             android:text="내가 쓴 글" />
     </LinearLayout>
     <View
@@ -40,7 +40,7 @@
         app:tabGravity="fill"
         app:tabMode="fixed"
         app:tabTextColor="@color/black"
-        app:tabTextAppearance="@style/tab_text"
+        app:tabTextAppearance="@style/my_tab_text"
         app:tabSelectedTextColor="@color/black"
         app:tabBackground="@color/white"
         app:tabIndicatorColor="#6a951f"
