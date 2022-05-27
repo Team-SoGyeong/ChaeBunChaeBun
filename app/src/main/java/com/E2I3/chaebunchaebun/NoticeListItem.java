@@ -2,6 +2,7 @@ package com.E2I3.chaebunchaebun;
 
 public class NoticeListItem {
     String caseType = "";
+    int noticeId = 0;
     String nickname = "";
     String img = "";
     String title = "";
@@ -13,9 +14,10 @@ public class NoticeListItem {
     String userId;
     String isClick = "";
 
-    public NoticeListItem(String caseType, String nickname, String img, String title, String content, String date,
+    public NoticeListItem(String caseType, int noticeId, String nickname, String img, String title, String content, String date,
                           int isAuth, int postId, int categoryId, String userId, String isClick) {
         this.caseType = caseType;
+        this.noticeId = noticeId;
         this.nickname = nickname;
         this.img = img;
         this.title = title;
@@ -30,6 +32,10 @@ public class NoticeListItem {
 
     public String getCaseType() {
         return caseType;
+    }
+
+    public int getNoticeId() {
+        return noticeId;
     }
 
     public String getNickname() {
