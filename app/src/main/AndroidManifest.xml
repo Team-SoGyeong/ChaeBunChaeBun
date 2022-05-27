@@ -40,7 +40,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-//원래코드
+
         <activity
             android:name="com.E2I3.chaebunchaebun.MypageMyHeartActivity"
             android:exported="true" />
@@ -80,7 +80,8 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.E2I3.chaebunchaebun.SetStartActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
         <activity
             android:name="com.E2I3.chaebunchaebun.WithdrawActivity"
             android:windowSoftInputMode="adjustResize" />
@@ -116,6 +117,16 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.E2I3.chaebunchaebun.ChangeChaebunEtcActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <!-- 온보딩  -->
+        <activity
+            android:name="com.E2I3.chaebunchaebun.OnboardingFirstActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.E2I3.chaebunchaebun.OnboardingSecondActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.E2I3.chaebunchaebun.OnboardingThirdActivity"
             android:windowSoftInputMode="adjustResize" />
     </application>
 </manifest>

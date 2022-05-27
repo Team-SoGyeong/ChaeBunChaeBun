@@ -152,6 +152,7 @@ public class SessionCallback extends AppCompatActivity implements ISessionCallba
                      overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
 
 /*
+
 //가입 세팅창 가기
                      Intent intent = new Intent(getApplicationContext(), SetProfileActivity.class);
                      intent.putExtra("kakao_id", kakao_id);

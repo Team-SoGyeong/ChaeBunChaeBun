@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="72dp"
+        android:layout_gravity="center"
+        android:layout_weight="0.5">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_gravity="center"
+            android:textColor="#6a951f"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="채분에 참여해보세요" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            android:textColor="#000000"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:text="원하는 채분을 찾으셨나요?\n댓글로 참여해보세요!" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:layout_gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/onboarding_img_2" />
+
+        <ImageButton
+            android:id="@+id/btn_skip"
+            android:layout_width="180dp"
+            android:layout_height="85dp"
+            android:layout_marginTop="445dp"
+            android:background="@drawable/onboarding_btn_skip" />
+
+        <ImageButton
+            android:id="@+id/btn_next"
+            android:layout_width="180dp"
+            android:layout_height="85dp"
+            android:layout_marginLeft="180dp"
+            android:layout_marginTop="445dp"
+            android:background="@drawable/onboarding_btn_next" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+</LinearLayout>
