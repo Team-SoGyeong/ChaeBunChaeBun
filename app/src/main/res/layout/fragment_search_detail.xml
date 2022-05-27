@@ -32,7 +32,8 @@
             android:paddingBottom="9dp"
             android:paddingRight="10dp"
             android:hint="채소 검색하기"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"
             android:textSize="14sp"
             android:drawableRight="@drawable/search_btn_searchicon"
             android:background="@drawable/edittext_rounded_corner_rectangle"
@@ -57,7 +58,9 @@
             android:text="검색하신 채분이 아직 열리지 않았어요.\n직접 채분을 열어보세요!"
             android:textColor="#999999"
             android:textAlignment="center"
-            android:textSize="14sp"/>
+            android:textSize="14sp"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"/>
         <ImageButton
             android:id="@+id/search_no_startbtn"
             android:layout_width="match_parent"
@@ -76,7 +79,8 @@
             android:text="추천 검색어"
             android:textSize="16sp"
             android:textColor="#6a951f"
-            android:fontFamily="@font/roboto_bold"/>
+            android:fontFamily="@font/notosanskr_bold"
+            android:includeFontPadding="false"/>
         <ListView
             android:id="@+id/jrv_search_list"
             android:layout_width="match_parent"

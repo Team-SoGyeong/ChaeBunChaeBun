@@ -38,14 +38,16 @@
                 android:text="닉네임"
                 android:textSize="12sp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/roboto_bold"/>
+                android:fontFamily="@font/notosanskr_bold"
+                android:includeFontPadding="false"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="님이 내 글에 "
                 android:textSize="12sp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/roboto_bold"/>
+                android:fontFamily="@font/notosanskr_bold"
+                android:includeFontPadding="false"/>
             <TextView
                 android:id="@+id/notice_list_ment"
                 android:layout_width="wrap_content"
@@ -53,7 +55,8 @@
                 android:text="멘트"
                 android:textSize="12sp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/roboto_bold"/>
+                android:fontFamily="@font/notosanskr_bold"
+                android:includeFontPadding="false"/>
         </LinearLayout>
         <View
             android:layout_width="match_parent"
@@ -95,7 +98,8 @@
                     android:text="제목"
                     android:textSize="14sp"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_bold"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:includeFontPadding="false"
                     android:maxWidth="150dp"
                     android:maxLines="1"
                     android:ellipsize="end"/>
@@ -119,7 +123,8 @@
                     android:textSize="12sp"
                     android:textAlignment="center"
                     android:textColor="#999999"
-                    android:fontFamily="@font/roboto_regular"/>
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:includeFontPadding="false"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -170,7 +175,8 @@
                     android:text="글 내용"
                     android:textSize="10sp"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_regular"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:includeFontPadding="false"
                     android:maxWidth="180dp"
                     android:maxLines="2"
                     android:ellipsize="end"/>

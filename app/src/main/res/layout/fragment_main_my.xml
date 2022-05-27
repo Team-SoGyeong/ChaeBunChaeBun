@@ -15,7 +15,10 @@
         android:layout_gravity="center"
         android:gravity="center_horizontal"
         android:text="찜한 채분이 없어요\n참여하고 싶은 채분을 탐색해 찜해 보세요!"
-        android:textColor="#656565" />
+        android:textColor="#656565"
+        android:textSize="14sp"
+        android:fontFamily="@font/notosanskr_bold"
+        android:includeFontPadding="false"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_my_list"
         android:layout_width="match_parent"

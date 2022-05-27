@@ -29,7 +29,8 @@
             android:paddingBottom="9dp"
             android:paddingRight="10dp"
             android:hint="동이름 검색하기"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"
             android:textSize="14sp"
             android:drawableRight="@drawable/ic_search"
             android:background="@drawable/edittext_rounded_corner_rectangle"
@@ -55,11 +56,13 @@
             android:text="돈암동"
             android:textSize="14sp"
             android:textColor="@color/olive"
-            android:fontFamily="@font/roboto_regular"/>
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="1dp"
             android:textColor="#000000"

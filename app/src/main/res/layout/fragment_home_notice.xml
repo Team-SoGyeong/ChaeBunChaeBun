@@ -21,12 +21,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:layout_marginLeft="-44dp"
             android:textColor="#000000"
             android:textSize="20sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/notosanskr_bold"
+            android:includeFontPadding="false"
             android:text="알림" />
     </LinearLayout>
     <View
@@ -47,7 +47,9 @@
             android:gravity="center_horizontal"
             android:text="채분채분은 이웃들과의 소통을 중시해요.\n더욱 원활히 소통할 수 있도록 이곳에서\n여러 소식을 전달해 드릴게요!"
             android:textColor="#515151"
-            android:fontFamily="@font/roboto_regular"/>
+            android:textSize="14sp"
+            android:fontFamily="@font/notosanskr_bold"
+            android:includeFontPadding="false"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_notice_list"
             android:layout_width="match_parent"

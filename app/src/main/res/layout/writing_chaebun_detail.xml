@@ -79,7 +79,8 @@
         android:layout_height="29dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_spinner_background"/>
 
     <Spinner
         android:id="@+id/date_spinner2"
@@ -89,6 +90,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginTop="-29dp"
         android:layout_marginRight="20dp"
+        android:background="@drawable/custom_spinner_background"
         android:fontFamily="@font/roboto_regular"
         android:gravity="center"
         android:textAlignment="center"
@@ -97,18 +99,20 @@
         android:id="@+id/amount_spinner1"
         android:layout_width="match_parent"
         android:layout_height="29dp"
-        android:layout_marginLeft="200dp"
+        android:layout_marginLeft="212dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="49dp"/>
+        android:layout_marginTop="49dp"
+        android:background="@drawable/custom_spinner_background"/>
 
     <Spinner
         android:id="@+id/amount_spinner2"
         android:layout_width="match_parent"
         android:layout_height="29dp"
         android:layout_below="@+id/amount_spinner1"
-        android:layout_marginLeft="200dp"
+        android:layout_marginLeft="212dp"
         android:layout_marginTop="-29dp"
         android:layout_marginRight="20dp"
+        android:background="@drawable/custom_spinner_background"
         android:fontFamily="@font/roboto_regular"
         android:gravity="center"
         android:textAlignment="center"

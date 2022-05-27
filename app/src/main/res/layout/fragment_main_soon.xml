@@ -8,14 +8,17 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-    android:id="@+id/main_soon_text"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="31dp"
-    android:layout_gravity="center"
-    android:gravity="center_horizontal"
-    android:text="마감 직전인 채분이 없어요\n직접 채분을 시작해 사람들을 모아 보세요!"
-    android:textColor="#656565" />
+        android:id="@+id/main_soon_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="31dp"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:text="마감 직전인 채분이 없어요\n직접 채분을 시작해 사람들을 모아 보세요!"
+        android:textColor="#656565"
+        android:textSize="14sp"
+        android:fontFamily="@font/notosanskr_bold"
+        android:includeFontPadding="false"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_soon_list"

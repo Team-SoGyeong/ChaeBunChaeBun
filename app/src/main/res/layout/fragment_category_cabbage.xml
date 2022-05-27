@@ -32,7 +32,8 @@
                     android:layout_marginRight="24dp"
                     android:text="비방글 및 광고, 게시판에 어울리지 않는 글은"
                     android:textAlignment="center"
-                    android:fontFamily="@font/roboto_regular"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:includeFontPadding="false"
                     android:textSize="12sp"/>
                 <TextView
                     android:id="@+id/cabbage_warning_text2"
@@ -40,7 +41,8 @@
                     android:layout_height="wrap_content"
                     android:text="경고 없이 삭제될 수 있다는 점 유의해 주시기 바랍니다."
                     android:textAlignment="center"
-                    android:fontFamily="@font/roboto_bold"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:includeFontPadding="false"
                     android:textSize="12sp"/>
             </LinearLayout>
             <View
@@ -56,7 +58,8 @@
                 android:text="벌써 모든 채분 자리가 다 나갔어요!\n채분 하기 버튼을 눌러 채분을 시작해 볼까요?"
                 android:textAlignment="center"
                 android:textSize="12sp"
-                android:fontFamily="@font/roboto_regular"/>
+                android:fontFamily="@font/notosanskr_regular"
+                android:includeFontPadding="false"/>
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
