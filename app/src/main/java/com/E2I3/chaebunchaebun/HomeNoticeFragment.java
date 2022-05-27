@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -142,6 +143,7 @@ public class HomeNoticeFragment extends Fragment {
                 public void onItemClick(View view, int pos) {
                     PutTask locationPutTask = new PutTask();
                     try {
+                        noticeId = noticeListAdapter.getItem(pos).getNoticeId();
                         String response = locationPutTask.execute("common/notice/" + caseBy + "/" + noticeId, caseBy, String.valueOf(noticeId)).get();
                         JSONObject jsonObject = new JSONObject(response);
                         int responseCode = jsonObject.getInt("code");
@@ -206,7 +208,7 @@ public class HomeNoticeFragment extends Fragment {
                 int categoryId = subJsonObject.getInt("category_id");
                 String isClick = subJsonObject.getString("isClick");
 
-                noticeListItems.add(new NoticeListItem(caseBy, nickname, img, title, content, writtenBy,
+                noticeListItems.add(new NoticeListItem(caseBy, noticeId, nickname, img, title, content, writtenBy,
                         isAuth, postId, categoryId, this.userId, isClick));
             }
         } catch (JSONException e) {
