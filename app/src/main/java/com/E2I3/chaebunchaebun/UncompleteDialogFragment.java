@@ -1,5 +1,7 @@
 package com.E2I3.chaebunchaebun;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -71,5 +73,17 @@ public class UncompleteDialogFragment extends DialogFragment {
         setCancelable(false);
 
         return unCompleteDialog;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == TAG_INTENT && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Intent intent = new Intent(getActivity(), NavigationActivity.class);
+            intent.putExtra("userId", userId);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            getActivity().startActivity(intent);
+            getActivity().overridePendingTransition(0, 0);
+        }
     }
 }

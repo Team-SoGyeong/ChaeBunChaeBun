@@ -28,4 +28,10 @@ public class SearchActivity extends AppCompatActivity {
         searchPostTransaction.replace(R.id.search_frame, searchDetailFragment);
         searchPostTransaction.commit();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+    }
 }
