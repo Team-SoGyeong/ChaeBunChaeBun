@@ -175,7 +175,7 @@ public class MypageMyheartDetailFragment extends Fragment {
                         articleBundle.putInt("categoryId", categoryId);
                         articleBundle.putBoolean("isMyPage", isMyPage);
                         FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-
+                        articleTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
                         ArticleEtcFragment articleEtcFragment = new ArticleEtcFragment();
                         articleEtcFragment.setArguments(articleBundle);
                         articleTransaction.replace(R.id.mypage_myheart_frame, articleEtcFragment);
