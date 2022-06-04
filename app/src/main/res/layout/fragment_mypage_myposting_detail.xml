@@ -26,7 +26,7 @@
             android:layout_marginLeft="-44dp"
             android:textColor="#000000"
             android:textSize="16sp"
-            android:text="내가 쓴 글" />
+            android:text="마이페이지" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
@@ -46,8 +46,13 @@
         app:tabIndicatorColor="#6a951f"
         app:tabIndicatorHeight="1dp">
     </com.google.android.material.tabs.TabLayout>
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:id="@+id/mypage_refresh">
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>
