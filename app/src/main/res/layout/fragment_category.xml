@@ -54,39 +54,44 @@
                         android:src="@drawable/category_img_help"/>
                 </LinearLayout>
             </com.google.android.material.appbar.AppBarLayout>
-            <FrameLayout
-                android:id="@+id/category_frame"
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
-                <LinearLayout
+                android:id="@+id/category_refresh">
+                <FrameLayout
+                    android:id="@+id/category_frame"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/tab_category"
+                    android:layout_weight="1">
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="49dp"
-                        android:layout_marginTop="15dp"
-                        android:background="@color/white"
-                        app:tabBackground="@color/white"
-                        app:tabGravity="fill"
-                        app:tabIndicatorColor="#6a951f"
-                        app:tabMode="scrollable"
-                        app:tabSelectedTextColor="@color/black"
-                        app:tabTextAppearance="@style/category_tab_text"
-                        app:tabTextColor="@color/black">
-                    </com.google.android.material.tabs.TabLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#ebebeb" />
-                    <androidx.viewpager.widget.ViewPager
-                        android:id="@+id/category_view_pager"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </FrameLayout>
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/tab_category"
+                            android:layout_width="match_parent"
+                            android:layout_height="49dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@color/white"
+                            app:tabBackground="@color/white"
+                            app:tabGravity="fill"
+                            app:tabIndicatorColor="#6a951f"
+                            app:tabMode="scrollable"
+                            app:tabSelectedTextColor="@color/black"
+                            app:tabTextAppearance="@style/category_tab_text"
+                            app:tabTextColor="@color/black">
+                        </com.google.android.material.tabs.TabLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#ebebeb" />
+                        <androidx.viewpager.widget.ViewPager
+                            android:id="@+id/category_view_pager"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </FrameLayout>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/category_content_help"

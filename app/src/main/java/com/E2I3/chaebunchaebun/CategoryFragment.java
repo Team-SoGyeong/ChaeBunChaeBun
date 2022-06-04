@@ -5,8 +5,10 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +23,7 @@ import com.google.android.material.tabs.TabLayout;
  * Use the {@link CategoryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CategoryFragment extends Fragment{
+public class CategoryFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,6 +35,7 @@ public class CategoryFragment extends Fragment{
     private String mParam2;
     private int vegetable;
 
+    SwipeRefreshLayout swipeRefreshLayout;
     TabLayout categoryTabLayout;
     View category;
     ImageView imgBack, icHelp;
@@ -71,6 +74,13 @@ public class CategoryFragment extends Fragment{
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        if(getArguments() != null){
+            userId = getArguments().getString("userId");
+            Log.i("userId", userId);
+            locationCode = getArguments().getInt("locationCode");
+            vegetable = getArguments().getInt("vegetable");
+        }
     }
 
     @Override
@@ -82,10 +92,9 @@ public class CategoryFragment extends Fragment{
         category_name = category.findViewById(R.id.tv_categoryName);
         icHelp = category.findViewById(R.id.category_ic_help);
         contenthelp = category.findViewById(R.id.category_content_help);
+        swipeRefreshLayout = category.findViewById(R.id.category_refresh);
 
         contenthelp.setVisibility(View.GONE);
-        userId = getArguments().getString("userId");
-        locationCode = getArguments().getInt("locationCode");
 
         CategoryVPAdapter categoryVPAdapter = new CategoryVPAdapter(getChildFragmentManager(), userId, locationCode);
         categoryvp.setAdapter(categoryVPAdapter);
@@ -93,16 +102,16 @@ public class CategoryFragment extends Fragment{
         categoryTabLayout = category.findViewById(R.id.tab_category);
         categoryTabLayout.setupWithViewPager(categoryvp);
 
-        if(getArguments() != null){
-            vegetable = getArguments().getInt("vegetable");
-            categoryvp.setCurrentItem(vegetable);
-            category_name.setText(categoryVPAdapter.getPageTitle(categoryTabLayout.getSelectedTabPosition()));
-        }
+        swipeRefreshLayout.setOnRefreshListener(this);
+
+        categoryvp.setCurrentItem(vegetable);
+        category_name.setText(categoryVPAdapter.getPageTitle(categoryTabLayout.getSelectedTabPosition()));
 
         categoryTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 category_name.setText(categoryVPAdapter.getPageTitle(tab.getPosition()));
+                vegetable = tab.getPosition();
             }
 
             @Override
@@ -113,6 +122,7 @@ public class CategoryFragment extends Fragment{
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
                 category_name.setText(categoryVPAdapter.getPageTitle(tab.getPosition()));
+                vegetable = tab.getPosition();
             }
         });
 
@@ -143,5 +153,20 @@ public class CategoryFragment extends Fragment{
         });
 
         return category;
+    }
+
+    @Override
+    public void onRefresh() {
+        Bundle categoryBundle = new Bundle();
+        categoryBundle.putInt("vegetable", vegetable);
+        categoryBundle.putString("userId", userId);
+        categoryBundle.putInt("locationCode", locationCode);
+        FragmentTransaction categoryTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        CategoryFragment categoryFragment = new CategoryFragment();
+        categoryFragment.setArguments(categoryBundle);
+        categoryTransaction.replace(R.id.bottom_frame, categoryFragment);
+        categoryTransaction.commit();
+
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

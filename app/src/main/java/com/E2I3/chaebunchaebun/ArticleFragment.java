@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -35,7 +36,7 @@ import java.util.concurrent.ExecutionException;
  * Use the {@link ArticleFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ArticleFragment extends Fragment {
+public class ArticleFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,6 +59,7 @@ public class ArticleFragment extends Fragment {
     private ArrayList<CommentRecyclerItem> commentRecyclerItems;
     private CommentRecyclerAdapter commentRecyclerAdapter;
     private LinearLayoutManager cLayoutManager;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     View articleView;
     ImageView articleBack, articleRecipt, articleComplete, articleProfile, articleModalbtn, articleLikebtn;
@@ -162,6 +164,9 @@ public class ArticleFragment extends Fragment {
         articleReciptHelp = (LinearLayout) articleView.findViewById(R.id.article_receipt_help);
         articleReciptHelp.setVisibility(View.GONE);
         articleModalbtn = (ImageView) articleView.findViewById(R.id.article_modalbtn);
+
+        swipeRefreshLayout = articleView.findViewById(R.id.article_refresh);
+        swipeRefreshLayout.setOnRefreshListener(this);
 
         toastText = (TextView) customToast.findViewById(R.id.custom_toast_text);
         toast = new Toast(getContext());
@@ -625,5 +630,21 @@ public class ArticleFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        Bundle categoryBundle = new Bundle();
+        categoryBundle.putString("postId", postId);
+        categoryBundle.putString("userId", userId);
+        categoryBundle.putInt("categoryId", categoryId);
+        categoryBundle.putBoolean("isBottom", isBottom);
+        FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        ArticleFragment articleFragment = new ArticleFragment();
+        articleFragment.setArguments(categoryBundle);
+        articleTransaction.replace(R.id.bottom_frame, articleFragment);
+        articleTransaction.commit();
+
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

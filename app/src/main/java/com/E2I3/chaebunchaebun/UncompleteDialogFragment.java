@@ -75,10 +75,14 @@ public class UncompleteDialogFragment extends DialogFragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == TAG_INTENT && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Intent intent = new Intent(getActivity(), NavigationActivity.class);
-            intent.putExtra("userId", userId);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            getActivity().startActivity(intent);
+            Bundle args = new Bundle();
+            args.putString("userId", userId);
+            args.putString("title", title);
+            args.putString("nickname", nickname);
+            args.putInt("postId", postId);
+            UncompleteFinDialogFragment e = UncompleteFinDialogFragment.getInstance();
+            e.setArguments(args);
+            e.show(getChildFragmentManager(), UncompleteFinDialogFragment.TAG_EVENT_DIALOG);
             getActivity().overridePendingTransition(0, 0);
         }
     }

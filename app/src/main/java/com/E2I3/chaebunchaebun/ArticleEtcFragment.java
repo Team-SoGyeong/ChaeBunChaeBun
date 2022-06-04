@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -35,7 +36,7 @@ import java.util.concurrent.ExecutionException;
  * Use the {@link ArticleEtcFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ArticleEtcFragment extends Fragment {
+public class ArticleEtcFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,6 +59,7 @@ public class ArticleEtcFragment extends Fragment {
     private ArrayList<CommentRecyclerItem> commentRecyclerItems;
     private CommentRecyclerAdapter commentRecyclerAdapter;
     private LinearLayoutManager cLayoutManager;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     View articleEtcView;
     ImageView articleBack, articleRecipt, articleComplete, articleProfile, articleModalbtn, articleLikebtn;
@@ -164,6 +166,9 @@ public class ArticleEtcFragment extends Fragment {
         articleReciptHelp = (LinearLayout) articleEtcView.findViewById(R.id.article_etc_receipt_help);
         articleReciptHelp.setVisibility(View.GONE);
         articleModalbtn = (ImageView) articleEtcView.findViewById(R.id.article_etc_modalbtn);
+
+        swipeRefreshLayout = articleEtcView.findViewById(R.id.article_ect_refresh);
+        swipeRefreshLayout.setOnRefreshListener(this);
 
         toastText = (TextView) customToast.findViewById(R.id.custom_toast_text);
         toast = new Toast(getContext());
@@ -466,12 +471,13 @@ public class ArticleEtcFragment extends Fragment {
                         Bundle articleBundle = new Bundle();
                         articleBundle.putString("userId", userId);
                         articleBundle.putString("postId", postId);
+                        articleBundle.putInt("categoryId", categoryId);
+                        articleBundle.putBoolean("isBottom", isMyPage);
 
                         if(isMyPage == true) {
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             fragmentManager.popBackStack();
                             FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-
                             ArticleEtcFragment articleEtcFragment = new ArticleEtcFragment();
                             articleEtcFragment.setArguments(articleBundle);
                             articleTransaction.replace(R.id.mypage_posting_frame, articleEtcFragment);
@@ -481,7 +487,6 @@ public class ArticleEtcFragment extends Fragment {
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             fragmentManager.popBackStack();
                             FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-
                             ArticleEtcFragment articleEtcFragment = new ArticleEtcFragment();
                             articleEtcFragment.setArguments(articleBundle);
                             articleTransaction.replace(R.id.mypage_myheart_frame, articleEtcFragment);
@@ -627,5 +632,21 @@ public class ArticleEtcFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        Bundle categoryBundle = new Bundle();
+        categoryBundle.putString("postId", postId);
+        categoryBundle.putString("userId", userId);
+        categoryBundle.putInt("categoryId", categoryId);
+        categoryBundle.putBoolean("isMyPage", isMyPage);
+        FragmentTransaction articleEctTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        ArticleEtcFragment articleEtcFragment = new ArticleEtcFragment();
+        articleEtcFragment.setArguments(categoryBundle);
+        articleEctTransaction.replace(R.id.mypage_posting_frame, articleEtcFragment);
+        articleEctTransaction.commit();
+
+        swipeRefreshLayout.setRefreshing(false);
     }
 }
