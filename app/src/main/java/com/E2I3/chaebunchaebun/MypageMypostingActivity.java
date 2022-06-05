@@ -20,6 +20,7 @@ public class MypageMypostingActivity extends AppCompatActivity {
 
         Bundle myPostDetailBundle = new Bundle();
         myPostDetailBundle.putString("userId", userId);
+        myPostDetailBundle.putInt("tabPosition", 0);
         FragmentTransaction myPostingTransaction = getSupportFragmentManager().beginTransaction();
         MypageMypostingDetailFragment myPageDetailFragment = new MypageMypostingDetailFragment();
         myPageDetailFragment.setArguments(myPostDetailBundle);

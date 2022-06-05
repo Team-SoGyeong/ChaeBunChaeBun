@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +30,7 @@ import java.util.concurrent.ExecutionException;
  * Use the {@link HomeNoticeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeNoticeFragment extends Fragment {
+public class HomeNoticeFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,6 +47,7 @@ public class HomeNoticeFragment extends Fragment {
     private ArrayList<NoticeListItem> noticeListItems;
     private NoticeListAdapter noticeListAdapter;
     private LinearLayoutManager nLayoutManager;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     TextView homeNoticeNolist;
     ImageView homeNoticeBack;
@@ -96,6 +98,9 @@ public class HomeNoticeFragment extends Fragment {
         // Inflate the layout for this fragment
         homeNoticeView = inflater.inflate(R.layout.fragment_home_notice, container, false);
 
+        swipeRefreshLayout = homeNoticeView.findViewById(R.id.notice_refresh);
+        swipeRefreshLayout.setOnRefreshListener(this);
+
         homeNoticeBack = (ImageView) homeNoticeView.findViewById(R.id.home_notice_back);
         homeNoticeList = homeNoticeView.findViewById(R.id.home_notice_list);
         homeNoticeNolist = homeNoticeView.findViewById(R.id.home_notice_nolist);
@@ -144,10 +149,11 @@ public class HomeNoticeFragment extends Fragment {
                     PutTask locationPutTask = new PutTask();
                     try {
                         noticeId = noticeListAdapter.getItem(pos).getNoticeId();
+                        caseBy = noticeListAdapter.getItem(pos).getCaseType();
                         String response = locationPutTask.execute("common/notice/" + caseBy + "/" + noticeId, caseBy, String.valueOf(noticeId)).get();
                         JSONObject jsonObject = new JSONObject(response);
-                        int responseCode = jsonObject.getInt("code");
-                        if(responseCode == 200){
+                        boolean responseCode = jsonObject.getBoolean("success");
+                        if(responseCode == true){
                             String postId = String.valueOf(noticeListAdapter.getItem(pos).getPostId());
                             int categoryId = noticeListAdapter.getItem(pos).getCategoryId();
                             Bundle articleBundle = new Bundle();
@@ -157,6 +163,7 @@ public class HomeNoticeFragment extends Fragment {
                             articleBundle.putBoolean("isBottom", isBottom);
                             FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                             ArticleFragment articleFragment = new ArticleFragment();
+                            articleTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
                             articleFragment.setArguments(articleBundle);
                             articleTransaction.replace(R.id.bottom_frame, articleFragment);
                             articleTransaction.addToBackStack(null);
@@ -176,6 +183,23 @@ public class HomeNoticeFragment extends Fragment {
         }
 
         return homeNoticeView;
+    }
+
+    @Override
+    public void onRefresh() {
+        Bundle articleBundle = new Bundle();
+        articleBundle.putString("userId", userId);
+        FragmentTransaction noticeTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        HomeNoticeFragment homeNoticeFragment = new HomeNoticeFragment();
+        homeNoticeFragment.setArguments(articleBundle);
+        /*noticeTransaction.detach(homeNoticeFragment);
+        noticeTransaction.attach(homeNoticeFragment);*/
+        noticeTransaction.replace(R.id.bottom_frame, homeNoticeFragment);
+        noticeTransaction.commit();
+
+        Log.i("Swipe", "새로고침");
+
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     public void getMyNoticeList() {

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -33,7 +34,7 @@ import java.util.concurrent.ExecutionException;
  * Use the {@link MypageMyheartDetailFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MypageMyheartDetailFragment extends Fragment {
+public class MypageMyheartDetailFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,6 +49,7 @@ public class MypageMyheartDetailFragment extends Fragment {
     private ArrayList<LikeListItem> likeListItems;
     private LikeListAdapter likeListAdapter;
     private LinearLayoutManager hLayoutManager;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     private TextView toastText;
     private Toast toast;
@@ -111,6 +113,9 @@ public class MypageMyheartDetailFragment extends Fragment {
         /*vp = (ViewPager) myHeartDetail.findViewById(R.id.view_pager);
         tabLayout = (TabLayout) myHeartDetail.findViewById(R.id.tab_layout);*/
         back = (ImageView) myHeartDetail.findViewById(R.id.id_back);
+        swipeRefreshLayout = myHeartDetail.findViewById(R.id.myheart_refresh);
+
+        swipeRefreshLayout.setOnRefreshListener(this);
 
         /*MyHeartVPAdapter adapter = new MyHeartVPAdapter(getChildFragmentManager(), userId);
         vp.setAdapter(adapter);
@@ -175,7 +180,7 @@ public class MypageMyheartDetailFragment extends Fragment {
                         articleBundle.putInt("categoryId", categoryId);
                         articleBundle.putBoolean("isMyPage", isMyPage);
                         FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-
+                        articleTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
                         ArticleEtcFragment articleEtcFragment = new ArticleEtcFragment();
                         articleEtcFragment.setArguments(articleBundle);
                         articleTransaction.replace(R.id.mypage_myheart_frame, articleEtcFragment);
@@ -254,5 +259,18 @@ public class MypageMyheartDetailFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        Bundle myHeartDetailBundle = new Bundle();
+        myHeartDetailBundle.putString("userId", userId);
+        FragmentTransaction myHeartTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        MypageMyheartDetailFragment mypageMyheartDetailFragment = new MypageMyheartDetailFragment();
+        mypageMyheartDetailFragment.setArguments(myHeartDetailBundle);
+        myHeartTransaction.replace(R.id.mypage_myheart_frame, mypageMyheartDetailFragment);
+        myHeartTransaction.commit();
+
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

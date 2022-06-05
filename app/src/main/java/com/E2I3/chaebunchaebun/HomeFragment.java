@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +35,7 @@ import java.util.concurrent.ExecutionException;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,6 +50,7 @@ public class HomeFragment extends Fragment {
     private ArrayList<MainRecyclerData> itemList;
     private MainRecyclerAdapter mainRecyclerAdapter;
     private LinearLayoutManager mLayoutManager;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     ArrayList<Integer> deadlinePostId;
     ArrayList<String> deadlineTitle;
@@ -118,6 +121,7 @@ public class HomeFragment extends Fragment {
         homeView = inflater.inflate(R.layout.fragment_home, container, false);
 
         //mRecyclerView = (RecyclerView) homeView.findViewById(R.id.recycler_view);
+        swipeRefreshLayout = homeView.findViewById(R.id.home_refresh);
         vp = homeView.findViewById(R.id.view_pager);
         tabLayout = homeView.findViewById(R.id.tab_layout);
         searchView = homeView.findViewById(R.id.view_search);
@@ -147,6 +151,8 @@ public class HomeFragment extends Fragment {
         homeLocationText.setText(address[address.length - 1]);
         homeNickname.setText(nickname);
 
+        swipeRefreshLayout.setOnRefreshListener(this);
+
         if(isNew == 0) {
             iconNotice.setImageResource(R.drawable.home_btn_notification_2);
         } else {
@@ -170,11 +176,10 @@ public class HomeFragment extends Fragment {
                 categoryBundle.putString("userId", userId);
                 FragmentTransaction noticeTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 noticeTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
-
                 HomeNoticeFragment homeNoticeFragment = new HomeNoticeFragment();
                 homeNoticeFragment.setArguments(categoryBundle);
                 noticeTransaction.replace(R.id.bottom_frame, homeNoticeFragment);
-                noticeTransaction.addToBackStack(null);
+                noticeTransaction.addToBackStack("notice");
                 noticeTransaction.commit();
             }
         });
@@ -503,6 +508,22 @@ public class HomeFragment extends Fragment {
     /*public void getRecyclerPosition(int pos) {
         this.recyclerPosition = pos;
     }*/
+
+    @Override
+    public void onRefresh() {
+        /*Bundle articleBundle = new Bundle();
+        articleBundle.putString("userId", userId);*/
+        FragmentTransaction homeTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        HomeFragment homeFragment = new HomeFragment();
+        homeFragment.getUserId(userId);
+        /*homeFragment.setArguments(articleBundle);
+        homeTransaction.detach(homeFragment);
+        homeTransaction.attach(homeFragment);*/
+        homeTransaction.replace(R.id.bottom_frame, homeFragment);
+        homeTransaction.commit();
+
+        swipeRefreshLayout.setRefreshing(false);
+    }
 
     public void getHome(){
         String resultText = "[NULL]";

@@ -1,5 +1,7 @@
 package com.E2I3.chaebunchaebun;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -62,14 +64,26 @@ public class UncompleteDialogFragment extends DialogFragment {
                 completeTask.execute("common/donated/" + String.valueOf(postId) + "/" + userId, String.valueOf(postId), userId);
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.foodbank1377.org/"));
                 getActivity().startActivityForResult(intent, TAG_INTENT);
-                Intent homeIntent = new Intent(getActivity(), NavigationActivity.class);
-                homeIntent.putExtra("userId", userId);
-                getActivity().startActivity(homeIntent);
-                getActivity().overridePendingTransition(0, 0);
             }
         });
         setCancelable(false);
 
         return unCompleteDialog;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == TAG_INTENT && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Bundle args = new Bundle();
+            args.putString("userId", userId);
+            args.putString("title", title);
+            args.putString("nickname", nickname);
+            args.putInt("postId", postId);
+            UncompleteFinDialogFragment e = UncompleteFinDialogFragment.getInstance();
+            e.setArguments(args);
+            e.show(getChildFragmentManager(), UncompleteFinDialogFragment.TAG_EVENT_DIALOG);
+            getActivity().overridePendingTransition(0, 0);
+        }
     }
 }

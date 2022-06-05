@@ -34,7 +34,12 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#e5e5e5"/>
-    <include layout="@layout/fragment_mypage_myheart"/>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/myheart_refresh">
+        <include layout="@layout/fragment_mypage_myheart"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     <!--<com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"

@@ -120,6 +120,7 @@ public class CategoryPotatoFragment extends Fragment {
                     articleBundle.putBoolean("isBottom", isBottom);
                     FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     ArticleFragment articleFragment = new ArticleFragment();
+                    articleTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
                     articleFragment.setArguments(articleBundle);
                     articleTransaction.replace(R.id.bottom_frame, articleFragment);
                     articleTransaction.addToBackStack(null);

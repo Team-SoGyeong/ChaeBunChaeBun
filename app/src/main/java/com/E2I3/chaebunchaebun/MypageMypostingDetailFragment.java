@@ -3,8 +3,11 @@ package com.E2I3.chaebunchaebun;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +20,7 @@ import com.google.android.material.tabs.TabLayout;
  * Use the {@link MypageMypostingDetailFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MypageMypostingDetailFragment extends Fragment{
+public class MypageMypostingDetailFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,10 +31,13 @@ public class MypageMypostingDetailFragment extends Fragment{
     private String mParam1;
     private String mParam2;
 
+    SwipeRefreshLayout swipeRefreshLayout;
+
     ViewPager vp;
     TabLayout tabLayout;
-    ImageView myCommentBack;
+    ImageView myPostingBack;
     String userId;
+    int tabPosition = 0;
 
     public MypageMypostingDetailFragment() {
         // Required empty public constructor
@@ -71,16 +77,39 @@ public class MypageMypostingDetailFragment extends Fragment{
         View myPostDetail = inflater.inflate(R.layout.fragment_mypage_myposting_detail, container, false);
         vp = (ViewPager) myPostDetail.findViewById(R.id.view_pager);
         tabLayout = (TabLayout) myPostDetail.findViewById(R.id.tab_layout);
-        myCommentBack = (ImageView) myPostDetail.findViewById(R.id.id_back);
+        myPostingBack = (ImageView) myPostDetail.findViewById(R.id.id_back);
+        swipeRefreshLayout = myPostDetail.findViewById(R.id.mypage_refresh);
+
+        swipeRefreshLayout.setOnRefreshListener(this);
 
         userId = getArguments().getString("userId");
+        tabPosition = getArguments().getInt("tabPosition");
 
         MyPostingVPAdapter adapter = new MyPostingVPAdapter(getChildFragmentManager(), userId);
         vp.setAdapter(adapter);
+        vp.setCurrentItem(tabPosition);
 
         tabLayout.setupWithViewPager(vp);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                tabPosition = tab.getPosition();
+                Log.i("tabPosition", String.valueOf(tabPosition));
+            }
 
-        myCommentBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                tabPosition = tab.getPosition();
+                Log.i("tabPosition", String.valueOf(tabPosition));
+            }
+        });
+
+        myPostingBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getActivity().finish();
@@ -92,4 +121,17 @@ public class MypageMypostingDetailFragment extends Fragment{
     }
 
 
+    @Override
+    public void onRefresh() {
+        Bundle myPageBundle = new Bundle();
+        myPageBundle.putString("userId", userId);
+        myPageBundle.putInt("tabPosition", tabPosition);
+        FragmentTransaction myPageTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        MypageMypostingDetailFragment mypageMypostingDetailFragment = new MypageMypostingDetailFragment();
+        mypageMypostingDetailFragment.setArguments(myPageBundle);
+        myPageTransaction.replace(R.id.mypage_posting_frame, mypageMypostingDetailFragment);
+        myPageTransaction.commit();
+
+        swipeRefreshLayout.setRefreshing(false);
+    }
 }
