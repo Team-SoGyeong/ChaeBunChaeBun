@@ -20,7 +20,6 @@ public class MyCommentVPAdapter extends FragmentPagerAdapter {
         MypageMyCommentFragment mypageMyCommentFragment = new MypageMyCommentFragment();
         mypageMyCommentFragment.getUserId(userId);
         items.add(mypageMyCommentFragment);
-        items.add(new MyCommunityCommentFragment());
 
         itext.add("채분");
         itext.add("커뮤니티");

@@ -24,8 +24,6 @@ public class NavigationActivity extends AppCompatActivity {
     private FragmentManager fm;
     private FragmentTransaction ft;
     private HomeFragment homefg;
-    private CommunityFragment communityfg;
-    private MypageFragment myfg;
     private LikeListFragment likefg;
     private long backKeyPressedTime = 0;
 

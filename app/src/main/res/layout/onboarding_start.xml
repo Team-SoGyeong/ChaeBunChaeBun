@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SetStartActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosanskr_bold"
+            android:includeFontPadding="false"
+            android:layout_marginTop="158dp"
+            android:layout_gravity="center"
+            android:textColor="#6a951f"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="이제 채분을 시작해 볼까요?" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosanskr_regular"
+            android:includeFontPadding="false"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:textColor="#000000"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:text="채분에 참여할 준비가 모두 되었어요!\n이웃들과 따뜻하고 신선한 소분을 즐겨보세요!" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+</LinearLayout>

@@ -16,11 +16,18 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
+
 public class SetLocationActivity extends AppCompatActivity {
     private static final int TAG_REQUEST_CODE = 1001;
     ImageButton btn_next;
     EditText set_location, search   ;
     String searchLocation = null;
+    String user_id = null;
     boolean flag = false;
     int locationCode = 0;
 
@@ -44,7 +51,6 @@ public class SetLocationActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Long kakao_id = intent.getLongExtra("kakao_id",0);
-        String user_id = intent.getStringExtra("user_id");
         String kakao_email = intent.getStringExtra("kakao_email");
         String profile_img = intent.getStringExtra("profile_img");
         String set_profileImage = intent.getStringExtra("set_profileImage");
@@ -105,17 +111,46 @@ public class SetLocationActivity extends AppCompatActivity {
                                 toastText.setText("주소가 선택되지 않았어요!");
                                 toast.show();
                             } else {
-                                Intent intent = new Intent(getApplicationContext(), SetStartActivity.class);
-                                intent.putExtra("kakao_id", kakao_id);
-                                intent.putExtra("user_id", user_id);
-                                intent.putExtra("kakao_email", kakao_email);
-                                intent.putExtra("profile_img", profile_img);
-                                intent.putExtra("set_profileImage", set_profileImage);
-                                intent.putExtra("nickname", nickname);
-                                intent.putExtra("location", searchLocation);
-                                intent.putExtra("locationCode", locationCode);
-                                intent.putExtra("sex", sex);
-                                intent.putExtra("age_range", age_range);
+                                Intent intent = new Intent(getApplicationContext(), OnboardingFirstActivity.class);
+
+                                //sever에 포스트
+                                PostTask postTask = new PostTask();
+                                JSONObject jsonCommentTransfer = new JSONObject();
+
+                                try {
+                                    jsonCommentTransfer.put("login_type", "k");
+                                    jsonCommentTransfer.put("nickname", nickname);
+                                    jsonCommentTransfer.put("address_seq", locationCode);
+                                    jsonCommentTransfer.put("set_image", set_profileImage);
+                                    jsonCommentTransfer.put("email", kakao_email);
+                                    jsonCommentTransfer.put("kakao_id", kakao_id);
+                                    jsonCommentTransfer.put("sex", sex);
+                                    jsonCommentTransfer.put("age_range", age_range);
+
+                                    System.out.println("결과: " + nickname + " " + locationCode + " " + kakao_id + " " + set_profileImage + " " + kakao_email + " " + sex + " " + age_range);
+                                    String jsonString = jsonCommentTransfer.toString();
+                                    String response = postTask.execute("auth2/signin/kakao", jsonString).get();
+
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    String data = jsonObject.getString("data");
+                                    //data가 가진 값이 대괄호로 감싸여 있으니까 array
+                                    JSONArray jsonArray = new JSONArray(data);
+                                    for(int i = 0; i < jsonArray.length(); i++){
+                                        JSONObject subJsonObject = jsonArray.getJSONObject(i);
+                                        //subJsonObject는 data만 추출
+                                        user_id = String.valueOf(subJsonObject.getInt("user_id"));
+                                    }
+
+                                    System.out.println(" userid - " + user_id);
+
+                                }catch (JSONException e) {
+                                    e.printStackTrace();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                } catch (ExecutionException e) {
+                                    e.printStackTrace();
+                                }
+                                intent.putExtra("userId", user_id);
                                 startActivity(intent);
                                 overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                             }
