@@ -45,9 +45,6 @@
             android:name="com.E2I3.chaebunchaebun.MypageMyHeartActivity"
             android:exported="true" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.MypageMycommentActivity"
-            android:exported="true" />
-        <activity
             android:name="com.E2I3.chaebunchaebun.NavigationActivity"
             android:label="하단 네비게이션">
         </activity>
@@ -59,12 +56,6 @@
             android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name="com.E2I3.chaebunchaebun.SearchActivity"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="com.E2I3.chaebunchaebun.MyPageProfileActivity"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="com.E2I3.chaebunchaebun.MyInfoActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.E2I3.chaebunchaebun.SetProfileActivity"
@@ -83,9 +74,6 @@
             android:windowSoftInputMode="adjustResize" >
         </activity>
         <activity
-            android:name="com.E2I3.chaebunchaebun.WithdrawActivity"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
             android:name="com.E2I3.chaebunchaebun.SelectCategoryActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
@@ -93,18 +81,6 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.E2I3.chaebunchaebun.WritingEtcChaebunActivity"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="com.E2I3.chaebunchaebun.LittleActivity"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="com.E2I3.chaebunchaebun.UnknownActivity"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="com.E2I3.chaebunchaebun.NoMannerActivity"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="com.E2I3.chaebunchaebun.EtcActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.E2I3.chaebunchaebun.MypageMypostingActivity"

@@ -150,17 +150,6 @@ public class SetLocationActivity extends AppCompatActivity {
                                 } catch (ExecutionException e) {
                                     e.printStackTrace();
                                 }
-/*                                intent.putExtra("kakao_id", kakao_id);
-                                intent.putExtra("user_id", user_id);
-                                intent.putExtra("kakao_email", kakao_email);
-                                intent.putExtra("profile_img", profile_img);
-                                intent.putExtra("set_profileImage", set_profileImage);
-                                intent.putExtra("nickname", nickname);
-                                intent.putExtra("location", searchLocation);
-                                intent.putExtra("locationCode", locationCode);
-                                intent.putExtra("sex", sex);
-                                intent.putExtra("age_range", age_range);
- */
                                 intent.putExtra("userId", user_id);
                                 startActivity(intent);
                                 overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);

@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/notosanskr_bold"
             android:layout_gravity="center"
             android:textColor="#6a951f"
             android:textSize="20sp"
@@ -28,7 +28,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/notosanskr_regular"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="26dp"
             android:layout_marginRight="26dp"

@@ -47,8 +47,6 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     private String mParam2;
 
     private RecyclerView mRecyclerView;
-    private ArrayList<MainRecyclerData> itemList;
-    private MainRecyclerAdapter mainRecyclerAdapter;
     private LinearLayoutManager mLayoutManager;
     SwipeRefreshLayout swipeRefreshLayout;
 
