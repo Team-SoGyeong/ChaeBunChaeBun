@@ -32,7 +32,7 @@
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
             android:textSize="14sp"
-            android:drawableRight="@drawable/ic_search"
+            android:drawableRight="@drawable/search_btn_searchicon"
             android:background="@drawable/edittext_rounded_corner_rectangle"
             android:inputType="text"
             android:maxLines="1"
