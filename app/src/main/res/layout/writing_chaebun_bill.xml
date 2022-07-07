@@ -37,7 +37,7 @@
                 android:layout_height="10dp"
                 android:layout_marginLeft="63dp"
                 android:layout_marginTop="7dp"
-                android:background="@drawable/sub_picture"/>
+                android:background="@drawable/writing_btn_subpicture"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_marginLeft="5dp"
@@ -65,7 +65,7 @@
                 android:layout_height="10dp"
                 android:layout_marginLeft="63dp"
                 android:layout_marginTop="7dp"
-                android:background="@drawable/sub_picture" />
+                android:background="@drawable/writing_btn_subpicture" />
         </RelativeLayout>
     </LinearLayout>
 </HorizontalScrollView>
