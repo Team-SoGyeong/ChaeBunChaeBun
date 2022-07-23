@@ -24,7 +24,8 @@ public class NavigationActivity extends AppCompatActivity {
     private FragmentManager fm;
     private FragmentTransaction ft;
     private HomeFragment homefg;
-    private LikeListFragment likefg;
+    private CommunityFragment communityfg;
+    private MypageFragment myfg;
     private long backKeyPressedTime = 0;
 
     private TextView toastText;
@@ -59,7 +60,7 @@ public class NavigationActivity extends AppCompatActivity {
         homeTransaction.add(R.id.bottom_frame, homeFragment);
         homeTransaction.commit();
 
-        /*bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
@@ -67,14 +68,14 @@ public class NavigationActivity extends AppCompatActivity {
                     case R.id.bottom_home:
                         setFragment(0);
                         break;
-                    case R.id.bottom_like:
+                    /*case R.id.bottom_like:
+                        setFragment(1);
+                        break;*/
+                    case R.id.bottom_community:
                         setFragment(1);
                         break;
-                    case R.id.bottom_community:
-                        setFragment(2);
-                        break;
                     case R.id.bottom_mypage:
-                        setFragment(3);
+                        setFragment(2);
                         break;
                 }
                 return true;
@@ -82,13 +83,12 @@ public class NavigationActivity extends AppCompatActivity {
         });
 
         homefg = new HomeFragment();
-        likefg = new LikeListFragment();
         communityfg = new CommunityFragment();
         myfg = new MypageFragment();
-        setFragment(0);*/
+        setFragment(0);
     }
 
-    /*private void setFragment(int n) {
+    private void setFragment(int n) {
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         switch (n) {
@@ -98,22 +98,22 @@ public class NavigationActivity extends AppCompatActivity {
                 //ft.commit();
                 break;
             case 1:
-                likefg.getUserId(userId);
-                ft.replace(R.id.bottom_frame, likefg).commitAllowingStateLoss();
-                //ft.commit();
-                break;
-            case 2:
                 communityfg.getUserId(userId);
                 ft.replace(R.id.bottom_frame, communityfg).commitAllowingStateLoss();
                 //ft.commit();
                 break;
-            case 3:
+            case 2:
                 myfg.getUserId(userId);
                 ft.replace(R.id.bottom_frame, myfg).commitAllowingStateLoss();
                 //ft.commit();
                 break;
+            /*case 3:
+                myfg.getUserId(userId);
+                ft.replace(R.id.bottom_frame, myfg).commitAllowingStateLoss();
+                //ft.commit();
+                break;*/
         }
-    }*/
+    }
 
     /*@Override
     public void onBackPressed() {
