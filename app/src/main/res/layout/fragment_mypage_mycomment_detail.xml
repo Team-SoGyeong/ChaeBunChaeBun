@@ -27,26 +27,12 @@
             android:layout_marginLeft="-44dp"
             android:textColor="#000000"
             android:textSize="16sp"
-            android:text="내가 쓴 댓글" />
+            android:text="채분 글 / 댓글" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#e5e5e5"/>
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:tabGravity="fill"
-        app:tabMode="fixed"
-        app:tabTextColor="@color/black"
-        app:tabTextAppearance="@style/my_tab_text"
-        app:tabSelectedTextColor="@color/black"
-        app:tabBackground="@color/white"
-        app:tabIndicatorColor="#036635"
-        app:tabIndicatorHeight="1dp">
-    </com.google.android.material.tabs.TabLayout>
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"

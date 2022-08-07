@@ -1,14 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MypageFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <!--
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="어서와 마이페이지는 처음이지?"
         android:textSize="30dp"/>
-</FrameLayout>
+    -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:fontFamily="@font/notosanskr_bold"
+        android:includeFontPadding="false"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:text="마이페이지" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e5e5e5"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center">
+        <ImageView
+            android:id="@+id/mypage_profile"
+            android:layout_width="78dp"
+            android:layout_height="78dp"
+            android:layout_marginLeft="29dp"
+            android:background="@drawable/setinfo_image_potato"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/mypage_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/notosanskr_bold"
+                android:includeFontPadding="false"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:text="분분" />
+            <TextView
+                android:id="@+id/mypage_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/notosanskr_regular"
+                android:includeFontPadding="false"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:text="돈암 2동" />
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="25dp"
+        android:background="#e5e5e5"/>
+    <LinearLayout
+        android:id="@+id/mypage_btn_chaebun_record"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mypage_btn_chaebun_record"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/mypage_btn_community_record"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/mypage_btn_community_record"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#e5e5e5"/>
+    <LinearLayout
+        android:id="@+id/mypage_btn_inquire"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mypage_btn_inquire"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/mypage_btn_share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/mypage_btn_share"/>
+    </LinearLayout>
+</LinearLayout>

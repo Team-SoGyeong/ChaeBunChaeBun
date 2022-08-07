@@ -86,6 +86,9 @@
             android:name="com.E2I3.chaebunchaebun.MypageMypostingActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name="com.E2I3.chaebunchaebun.MypageCommunityPostingActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name="com.E2I3.chaebunchaebun.SessionCallback"
             android:windowSoftInputMode="adjustResize" />
         <activity

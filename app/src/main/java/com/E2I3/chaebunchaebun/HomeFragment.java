@@ -181,7 +181,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 noticeTransaction.commit();
             }
         });
-
+        /*
         homeMypage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -191,6 +191,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
         });
+        */
 
         btnOnion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -458,7 +459,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
               e.show(getChildFragmentManager(), LocationDialogFragment.TAG_EVENT_DIALOG);
           }
       });
-
+    /* //mypage 문의하기로 이전되었습니다 - scy
       linkAsk.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
@@ -472,6 +473,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
               getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
           }
       });
+      */
 
       linkService.setOnClickListener(new View.OnClickListener() {
           @Override
