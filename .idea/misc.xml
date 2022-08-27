@@ -162,8 +162,11 @@
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/activity_mypage_mycomment.xml" value="0.23731884057971014" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/bottom_navigation.xml" value="0.2105978260869565" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/change_chaebun_ect_detail.xml" value="0.1125" />
+        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/community_writing.xml" value="0.27395833333333336" />
+        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/community_writing_detail.xml" value="0.2" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/custom_article_calculate.xml" value="0.1125" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/custom_categorylist.xml" value="0.2105978260869565" />
+        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/custom_comment_modalbtn.xml" value="0.27395833333333336" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/custom_commentlist.xml" value="0.2717391304347826" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/custom_homelist.xml" value="0.2717391304347826" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/custom_likelist.xml" value="0.1796875" />
@@ -171,7 +174,7 @@
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/custom_listview_layout.xml" value="0.1796875" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/custom_modalbutton.xml" value="0.2717391304347826" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/custom_my_modalbtn.xml" value="0.2717391304347826" />
-        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/custom_mypage_community.xml" value="0.3263888888888889" />
+        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/custom_mypage_community.xml" value="0.4" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/custom_noticelist.xml" value="0.27395833333333336" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/custom_report_toast.xml" value="0.2518518518518518" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/custom_searchlist_main.xml" value="0.21784420289855072" />
@@ -189,6 +192,7 @@
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_writing_receipt_popup.xml" value="0.13072916666666667" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/dialog_writing_warning.xml" value="0.264" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/fragment_article.xml" value="0.19739583333333333" />
+        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/fragment_article_etc.xml" value="0.27395833333333336" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/fragment_article_recyclerview.xml" value="0.18020833333333333" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/fragment_category.xml" value="0.2105978260869565" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/fragment_category_greenonion.xml" value="0.1796875" />
@@ -253,6 +257,7 @@
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/writing_chaebun_pictureitem.xml" value="0.264" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/writing_popup.xml" value="0.2015625" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/layout/writing_warning.xml" value="0.2015625" />
+        <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/menu/bottom_nav_item.xml" value="0.27395833333333336" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/menu/menu.xml" value="0.27395833333333336" />
         <entry key="..\:/flutter_ex/ChaeBunChaeBun/app/src/main/res/menu/mypage_menu.xml" value="0.27395833333333336" />
       </map>

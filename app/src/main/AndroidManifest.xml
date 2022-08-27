@@ -107,5 +107,8 @@
         <activity
             android:name="com.E2I3.chaebunchaebun.OnboardingThirdActivity"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.E2I3.chaebunchaebun.CommunityWritingActivity"
+            android:windowSoftInputMode="adjustResize"/>
     </application>
 </manifest>

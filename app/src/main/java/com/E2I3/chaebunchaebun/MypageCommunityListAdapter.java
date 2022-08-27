@@ -53,39 +53,17 @@ public class MypageCommunityListAdapter  extends RecyclerView.Adapter<MypageComm
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-//        TextView communityListTitle;
-//        TextView communityListNickname;
-//        TextView communityListWritingDate;
         TextView communityListContent;
-//        ImageView communityListImg1;
-//        ImageView communityListImg2;
-//        ImageView communityListImg3;
-//        ImageView communityListImg4;
-//        ImageView communityListImg5;
         TextView communityListLikeCount;
         TextView communityListCommentCount;
+        ImageButton communityListModalBtn;
         ImageButton communityListLikeBtn;
         public ViewHolder(@NonNull @NotNull View communityView) {
             super(communityView);
-/*          categoryListProfile = (ImageView) categoryView.findViewById(R.id.categorylist_profile_img);
-            communityListTitle = (TextView) communityView.findViewById(R.id.categorylist_title);
-            communityListNickname = (TextView) communityView.findViewById(R.id.categorylist_nickname);
-            communityListWritingDate = (TextView) communityView.findViewById(R.id.categorylist_writing_date);
-*/
             communityListContent = (TextView) communityView.findViewById(R.id.communitylist_content);
-/*          communityListImg1 = (ImageView) communityView.findViewById(R.id.categorylist_content_img_1);
-            communityListImg2 = (ImageView) communityView.findViewById(R.id.categorylist_content_img_2);
-            communityListImg3 = (ImageView) communityView.findViewById(R.id.categorylist_content_img_3);
-            communityListImg4 = (ImageView) communityView.findViewById(R.id.categorylist_content_img_4);
-            communityListImg5 = (ImageView) communityView.findViewById(R.id.categorylist_content_img_5);
-            communityListBuyingDate = (TextView) communityView.findViewById(R.id.categorylist_buying_date);
-            communityListPeople = (TextView) communityView.findViewById(R.id.categorylist_people);
-            communityListPrice = (TextView) communityView.findViewById(R.id.categorylist_price);
-*/
             communityListLikeCount = (TextView) communityView.findViewById(R.id.communitylist_likecount);
             communityListCommentCount = (TextView) communityView.findViewById(R.id.communitylist_commentcount);
-//            communityListModalBtn = (ImageButton) communityView.findViewById(R.id.category_list_modalbtn);
-//            communityListReceipt = (ImageView) communityView.findViewById(R.id.categorylist_recipeicon);
+            communityListModalBtn = (ImageButton) communityView.findViewById(R.id.community_modalbtn);
             communityListLikeBtn = (ImageButton) communityView.findViewById(R.id.communitylist_likebtn);
 
             communityView.setOnClickListener(new View.OnClickListener() {
@@ -99,8 +77,8 @@ public class MypageCommunityListAdapter  extends RecyclerView.Adapter<MypageComm
                     }
                 }
             });
-/*
-            categoryListModalBtn.setOnClickListener(new View.OnClickListener() {
+
+            communityListModalBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int pos = getAdapterPosition();
@@ -111,7 +89,7 @@ public class MypageCommunityListAdapter  extends RecyclerView.Adapter<MypageComm
                     }
                 }
             });
-*/
+
             communityListLikeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -126,14 +104,14 @@ public class MypageCommunityListAdapter  extends RecyclerView.Adapter<MypageComm
                                 if(data.getIsWish() == 0) {
                                     toastText.setText("찜 했어요!");
                                     toast.show();
-                                    communityListLikeBtn.setImageResource(R.drawable.categorylist_btn_favorite_filled);
+                                    communityListLikeBtn.setImageResource(R.drawable.mypagelist_btn_favorite_filled);
                                     int getLikeCount = Integer.parseInt(data.getLikeCount());
                                     communityListLikeCount.setText(String.valueOf(getLikeCount + 1));
                                     likeClickListener.OnLikeClick(view, pos);
                                 } else if(data.getIsWish() == 1) {
                                     toastText.setText("찜을 취소했어요!");
                                     toast.show();
-                                    communityListLikeBtn.setImageResource(R.drawable.categorylist_btn_favorite_unfilled);
+                                    communityListLikeBtn.setImageResource(R.drawable.mypagelist_btn_favorite_unfilled);
                                     int getLikeCount = Integer.parseInt(data.getLikeCount());
                                     communityListLikeCount.setText(String.valueOf(getLikeCount - 1));
                                     likeClickListener.OnLikeClick(view, pos);
@@ -171,52 +149,15 @@ public class MypageCommunityListAdapter  extends RecyclerView.Adapter<MypageComm
     public void onBindViewHolder(@NonNull @NotNull MypageCommunityListAdapter.ViewHolder holder, int position) {
         MypageCommunityListItems communityListItem = communityListItems.get(position);
 
-        //Glide.with(holder.itemView.getContext()).load(categoryListItem.getProfile()).into(holder.categoryListProfile);
-//        holder.communityListTitle.setText(communityListItem.getTitle());
-//        holder.communityListNickname.setText(communityListItem.getNickname());
-//        holder.communityListWritingDate.setText((communityListItem.getWritingDate()));
         holder.communityListContent.setText(communityListItem.getContent());
-/*
-        if(communityListItem.getImg2().isEmpty() || communityListItem.getImg2().equals("null")){
-            Glide.with(holder.itemView.getContext()).load(communityListItem.getImg1()).into(holder.communityListImg1);
-            holder.communityListImg2.setVisibility(View.GONE);
-            holder.communityListImg3.setVisibility(View.GONE);
-            holder.communityListImg4.setVisibility(View.GONE);
-            holder.communityListImg5.setVisibility(View.GONE);
-        } else if(communityListItem.getImg3().isEmpty() || communityListItem.getImg3().equals("null")){
-            Glide.with(holder.itemView.getContext()).load(communityListItem.getImg1()).into(holder.communityListImg1);
-            Glide.with(holder.itemView.getContext()).load(communityListItem.getImg2()).into(holder.communityListImg2);
-            holder.communityListImg3.setVisibility(View.GONE);
-            holder.communityListImg4.setVisibility(View.GONE);
-            holder.communityListImg5.setVisibility(View.GONE);
-        } else if(communityListItem.getImg4().isEmpty() || communityListItem.getImg4().equals("null")){
-            Glide.with(holder.itemView.getContext()).load(communityListItem.getImg1()).into(holder.communityListImg1);
-            Glide.with(holder.itemView.getContext()).load(communityListItem.getImg2()).into(holder.communityListImg2);
-            Glide.with(holder.itemView.getContext()).load(communityListItem.getImg3()).into(holder.communityListImg3);
-            holder.communityListImg4.setVisibility(View.GONE);
-            holder.communityListImg5.setVisibility(View.GONE);
-        } else if(communityListItem.getImg5().isEmpty() || communityListItem.getImg5().equals("null")){
-            Glide.with(holder.itemView.getContext()).load(communityListItem.getImg1()).into(holder.communityListImg1);
-            Glide.with(holder.itemView.getContext()).load(communityListItem.getImg2()).into(holder.communityListImg2);
-            Glide.with(holder.itemView.getContext()).load(communityListItem.getImg3()).into(holder.communityListImg3);
-            Glide.with(holder.itemView.getContext()).load(communityListItem.getImg4()).into(holder.communityListImg4);
-            holder.communityListImg5.setVisibility(View.GONE);
-        } else {
-            Glide.with(holder.itemView.getContext()).load(communityListItem.getImg1()).into(holder.communityListImg1);
-            Glide.with(holder.itemView.getContext()).load(communityListItem.getImg2()).into(holder.communityListImg2);
-            Glide.with(holder.itemView.getContext()).load(communityListItem.getImg3()).into(holder.communityListImg3);
-            Glide.with(holder.itemView.getContext()).load(communityListItem.getImg4()).into(holder.communityListImg4);
-            Glide.with(holder.itemView.getContext()).load(communityListItem.getImg5()).into(holder.communityListImg5);
-        }
-*/
         holder.communityListLikeCount.setText(communityListItem.getLikeCount());
         holder.communityListCommentCount.setText(communityListItem.getCommentCount());
 
 
         if(communityListItem.getIsWish() == 0) {
-            holder.communityListLikeBtn.setImageResource(R.drawable.categorylist_btn_favorite_unfilled);
+            holder.communityListLikeBtn.setImageResource(R.drawable.mypagelist_btn_favorite_unfilled);
         } else {
-            holder.communityListLikeBtn.setImageResource(R.drawable.categorylist_btn_favorite_filled);
+            holder.communityListLikeBtn.setImageResource(R.drawable.mypagelist_btn_favorite_filled);
         }
     }
 
