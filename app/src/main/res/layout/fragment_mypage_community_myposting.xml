@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ebebeb"
-    tools:context=".MypageMypostingFragment">
+    tools:context=".MypageCommunityPostingFragment">
+    <!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="41dp"
@@ -19,6 +20,7 @@
             android:includeFontPadding="false"
             android:textSize="16sp" />
     </LinearLayout>
+    -->
     <TextView
         android:id="@+id/mypage_posting_nolist"
         android:layout_width="match_parent"
