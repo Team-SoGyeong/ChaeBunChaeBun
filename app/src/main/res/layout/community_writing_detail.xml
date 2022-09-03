@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_weight="1"
+    tools:showIn="@layout/community_writing_frame">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!-- View -->
+        <!-- 글 -->
+        <EditText
+            android:id="@+id/input_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosanskr_regular"
+            android:textSize="14sp"
+            android:includeFontPadding="false"
+            android:paddingLeft="10dp"
+            android:paddingTop="11dp"
+            android:background="@android:color/transparent"
+            android:hint="우리 동네 이웃들과 소소한 이야기를 전해 보세요 :)" />
+    </LinearLayout>
+</ScrollView>
