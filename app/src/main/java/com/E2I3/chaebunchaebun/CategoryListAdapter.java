@@ -154,6 +154,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     public CategoryListAdapter(ArrayList<CategoryListItem> categoryContent) {
         this.categoryListItems = categoryContent;
     }
+
     @Override
     public ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();

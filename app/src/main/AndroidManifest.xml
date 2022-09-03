@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.E2I3.chaebunchaebun.GlobalApplication"
+        android:name=".GlobalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/chaebun_logo"
         android:label="@string/app_name"
@@ -13,96 +13,100 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChaeBunChaeBun"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".CommunityArticleActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="@string/kakao_app_key"/>
-        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:value="@string/kakao_app_key" />
+
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth“ -->
-                <data android:host="oauth"
+                <data
+                    android:host="oauth"
                     android:scheme="kakao5df51dc9f14aced94486f78d34c376c3" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.E2I3.chaebunchaebun.SplashActivity"
-            android:windowSoftInputMode="adjustResize"
+            android:name=".SplashActivity"
+            android:exported="true"
             android:theme="@style/SplashTheme"
-            android:exported="true">
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.E2I3.chaebunchaebun.MypageMyHeartActivity"
+            android:name=".MypageMyHeartActivity"
             android:exported="true" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.NavigationActivity"
-            android:label="하단 네비게이션">
-        </activity>
+            android:name=".NavigationActivity"
+            android:label="하단 네비게이션"></activity>
         <activity
-            android:name="com.E2I3.chaebunchaebun.HomeLikeActivity"
+            android:name=".HomeLikeActivity"
             android:label="홈 찜 록록" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.LoginActivity"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity
-            android:name="com.E2I3.chaebunchaebun.SearchActivity"
+            android:name=".LoginActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.SetProfileActivity"
+            android:name=".SearchActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.SetNicknameActivity"
+            android:name=".SetProfileActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.SetLocationActivity"
+            android:name=".SetNicknameActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.SearchLocationActivity"
+            android:name=".SetLocationActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.SetStartActivity"
-            android:windowSoftInputMode="adjustResize" >
-        </activity>
-        <activity
-            android:name="com.E2I3.chaebunchaebun.SelectCategoryActivity"
+            android:name=".SearchLocationActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.WritingChaebunActivity"
+            android:name=".SetStartActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".SelectCategoryActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.WritingEtcChaebunActivity"
+            android:name=".WritingChaebunActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.MypageMypostingActivity"
+            android:name=".WritingEtcChaebunActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.SessionCallback"
+            android:name=".MypageMypostingActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.ChangeChaebunActivity"
+            android:name=".SessionCallback"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.ChangeChaebunEtcActivity"
-            android:windowSoftInputMode="adjustResize" />
-        <!-- 온보딩  -->
-        <activity
-            android:name="com.E2I3.chaebunchaebun.OnboardingFirstActivity"
+            android:name=".ChangeChaebunActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.OnboardingSecondActivity"
+            android:name=".ChangeChaebunEtcActivity"
+            android:windowSoftInputMode="adjustResize" /> <!-- 온보딩 -->
+        <activity
+            android:name=".OnboardingFirstActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.OnboardingThirdActivity"
+            android:name=".OnboardingSecondActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".OnboardingThirdActivity"
             android:windowSoftInputMode="adjustResize" />
     </application>
+
 </manifest>

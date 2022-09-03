@@ -435,7 +435,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             }
         });
 
-      writing.setOnClickListener(new View.OnClickListener() {
+        writing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle args = new Bundle();
@@ -447,49 +447,49 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             }
         });
 
-      homeLocation.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-              Bundle args = new Bundle();
-              args.putString("userId", userId);
-              args.putString("location", address[address.length - 1]);
-              LocationDialogFragment e = LocationDialogFragment.getInstance();
-              e.setArguments(args);
-              e.show(getChildFragmentManager(), LocationDialogFragment.TAG_EVENT_DIALOG);
-          }
-      });
+        homeLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle args = new Bundle();
+                args.putString("userId", userId);
+                args.putString("location", address[address.length - 1]);
+                LocationDialogFragment e = LocationDialogFragment.getInstance();
+                e.setArguments(args);
+                e.show(getChildFragmentManager(), LocationDialogFragment.TAG_EVENT_DIALOG);
+            }
+        });
 
-      linkAsk.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-              Intent email = new Intent(Intent.ACTION_SEND);
-              email.setType("plain/text");
-              String[] address = {"dragoncat84@naver.com"};
-              email.putExtra(Intent.EXTRA_EMAIL, address);
-              email.putExtra(Intent.EXTRA_SUBJECT, "[채분채분 문의하기]");
-              email.putExtra(Intent.EXTRA_TEXT, "문의할 내용을 적어주세요!");
-              startActivity(email);
-              getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
-          }
-      });
+        linkAsk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent email = new Intent(Intent.ACTION_SEND);
+                email.setType("plain/text");
+                String[] address = {"dragoncat84@naver.com"};
+                email.putExtra(Intent.EXTRA_EMAIL, address);
+                email.putExtra(Intent.EXTRA_SUBJECT, "[채분채분 문의하기]");
+                email.putExtra(Intent.EXTRA_TEXT, "문의할 내용을 적어주세요!");
+                startActivity(email);
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+            }
+        });
 
-      linkService.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-              Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://irradiated-mapusaurus-27a.notion.site/34a2eb86c548473b8ea1c9aaa5a72217"));
-              startActivity(intent);
-              getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
-          }
-      });
+        linkService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://irradiated-mapusaurus-27a.notion.site/34a2eb86c548473b8ea1c9aaa5a72217"));
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+            }
+        });
 
-      linkPersonal.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-              Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://irradiated-mapusaurus-27a.notion.site/7535a823135d437da69575e15cc49467"));
-              startActivity(intent);
-              getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
-          }
-      });
+        linkPersonal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://irradiated-mapusaurus-27a.notion.site/7535a823135d437da69575e15cc49467"));
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
+            }
+        });
 
       /*iconNotice.setOnClickListener(new View.OnClickListener() {
            @Override
