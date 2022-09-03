@@ -10,4 +10,6 @@
     <color name="heart">#f47a69</color>
     <color name="olive">#6a951f</color>
     <color name="dark">#999999</color>
+    <color name="light">#ebebeb</color>
+    <color name="dark_gray">#9a9792</color>
 </resources>

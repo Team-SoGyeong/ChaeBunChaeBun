@@ -42,6 +42,7 @@ public class CategoryMushroomFragment extends Fragment {
     private LinearLayoutManager cLayoutManager;
 
     TextView categoryNoList;
+    ImageButton writing;
     String id = null;
     String category = "5";
   
@@ -89,7 +90,6 @@ public class CategoryMushroomFragment extends Fragment {
         categoryListItems = new ArrayList<CategoryListItem>();
         getCategory();
     }
-    ImageButton writing;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -50,7 +50,7 @@ public class CategoryListItem {
         this.categoryId = categoryId;
     }
 
-    public  String getProfile() {
+    public String getProfile() {
         return this.profile;
     }
 
