@@ -56,7 +56,7 @@ public class CommunityArticleFragment extends Fragment implements SwipeRefreshLa
     SwipeRefreshLayout swipeRefreshLayout;
 
     View communityArticleView;
-    ImageView communityArticleBack, communityArticleProfile, communityArticleModalbtn, communityArticleLikebtn, communityArticleLike,
+    ImageView communityArticleBack, communityArticleProfile, communityArticleModalbtn, communityArticleLikebtn,
             communityArticleImg1, communityArticleImg2, communityArticleImg3, communityArticleImg4, communityArticleImg5;
     TextView communityArticleNickname, communityArticleWritingDate, communityArticleContent, communityArticleLocation,
             communityArticleLikeCount, communityArticleCommentCount;
@@ -118,7 +118,6 @@ public class CommunityArticleFragment extends Fragment implements SwipeRefreshLa
         communityArticleBack = (ImageView) communityArticleView.findViewById(R.id.community_article_back);
         communityArticleProfile = (ImageView) communityArticleView.findViewById(R.id.community_article_proile_img);
         communityArticleModalbtn = (ImageView) communityArticleView.findViewById(R.id.community_article_modalbtn);
-        communityArticleLike = (ImageView) communityArticleView.findViewById(R.id.community_article_like);
 
         communityArticleNickname = (TextView) communityArticleView.findViewById(R.id.community_article_nickname);
         communityArticleWritingDate = (TextView) communityArticleView.findViewById(R.id.community_article_writing_date);
@@ -190,14 +189,77 @@ public class CommunityArticleFragment extends Fragment implements SwipeRefreshLa
         }
 
         if(isLike == 0) {
-            communityArticleLike.setImageResource(R.drawable.communitylist_btn_like);
             communityArticleLikebtn.setImageResource(R.drawable.communitylist_btn_like);
             communityArticleLikeCount.setTextColor(getResources().getColor(R.color.dark_gray));
         } else {
-            communityArticleLike.setImageResource(R.drawable.communitylist_btn_like_red);
             communityArticleLikebtn.setImageResource(R.drawable.communitylist_btn_like_red);
             communityArticleLikeCount.setTextColor(getResources().getColor(R.color.heart));
         }
+
+        communityArticleLikebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isSame == true){
+                    toastText.setText("본인의 글은 좋아요 할 수 없어요!");
+                    toast.show();
+                } else {
+                    PostTask myWishTask = new PostTask();
+                    try {
+                        String response = myWishTask.execute("community/wishlist/" + postId + " /" + userId, String.valueOf(postId), userId).get();
+                        JSONObject jsonObject = new JSONObject(response);
+                        int responseCode = jsonObject.getInt("code");
+                        if(responseCode == 200) {
+                            String data = jsonObject.getString("data");
+                            JSONArray jsonArray = new JSONArray(data);
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject subJsonObject = jsonArray.getJSONObject(i);
+                                int likeCnts = subJsonObject.getInt("like_cnts");
+                                int status = subJsonObject.getInt("status");
+                                communityArticleLikeCount.setText(String.valueOf(likeCnts));
+                                if (status == 0) {
+                                    communityArticleLikebtn.setImageResource(R.drawable.communitylist_btn_like);
+                                    communityArticleLikeCount.setTextColor(getResources().getColor(R.color.dark));
+                                    toastText.setText("좋아요를 취소했어요!");
+                                    toast.show();
+                                } else {
+                                    communityArticleLikebtn.setImageResource(R.drawable.communitylist_btn_like_red);
+                                    communityArticleLikeCount.setTextColor(getResources().getColor(R.color.heart));
+                                    toastText.setText("좋아요를 늘렀어요!");
+                                    toast.show();
+                                }
+                            }
+                        }
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        communityArticleModalbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isSame == true) {
+                    Bundle args = new Bundle();
+                    args.putString("userId", userId);
+                    args.putString("postId", postId);
+                    MyCommunityBottomSheetDialog myCommunityBottomSheetDialog = MyCommunityBottomSheetDialog.getInstance();
+                    myCommunityBottomSheetDialog.setArguments(args);
+                    myCommunityBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                } else {
+                    Bundle args = new Bundle();
+                    args.putString("userId", userId);
+                    args.putString("postId", postId);
+                    CommunityBottomSheetDialog communityBottomSheetDialog = CommunityBottomSheetDialog.getInstance();
+                    communityBottomSheetDialog.setArguments(args);
+                    communityBottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                }
+            }
+        });
 
         communityArticleLikeCount.setText(String.valueOf(this.likeCount));
         communityArticleCommentCount.setText(String.valueOf(this.commCount));
@@ -206,6 +268,30 @@ public class CommunityArticleFragment extends Fragment implements SwipeRefreshLa
         cRecyclerView.setLayoutManager(cLayoutManager);
         commentRecyclerAdapter = new CommentRecyclerAdapter(commentRecyclerItems);
         commentRecyclerAdapter.notifyDataSetChanged();
+        commentRecyclerAdapter.setModalClickListener(new CommentRecyclerAdapter.OnModalClickListener() {
+            @Override
+            public void OnModlaClick(View view, int pos) {
+                String id = String.valueOf(commentRecyclerAdapter.getItem(pos).getUserId());
+                String commentId = String.valueOf(commentRecyclerAdapter.getItem(pos).getCommentId());
+                if (id.equals(userId)) {
+                    Bundle args = new Bundle();
+                    args.putString("userId", userId);
+                    args.putString("commentId", commentId);
+                    args.putString("postId", postId);
+                    MyCommunityCmtBottomSheetDialog myCommunityCmtBottomSheetDialog = MyCommunityCmtBottomSheetDialog.getInstance();
+                    myCommunityCmtBottomSheetDialog.setArguments(args);
+                    myCommunityCmtBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                } else {
+                    Bundle reportArgs = new Bundle();
+                    reportArgs.putString("userId", userId);
+                    reportArgs.putString("commentId", commentId);
+                    reportArgs.putString("postId", postId);
+                    CommunityCmtBottomSheetDialog communityCmtBottomSheetDialog = CommunityCmtBottomSheetDialog.getInstance();
+                    communityCmtBottomSheetDialog.setArguments(reportArgs);
+                    communityCmtBottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                }
+            }
+        });
 
         cRecyclerView.setAdapter(commentRecyclerAdapter);
 

@@ -12,6 +12,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -41,6 +43,8 @@ public class CommunityFragment extends Fragment implements SwipeRefreshLayout.On
     private CommunityListAdapter communityListAdapter;
     private LinearLayoutManager cLayoutManager;
     SwipeRefreshLayout swipeRefreshLayout;
+    ImageView communityTooltip;
+    LinearLayout communityContent, communityHelp;
 
     boolean isBottom = true;
     int locationCode = 0;
@@ -96,6 +100,10 @@ public class CommunityFragment extends Fragment implements SwipeRefreshLayout.On
         swipeRefreshLayout = communityView.findViewById(R.id.community_refresh);
         communityList = communityView.findViewById(R.id.community_list);
         communityNoList = communityView.findViewById(R.id.community_nolist);
+        communityTooltip = communityView.findViewById(R.id.community_tooltip);
+        communityContent = communityView.findViewById(R.id.community_all);
+        communityHelp = communityView.findViewById(R.id.community_list_help);
+        communityHelp.setVisibility(View.GONE);
 
         swipeRefreshLayout.setOnRefreshListener(this);
 
@@ -149,6 +157,27 @@ public class CommunityFragment extends Fragment implements SwipeRefreshLayout.On
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                }
+            });
+
+            communityTooltip.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    communityHelp.setVisibility(View.VISIBLE);
+                }
+            });
+
+            communityContent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    communityHelp.setVisibility(View.GONE);
+                }
+            });
+
+            communityHelp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    communityHelp.setVisibility(View.GONE);
                 }
             });
         }

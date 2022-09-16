@@ -19,18 +19,19 @@
                 android:id="@+id/community_article_back"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
+                android:layout_gravity="left"
                 android:layout_marginLeft="6dp"
                 android:src="@drawable/writing_btn_back"/>
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
             <TextView
                 android:id="@+id/community_article_category_name"
                 android:layout_width="wrap_content"
                 android:layout_height="29dp"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="-50dp"
                 android:fontFamily="@font/notosanskr_bold"
                 android:includeFontPadding="false"
                 android:textStyle="normal"
@@ -40,23 +41,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"/>
-            <ImageView
-                android:id="@+id/community_article_like"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginRight="20dp"
-                android:layout_gravity="center"
-                android:src="@drawable/communitylist_btn_like"/>
-            <ImageButton
-                android:id="@+id/community_article_modalbtn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginRight="15dp"
-                android:layout_gravity="center"
-                android:background="@color/white"
-                android:scaleType="fitCenter"
-                android:src="@drawable/categorylist_btn_modal_vertical" />
+                android:layout_weight="1" />
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -102,16 +87,40 @@
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginTop="5dp"
                                 android:orientation="vertical">
-                                <TextView
-                                    android:id="@+id/community_article_nickname"
+                                <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="1dp"
-                                    android:fontFamily="@font/notosanskr_bold"
-                                    android:includeFontPadding="false"
-                                    android:text="닉네임"
-                                    android:textColor="@color/black"
-                                    android:textSize="15sp" />
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:id="@+id/community_article_nickname"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="1dp"
+                                        android:fontFamily="@font/notosanskr_bold"
+                                        android:includeFontPadding="false"
+                                        android:text="닉네임"
+                                        android:textColor="@color/black"
+                                        android:textSize="15sp" />
+                                    <View
+                                        android:layout_width="1dp"
+                                        android:layout_height="match_parent"
+                                        android:background="@color/dark"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"/>
+                                    <TextView
+                                        android:id="@+id/community_article_location_txt"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@font/notosanskr_regular"
+                                        android:includeFontPadding="false"
+                                        android:text="지역"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
                                 <TextView
                                     android:id="@+id/community_article_writing_date"
                                     android:layout_width="wrap_content"
@@ -127,25 +136,15 @@
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
                                 android:layout_weight="1" />
-                            <ImageView
-                                android:id="@+id/community_article_location"
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_marginRight="5dp"
+                            <ImageButton
+                                android:id="@+id/community_article_modalbtn"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginRight="15dp"
+                                android:layout_gravity="center"
+                                android:background="@color/white"
                                 android:scaleType="fitCenter"
-                                android:src="@drawable/home_img_location" />
-                            <TextView
-                                android:id="@+id/community_article_location_txt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginRight="20dp"
-                                android:fontFamily="@font/notosanskr_regular"
-                                android:includeFontPadding="false"
-                                android:text="지역"
-                                android:textAlignment="center"
-                                android:textColor="#4d4d4d"
-                                android:textSize="10sp" />
+                                android:src="@drawable/communityarticle_btn_modalbtn" />
                         </LinearLayout>
                         <TextView
                             android:id="@+id/community_article_content"
