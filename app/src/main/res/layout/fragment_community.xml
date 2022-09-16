@@ -7,87 +7,108 @@
     android:id="@+id/community_layout"
     android:background="@color/white"
     tools:context=".CommunityFragment">
-    <com.google.android.material.appbar.AppBarLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="9dp"
-            android:layout_marginBottom="9dp"
-            android:gravity="center"
-            android:orientation="vertical">
-            <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/community_all">
+            <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                android:gravity="center">
-                <View
-                    android:layout_width="76dp"
-                    android:layout_height="24dp"/>
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosanskr_bold"
-                    android:includeFontPadding="false"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:text="우리동네" />
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
-                <ImageView
-                    android:id="@+id/community_tooltip"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/category_img_help"
-                    android:scaleType="fitCenter"/>
-                <ImageView
-                    android:id="@+id/community_writing"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:layout_marginRight="16dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/communitylist_btn_writing" />
-            </LinearLayout>
-        </LinearLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/community_refresh">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/community_nolist"
+                android:background="#FFFFFF">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginBottom="9dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:gravity="center">
+                        <View
+                            android:layout_width="76dp"
+                            android:layout_height="24dp"/>
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/notosanskr_bold"
+                            android:includeFontPadding="false"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="#000000"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:text="우리동네" />
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"/>
+                        <ImageView
+                            android:id="@+id/community_tooltip"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/category_img_help"
+                            android:scaleType="fitCenter"/>
+                        <ImageView
+                            android:id="@+id/community_writing"
+                            android:layout_width="wrap_content"
+                            android:layout_height="24dp"
+                            android:layout_marginRight="16dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/communitylist_btn_writing" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="70dp"
-                android:layout_gravity="center"
-                android:gravity="center_horizontal"
-                android:text="아직 우리동네에 작성된 글이 없어요.\n첫 글을 작성해 이웃들과 소통해보세요!"
-                android:textColor="@color/dark"
-                android:textSize="16sp"
-                android:fontFamily="@font/notosanskr_regular"
-                android:includeFontPadding="false"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/community_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="none"/>
+                android:id="@+id/community_refresh">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/community_nolist"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="70dp"
+                        android:layout_gravity="center"
+                        android:gravity="center_horizontal"
+                        android:text="아직 우리동네에 작성된 글이 없어요.\n첫 글을 작성해 이웃들과 소통해보세요!"
+                        android:textColor="@color/dark"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/notosanskr_regular"
+                        android:includeFontPadding="false"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/community_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none"/>
+                </LinearLayout>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
         </LinearLayout>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        <LinearLayout
+            android:id="@+id/community_list_help"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/communitylist_img_tooltip"/>
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

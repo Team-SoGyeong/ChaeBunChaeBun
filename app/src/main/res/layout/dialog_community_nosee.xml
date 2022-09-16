@@ -19,29 +19,29 @@
         android:fontFamily="@font/notosanskr_bold"
         android:includeFontPadding="false"/>
     <RadioGroup
-        android:id="@+id/nosee_radiogroup"
+        android:id="@+id/community_nosee_radiogroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:orientation="vertical">
         <RadioButton
-            android:id="@+id/partici"
+            android:id="@+id/community_partici"
             android:layout_width="wrap_content"
-            android:layout_height="24dp"
+            android:layout_height="48dp"
             android:buttonTint="#6a951f"
-            android:text="이미 참여한 소분이에요"
+            android:text="이웃들과 함께하기 불편한 글이에요.\n(불법, 성적, 폭력적인 글)"
             android:textColor="@drawable/selector_radio_nosee_text"
             android:textSize="14sp"
             android:fontFamily="@font/notosanskr_bold"
             android:includeFontPadding="false"
             android:paddingLeft="10dp"/>
         <RadioButton
-            android:id="@+id/many_see"
+            android:id="@+id/community_many_see"
             android:layout_width="wrap_content"
-            android:layout_height="24dp"
+            android:layout_height="48dp"
             android:layout_marginTop="26dp"
             android:buttonTint="#6a951f"
-            android:text="이 글을 너무 많이 봤어요"
+            android:text="단기간에 반복하여 게시된 광고성\n글이에요."
             android:textColor="@drawable/selector_radio_nosee_text"
             android:textSize="14sp"
             android:fontFamily="@font/notosanskr_bold"
@@ -54,12 +54,12 @@
         android:layout_marginTop="45dp"
         android:orientation="horizontal">
         <ImageButton
-            android:id="@+id/nosee_dialog_cancel"
+            android:id="@+id/community_nosee_dialog_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/articledialog_btn_cancel"/>
         <ImageButton
-            android:id="@+id/nosee_dialog_ok"
+            android:id="@+id/community_nosee_dialog_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
