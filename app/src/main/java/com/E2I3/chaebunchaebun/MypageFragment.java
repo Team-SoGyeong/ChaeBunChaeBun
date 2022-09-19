@@ -12,6 +12,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MypageFragment#newInstance} factory method to
@@ -31,6 +39,9 @@ public class MypageFragment extends Fragment {
     LinearLayout mypage_inquire;
     LinearLayout mypage_share;
 
+    String profileImg = "";
+    String nickname = "";
+    String address = "";
 
     private String mParam1;
     private String mParam2;
@@ -58,9 +69,9 @@ public class MypageFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+            userId = getArguments().getString("userId");
         }
-
-
     }
 
     @Override
@@ -75,8 +86,12 @@ public class MypageFragment extends Fragment {
         mypage_inquire = mypage_main.findViewById(R.id.mypage_btn_inquire);
         mypage_share = mypage_main.findViewById(R.id.mypage_btn_share);
 
-        //profile, nickname, location 서버에서 얻어서 세팅하기
-
+        //profile, nickname, location 서버에서 얻어서 세팅하기;
+//        System.out.println("userid: " + userId + " nickname: " + nickname + " address + " + address);
+        GetProfile();
+        Glide.with(getContext()).load(this.profileImg).into(mypage_profile);
+        mypage_nickname.setText(nickname);
+        mypage_location.setText(address);
 
         mypage_chaebun_record.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,5 +126,33 @@ public class MypageFragment extends Fragment {
         });
 
         return mypage_main;
+    }
+
+    void GetProfile(){
+        String resultText = "[NULL]";
+
+        try {
+            resultText = new GetTask("mypage/profile/" + userId).execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            JSONObject jsonObject = new JSONObject(resultText);
+            String data = jsonObject.getString("data");
+            JSONArray jsonArray = new JSONArray(data);
+            for(int i = 0; i < jsonArray.length(); i++){
+                JSONObject subJsonObject = jsonArray.getJSONObject(i);
+                int userId = Integer.parseInt(this.userId);
+                profileImg = subJsonObject.getString("img");
+                nickname = subJsonObject.getString("nickname");
+                address = subJsonObject.getString("address");
+                System.out.println("userid: " + userId + " nickname: " + nickname + " address + " + address);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
