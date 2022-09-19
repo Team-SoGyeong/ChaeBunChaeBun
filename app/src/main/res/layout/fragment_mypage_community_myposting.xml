@@ -28,7 +28,7 @@
         android:layout_marginTop="70dp"
         android:layout_gravity="center"
         android:gravity="center_horizontal"
-        android:text="내가 모집한 채분이 없어요!\n직접 채분을 모집해 모두와 나눠 보세요!"
+        android:text="아직 우리 동네에 쓴 글이 없어요.\n이웃들과 소식을 나눠보세요!"
         android:textColor="#656565"
         android:fontFamily="@font/notosanskr_regular"
         android:includeFontPadding="false"/>

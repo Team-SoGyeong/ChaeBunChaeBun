@@ -112,7 +112,7 @@ public class MypageCommunityPostingFragment extends Fragment {
         String resultText = "[NULL]";
 
         try {
-            resultText = new GetTask("community/mypage/post" + userId).execute().get();
+            resultText = new GetTask("community/mypage/post/" + userId).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -125,19 +125,13 @@ public class MypageCommunityPostingFragment extends Fragment {
             JSONArray jsonArray = new JSONArray(data);
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
-                int categoryId = subJsonObject.getInt("category_id");
                 int postId = subJsonObject.getInt("post_id");
                 int userId = Integer.parseInt(this.userId);
-                String img = subJsonObject.getString("url");
-                String title = subJsonObject.getString("title");
-                String buyDate = subJsonObject.getString("buy_date");
-                String member = subJsonObject.getString("post_addr");
-                String perPrice = subJsonObject.getString("per_price");
-                String writtenBy = subJsonObject.getString("witten_by");
-                int isAuth = subJsonObject.getInt("isAuth");
                 String content = subJsonObject.getString("contents");
+                int like_count = subJsonObject.getInt("like_count");
+                int comment_count = subJsonObject.getInt("comm_count");
 
-                communityListItems.add(new MypageCommunityListItems(img, title, buyDate, member, perPrice, writtenBy, isAuth, postId, userId, categoryId, content));
+                communityListItems.add(new MypageCommunityListItems(postId, userId, content, like_count, comment_count));
             }
         } catch (JSONException e) {
             e.printStackTrace();

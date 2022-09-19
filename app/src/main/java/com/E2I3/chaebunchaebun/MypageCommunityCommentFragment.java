@@ -108,13 +108,13 @@ public class MypageCommunityCommentFragment extends Fragment {
 
         return myPageComment;
     }
-/*
+
     public void getCommentList(String state) {
         communityListItems.clear();
         String resultText = "[NULL]";
 
         try {
-            resultText = new GetTask("mypage/mycomment/comm/" + userId).execute().get();
+            resultText = new GetTask("community/mypage/comm/" + userId).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -127,24 +127,28 @@ public class MypageCommunityCommentFragment extends Fragment {
             JSONArray jsonArray = new JSONArray(data);
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
-                int categoryId = subJsonObject.getInt("category_id");
                 int postId = subJsonObject.getInt("post_id");
-                authorId = subJsonObject.getInt("author_id");
                 int userId = Integer.parseInt(this.userId);
+                String content = subJsonObject.getString("contents");
+                int like_count = subJsonObject.getInt("like_count");
+                int comment_count = subJsonObject.getInt("comm_count");
+
+                communityListItems.add(new MypageCommunityListItems(postId, userId, content, like_count, comment_count));
+                /*
                 String img = subJsonObject.getString("url");
                 String title = subJsonObject.getString("title");
                 String buyDate = subJsonObject.getString("buy_date");
                 String member = subJsonObject.getString("post_addr");
                 String writtenBy = subJsonObject.getString("written_by");
                 int isAuth = subJsonObject.getInt("isAuth");
-                String content = subJsonObject.getString("contents");
-
                 communityListItems.add(new MypageCommunityListItems(profile, title, nickname, writtenBy, content,
                         img1, img2, img3, img4, img5, buyDate, member, perPrice, myWish, comment, isAuth,
                         isWish, postId, userId, isSame, categoryId));
+                */
+
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 }

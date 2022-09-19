@@ -89,7 +89,7 @@ public class MypageCommunityListAdapter  extends RecyclerView.Adapter<MypageComm
                     }
                 }
             });
-
+/*
             communityListLikeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -121,6 +121,8 @@ public class MypageCommunityListAdapter  extends RecyclerView.Adapter<MypageComm
                     }
                 }
             });
+
+            */
         }
     }
 
@@ -153,12 +155,13 @@ public class MypageCommunityListAdapter  extends RecyclerView.Adapter<MypageComm
         holder.communityListLikeCount.setText(communityListItem.getLikeCount());
         holder.communityListCommentCount.setText(communityListItem.getCommentCount());
 
-
+/*
         if(communityListItem.getIsWish() == 0) {
             holder.communityListLikeBtn.setImageResource(R.drawable.mypagelist_btn_favorite_unfilled);
         } else {
             holder.communityListLikeBtn.setImageResource(R.drawable.mypagelist_btn_favorite_filled);
         }
+ */
     }
 
     @Override

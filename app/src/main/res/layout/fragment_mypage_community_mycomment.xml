@@ -30,7 +30,7 @@
         android:layout_marginTop="70dp"
         android:layout_gravity="center"
         android:gravity="center_horizontal"
-        android:text="아직 댓글을 단 채분이 없어요\n관심 있는 채분에 댓글을 달아보세요!"
+        android:text="아직 댓글을 단 글이 없어요\n관심 있는 글에 댓글을 달아보세요!"
         android:textColor="#656565"
         android:textSize="14sp"
         android:fontFamily="@font/notosanskr_regular"

@@ -55,9 +55,9 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG, "onClick: 로그인 세션끝남");
                 // 카카오 로그인 시도 (창이 뜬다.)
 //Test를 위한 강제
-                Intent intent = new Intent(getApplicationContext(), SessionCallback.class);
-                startActivity(intent);
-//                session.open(AuthType.KAKAO_LOGIN_ALL, LoginActivity.this);
+//                Intent intent = new Intent(getApplicationContext(), SessionCallback.class);
+//                startActivity(intent);
+                session.open(AuthType.KAKAO_LOGIN_ALL, LoginActivity.this);
             }
         });
         AuthService.getInstance()
