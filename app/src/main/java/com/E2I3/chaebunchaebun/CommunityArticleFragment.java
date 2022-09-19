@@ -3,6 +3,7 @@ package com.E2I3.chaebunchaebun;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -289,6 +290,43 @@ public class CommunityArticleFragment extends Fragment implements SwipeRefreshLa
                     CommunityCmtBottomSheetDialog communityCmtBottomSheetDialog = CommunityCmtBottomSheetDialog.getInstance();
                     communityCmtBottomSheetDialog.setArguments(reportArgs);
                     communityCmtBottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                }
+            }
+        });
+
+        communityArticleCommentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(communityArticleComment.getText().toString().equals("")) {
+                    toastText.setText("내용이 작성되지 않았어요!");
+                    toast.show();
+                } else {
+                    System.out.println("댓글 내용" + communityArticleComment.getText().toString());
+                    PostTask postTask = new PostTask();
+                    JSONObject jsonCommentTransfer = new JSONObject();
+
+                    try {
+                        jsonCommentTransfer.put("content", communityArticleComment.getText().toString());
+                        jsonCommentTransfer.put("postId", Integer.parseInt(postId));
+                        jsonCommentTransfer.put("userId", Integer.parseInt(userId));
+                        String jsonString = jsonCommentTransfer.toString();
+                        postTask.execute("community/comment", jsonString);
+
+                        Bundle articleBundle = new Bundle();
+                        articleBundle.putString("userId", userId);
+                        articleBundle.putString("postId", postId);
+
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        fragmentManager.popBackStack();
+                        FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        CommunityArticleFragment communityArticleFragment = new CommunityArticleFragment();
+                        communityArticleFragment.setArguments(articleBundle);
+                        articleTransaction.replace(R.id.community_article_frame, communityArticleFragment);
+                        articleTransaction.addToBackStack(null);
+                        articleTransaction.commit();
+                    }catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
