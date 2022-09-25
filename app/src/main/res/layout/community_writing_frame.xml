@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="19dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/communitywriting_btn_fin"/>
+            android:background="@drawable/communitywriting_btn_picture"/>
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </LinearLayout>

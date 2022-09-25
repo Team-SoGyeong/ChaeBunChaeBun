@@ -61,10 +61,11 @@
                             android:layout_marginRight="10dp"
                             android:src="@drawable/category_img_help"
                             android:scaleType="fitCenter"/>
+
                         <ImageView
                             android:id="@+id/community_writing"
                             android:layout_width="wrap_content"
-                            android:layout_height="24dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginRight="16dp"
                             android:scaleType="fitCenter"
                             android:src="@drawable/communitylist_btn_writing" />

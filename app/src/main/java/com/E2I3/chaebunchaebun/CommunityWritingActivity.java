@@ -58,7 +58,7 @@ public class CommunityWritingActivity extends AppCompatActivity {
             writingSubImg3, writingSubImg4, writingBillImg1, writingBillImg2, mainImgDelete, subImg1Delete, subImg2Delete,
             subImg3Delete, subImg4Delete;
     EditText inputContent;
-    String mainImg, subImg1, subImg2, subImg3, subImg4, userId = null;
+    String img1, img2, img3, img4, img5, userId = null;
 
     String delete_arr[];
     Uri selectedMainImage, selectedSub1Image, selectedSub2Image, selectedSub3Image, selectedSub4Image;
@@ -147,53 +147,53 @@ public class CommunityWritingActivity extends AppCompatActivity {
                 pictureId--;
                 switch(pictureId){
                     case 0:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture);
                         selectedMainImage = null;
-                        delete_arr = mainImg.split("/");
+                        delete_arr = img1.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
-                        mainImg = null;
+                        img1 = null;
                         mainImgFrame.setVisibility(View.GONE);
                         mainImgDelete.setVisibility(View.GONE);
                         break;
                     case 1:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture1);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture1);
                         selectedMainImage = selectedSub1Image;
                         selectedSub1Image = null;
-                        delete_arr = mainImg.split("/");
+                        delete_arr = img1.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
-                        mainImg = subImg1;
-                        subImg1 = null;
+                        img1 = img2;
+                        img2 = null;
                         writingMainImg.setImageURI(selectedMainImage);
                         subImgFrame1.setVisibility(View.GONE);
                         subImg1Delete.setVisibility(View.GONE);
                         break;
                     case 2:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture2);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture2);
                         selectedMainImage = selectedSub1Image;
                         selectedSub1Image = selectedSub2Image;
                         selectedSub2Image = null;
-                        delete_arr = mainImg.split("/");
+                        delete_arr = img1.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
-                        mainImg = subImg1;
-                        subImg1 = subImg2;
-                        subImg2 = null;
+                        img1 = img2;
+                        img2 = img3;
+                        img3 = null;
                         writingMainImg.setImageURI(selectedMainImage);
                         writingSubImg1.setImageURI(selectedSub1Image);
                         subImgFrame2.setVisibility(View.GONE);
                         subImg2Delete.setVisibility(View.GONE);
                         break;
                     case 3:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture3);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture3);
                         selectedMainImage = selectedSub1Image;
                         selectedSub1Image = selectedSub2Image;
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = null;
-                        delete_arr = mainImg.split("/");
+                        delete_arr = img1.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
-                        mainImg = subImg1;
-                        subImg1 = subImg2;
-                        subImg2 = subImg3;
-                        subImg3 = null;
+                        img1 = img2;
+                        img2 = img3;
+                        img3 = img4;
+                        img4 = null;
                         writingMainImg.setImageURI(selectedMainImage);
                         writingSubImg1.setImageURI(selectedSub1Image);
                         writingSubImg2.setImageURI(selectedSub2Image);
@@ -201,19 +201,19 @@ public class CommunityWritingActivity extends AppCompatActivity {
                         subImg3Delete.setVisibility(View.GONE);
                         break;
                     case 4:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture4);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture4);
                         selectedMainImage = selectedSub1Image;
                         selectedSub1Image = selectedSub2Image;
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = selectedSub4Image;
                         selectedSub4Image = null;
-                        delete_arr = mainImg.split("/");
+                        delete_arr = img1.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
-                        mainImg = subImg1;
-                        subImg1 = subImg2;
-                        subImg2 = subImg3;
-                        subImg3 = subImg4;
-                        subImg4 = null;
+                        img1 = img2;
+                        img2 = img3;
+                        img3 = img4;
+                        img4 = img5;
+                        img5 = null;
                         writingMainImg.setImageURI(selectedMainImage);
                         writingSubImg1.setImageURI(selectedSub1Image);
                         writingSubImg2.setImageURI(selectedSub2Image);
@@ -230,53 +230,53 @@ public class CommunityWritingActivity extends AppCompatActivity {
                 pictureId--;
                 switch(pictureId){
                     case 1:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture1);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture1);
                         selectedSub1Image = null;
-                        delete_arr = subImg1.split("/");
+                        delete_arr = img2.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
-                        subImg1 = null;
+                        img2 = null;
                         subImgFrame1.setVisibility(View.GONE);
                         subImg1Delete.setVisibility(View.GONE);
                         break;
                     case 2:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture2);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture2);
                         selectedSub1Image = selectedSub2Image;
                         selectedSub2Image = null;
-                        delete_arr = subImg1.split("/");
+                        delete_arr = img2.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
-                        subImg1 = subImg2;
-                        subImg2 = null;
+                        img2 = img3;
+                        img3 = null;
                         writingSubImg1.setImageURI(selectedSub1Image);
                         subImgFrame2.setVisibility(View.GONE);
                         subImg2Delete.setVisibility(View.GONE);
                         break;
                     case 3:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture3);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture3);
                         selectedSub1Image = selectedSub2Image;
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = null;
-                        delete_arr = subImg1.split("/");
+                        delete_arr = img2.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
-                        subImg1 = subImg2;
-                        subImg2 = subImg3;
-                        subImg3 = null;
+                        img2 = img3;
+                        img3 = img4;
+                        img4 = null;
                         writingSubImg1.setImageURI(selectedSub1Image);
                         writingSubImg2.setImageURI(selectedSub2Image);
                         subImgFrame3.setVisibility(View.GONE);
                         subImg3Delete.setVisibility(View.GONE);
                         break;
                     case 4:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture4);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture4);
                         selectedSub1Image = selectedSub2Image;
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = selectedSub4Image;
                         selectedSub4Image = null;
-                        delete_arr = subImg1.split("/");
+                        delete_arr = img2.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
-                        subImg1 = subImg2;
-                        subImg2 = subImg3;
-                        subImg3 = subImg4;
-                        subImg4 = null;
+                        img2 = img3;
+                        img3 = img4;
+                        img4 = img5;
+                        img5 = null;
                         writingSubImg1.setImageURI(selectedSub1Image);
                         writingSubImg2.setImageURI(selectedSub2Image);
                         writingSubImg3.setImageURI(selectedSub3Image);
@@ -292,36 +292,36 @@ public class CommunityWritingActivity extends AppCompatActivity {
                 pictureId--;
                 switch(pictureId){
                     case 2:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture2);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture2);
                         selectedSub2Image = null;
-                        delete_arr = subImg2.split("/");
+                        delete_arr = img3.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
-                        subImg2 = null;
+                        img3 = null;
                         subImgFrame2.setVisibility(View.GONE);
                         subImg2Delete.setVisibility(View.GONE);
                         break;
                     case 3:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture3);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture3);
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = null;
-                        delete_arr = subImg2.split("/");
+                        delete_arr = img3.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
-                        subImg2 = subImg3;
-                        subImg3 = null;
+                        img3 = img4;
+                        img4 = null;
                         writingSubImg2.setImageURI(selectedSub2Image);
                         subImgFrame3.setVisibility(View.GONE);
                         subImg3Delete.setVisibility(View.GONE);
                         break;
                     case 4:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture4);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture4);
                         selectedSub2Image = selectedSub3Image;
                         selectedSub3Image = selectedSub4Image;
                         selectedSub4Image = null;
-                        delete_arr = subImg2.split("/");
+                        delete_arr = img3.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
-                        subImg2 = subImg3;
-                        subImg3 = subImg4;
-                        subImg4 = null;
+                        img3 = img4;
+                        img4 = img5;
+                        img5 = null;
                         writingSubImg2.setImageURI(selectedSub2Image);
                         writingSubImg3.setImageURI(selectedSub3Image);
                         subImgFrame4.setVisibility(View.GONE);
@@ -336,22 +336,22 @@ public class CommunityWritingActivity extends AppCompatActivity {
                 pictureId--;
                 switch(pictureId){
                     case 3:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture3);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture3);
                         selectedSub3Image = null;
-                        delete_arr = subImg3.split("/");
+                        delete_arr = img4.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
-                        subImg3 = null;
+                        img4 = null;
                         subImgFrame3.setVisibility(View.GONE);
                         subImg3Delete.setVisibility(View.GONE);
                         break;
                     case 4:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture4);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture4);
                         selectedSub3Image = selectedSub4Image;
                         selectedSub4Image = null;
-                        delete_arr = subImg3.split("/");
+                        delete_arr = img4.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
-                        subImg3 = subImg4;
-                        subImg4 = null;
+                        img4 = img5;
+                        img5 = null;
                         writingSubImg3.setImageURI(selectedSub3Image);
                         subImgFrame4.setVisibility(View.GONE);
                         subImg4Delete.setVisibility(View.GONE);
@@ -365,11 +365,11 @@ public class CommunityWritingActivity extends AppCompatActivity {
                 pictureId--;
                 switch(pictureId){
                     case 4:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture4);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture4);
                         selectedSub4Image = null;
-                        delete_arr = subImg4.split("/");
+                        delete_arr = img5.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
-                        subImg4 = null;
+                        img5 = null;
                         subImgFrame4.setVisibility(View.GONE);
                         subImg4Delete.setVisibility(View.GONE);
                         break;
@@ -386,12 +386,15 @@ public class CommunityWritingActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String input = inputContent.getText().toString();
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                String input = inputContent.getText().toString();
+                if(input.isEmpty())
+                    writing.setImageResource(R.drawable.communitywriting_btn_uncomplete);
+                else
+                    writing.setImageResource(R.drawable.communitywriting_btn_complete);
             }
         });
 
@@ -417,13 +420,10 @@ public class CommunityWritingActivity extends AppCompatActivity {
                     PostTask postTask = new PostTask();
                     JSONObject jsonPostTransfer = new JSONObject();
                     try {
-                        jsonPostTransfer.put("author_id", Integer.parseInt(userId));
-                        jsonPostTransfer.put("post_addr", Long.valueOf(locationCode));
-
-//                        String imgString = "{\"bill1\": \"" + bill1 + "\", \"bill2\": \"" + bill2 + "\", \"img1\": \"" + img1 + "\"," +
-//                                " \"img2\": \"" + img2 + "\", \"img3\": \"" + img3 + "\", \"img4\": \"" + img4 + "\", \"img4\": \"" + img4 + "\", \"img5\": \"" + img5 + "\"}";
-//                        JSONObject imgs = new JSONObject(imgString);
-//                        jsonPostTransfer.put("imgs", imgs);
+                        jsonPostTransfer.put("content", inputContent.getText().toString());
+                        String imgString = "{\"img1\": \"" + img1 + "\"," + " \"img2\": \"" + img2 + "\", \"img3\": \"" + img3 + "\", \"img4\": \"" + img4 + "\", \"img4\": \"" + img4 + "\", \"img5\": \"" + img5 + "\"}";
+                        JSONObject imgs = new JSONObject(imgString);
+                       jsonPostTransfer.put("imgs", imgs);
 
                         String jsonString = jsonPostTransfer.toString();
                         System.out.println(jsonString);
@@ -462,9 +462,9 @@ public class CommunityWritingActivity extends AppCompatActivity {
         if(requestCode == GET_GALLERY_MAIN_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             selectedMainImage = data.getData();
             writingMainImg.setImageURI(selectedMainImage);
-            mainImg = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
+            img1 = createCopyAndReturnRealPath(getApplicationContext(), selectedMainImage);
             System.out.println("아이디:" + userId);
-            System.out.println("이미지 경로: " + mainImg);
+            System.out.println("이미지 경로: " + img1);
             mainImgFrame.setVisibility(View.VISIBLE);
             mainImgDelete.setVisibility(View.VISIBLE);
             writingMainImg.setOutlineProvider(new ViewOutlineProvider() {
@@ -477,9 +477,9 @@ public class CommunityWritingActivity extends AppCompatActivity {
             add_picture.setImageResource(R.drawable.writing_btn_picture1);
             ImageTask imageTask = new ImageTask();
             try {
-                String response = imageTask.execute("image/upload/" + userId, mainImg, userId).get();
+                String response = imageTask.execute("image/upload/" + userId, img1, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
-                this.mainImg = jsonObject.getString("data");
+                this.img1 = jsonObject.getString("data");
                 pictureId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
@@ -492,9 +492,9 @@ public class CommunityWritingActivity extends AppCompatActivity {
         else if(requestCode == GET_GALLERY_SUB1_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
             selectedSub1Image = data.getData();
             writingSubImg1.setImageURI(selectedSub1Image);
-            subImg1 = createCopyAndReturnRealPath(getApplicationContext(), selectedSub1Image);
+            img2 = createCopyAndReturnRealPath(getApplicationContext(), selectedSub1Image);
             System.out.println("아이디:" + userId);
-            System.out.println("이미지 경로: " + mainImg);
+            System.out.println("이미지 경로: " + img2);
             subImgFrame1.setVisibility(View.VISIBLE);
             subImg1Delete.setVisibility(View.VISIBLE);
             writingSubImg1.setOutlineProvider(new ViewOutlineProvider() {
@@ -507,9 +507,9 @@ public class CommunityWritingActivity extends AppCompatActivity {
             add_picture.setImageResource(R.drawable.writing_btn_picture2);
             ImageTask imageTask = new ImageTask();
             try {
-                String response = imageTask.execute("image/upload/" + userId, subImg1, userId).get();
+                String response = imageTask.execute("image/upload/" + userId, img2, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
-                this.subImg1 = jsonObject.getString("data");
+                this.img2 = jsonObject.getString("data");
                 pictureId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
@@ -522,9 +522,9 @@ public class CommunityWritingActivity extends AppCompatActivity {
         else if(requestCode == GET_GALLERY_SUB2_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
             selectedSub2Image = data.getData();
             writingSubImg2.setImageURI(selectedSub2Image);
-            subImg2 = createCopyAndReturnRealPath(getApplicationContext(), selectedSub2Image);
+            img3 = createCopyAndReturnRealPath(getApplicationContext(), selectedSub2Image);
             System.out.println("아이디:" + userId);
-            System.out.println("이미지 경로: " + mainImg);
+            System.out.println("이미지 경로: " + img3);
             subImgFrame2.setVisibility(View.VISIBLE);
             subImg2Delete.setVisibility(View.VISIBLE);
             writingSubImg2.setOutlineProvider(new ViewOutlineProvider() {
@@ -537,9 +537,9 @@ public class CommunityWritingActivity extends AppCompatActivity {
             add_picture.setImageResource(R.drawable.writing_btn_picture3);
             ImageTask imageTask = new ImageTask();
             try {
-                String response = imageTask.execute("image/upload/" + userId, subImg2, userId).get();
+                String response = imageTask.execute("image/upload/" + userId, img3, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
-                this.subImg2 = jsonObject.getString("data");
+                this.img3 = jsonObject.getString("data");
                 pictureId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
@@ -552,9 +552,9 @@ public class CommunityWritingActivity extends AppCompatActivity {
         else if(requestCode == GET_GALLERY_SUB3_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
             selectedSub3Image = data.getData();
             writingSubImg3.setImageURI(selectedSub3Image);
-            subImg3 = createCopyAndReturnRealPath(getApplicationContext(), selectedSub3Image);
+            img4 = createCopyAndReturnRealPath(getApplicationContext(), selectedSub3Image);
             System.out.println("아이디:" + userId);
-            System.out.println("이미지 경로: " + mainImg);
+            System.out.println("이미지 경로: " + img4);
             subImgFrame3.setVisibility(View.VISIBLE);
             subImg3Delete.setVisibility(View.VISIBLE);
             writingSubImg3.setOutlineProvider(new ViewOutlineProvider() {
@@ -567,9 +567,9 @@ public class CommunityWritingActivity extends AppCompatActivity {
             add_picture.setImageResource(R.drawable.writing_btn_picture4);
             ImageTask imageTask = new ImageTask();
             try {
-                String response = imageTask.execute("image/upload/" + userId, subImg3, userId).get();
+                String response = imageTask.execute("image/upload/" + userId, img4, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
-                this.subImg3 = jsonObject.getString("data");
+                this.img4 = jsonObject.getString("data");
                 pictureId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
@@ -582,9 +582,9 @@ public class CommunityWritingActivity extends AppCompatActivity {
         else if(requestCode == GET_GALLERY_SUB4_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
             selectedSub4Image = data.getData();
             writingSubImg4.setImageURI(selectedSub4Image);
-            subImg4 = createCopyAndReturnRealPath(getApplicationContext(), selectedSub4Image);
+            img5 = createCopyAndReturnRealPath(getApplicationContext(), selectedSub4Image);
             System.out.println("아이디:" + userId);
-            System.out.println("이미지 경로: " + mainImg);
+            System.out.println("이미지 경로: " + img5);
             subImgFrame4.setVisibility(View.VISIBLE);
             subImg4Delete.setVisibility(View.VISIBLE);
             writingSubImg4.setOutlineProvider(new ViewOutlineProvider() {
@@ -597,9 +597,9 @@ public class CommunityWritingActivity extends AppCompatActivity {
             add_picture.setImageResource(R.drawable.writing_btn_picture5);
             ImageTask imageTask = new ImageTask();
             try {
-                String response = imageTask.execute("image/upload/" + userId, subImg4, userId).get();
+                String response = imageTask.execute("image/upload/" + userId, img5, userId).get();
                 JSONObject jsonObject = new JSONObject(response);
-                this.subImg4 = jsonObject.getString("data");
+                this.img5 = jsonObject.getString("data");
                 pictureId++;
             } catch (ExecutionException e) {
                 e.printStackTrace();
