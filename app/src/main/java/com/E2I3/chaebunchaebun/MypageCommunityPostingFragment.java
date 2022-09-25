@@ -112,7 +112,7 @@ public class MypageCommunityPostingFragment extends Fragment {
         String resultText = "[NULL]";
 
         try {
-            resultText = new GetTask("community/mypage/post/" + userId).execute().get();
+            resultText = new GetTask("community/post/" + userId).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
