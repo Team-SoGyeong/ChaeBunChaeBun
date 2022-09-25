@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -41,7 +42,8 @@ public class CommunityFragment extends Fragment implements SwipeRefreshLayout.On
     private ArrayList<CommunityListItem> communityListItems;
     private CommunityListAdapter communityListAdapter;
     private LinearLayoutManager cLayoutManager;
-    ImageView cWriting;
+    LinearLayout communityHelp, communityAll;
+    ImageView cWriting, communityTooltip;
     SwipeRefreshLayout swipeRefreshLayout;
 
     boolean isBottom = true;
@@ -112,6 +114,32 @@ public class CommunityFragment extends Fragment implements SwipeRefreshLayout.On
         swipeRefreshLayout = communityView.findViewById(R.id.community_refresh);
         communityList = communityView.findViewById(R.id.community_list);
         communityNoList = communityView.findViewById(R.id.community_nolist);
+
+        communityAll = communityView.findViewById(R.id.community_all);
+        communityHelp = communityView.findViewById(R.id.community_list_help);
+        communityTooltip = communityView.findViewById(R.id.community_tooltip);
+        communityHelp.setVisibility(View.GONE);
+
+        communityAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                communityHelp.setVisibility(View.GONE);
+            }
+        });
+
+        communityHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                communityHelp.setVisibility(View.GONE);
+            }
+        });
+
+        communityTooltip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                communityHelp.setVisibility(View.VISIBLE);
+            }
+        });
 
         swipeRefreshLayout.setOnRefreshListener(this);
 

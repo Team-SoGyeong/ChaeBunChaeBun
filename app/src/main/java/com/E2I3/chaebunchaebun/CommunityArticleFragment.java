@@ -361,7 +361,7 @@ public class CommunityArticleFragment extends Fragment implements SwipeRefreshLa
                 String commentNickname = subJsonObject.getString("name");
                 String comments = subJsonObject.getString("content");
                 String commentWrittenBy = subJsonObject.getString("createdAt");
-                int commentUserId = subJsonObject.getInt("postId");
+                int commentUserId = subJsonObject.getInt("comm_user");
                 int commentId = subJsonObject.getInt("commId");
 
                 commentRecyclerItems.add(new CommentRecyclerItem(profile, commentNickname, comments, commentWrittenBy, commentUserId, commentId));
