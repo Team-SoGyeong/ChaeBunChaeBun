@@ -34,8 +34,6 @@
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/drawable/writing_box.xml" value="0.2325" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/font/font.xml" value="0.1609375" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/activity_community_article.xml" value="0.24947916666666667" />
-        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/article_recyclerview_item.xml" value="0.264" />
-        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/bottom_navigation.xml" value="0.264" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/article_recyclerview_item.xml" value="0.136" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/bottom_navigation.xml" value="0.24947916666666667" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/change_chabun.xml" value="0.12708333333333333" />
@@ -44,12 +42,14 @@
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/change_chaebun_ect_detail.xml" value="0.16" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/change_chaebun_etc.xml" value="0.12708333333333333" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/change_chaebun_frame.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/community_change_frame.xml" value="0.24947916666666667" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/community_writing_detail.xml" value="0.264" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/community_writing_frame.xml" value="0.24947916666666667" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_article_calculate.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_categorylist.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_comment_modalbtn.xml" value="0.25364583333333335" />
-        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_commentlist.xml" value="0.264" />
-        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_communitylist.xml" value="0.264" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_commentlist.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_communitylist.xml" value="0.264" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_homelist.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_likelist.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_listview.xml" value="0.25364583333333335" />

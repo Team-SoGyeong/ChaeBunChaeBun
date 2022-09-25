@@ -14,6 +14,9 @@
         android:theme="@style/Theme.ChaeBunChaeBun"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".CommunityChangeActivity"
+            android:exported="false" />
+        <activity
             android:name=".CommunityArticleActivity"
             android:exported="false" />
 
@@ -52,7 +55,7 @@
             android:exported="true" />
         <activity
             android:name=".NavigationActivity"
-            android:label="하단 네비게이션"></activity>
+            android:label="하단 네비게이션" />
         <activity
             android:name=".HomeLikeActivity"
             android:label="홈 찜 록록" />
@@ -76,7 +79,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".SetStartActivity"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".SelectCategoryActivity"
             android:windowSoftInputMode="adjustResize" />
@@ -90,10 +93,10 @@
             android:name=".MypageMypostingActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.MypageCommunityPostingActivity"
+            android:name=".MypageCommunityPostingActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.SessionCallback"
+            android:name=".SessionCallback"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ChangeChaebunActivity"
@@ -111,8 +114,8 @@
             android:name=".OnboardingThirdActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.E2I3.chaebunchaebun.CommunityWritingActivity"
-            android:windowSoftInputMode="adjustResize"/>
+            android:name=".CommunityWritingActivity"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
