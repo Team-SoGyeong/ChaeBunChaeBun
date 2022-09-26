@@ -34,7 +34,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="-70dp"
             android:layout_marginRight="8dp"
-            android:background="@drawable/communitywriting_btn_uncomplete"/>
+            android:background="@drawable/communitywriting_btn_complete"/>
     </LinearLayout>
     <View
         android:layout_width="match_parent"
@@ -62,7 +62,7 @@
             android:background="@drawable/communitywriting_btn_picture1" />
         <include layout="@layout/community_writing_picture"/>
     </LinearLayout>
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <!--<com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/community_change_picture_none"
         android:layout_width="match_parent"
         android:layout_height="41dp"
@@ -77,5 +77,5 @@
             android:layout_marginLeft="19dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/communitywriting_btn_picture" />
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>-->
 </LinearLayout>

@@ -3,12 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
-    android:orientation="vertical">
-
+    android:layout_marginRight="10dp"
+    android:orientation="vertical"
+    android:background="@drawable/custom_homelist_background">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
         <TextView
             android:id="@+id/communitylist_content"
@@ -19,14 +21,13 @@
             android:includeFontPadding="false"
             android:text="리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰"
             android:textSize="12dp" />
-
         <ImageButton
             android:id="@+id/community_modalbtn"
             android:layout_width="10dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="-17dp"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="10dp"
             android:background="@color/white"
             android:scaleType="fitCenter"
             android:src="@drawable/mypage_btn_modal" />
@@ -35,15 +36,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
         <ImageButton
             android:id="@+id/communitylist_likebtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/mypagelist_btn_favorite_filled"
-            />
+            android:background="@drawable/mypagelist_btn_favorite_filled" />
         <TextView
             android:id="@+id/communitylist_likecount"
             android:layout_width="wrap_content"

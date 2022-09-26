@@ -1,5 +1,6 @@
 package com.E2I3.chaebunchaebun;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,6 +89,7 @@ public class MypageCommunityCommentFragment extends Fragment {
         }
 
         communityListItems = new ArrayList<MypageCommunityListItems>();
+        getCommentList();
     }
 
     @Override
@@ -121,20 +123,12 @@ public class MypageCommunityCommentFragment extends Fragment {
             communityListAdapter.setOnItemClickListener(new MypageCommunityListAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(View view, int pos) {
-                        String postId = String.valueOf(communityListAdapter.getItem(pos).getPostId());
-                        isMyPage = true;
-                        Bundle articleBundle = new Bundle();
-                        articleBundle.putString("userId", userId);
-                        articleBundle.putString("postId", postId);
-                        articleBundle.putBoolean("isMyPage", isMyPage);
-                        FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        articleTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
-
-                        ArticleEtcFragment articleEtcFragment = new ArticleEtcFragment();
-                        articleEtcFragment.setArguments(articleBundle);
-                        articleTransaction.replace(R.id.mypage_posting_frame, articleEtcFragment);
-                        articleTransaction.addToBackStack(null);
-                        articleTransaction.commit();
+                    String postId = String.valueOf(communityListAdapter.getItem(pos).getPostId());
+                    Intent intent = new Intent(getActivity(), CommunityArticleActivity.class);
+                    intent.putExtra("userId", userId);
+                    intent.putExtra("postId", postId);
+                    getActivity().startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.anim_slide_in_right,R.anim.anim_slide_out_left);
                 }
             });
 
@@ -192,7 +186,6 @@ public class MypageCommunityCommentFragment extends Fragment {
                 int comment_count = subJsonObject.getInt("comm_count");
 
                 communityListItems.add(new MypageCommunityListItems(postId, userId, content, like_count, comment_count));
-
             }
         } catch (JSONException e) {
             e.printStackTrace();
