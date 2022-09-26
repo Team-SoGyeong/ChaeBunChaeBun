@@ -135,22 +135,22 @@ public class MypageCommunityCommentFragment extends Fragment {
             communityListAdapter.setModalClickListener(new MypageCommunityListAdapter.OnModalClickListener() {
                 @Override
                 public void OnModlaClick(View view, int pos) {
-                    String id = String.valueOf(authorId);
+                    String id = String.valueOf(communityListAdapter.getItem(pos).getUserId());
                     String postId = String.valueOf(communityListAdapter.getItem(pos).getPostId());
                     if (id.equals(userId)) {
                         Bundle args = new Bundle();
                         args.putString("userId", userId);
                         args.putString("postId", postId);
-                        MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
-                        myBottomSheetDialog.setArguments(args);
-                        myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                        MyCommunityBottomSheetDialog myCommunityBottomSheetDialog = MyCommunityBottomSheetDialog.getInstance();
+                        myCommunityBottomSheetDialog.setArguments(args);
+                        myCommunityBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
                     } else {
                         Bundle args = new Bundle();
                         args.putString("userId", userId);
                         args.putString("postId", postId);
-                        BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
-                        bottomSheetDialog.setArguments(args);
-                        bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                        CommunityBottomSheetDialog communityBottomSheetDialog = CommunityBottomSheetDialog.getInstance();
+                        communityBottomSheetDialog.setArguments(args);
+                        communityBottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
                     }
                 }
             });
@@ -180,12 +180,14 @@ public class MypageCommunityCommentFragment extends Fragment {
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
                 int postId = subJsonObject.getInt("postId");
-                int userId = Integer.parseInt(this.userId);
+                int userId = subJsonObject.getInt("userId");
+                /*authorId = Integer.parseInt(this.userId);*/
                 String content = subJsonObject.getString("contents");
                 int like_count = subJsonObject.getInt("like_count");
                 int comment_count = subJsonObject.getInt("comm_count");
+                int isLike = subJsonObject.getInt("isLike");
 
-                communityListItems.add(new MypageCommunityListItems(postId, userId, content, like_count, comment_count));
+                communityListItems.add(new MypageCommunityListItems(postId, userId, content, like_count, comment_count, isLike));
             }
         } catch (JSONException e) {
             e.printStackTrace();
