@@ -44,10 +44,9 @@ public class MyCommunityBottomSheetDialog extends BottomSheetDialogFragment impl
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.community_modal_modify:
-                Intent intent = new Intent(getContext(), ChangeChaebunEtcActivity.class);
+                Intent intent = new Intent(getContext(), CommunityChangeActivity.class);
                 intent.putExtra("userId", userId);
                 intent.putExtra("postId", postId);
-                intent.putExtra("categoryId", categoryId);
                 getActivity().startActivity(intent);
                 break;
             case R.id.community_modal_delete:

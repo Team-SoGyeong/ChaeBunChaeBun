@@ -583,12 +583,6 @@ public class ChangeChaebunActivity extends AppCompatActivity {
                         jsonChangeTransfer.put("total_price", totalPrice);
                         jsonChangeTransfer.put("unit", amountType);
 
-                    /*jsonCommentTransfer.put("author_id", Integer.parseInt(userId));
-                    jsonCommentTransfer.put("category_id", categoryId);
-                    jsonCommentTransfer.put("contact", inputCall.getText().toString());
-                    jsonCommentTransfer.put("contents", inputContent.getText().toString());
-                    jsonCommentTransfer.put("post_id", Integer.parseInt(postId));*/
-
                         String jsonString = jsonChangeTransfer.toString();
                         String resultText = "[NULL]";
 

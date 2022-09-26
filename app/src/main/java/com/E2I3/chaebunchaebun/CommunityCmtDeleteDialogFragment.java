@@ -60,9 +60,7 @@ public class CommunityCmtDeleteDialogFragment extends DialogFragment {
                 FragmentTransaction communityCmtTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 CommunityArticleFragment communityArticleFragment = new CommunityArticleFragment();
                 communityArticleFragment.setArguments(articleBundle);
-                communityArticleFragment.setArguments(articleBundle);
                 communityCmtTransaction.replace(R.id.community_article_frame, communityArticleFragment);
-                communityCmtTransaction.addToBackStack(null);
                 communityCmtTransaction.commit();
             }
         });
