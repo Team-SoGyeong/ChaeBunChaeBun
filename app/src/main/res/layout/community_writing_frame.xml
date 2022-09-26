@@ -54,12 +54,14 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:orientation="horizontal">
         <ImageButton
             android:id="@+id/add_picture"
             android:layout_width="80dp"
-            android:layout_height="80dp" />
+            android:layout_height="80dp"
+            android:background="@drawable/writing_btn_picture" />
         <include layout="@layout/community_writing_picture"/>
     </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
