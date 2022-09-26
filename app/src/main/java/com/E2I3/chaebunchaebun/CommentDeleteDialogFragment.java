@@ -60,9 +60,7 @@ public class CommentDeleteDialogFragment extends DialogFragment {
                 FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 ArticleFragment articleFragment = new ArticleFragment();
                 articleFragment.setArguments(articleBundle);
-                articleFragment.setArguments(articleBundle);
                 articleTransaction.replace(R.id.bottom_frame, articleFragment);
-                articleTransaction.addToBackStack(null);
                 articleTransaction.commit();
             }
         });

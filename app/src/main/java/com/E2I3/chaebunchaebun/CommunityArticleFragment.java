@@ -149,6 +149,16 @@ public class CommunityArticleFragment extends Fragment implements SwipeRefreshLa
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(customToast);
 
+        communityArticleBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+                fragmentManager.beginTransaction().remove(CommunityArticleFragment.this).commit();
+                fragmentManager.popBackStack();
+            }
+        });
+
         Glide.with(getContext()).load(this.profile).into(communityArticleProfile);
         communityArticleNickname.setText(this.nickname);
         communityArticleContent.setText(this.content);
@@ -322,7 +332,6 @@ public class CommunityArticleFragment extends Fragment implements SwipeRefreshLa
                         CommunityArticleFragment communityArticleFragment = new CommunityArticleFragment();
                         communityArticleFragment.setArguments(articleBundle);
                         articleTransaction.replace(R.id.community_article_frame, communityArticleFragment);
-                        articleTransaction.addToBackStack(null);
                         articleTransaction.commit();
                     }catch (JSONException e) {
                         e.printStackTrace();

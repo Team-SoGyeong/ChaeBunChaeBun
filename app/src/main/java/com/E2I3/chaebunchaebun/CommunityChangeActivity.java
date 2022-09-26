@@ -42,8 +42,6 @@ public class CommunityChangeActivity extends AppCompatActivity {
     private final int GET_GALLERY_SUB2_IMAGE = 202;
     private final int GET_GALLERY_SUB3_IMAGE = 203;
     private final int GET_GALLERY_SUB4_IMAGE = 204;
-    private final int GET_GALLERY_BILL1_IMAGE = 205;
-    private final int GET_GALLERY_BILL2_IMAGE = 206;
     private TextView toastText;
     private Toast toast;
 
@@ -78,7 +76,6 @@ public class CommunityChangeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         userId = intent.getStringExtra("userId");
-        locationCode = intent.getIntExtra("locationCode",0);
         postId = intent.getStringExtra("postId");
         System.out.println("아이디:" + userId);
 
@@ -423,6 +420,60 @@ public class CommunityChangeActivity extends AppCompatActivity {
                         subImgFrame4.setVisibility(View.GONE);
                         subImg4Delete.setVisibility(View.GONE);
                         break;
+                }
+            }
+        });
+
+        writing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                content = inputContent.getText().toString();
+
+                if(inputContent.getText().toString().isEmpty()) {
+                    toastText.setText("입력되지 않은 칸이 있어요!");
+                    toast.show();
+                }else {
+                    PutTask putTask = new PutTask();
+                    JSONObject jsonChangeTransfer = new JSONObject();
+
+                    try {
+                        jsonChangeTransfer.put("contents", content);
+                        String imgString = "{\", \"img1\": \"" + img1 + "\"," + " \"img2\": \"" + img2 + "\", \"img3\": \"" + img3 + "\", \"img4\": \"" + img4 + "\", \"img4\": \"" + img4 + "\", \"img5\": \"" + img5 + "\"}";
+                        JSONObject imgs = new JSONObject(imgString);
+                        jsonChangeTransfer.put("imgs", imgs);
+
+                        String jsonString = jsonChangeTransfer.toString();
+                        String resultText = "[NULL]";
+
+                        try {
+                            resultText = putTask.execute("community/" + postId + "/" + userId, jsonString).get();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        }
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(resultText);
+                            boolean success = jsonObject.getBoolean("success");
+                            if(success == true) {
+                                toastText.setText("수정되었어요!");
+                                toast.show();
+                                Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                intent.putExtra("userId", userId);
+                                startActivity(intent);
+                                overridePendingTransition(0, 0);
+                            } else {
+                                toastText.setText("수정에 실패하였습니다!");
+                                toast.show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
