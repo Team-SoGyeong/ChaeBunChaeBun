@@ -30,6 +30,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -46,15 +48,14 @@ public class CommunityWritingActivity extends AppCompatActivity {
     private final int GET_GALLERY_SUB2_IMAGE = 202;
     private final int GET_GALLERY_SUB3_IMAGE = 203;
     private final int GET_GALLERY_SUB4_IMAGE = 204;
-    private final int GET_GALLERY_BILL1_IMAGE = 205;
-    private final int GET_GALLERY_BILL2_IMAGE = 206;
     private TextView toastText;
     private Toast toast;
 
     HorizontalScrollView picture_view;
-    LinearLayout mainImgFrame, subImgFrame1, subImgFrame2, subImgFrame3, subImgFrame4;
-    ImageButton add_picture, writing;
-    ImageView back, btn_back, writingMainImg, writingSubImg1, writingSubImg2,
+    BottomNavigationView none_picture_view;
+    LinearLayout mainImgFrame, subImgFrame1, subImgFrame2, subImgFrame3, subImgFrame4, add_picture_view;
+    ImageButton add_picture, add_picture_none, writing;
+    ImageView back, writingMainImg, writingSubImg1, writingSubImg2,
             writingSubImg3, writingSubImg4, writingBillImg1, writingBillImg2, mainImgDelete, subImg1Delete, subImg2Delete,
             subImg3Delete, subImg4Delete;
     EditText inputContent;
@@ -85,8 +86,11 @@ public class CommunityWritingActivity extends AppCompatActivity {
 
         inputContent = (EditText) findViewById(R.id.input_content);
 
+        add_picture_none = (ImageButton) findViewById(R.id.community_btn_picture_none);
         add_picture = (ImageButton) findViewById(R.id.add_picture);
-        picture_view = (HorizontalScrollView) findViewById(R.id.picture_view);
+        none_picture_view = (BottomNavigationView) findViewById(R.id.community_writing_picture_none);
+        add_picture_view = (LinearLayout) findViewById(R.id.community_writing_picture);
+        picture_view = (HorizontalScrollView) findViewById(R.id.community_picture_view);
         mainImgFrame = (LinearLayout) findViewById(R.id.main_img_frame);
         subImgFrame1 = (LinearLayout) findViewById(R.id.sub_img1_frame);
         subImgFrame2 = (LinearLayout) findViewById(R.id.sub_img2_frame);
@@ -104,9 +108,19 @@ public class CommunityWritingActivity extends AppCompatActivity {
         writingSubImg2 = (ImageView) findViewById(R.id.etc_sub_img2);
         writingSubImg3 = (ImageView) findViewById(R.id.etc_sub_img3);
         writingSubImg4 = (ImageView) findViewById(R.id.etc_sub_img4);
-        writingBillImg1 = (ImageView) findViewById(R.id.etc_bill1_img);
-        writingBillImg2 = (ImageView) findViewById(R.id.etc_bill2_img);
 
+        add_picture_none.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                none_picture_view.setVisibility(View.GONE);
+                add_picture_view.setVisibility(View.VISIBLE);
+                picture_view.setVisibility(View.VISIBLE);
+
+                Intent mainImgIntent = new Intent(Intent.ACTION_PICK);
+                mainImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                startActivityForResult(mainImgIntent, GET_GALLERY_MAIN_IMAGE);
+            }
+        });
         add_picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,7 +161,7 @@ public class CommunityWritingActivity extends AppCompatActivity {
                 pictureId--;
                 switch(pictureId){
                     case 0:
-                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture);
+                        add_picture.setImageResource(R.drawable.writing_btn_picture);
                         selectedMainImage = null;
                         delete_arr = img1.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
@@ -474,7 +488,7 @@ public class CommunityWritingActivity extends AppCompatActivity {
                 }
             });
             writingMainImg.setClipToOutline(true);
-            add_picture.setImageResource(R.drawable.writing_btn_picture1);
+            add_picture.setImageResource(R.drawable.communitywriting_btn_picture1);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, img1, userId).get();
@@ -504,7 +518,7 @@ public class CommunityWritingActivity extends AppCompatActivity {
                 }
             });
             writingSubImg1.setClipToOutline(true);
-            add_picture.setImageResource(R.drawable.writing_btn_picture2);
+            add_picture.setImageResource(R.drawable.communitywriting_btn_picture2);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, img2, userId).get();
@@ -534,7 +548,7 @@ public class CommunityWritingActivity extends AppCompatActivity {
                 }
             });
             writingSubImg2.setClipToOutline(true);
-            add_picture.setImageResource(R.drawable.writing_btn_picture3);
+            add_picture.setImageResource(R.drawable.communitywriting_btn_picture3);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, img3, userId).get();
@@ -564,7 +578,7 @@ public class CommunityWritingActivity extends AppCompatActivity {
                 }
             });
             writingSubImg3.setClipToOutline(true);
-            add_picture.setImageResource(R.drawable.writing_btn_picture4);
+            add_picture.setImageResource(R.drawable.communitywriting_btn_picture4);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, img4, userId).get();
@@ -594,7 +608,7 @@ public class CommunityWritingActivity extends AppCompatActivity {
                 }
             });
             writingSubImg4.setClipToOutline(true);
-            add_picture.setImageResource(R.drawable.writing_btn_picture5);
+            add_picture.setImageResource(R.drawable.communitywriting_btn_picture5);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, img5, userId).get();

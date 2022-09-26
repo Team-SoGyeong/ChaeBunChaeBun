@@ -104,6 +104,53 @@ public class MypageCommunityPostingFragment extends Fragment {
         mypagePostingList = mypagePosting.findViewById(R.id.mypage_posting_list);
         mypagePostingNolist = mypagePosting.findViewById(R.id.mypage_posting_nolist);
 
+        if(communityListItems.isEmpty()) {
+            mypagePostingNolist.setVisibility(View.VISIBLE);
+            mypagePostingList.setVisibility(View.GONE);
+        }
+        else{
+            mypagePostingNolist.setVisibility(View.GONE);
+            mypagePostingList.setVisibility(View.VISIBLE);
+
+            mLayoutManager = new LinearLayoutManager(getContext());
+            mypagePostingList.setLayoutManager(mLayoutManager);
+
+            communityListAdapter = new MypageCommunityListAdapter(communityListItems);
+            communityListAdapter.setOnItemClickListener(new MypageCommunityListAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int pos) {
+                    String postId = String.valueOf(communityListAdapter.getItem(pos).getPostId());
+                    isMyPage = true;
+                    Bundle articleBundle = new Bundle();
+                    articleBundle.putString("userId", userId);
+                    articleBundle.putString("postId", postId);
+                    articleBundle.putBoolean("isMyPage", isMyPage);
+                    FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    articleTransaction.setCustomAnimations(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left, R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+
+                    ArticleEtcFragment articleEtcFragment = new ArticleEtcFragment();
+                    articleEtcFragment.setArguments(articleBundle);
+                    articleTransaction.replace(R.id.mypage_posting_frame, articleEtcFragment);
+                    articleTransaction.addToBackStack(null);
+                    articleTransaction.commit();
+                }
+            });
+
+            communityListAdapter.setModalClickListener(new MypageCommunityListAdapter.OnModalClickListener() {
+                @Override
+                public void OnModlaClick(View view, int pos) {
+                    String postId = String.valueOf(communityListAdapter.getItem(pos).getPostId());
+                        Bundle args = new Bundle();
+                        args.putString("userId", userId);
+                        args.putString("postId", postId);
+                        MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
+                        myBottomSheetDialog.setArguments(args);
+                        myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                }
+            });
+
+            mypagePostingList.setAdapter(communityListAdapter);
+        }
         return mypagePosting;
     }
 
@@ -112,7 +159,7 @@ public class MypageCommunityPostingFragment extends Fragment {
         String resultText = "[NULL]";
 
         try {
-            resultText = new GetTask("community/mypage/post/" + userId).execute().get();
+            resultText = new GetTask("community/post/" + userId).execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -125,7 +172,7 @@ public class MypageCommunityPostingFragment extends Fragment {
             JSONArray jsonArray = new JSONArray(data);
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject subJsonObject = jsonArray.getJSONObject(i);
-                int postId = subJsonObject.getInt("post_id");
+                int postId = subJsonObject.getInt("postId");
                 int userId = Integer.parseInt(this.userId);
                 String content = subJsonObject.getString("contents");
                 int like_count = subJsonObject.getInt("like_count");

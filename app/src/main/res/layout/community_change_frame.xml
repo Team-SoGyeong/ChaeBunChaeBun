@@ -49,7 +49,6 @@
     <!-- 사진 추가 -->
     <LinearLayout
         android:id="@+id/community_change_picture"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -60,8 +59,8 @@
             android:id="@+id/add_picture"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@drawable/writing_btn_picture" />
-        <include layout="@layout/writing_chaebun_picture"/>
+            android:background="@drawable/communitywriting_btn_picture1" />
+        <include layout="@layout/community_writing_picture"/>
     </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/community_change_picture_none"
@@ -70,11 +69,13 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="#f8f8f8">
+
         <ImageButton
+            android:id="@+id/community_btn_picture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="19dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/communitywriting_btn_fin"/>
+            android:background="@drawable/communitywriting_btn_picture" />
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 </LinearLayout>
