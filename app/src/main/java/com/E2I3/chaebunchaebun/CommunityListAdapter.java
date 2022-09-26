@@ -156,7 +156,7 @@ public class CommunityListAdapter extends RecyclerView.Adapter<CommunityListAdap
         holder.communityWritingDate.setText(communityListItem.getCreateAt());
         holder.communityLocation.setText(communityListItem.getAddress());
         holder.communityContent.setText(communityListItem.getContent());
-        if(communityListItem.getImg1().isEmpty() || communityListItem.getImg2().equals("null")){
+        if(communityListItem.getImg1().isEmpty() || communityListItem.getImg1().equals("null")){
             holder.communityScrollView.setVisibility(View.GONE);
         } else if(communityListItem.getImg2().isEmpty() || communityListItem.getImg2().equals("null")){
             Glide.with(holder.itemView.getContext()).load(communityListItem.getImg1()).into(holder.communityImg1);

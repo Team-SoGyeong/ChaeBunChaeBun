@@ -82,7 +82,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
         inputContent = (EditText) findViewById(R.id.input_content);
 
         add_picture = (ImageButton) findViewById(R.id.add_picture);
-        picture_view = (HorizontalScrollView) findViewById(R.id.picture_view);
+        picture_view = (HorizontalScrollView) findViewById(R.id.community_picture_view);
         mainImgFrame = (LinearLayout) findViewById(R.id.main_img_frame);
         subImgFrame1 = (LinearLayout) findViewById(R.id.sub_img1_frame);
         subImgFrame2 = (LinearLayout) findViewById(R.id.sub_img2_frame);
@@ -142,16 +142,18 @@ public class CommunityChangeActivity extends AppCompatActivity {
 
         getPostList();
 
-        if(img2.isEmpty() || img2 == null || img2.equals("null")){
+        if(img1.isEmpty() || img1 == null || img1.equals("null")){
+            add_picture.setImageResource(R.drawable.communitywriting_btn_picture1);
+        } else if(img2.isEmpty() || img2 == null || img2.equals("null")){
             mainImgFrame.setVisibility(View.VISIBLE);
             mainImgDelete.setVisibility(View.VISIBLE);
-            add_picture.setImageResource(R.drawable.writing_btn_picture1);
+            add_picture.setImageResource(R.drawable.communitywriting_btn_picture1);
         } else if(img3.isEmpty() || img3 == null || img3.equals("null")){
             mainImgFrame.setVisibility(View.VISIBLE);
             mainImgDelete.setVisibility(View.VISIBLE);
             subImgFrame1.setVisibility(View.VISIBLE);
             subImg1Delete.setVisibility(View.VISIBLE);
-            add_picture.setImageResource(R.drawable.writing_btn_picture2);
+            add_picture.setImageResource(R.drawable.communitywriting_btn_picture2);
         } else if(img4.isEmpty() || img4 == null || img4.equals("null")){
             mainImgFrame.setVisibility(View.VISIBLE);
             mainImgDelete.setVisibility(View.VISIBLE);
@@ -159,7 +161,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
             subImg1Delete.setVisibility(View.VISIBLE);
             subImgFrame2.setVisibility(View.VISIBLE);
             subImg2Delete.setVisibility(View.VISIBLE);
-            add_picture.setImageResource(R.drawable.writing_btn_picture3);
+            add_picture.setImageResource(R.drawable.communitywriting_btn_picture3);
         } else if(img5.isEmpty() || img5 == null || img5.equals("null")){
             mainImgFrame.setVisibility(View.VISIBLE);
             mainImgDelete.setVisibility(View.VISIBLE);
@@ -169,7 +171,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
             subImg2Delete.setVisibility(View.VISIBLE);
             subImgFrame3.setVisibility(View.VISIBLE);
             subImg3Delete.setVisibility(View.VISIBLE);
-            add_picture.setImageResource(R.drawable.writing_btn_picture4);
+            add_picture.setImageResource(R.drawable.communitywriting_btn_picture4);
         } else {
             mainImgFrame.setVisibility(View.VISIBLE);
             mainImgDelete.setVisibility(View.VISIBLE);
@@ -181,7 +183,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
             subImg3Delete.setVisibility(View.VISIBLE);
             subImgFrame4.setVisibility(View.VISIBLE);
             subImg4Delete.setVisibility(View.VISIBLE);
-            add_picture.setImageResource(R.drawable.writing_btn_picture5);
+            add_picture.setImageResource(R.drawable.communitywriting_btn_picture5);
         }
 
         add_picture.setOnClickListener(new View.OnClickListener() {
@@ -225,7 +227,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                 pictureId--;
                 switch(pictureId){
                     case 0:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture);
                         delete_arr = img1.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
                         img1 = null;
@@ -233,7 +235,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                         mainImgDelete.setVisibility(View.GONE);
                         break;
                     case 1:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture1);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture1);
                         delete_arr = img1.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
                         img1 = img2;
@@ -243,7 +245,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                         subImg1Delete.setVisibility(View.GONE);
                         break;
                     case 2:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture2);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture2);
                         delete_arr = img1.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
                         img1 = img2;
@@ -255,7 +257,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                         subImg2Delete.setVisibility(View.GONE);
                         break;
                     case 3:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture3);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture3);
                         delete_arr = img1.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
                         img1 = img2;
@@ -269,7 +271,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                         subImg3Delete.setVisibility(View.GONE);
                         break;
                     case 4:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture4);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture4);
                         delete_arr = img1.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
                         img1 = img2;
@@ -294,7 +296,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                 pictureId--;
                 switch(pictureId){
                     case 1:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture1);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture1);
                         delete_arr = img2.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
                         img2 = null;
@@ -302,7 +304,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                         subImg1Delete.setVisibility(View.GONE);
                         break;
                     case 2:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture2);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture2);
                         delete_arr = img2.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
                         img2 = img3;
@@ -312,7 +314,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                         subImg2Delete.setVisibility(View.GONE);
                         break;
                     case 3:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture3);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture3);
                         delete_arr = img2.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
                         img2 = img3;
@@ -324,7 +326,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                         subImg3Delete.setVisibility(View.GONE);
                         break;
                     case 4:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture4);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture4);
                         delete_arr = img2.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
                         img2 = img3;
@@ -347,7 +349,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                 pictureId--;
                 switch(pictureId){
                     case 2:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture2);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture2);
                         delete_arr = img3.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
                         img3 = null;
@@ -355,7 +357,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                         subImg2Delete.setVisibility(View.GONE);
                         break;
                     case 3:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture3);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture3);
                         delete_arr = img3.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
                         img3 = img4;
@@ -365,7 +367,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                         subImg3Delete.setVisibility(View.GONE);
                         break;
                     case 4:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture4);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture4);
                         delete_arr = img3.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
                         img3 = img4;
@@ -386,7 +388,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                 pictureId--;
                 switch(pictureId){
                     case 3:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture3);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture3);
                         delete_arr = img4.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
                         img4 = null;
@@ -394,7 +396,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                         subImg3Delete.setVisibility(View.GONE);
                         break;
                     case 4:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture4);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture4);
                         delete_arr = img4.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
                         img4 = img5;
@@ -413,7 +415,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                 pictureId--;
                 switch(pictureId){
                     case 4:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture4);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture4);
                         delete_arr = img5.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
                         img5 = null;
@@ -437,8 +439,8 @@ public class CommunityChangeActivity extends AppCompatActivity {
                     JSONObject jsonChangeTransfer = new JSONObject();
 
                     try {
-                        jsonChangeTransfer.put("contents", content);
-                        String imgString = "{\", \"img1\": \"" + img1 + "\"," + " \"img2\": \"" + img2 + "\", \"img3\": \"" + img3 + "\", \"img4\": \"" + img4 + "\", \"img4\": \"" + img4 + "\", \"img5\": \"" + img5 + "\"}";
+                        jsonChangeTransfer.put("content", content);
+                        String imgString = "{\"img1\": \"" + img1 + "\"," + " \"img2\": \"" + img2 + "\", \"img3\": \"" + img3 + "\", \"img4\": \"" + img4 + "\", \"img4\": \"" + img4 + "\", \"img5\": \"" + img5 + "\"}";
                         JSONObject imgs = new JSONObject(imgString);
                         jsonChangeTransfer.put("imgs", imgs);
 
@@ -506,7 +508,9 @@ public class CommunityChangeActivity extends AppCompatActivity {
                 img4 = subJsonObject.getString("img4");
                 img5 = subJsonObject.getString("img5");
 
-                if(img2.isEmpty() || img2 == null || img2.equals("null")){
+                if(img1.isEmpty() || img1 == null || img1.equals("null")){
+                    pictureId = 0;
+                } else if(img2.isEmpty() || img2 == null || img2.equals("null")){
                     Glide.with(getApplicationContext()).load(img1).into(changeMainImg);
                     pictureId = 1;
                 } else if(img3.isEmpty() || img3 == null || img3.equals("null")){
@@ -568,7 +572,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                 }
             });
             changeMainImg.setClipToOutline(true);
-            add_picture.setImageResource(R.drawable.writing_btn_picture1);
+            add_picture.setImageResource(R.drawable.communitywriting_btn_picture1);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, img1, userId).get();
@@ -598,7 +602,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                 }
             });
             changeSubImg1.setClipToOutline(true);
-            add_picture.setImageResource(R.drawable.writing_btn_picture2);
+            add_picture.setImageResource(R.drawable.communitywriting_btn_picture2);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, img2, userId).get();
@@ -628,7 +632,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                 }
             });
             changeSubImg2.setClipToOutline(true);
-            add_picture.setImageResource(R.drawable.writing_btn_picture3);
+            add_picture.setImageResource(R.drawable.communitywriting_btn_picture3);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, img3, userId).get();
@@ -658,7 +662,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                 }
             });
             changeSubImg3.setClipToOutline(true);
-            add_picture.setImageResource(R.drawable.writing_btn_picture4);
+            add_picture.setImageResource(R.drawable.communitywriting_btn_picture4);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, img4, userId).get();
@@ -688,7 +692,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                 }
             });
             changeSubImg4.setClipToOutline(true);
-            add_picture.setImageResource(R.drawable.writing_btn_picture5);
+            add_picture.setImageResource(R.drawable.communitywriting_btn_picture5);
             ImageTask imageTask = new ImageTask();
             try {
                 String response = imageTask.execute("image/upload/" + userId, img5, userId).get();
