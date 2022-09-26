@@ -134,12 +134,12 @@ public class MypageCommunityPostingFragment extends Fragment {
                 @Override
                 public void OnModlaClick(View view, int pos) {
                     String postId = String.valueOf(communityListAdapter.getItem(pos).getPostId());
-                        Bundle args = new Bundle();
-                        args.putString("userId", userId);
-                        args.putString("postId", postId);
-                        MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
-                        myBottomSheetDialog.setArguments(args);
-                        myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                    Bundle args = new Bundle();
+                    args.putString("userId", userId);
+                    args.putString("postId", postId);
+                    MyCommunityBottomSheetDialog myCommunityBottomSheetDialog = MyCommunityBottomSheetDialog.getInstance();
+                    myCommunityBottomSheetDialog.setArguments(args);
+                    myCommunityBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
                 }
             });
 
@@ -171,8 +171,9 @@ public class MypageCommunityPostingFragment extends Fragment {
                 String content = subJsonObject.getString("contents");
                 int like_count = subJsonObject.getInt("like_count");
                 int comment_count = subJsonObject.getInt("comm_count");
+                int isLike = subJsonObject.getInt("isLike");
 
-                communityListItems.add(new MypageCommunityListItems(postId, userId, content, like_count, comment_count));
+                communityListItems.add(new MypageCommunityListItems(postId, userId, content, like_count, comment_count, isLike));
             }
         } catch (JSONException e) {
             e.printStackTrace();

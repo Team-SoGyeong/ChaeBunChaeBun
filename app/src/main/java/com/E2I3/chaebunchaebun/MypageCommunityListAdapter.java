@@ -155,13 +155,11 @@ public class MypageCommunityListAdapter  extends RecyclerView.Adapter<MypageComm
         holder.communityListLikeCount.setText(communityListItem.getLikeCount());
         holder.communityListCommentCount.setText(communityListItem.getCommentCount());
 
-/*
-        if(communityListItem.getIsWish() == 0) {
-            holder.communityListLikeBtn.setImageResource(R.drawable.mypagelist_btn_favorite_unfilled);
+        if(communityListItem.getIsLike() == 0) {
+            holder.communityListLikeBtn.setImageResource(R.drawable.communitylist_btn_like);
         } else {
-            holder.communityListLikeBtn.setImageResource(R.drawable.mypagelist_btn_favorite_filled);
+            holder.communityListLikeBtn.setImageResource(R.drawable.communitylist_btn_like_red);
         }
- */
     }
 
     @Override
@@ -172,5 +170,4 @@ public class MypageCommunityListAdapter  extends RecyclerView.Adapter<MypageComm
     public MypageCommunityListItems getItem(int position){
         return communityListItems.get(position);
     }
-
 }

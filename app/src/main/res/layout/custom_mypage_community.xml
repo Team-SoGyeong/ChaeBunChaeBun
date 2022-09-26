@@ -14,22 +14,27 @@
         android:orientation="horizontal">
         <TextView
             android:id="@+id/communitylist_content"
-            android:layout_width="match_parent"
+            android:layout_width="275dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="29dp"
+            android:textColor="@color/black"
             android:fontFamily="@font/notosanskr_regular"
             android:includeFontPadding="false"
+            android:maxWidth="275dp"
+            android:maxLines="3"
+            android:ellipsize="end"
             android:text="리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰리사이클러뷰"
             android:textSize="12dp" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
         <ImageButton
             android:id="@+id/community_modalbtn"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="-17dp"
-            android:layout_marginTop="5dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginRight="10dp"
             android:background="@color/white"
-            android:scaleType="fitCenter"
+            android:scaleType="centerInside"
             android:src="@drawable/mypage_btn_modal" />
     </LinearLayout>
     <LinearLayout
@@ -44,12 +49,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/mypagelist_btn_favorite_filled" />
+            android:background="@drawable/communitylist_btn_like" />
         <TextView
             android:id="@+id/communitylist_likecount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
+            android:textSize="10sp"
+            android:textColor="#5a5a5a"
+            android:fontFamily="@font/notosanskr_bold"
             android:layout_marginLeft="2dp"
             android:layout_marginTop = "1dp"
             android:layout_marginBottom="1dp" />
@@ -58,13 +66,15 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_gravity="center"
-            android:background="@drawable/mypagelist_img_comment"
-            />
+            android:background="@drawable/mypagelist_img_comment" />
         <TextView
             android:id="@+id/communitylist_commentcount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
+            android:textColor="#5a5a5a"
+            android:textSize="10sp"
+            android:fontFamily="@font/notosanskr_bold"
             android:layout_marginLeft="2dp"
             android:layout_marginTop = "1dp"
             android:layout_marginBottom="1dp" />
