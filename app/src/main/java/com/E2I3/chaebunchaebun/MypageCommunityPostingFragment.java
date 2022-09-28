@@ -142,7 +142,6 @@ public class MypageCommunityPostingFragment extends Fragment {
                     myCommunityBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
                 }
             });
-
             mypagePostingList.setAdapter(communityListAdapter);
         }
         return mypagePosting;

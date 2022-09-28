@@ -161,7 +161,7 @@ public class CommunityWritingActivity extends AppCompatActivity {
                 pictureId--;
                 switch(pictureId){
                     case 0:
-                        add_picture.setImageResource(R.drawable.writing_btn_picture);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture);
                         selectedMainImage = null;
                         delete_arr = img1.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
