@@ -143,7 +143,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
         getPostList();
 
         if(img1.isEmpty() || img1 == null || img1.equals("null")){
-            add_picture.setImageResource(R.drawable.communitywriting_btn_picture1);
+            add_picture.setImageResource(R.drawable.communitywriting_btn_picture);
         } else if(img2.isEmpty() || img2 == null || img2.equals("null")){
             mainImgFrame.setVisibility(View.VISIBLE);
             mainImgDelete.setVisibility(View.VISIBLE);
@@ -227,7 +227,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
                 pictureId--;
                 switch(pictureId){
                     case 0:
-                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture_none);
+                        add_picture.setImageResource(R.drawable.communitywriting_btn_picture);
                         delete_arr = img1.split("/");
                         deleteImg(delete_arr[delete_arr.length - 1]);
                         img1 = null;

@@ -41,43 +41,53 @@
         android:layout_height="1dp"
         android:background="#e5e5e5"/>
     <!-- ViewContent -->
-    <include layout="@layout/community_writing_detail"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#e5e5e5"/>
-    <!-- 사진 추가 -->
     <LinearLayout
-        android:id="@+id/community_writing_picture"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-        <ImageButton
-            android:id="@+id/add_picture"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/communitywriting_btn_picture" />
-        <include layout="@layout/community_writing_picture"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="41dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <include layout="@layout/community_writing_detail"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e5e5e5"/>
+        <!-- 사진 추가 -->
+        <LinearLayout
+            android:id="@+id/community_writing_picture"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="top"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/add_picture"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/communitywriting_btn_picture" />
+            <include layout="@layout/community_writing_picture"/>
+        </LinearLayout>
     </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/community_writing_picture_none"
         android:layout_width="match_parent"
         android:layout_height="41dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-41dp"
         android:background="#f8f8f8">
         <ImageButton
             android:id="@+id/community_btn_picture_none"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="19dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/communitywriting_btn_picture_none"/>
+            android:background="@drawable/communitywriting_btn_picture_none" />
     </com.google.android.material.bottomnavigation.BottomNavigationView>
-
 </LinearLayout>
