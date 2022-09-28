@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -115,6 +116,7 @@ public class CommunityWritingActivity extends AppCompatActivity {
                 none_picture_view.setVisibility(View.GONE);
                 add_picture_view.setVisibility(View.VISIBLE);
                 picture_view.setVisibility(View.VISIBLE);
+                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
                 Intent mainImgIntent = new Intent(Intent.ACTION_PICK);
                 mainImgIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
