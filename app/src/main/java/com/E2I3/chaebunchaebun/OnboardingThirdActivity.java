@@ -25,6 +25,7 @@ public class OnboardingThirdActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
                 intent.putExtra("userId", user_id);
+                intent.putExtra("page", 0);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |  Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);

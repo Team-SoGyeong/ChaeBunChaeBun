@@ -100,6 +100,7 @@ public class CommunityNoseeDialogFragment extends DialogFragment {
                 Intent intent = new Intent(getActivity(), NavigationActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("userId", userId);
+                intent.putExtra("page", 1);
                 getActivity().startActivity(intent);
                 getActivity().overridePendingTransition(0, 0);
             } else {

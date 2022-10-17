@@ -173,9 +173,9 @@ public class MypageMypostingFragment extends Fragment {
                                 args.putString("userId", userId);
                                 args.putString("postId", postId);
                                 args.putInt("categoryId", categoryId);
-                                MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
-                                myBottomSheetDialog.setArguments(args);
-                                myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                                MypageMyBottomSheetDialog mypageMyBottomSheetDialog = MypageMyBottomSheetDialog.getInstance();
+                                mypageMyBottomSheetDialog.setArguments(args);
+                                mypageMyBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
                             }
                         }
                     });

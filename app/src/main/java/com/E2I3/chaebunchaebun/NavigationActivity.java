@@ -32,6 +32,7 @@ public class NavigationActivity extends AppCompatActivity {
     private Toast toast;
 
     String userId = null;
+    int page = 0;
 
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class NavigationActivity extends AppCompatActivity {
         //user_id 받기
         Intent intent = getIntent();
         this.userId = intent.getStringExtra("userId");
+        this.page = intent.getIntExtra("page", 0);
 //        this.userId = "60";
 
         toastText = (TextView) customToast.findViewById(R.id.custom_toast_text);
@@ -85,7 +87,12 @@ public class NavigationActivity extends AppCompatActivity {
         homefg = new HomeFragment();
         communityfg = new CommunityFragment();
         myfg = new MypageFragment();
-        setFragment(0);
+        setFragment(this.page);
+        if(this.page == 0) {
+            bottomNavigationView.setSelectedItemId(R.id.bottom_home);
+        } else if (this.page == 1) {
+            bottomNavigationView.setSelectedItemId(R.id.bottom_community);
+        }
     }
 
     private void setFragment(int n) {

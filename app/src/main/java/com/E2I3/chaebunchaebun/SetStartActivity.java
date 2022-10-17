@@ -8,12 +8,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SetStartActivity  extends AppCompatActivity {
-    String user_id = "86";
+    String user_id = "";
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.onboarding_start);
-//        user_id = getIntent().getStringExtra("userId");
+        user_id = getIntent().getStringExtra("userId");
 
 
         moveMain(1);    //1초 후 main activity 로 넘어감

@@ -137,9 +137,9 @@ public class MypageCommunityPostingFragment extends Fragment {
                     Bundle args = new Bundle();
                     args.putString("userId", userId);
                     args.putString("postId", postId);
-                    MyCommunityBottomSheetDialog myCommunityBottomSheetDialog = MyCommunityBottomSheetDialog.getInstance();
-                    myCommunityBottomSheetDialog.setArguments(args);
-                    myCommunityBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                    MypageMyCommunityBottomSheetDialog mypageMyCommunityBottomSheetDialog = MypageMyCommunityBottomSheetDialog.getInstance();
+                    mypageMyCommunityBottomSheetDialog.setArguments(args);
+                    mypageMyCommunityBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
                 }
             });
             mypagePostingList.setAdapter(communityListAdapter);
