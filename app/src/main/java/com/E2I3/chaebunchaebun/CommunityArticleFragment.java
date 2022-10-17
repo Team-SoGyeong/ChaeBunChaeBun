@@ -152,10 +152,8 @@ public class CommunityArticleFragment extends Fragment implements SwipeRefreshLa
         communityArticleBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                getActivity().finish();
                 getActivity().overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
-                fragmentManager.beginTransaction().remove(CommunityArticleFragment.this).commit();
-                fragmentManager.popBackStack();
             }
         });
 

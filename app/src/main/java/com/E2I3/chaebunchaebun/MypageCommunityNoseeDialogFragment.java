@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -22,15 +21,15 @@ import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
-public class NoseeDialogFragment extends DialogFragment {
+public class MypageCommunityNoseeDialogFragment extends DialogFragment {
     public static final String TAG_EVENT_DIALOG = "dialog_nosee";
 
     String userId, postId = null;
     RadioButton radioButton;
 
-    public NoseeDialogFragment() {}
-    public static NoseeDialogFragment getInstance() {
-        NoseeDialogFragment e = new NoseeDialogFragment();
+    public MypageCommunityNoseeDialogFragment() {}
+    public static MypageCommunityNoseeDialogFragment getInstance() {
+        MypageCommunityNoseeDialogFragment e = new MypageCommunityNoseeDialogFragment();
 
         return e;
     }
@@ -38,14 +37,14 @@ public class NoseeDialogFragment extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View noseeDialog = inflater.inflate(R.layout.dialog_article_nosee, container);
+        View noseeDialog = inflater.inflate(R.layout.dialog_mypagecommunity_nosee, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        ImageButton noseeDialogOk = (ImageButton) noseeDialog.findViewById(R.id.nosee_dialog_ok);
-        ImageButton noseeDialogCancel = (ImageButton) noseeDialog.findViewById(R.id.nosee_dialog_cancel);
-        RadioGroup noseeRadioGroup = (RadioGroup) noseeDialog.findViewById(R.id.nosee_radiogroup);
-        RadioButton partici = (RadioButton) noseeDialog.findViewById(R.id.partici);
-        RadioButton manySee = (RadioButton) noseeDialog.findViewById(R.id.many_see);
+        ImageButton noseeDialogOk = (ImageButton) noseeDialog.findViewById(R.id.mypage_community_nosee_dialog_ok);
+        ImageButton noseeDialogCancel = (ImageButton) noseeDialog.findViewById(R.id.mypage_community_nosee_dialog_cancel);
+        RadioGroup noseeRadioGroup = (RadioGroup) noseeDialog.findViewById(R.id.mypage_community_nosee_radiogroup);
+        RadioButton partici = (RadioButton) noseeDialog.findViewById(R.id.mypage_community_partici);
+        RadioButton manySee = (RadioButton) noseeDialog.findViewById(R.id.mypage_community_many_see);
 
         Bundle mArgs = getArguments();
         userId = mArgs.getString("userId");
@@ -93,15 +92,14 @@ public class NoseeDialogFragment extends DialogFragment {
             System.out.println(postId);
 
             String jsonString = jsonPostTransfer.toString();
-            String response = postTask.execute("posts/blind", jsonString).get();
+            String response = postTask.execute("community/blind", jsonString).get();
 
             JSONObject jsonObject = new JSONObject(response);
             int responseCode = jsonObject.getInt("code");
             if(responseCode == 200){
-                Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                Intent intent = new Intent(getActivity(), MypageCommunityPostingActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("userId", userId);
-                intent.putExtra("page", 0);
                 getActivity().startActivity(intent);
                 getActivity().overridePendingTransition(0, 0);
             } else {

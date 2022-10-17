@@ -51,6 +51,7 @@
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_categorylist.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_comment_modalbtn.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_commentlist.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_community_modalbtn.xml" value="0.24947916666666667" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_communitylist.xml" value="0.264" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_homelist.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_likelist.xml" value="0.25364583333333335" />
@@ -59,22 +60,40 @@
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_modalbutton.xml" value="0.24947916666666667" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_my_modalbtn.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_mycomment_modalbtn.xml" value="0.25364583333333335" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_mycommunity_modalbtn.xml" value="0.24947916666666667" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_mycommunitycmt_modalbtn.xml" value="0.24947916666666667" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_mypage_community.xml" value="0.264" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_mypage_modalbtn.xml" value="0.2047008547008547" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_mypagecmt_modatbtn.xml" value="0.24947916666666667" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_mypagecommunity_modalbtn.xml" value="0.24947916666666667" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_mypagemy_modalbtn.xml" value="0.23489583333333333" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_mypagemycommunity_modalbtn.xml" value="0.2484375" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_noticelist.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_report_toast.xml" value="0.13072916666666667" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/custom_searchlist_main.xml" value="0.25364583333333335" />
-        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_article_complete.xml" value="0.13072916666666667" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_article_complete.xml" value="0.264" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_article_delete.xml" value="0.176" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_article_nosee.xml" value="0.264" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_article_report.xml" value="0.25364583333333335" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_comment_delete.xml" value="0.264" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_comment_report.xml" value="0.264" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_community_delete.xml" value="0.24947916666666667" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_community_nosee.xml" value="0.24947916666666667" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_community_report.xml" value="0.24947916666666667" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_communitycmt_report.xml" value="0.24947916666666667" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_home_complete.xml" value="0.264" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_home_complete_complete.xml" value="0.4" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_home_location.xml" value="0.24947916666666667" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_home_uncomplete.xml" value="0.264" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_home_uncomplete_fin.xml" value="0.4" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_location_question.xml" value="0.24947916666666667" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_mypage_delete.xml" value="0.24947916666666667" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_mypage_nosee.xml" value="0.264" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_mypage_report.xml" value="0.2484375" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_mypagecommunity_delete.xml" value="0.2484375" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_mypagecommunity_nosee.xml" value="0.2484375" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_mypagecommunity_report.xml" value="0.2484375" />
+        <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_mypagemy_modalbtn.xml" value="0.24947916666666667" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_withdraw_pop.xml" value="0.24947916666666667" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_writing_ect_popup.xml" value="0.24947916666666667" />
         <entry key="..\:/Android/ChaeBunChaeBun/app/src/main/res/layout/dialog_writing_popup.xml" value="0.25364583333333335" />

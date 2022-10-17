@@ -8,28 +8,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-public class MyCommunityBottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener {
-    public static MyCommunityBottomSheetDialog getInstance() {
-        return new MyCommunityBottomSheetDialog();
+public class MypageMyCommunityBottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener {
+    public static MypageMyCommunityBottomSheetDialog getInstance() {
+        return new MypageMyCommunityBottomSheetDialog();
     }
 
     private ImageButton modify;
     private ImageButton delete;
 
     String userId, postId = null;
-    boolean isMypage = false;
+    boolean isMypage = true;
     int categoryId = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.custom_mycommunity_modalbtn, container, false);
+        View view = inflater.inflate(R.layout.custom_mypagemycommunity_modalbtn, container, false);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        modify = (ImageButton) view.findViewById(R.id.community_modal_modify);
-        delete = (ImageButton) view.findViewById(R.id.community_modal_delete);
+        modify = (ImageButton) view.findViewById(R.id.mypage_community_modal_modify);
+        delete = (ImageButton) view.findViewById(R.id.mypage_community_modal_delete);
 
         Bundle mArgs = getArguments();
         userId = mArgs.getString("userId");
@@ -44,20 +43,20 @@ public class MyCommunityBottomSheetDialog extends BottomSheetDialogFragment impl
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.community_modal_modify:
+            case R.id.mypage_community_modal_modify:
                 Intent intent = new Intent(getContext(), CommunityChangeActivity.class);
                 intent.putExtra("userId", userId);
                 intent.putExtra("postId", postId);
                 intent.putExtra("isMypage", isMypage);
                 getActivity().startActivity(intent);
                 break;
-            case R.id.community_modal_delete:
+            case R.id.mypage_community_modal_delete:
                 Bundle args = new Bundle();
                 args.putString("userId", userId);
                 args.putString("postId", postId);
-                CommunityDeleteDialogFragment e = CommunityDeleteDialogFragment.getInstance();
+                MypageCommunityDeleteDialogFragment e = MypageCommunityDeleteDialogFragment.getInstance();
                 e.setArguments(args);
-                e.show(getChildFragmentManager(), CommunityDeleteDialogFragment.TAG_EVENT_DIALOG);
+                e.show(getChildFragmentManager(), MypageCommunityDeleteDialogFragment.TAG_EVENT_DIALOG);
                 break;
         }
     }

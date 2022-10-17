@@ -73,7 +73,7 @@ public class ChangeChaebunActivity extends AppCompatActivity {
     int pictureId = 0;
     int billId = 0;
     Long postAddr;
-    boolean isPrice, isMember, isAmount = false;
+    boolean isMypage;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +91,7 @@ public class ChangeChaebunActivity extends AppCompatActivity {
         userId = intent.getStringExtra("userId");
         postId = intent.getStringExtra("postId");
         categoryId = intent.getIntExtra("categoryId", 0);
+        isMypage = intent.getBooleanExtra("isMypage", false);
 
         System.out.println("아이디:" + userId);
 
@@ -603,6 +604,7 @@ public class ChangeChaebunActivity extends AppCompatActivity {
                                 Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 intent.putExtra("userId", userId);
+                                intent.putExtra("page", 0);
                                 startActivity(intent);
                                 overridePendingTransition(0, 0);
                             } else {

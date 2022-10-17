@@ -180,16 +180,16 @@ public class MypageMyCommentFragment extends Fragment {
                                     args.putString("userId", userId);
                                     args.putString("postId", postId);
                                     args.putInt("categoryId", categoryId);
-                                    MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
-                                    myBottomSheetDialog.setArguments(args);
-                                    myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                                    MypageMyBottomSheetDialog mypageMyBottomSheetDialog = MypageMyBottomSheetDialog.getInstance();
+                                    mypageMyBottomSheetDialog.setArguments(args);
+                                    mypageMyBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
                                 } else {
                                     Bundle args = new Bundle();
                                     args.putString("userId", userId);
                                     args.putString("postId", postId);
-                                    BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
-                                    bottomSheetDialog.setArguments(args);
-                                    bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                                    MypageBottomSheetDialog mypageBottomSheetDialog = MypageBottomSheetDialog.getInstance();
+                                    mypageBottomSheetDialog.setArguments(args);
+                                    mypageBottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
                                 }
                             }
                         }
