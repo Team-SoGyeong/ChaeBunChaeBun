@@ -40,6 +40,7 @@ public class WritingReceiptPopupDialogFragment extends DialogFragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), NavigationActivity.class);
                 intent.putExtra("userId", userId);
+                intent.putExtra("page", 0);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);;

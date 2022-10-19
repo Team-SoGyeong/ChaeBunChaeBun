@@ -4,33 +4,35 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-
-public class CommunityDeleteDialogFragment extends DialogFragment {
+public class MypageDeleteDialogFragment extends DialogFragment {
     public static final String TAG_EVENT_DIALOG = "dialog_event";
 
     String userId, postId = null;
 
-    public CommunityDeleteDialogFragment() {}
-    public static CommunityDeleteDialogFragment getInstance() {
-        CommunityDeleteDialogFragment e = new CommunityDeleteDialogFragment();
+    public MypageDeleteDialogFragment() {}
+    public static MypageDeleteDialogFragment getInstance() {
+        MypageDeleteDialogFragment e = new MypageDeleteDialogFragment();
         return e;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View deleteDialog = inflater.inflate(R.layout.dialog_community_delete, container);
+        View deleteDialog = inflater.inflate(R.layout.dialog_mypage_delete, container);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        ImageButton cancel = (ImageButton) deleteDialog.findViewById(R.id.community_btn_delete_cancel);
-        ImageButton ok = (ImageButton) deleteDialog.findViewById(R.id.community_btn_delete_ok);
+        ImageButton cancel = (ImageButton) deleteDialog.findViewById(R.id.mypage_delete_cancel);
+        ImageButton ok = (ImageButton) deleteDialog.findViewById(R.id.mypage_delete_ok);
 
         Bundle mArgs = getArguments();
         userId = mArgs.getString("userId");
@@ -46,11 +48,10 @@ public class CommunityDeleteDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 DeleteTask deleteTask = new DeleteTask();
-                deleteTask.execute("community/" + postId + "/" + userId, postId, userId);
-                Intent intent = new Intent(getActivity(), NavigationActivity.class);
+                deleteTask.execute("posts/" + postId + "/" + userId, postId, userId);
+                Intent intent = new Intent(getActivity(), MypageMypostingActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("userId", userId);
-                intent.putExtra("page", 1);
                 getActivity().startActivity(intent);
                 getActivity().overridePendingTransition(0, 0);
             }

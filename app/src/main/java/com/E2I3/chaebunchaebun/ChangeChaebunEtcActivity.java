@@ -619,6 +619,7 @@ public class ChangeChaebunEtcActivity extends AppCompatActivity {
                                 Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 intent.putExtra("userId", userId);
+                                intent.putExtra("page", 0);
                                 startActivity(intent);
                                 overridePendingTransition(0, 0);
                             } else {

@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
@@ -54,6 +55,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
     EditText inputContent;
     String userId = null, postId = null;
     String content, img1, img2, img3, img4, img5;
+    boolean isMypage;
 
     String delete_arr[];
     Uri selectedMainImage, selectedSub1Image, selectedSub2Image, selectedSub3Image, selectedSub4Image;
@@ -77,6 +79,7 @@ public class CommunityChangeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         userId = intent.getStringExtra("userId");
         postId = intent.getStringExtra("postId");
+        isMypage = intent.getBooleanExtra("isMypage", false);
         System.out.println("아이디:" + userId);
 
         inputContent = (EditText) findViewById(R.id.input_content);
@@ -103,6 +106,16 @@ public class CommunityChangeActivity extends AppCompatActivity {
 
         btn_back = (ImageView) findViewById(R.id.community_change_back);
         writing = (ImageButton) findViewById(R.id.community_change_iscomplete);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+            }
+        });
 
         changeMainImg.setOutlineProvider(new ViewOutlineProvider() {
             @Override
@@ -461,11 +474,20 @@ public class CommunityChangeActivity extends AppCompatActivity {
                             if(success == true) {
                                 toastText.setText("수정되었어요!");
                                 toast.show();
-                                Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                intent.putExtra("userId", userId);
-                                startActivity(intent);
-                                overridePendingTransition(0, 0);
+                                if (isMypage == false) {
+                                    Intent intent = new Intent(getApplicationContext(), CommunityArticleActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    intent.putExtra("userId", userId);
+                                    intent.putExtra("postId", postId);
+                                    startActivity(intent);
+                                    overridePendingTransition(0, 0);
+                                } else {
+                                    Intent intent = new Intent(getApplicationContext(), MypageCommunityPostingActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    intent.putExtra("userId", userId);
+                                    startActivity(intent);
+                                    overridePendingTransition(0, 0);
+                                }
                             } else {
                                 toastText.setText("수정에 실패하였습니다!");
                                 toast.show();

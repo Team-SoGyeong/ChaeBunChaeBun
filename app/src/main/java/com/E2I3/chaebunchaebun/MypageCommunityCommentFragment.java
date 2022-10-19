@@ -141,16 +141,16 @@ public class MypageCommunityCommentFragment extends Fragment {
                         Bundle args = new Bundle();
                         args.putString("userId", userId);
                         args.putString("postId", postId);
-                        MyCommunityBottomSheetDialog myCommunityBottomSheetDialog = MyCommunityBottomSheetDialog.getInstance();
-                        myCommunityBottomSheetDialog.setArguments(args);
-                        myCommunityBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
+                        MypageMyCommunityBottomSheetDialog mypageMyCommunityBottomSheetDialog = MypageMyCommunityBottomSheetDialog.getInstance();
+                        mypageMyCommunityBottomSheetDialog.setArguments(args);
+                        mypageMyCommunityBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
                     } else {
                         Bundle args = new Bundle();
                         args.putString("userId", userId);
                         args.putString("postId", postId);
-                        CommunityBottomSheetDialog communityBottomSheetDialog = CommunityBottomSheetDialog.getInstance();
-                        communityBottomSheetDialog.setArguments(args);
-                        communityBottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
+                        MypageCommunityBottomSheetDialog mypageCommunityBottomSheetDialog = MypageCommunityBottomSheetDialog.getInstance();
+                        mypageCommunityBottomSheetDialog.setArguments(args);
+                        mypageCommunityBottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
                     }
                 }
             });

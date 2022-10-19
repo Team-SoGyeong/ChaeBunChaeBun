@@ -447,6 +447,7 @@ public class CommunityWritingActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
                         intent.putExtra("userId", userId);
+                        intent.putExtra("page", 1);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         Toast.makeText(getApplicationContext(), "글쓰기 완료", Toast.LENGTH_SHORT).show();
                         startActivity(intent);

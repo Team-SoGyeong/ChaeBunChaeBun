@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/custom_categorylist_modalline"
+    android:backgroundTint="@color/white">
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="5dp"
+        android:layout_marginLeft="138dp"
+        android:layout_marginRight="138dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/custom_categorylist_modalline" />
+    <ImageButton
+        android:id="@+id/mypage_modal_modify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/categorylist_modalbtn_modify"
+        android:background="@color/white"
+        android:layout_marginTop="24dp"/>
+    <ImageButton
+        android:id="@+id/mypage_modal_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/categorylist_modalbtn_delete"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="45dp"/>
+</LinearLayout>

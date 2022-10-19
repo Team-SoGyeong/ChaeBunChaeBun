@@ -22,7 +22,6 @@ import java.util.ArrayList;
 public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapter.ViewHolder> {
     private ArrayList<CategoryListItem> categoryListItems = null;
     private OnItemClickListener mListener = null;
-    private OnModalClickListener modalClickListener = null;
     private OnLikeClickListener likeClickListener = null;
 
     private TextView toastText;
@@ -32,20 +31,12 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         void onItemClick(View view, int pos);
     }
 
-    public interface OnModalClickListener {
-        void OnModlaClick(View view, int pos);
-    }
-
     public interface OnLikeClickListener {
         void OnLikeClick(View view, int pos);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.mListener = listener ;
-    }
-
-    public void setModalClickListener(OnModalClickListener modalClickListener) {
-        this.modalClickListener = modalClickListener;
     }
 
     public void setLikeClickListener(OnLikeClickListener likeClickListener) {
@@ -89,7 +80,6 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
             categoryListPrice = (TextView) categoryView.findViewById(R.id.categorylist_price);
             categoryListLikeCount = (TextView) categoryView.findViewById(R.id.categorylist_likecount);
             categoryListCommentCount = (TextView) categoryView.findViewById(R.id.categorylist_commentcount);
-            categoryListModalBtn = (ImageButton) categoryView.findViewById(R.id.category_list_modalbtn);
             categoryListReceipt = (ImageView) categoryView.findViewById(R.id.categorylist_recipeicon);
             categoryListLikeBtn = (ImageView) categoryView.findViewById(R.id.categorylist_likebtn);
 
@@ -100,18 +90,6 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
                     if(pos != RecyclerView.NO_POSITION){
                         if(mListener != null) {
                             mListener.onItemClick(view, pos);
-                        }
-                    }
-                }
-            });
-
-            categoryListModalBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int pos = getAdapterPosition();
-                    if(pos != RecyclerView.NO_POSITION){
-                        if(modalClickListener != null){
-                            modalClickListener.OnModlaClick(view, pos);
                         }
                     }
                 }

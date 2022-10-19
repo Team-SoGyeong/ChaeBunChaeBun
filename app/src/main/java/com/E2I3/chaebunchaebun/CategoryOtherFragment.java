@@ -129,31 +129,6 @@ public class CategoryOtherFragment extends Fragment {
                 }
             });
 
-            categoryListAdapter.setModalClickListener(new CategoryListAdapter.OnModalClickListener() {
-                @Override
-                public void OnModlaClick(View view, int pos) {
-                    String userId = String.valueOf(categoryListAdapter.getItem(pos).getUserId());
-                    String postId = String.valueOf(categoryListAdapter.getItem(pos).getPostId());
-                    int categoryId = categoryListAdapter.getItem(pos).getCategoryId();
-                    if (userId.equals(id)) {
-                        Bundle args = new Bundle();
-                        args.putString("userId", id);
-                        args.putString("postId", postId);
-                        args.putInt("categoryId", categoryId);
-                        MyBottomSheetDialog myBottomSheetDialog = MyBottomSheetDialog.getInstance();
-                        myBottomSheetDialog.setArguments(args);
-                        myBottomSheetDialog.show(getChildFragmentManager(), "mybottomsheet");
-                    } else {
-                        Bundle args = new Bundle();
-                        args.putString("userId", id);
-                        args.putString("postId", postId);
-                        BottomSheetDialog bottomSheetDialog = BottomSheetDialog.getInstance();
-                        bottomSheetDialog.setArguments(args);
-                        bottomSheetDialog.show(getChildFragmentManager(), "bottomsheet");
-                    }
-                }
-            });
-
             categoryListAdapter.setLikeClickListener(new CategoryListAdapter.OnLikeClickListener() {
                 @Override
                 public void OnLikeClick(View view, int pos) {
