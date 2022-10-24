@@ -20,6 +20,8 @@ import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
+import kotlinx.coroutines.flow.SharingCommand;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MypageFragment#newInstance} factory method to
@@ -86,8 +88,6 @@ public class MypageFragment extends Fragment {
         mypage_inquire = mypage_main.findViewById(R.id.mypage_btn_inquire);
         mypage_share = mypage_main.findViewById(R.id.mypage_btn_share);
 
-        //profile, nickname, location 서버에서 얻어서 세팅하기;
-//        System.out.println("userid: " + userId + " nickname: " + nickname + " address + " + address);
         GetProfile();
         Glide.with(getContext()).load(this.profileImg).into(mypage_profile);
         mypage_nickname.setText(nickname);
@@ -124,7 +124,22 @@ public class MypageFragment extends Fragment {
                 getActivity().overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
         });
+        mypage_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sharing_intent = new Intent(Intent.ACTION_SEND);
+                sharing_intent.addCategory(Intent.CATEGORY_DEFAULT);
+                sharing_intent.setType("text/plain");
 
+                String sharingUrl = "이웃과 함께하는 신선한 채소 소분!\n" +
+                        "채분채분과 함께 시작해 보세요:)\n" + "https://play.google.com/store/apps/details?id=com.E2I3.chaebunchaebun";
+
+                sharing_intent.putExtra(Intent.EXTRA_TEXT,sharingUrl);
+
+                Intent sharing = Intent.createChooser(sharing_intent, "공유하기");
+                startActivity(sharing);
+            }
+        });
         return mypage_main;
     }
 
