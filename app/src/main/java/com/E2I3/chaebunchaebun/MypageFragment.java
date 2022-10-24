@@ -131,13 +131,13 @@ public class MypageFragment extends Fragment {
                 sharing_intent.addCategory(Intent.CATEGORY_DEFAULT);
                 sharing_intent.setType("text/plain");
 
-                String sharingUrl = "공유할 앱";
+                String sharingUrl = "이웃과 함께하는 신선한 채소 소분!\n" +
+                        "채분채분과 함께 시작해 보세요:)\n" + "https://play.google.com/store/apps/details?id=com.E2I3.chaebunchaebun";
 
                 sharing_intent.putExtra(Intent.EXTRA_TEXT,sharingUrl);
 
                 Intent sharing = Intent.createChooser(sharing_intent, "공유하기");
                 startActivity(sharing);
-
             }
         });
         return mypage_main;
