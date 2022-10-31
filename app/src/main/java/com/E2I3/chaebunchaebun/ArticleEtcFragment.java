@@ -636,16 +636,29 @@ public class ArticleEtcFragment extends Fragment implements SwipeRefreshLayout.O
 
     @Override
     public void onRefresh() {
-        Bundle categoryBundle = new Bundle();
-        categoryBundle.putString("postId", postId);
-        categoryBundle.putString("userId", userId);
-        categoryBundle.putInt("categoryId", categoryId);
-        categoryBundle.putBoolean("isMyPage", isMyPage);
-        FragmentTransaction articleEctTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        ArticleEtcFragment articleEtcFragment = new ArticleEtcFragment();
-        articleEtcFragment.setArguments(categoryBundle);
-        articleEctTransaction.replace(R.id.mypage_posting_frame, articleEtcFragment);
-        articleEctTransaction.commit();
+        if(isMyPage == true) {
+            Bundle categoryBundle = new Bundle();
+            categoryBundle.putString("postId", postId);
+            categoryBundle.putString("userId", userId);
+            categoryBundle.putInt("categoryId", categoryId);
+            categoryBundle.putBoolean("isMyPage", isMyPage);
+            FragmentTransaction articleEctTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            ArticleEtcFragment articleEtcFragment = new ArticleEtcFragment();
+            articleEtcFragment.setArguments(categoryBundle);
+            articleEctTransaction.replace(R.id.mypage_posting_frame, articleEtcFragment);
+            articleEctTransaction.commit();
+        } else {
+            Bundle categoryBundle = new Bundle();
+            categoryBundle.putString("postId", postId);
+            categoryBundle.putString("userId", userId);
+            categoryBundle.putInt("categoryId", categoryId);
+            categoryBundle.putBoolean("isMyPage", isMyPage);
+            FragmentTransaction articleEctTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            ArticleEtcFragment articleEtcFragment = new ArticleEtcFragment();
+            articleEtcFragment.setArguments(categoryBundle);
+            articleEctTransaction.replace(R.id.mypage_myheart_frame, articleEtcFragment);
+            articleEctTransaction.commit();
+        }
 
         swipeRefreshLayout.setRefreshing(false);
     }

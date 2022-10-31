@@ -55,8 +55,6 @@ public class CommentDeleteDialogFragment extends DialogFragment {
                 articleBundle.putString("userId", userId);
                 articleBundle.putString("postId", postId);
 
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.popBackStack();
                 FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 ArticleFragment articleFragment = new ArticleFragment();
                 articleFragment.setArguments(articleBundle);
