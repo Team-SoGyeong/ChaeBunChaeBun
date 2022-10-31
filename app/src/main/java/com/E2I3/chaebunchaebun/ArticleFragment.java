@@ -634,16 +634,29 @@ public class ArticleFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     @Override
     public void onRefresh() {
-        Bundle categoryBundle = new Bundle();
-        categoryBundle.putString("postId", postId);
-        categoryBundle.putString("userId", userId);
-        categoryBundle.putInt("categoryId", categoryId);
-        categoryBundle.putBoolean("isBottom", isBottom);
-        FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        ArticleFragment articleFragment = new ArticleFragment();
-        articleFragment.setArguments(categoryBundle);
-        articleTransaction.replace(R.id.bottom_frame, articleFragment);
-        articleTransaction.commit();
+        if(isBottom == true) {
+            Bundle categoryBundle = new Bundle();
+            categoryBundle.putString("postId", postId);
+            categoryBundle.putString("userId", userId);
+            categoryBundle.putInt("categoryId", categoryId);
+            categoryBundle.putBoolean("isBottom", isBottom);
+            FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            ArticleFragment articleFragment = new ArticleFragment();
+            articleFragment.setArguments(categoryBundle);
+            articleTransaction.replace(R.id.bottom_frame, articleFragment);
+            articleTransaction.commit();
+        } else {
+            Bundle categoryBundle = new Bundle();
+            categoryBundle.putString("postId", postId);
+            categoryBundle.putString("userId", userId);
+            categoryBundle.putInt("categoryId", categoryId);
+            categoryBundle.putBoolean("isBottom", isBottom);
+            FragmentTransaction articleTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            ArticleFragment articleFragment = new ArticleFragment();
+            articleFragment.setArguments(categoryBundle);
+            articleTransaction.replace(R.id.search_frame, articleFragment);
+            articleTransaction.commit();
+        }
 
         swipeRefreshLayout.setRefreshing(false);
     }
